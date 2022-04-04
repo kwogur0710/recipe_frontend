@@ -10,7 +10,7 @@ export default function App() {
             <View style={styles.searchFrame}>
                 <View style={styles.menuButton}></View>
                 <View style={styles.search}>
-                    <Text style={{ fontSize: 30 }}>검색바</Text>
+                    <Text style={{ fontSize: 30 }}>검색창</Text>
                 </View>
                 <View style={styles.searchButton}></View>
             </View>
