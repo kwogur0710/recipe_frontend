@@ -10,7 +10,7 @@ export default function App() {
             <View style={styles.searchFrame}>
                 <View style={styles.menuButton}></View>
                 <View style={styles.search}>
-                    <Text style={{ fontSize: 30 }}>검색창</Text>
+                    <Text style={{ fontSize: 30 }}></Text>
                 </View>
                 <View style={styles.searchButton}></View>
             </View>
@@ -91,25 +91,27 @@ const styles = StyleSheet.create({
         height: '6%', //높이 : '10%'
         borderWidth: 3, //테두리 굵기
         borderColor: '#6524FF', //테두리 색깔
-        borderRadius: 10, //테두리 둥글게 하는 수치
+        borderRadius: 100, //테두리 둥글게 하는 수치
         marginLeft: '5%', //왼쪽마진 : 5%
         marginRight: '5%', //오른쪽마진 : 5%
         flexDirection: 'row', //정렬방향 : row(가로), column(세로)
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
-        //backgroundColor: '#6524FF', // 바탕색
+        backgroundColor: '#6524FF', // 바탕색
     },
     menuButton: {
         //메뉴 아이콘
         borderWidth: 1, //테두리 굵기
         height: '100%', //높이 : '100%'
         width: '12%', //너비 : '11%'
+        marginLeft: '5%',//왼쪽 마진 : '5%'
+        borderColor: 'white', //테두리 색깔
     },
     search: {
         //검색창
         //borderWidth: 1, //테두리 굵기
         height: '100%', //높이 : '100%'
-        width: '76%', //너비 : '78%'
+        width: '60%', //너비 : '78%'
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
     },
@@ -118,6 +120,8 @@ const styles = StyleSheet.create({
         borderWidth: 1, //테두리 굵기
         height: '100%', //높이 : '100%'
         width: '12%', //너비 : '11%'
+        marginRight: '5%',//오른쪽 마진 : '5%'
+        borderColor: 'white', //테두리 색깔
     },
 
     weekRecipeFrame: {
