@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
 
     searchFrame: {
         //검색창 프레임
-        height: '6%', //높이 : '10%'
+        flex: 0.6,
         borderWidth: 3, //테두리 굵기
         borderColor: '#6524FF', //테두리 색깔
         borderRadius: 10, //테두리 둥글게 하는 수치
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     weekRecipeFrame: {
         //금주의 레시피 프레임
         //borderWidth: 1, //테두리 굵기
-        height: '30%', //높이 : '10%'
+        flex: 4,
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
         width: '100%', //너비 : '100%'
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
 
     recipeTypeFrame: {
         //음식 종류 프레임
-        height: '20%', //높이 : '10%'
+        flex: 2.5,
         //borderWidth: 1, //테두리 굵기
         alignItems: 'flex-start', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
 
     recipeVideoFrame: {
         //음식 영상 프레임
-        height: '30%', //높이 : '10%'
+        flex: 4,
         //borderWidth: 1, //테두리 굵기
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
