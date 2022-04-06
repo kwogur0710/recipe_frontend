@@ -1,10 +1,8 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
-import { Alert } from 'react-native-web';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { StyleSheet, Text, View, TouchableOpacity, Button, Alert, Colors } from 'react-native';
 
-export default function App() {
+function RecipeListScreen({ navigation }) {
     return (
         <View style={styles.container}>
             <View style={styles.searchFrame}>
