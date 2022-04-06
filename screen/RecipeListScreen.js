@@ -1,8 +1,10 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, Button, Alert, Colors } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-function RecipeListScreen({ navigation }) {
+const RecipeListScreen = () => {
+    const navigation = useNavigation();
     return (
         <View style={styles.container}>
             <View style={styles.searchFrame}>
@@ -14,24 +16,16 @@ function RecipeListScreen({ navigation }) {
             </View>
             <View style={styles.arrayFrame}>
                 <View style={styles.array}>
-                    <Text style={styles.arrayFont}>최신순</Text>
+                    <View>
+
+                        <Text style={styles.arrayFont}>최신순</Text>
+                    </View>
                 </View>
                 <View style={styles.array}>
-                    <Text style={styles.arrayFont}>추천순</Text>
+                    <Text style={styles.arrayFont}>한식</Text>
                 </View>
                 <View style={styles.array}>
-                    <Text style={styles.arrayFont}>정확도순</Text>
-                </View>
-            </View>
-            <View style={styles.goodwordFrame}>
-                <View style={styles.goodword}>
-                    <Text style={styles.goodwordFont}>돼지고기 김치찌개</Text>
-                </View>
-                <View style={styles.goodword}>
-                    <Text style={styles.goodwordFont}>순두부 김치찌개</Text>
-                </View>
-                <View style={styles.goodword}>
-                    <Text style={styles.goodwordFont}>스팸 김치찌개</Text>
+                    <Text style={styles.arrayFont}>재료선택</Text>
                 </View>
             </View>
             <View style={styles.recipeList}>
@@ -312,24 +306,6 @@ const styles = StyleSheet.create({
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
     },
-    goodwordFrame: {
-        //추천 단어 프레임
-        borderWidth: 0, //테두리 굵기
-        height: '4%', //높이 : '50%'
-        width: '100%', //너비 : '100%'
-        marginTop: '3%', //위쪽 마진 : 3%
-        flexDirection: 'row', //정렬방향 : row(가로), column(세로)
-    },
-    goodword: {
-        //추천 단어
-        borderWidth: 1, //테두리 굵기
-        borderRadius: 100, //테두리 둥글게 하는 수치
-        alignItems: 'center', //가로정렬 : 중앙
-        justifyContent: 'center', //세로정렬 : 중앙
-        backgroundColor: '#6524FF', //바탕색 :
-        height: '100%', //높이 : '100%'
-        marginLeft: '5%', //왼쪽 마진 : '5%'
-    },
 
     recipeList: {
         //레시피 리스트(아랫몸)
@@ -426,3 +402,5 @@ const styles = StyleSheet.create({
         fontSize: 10,
     },
 });
+
+export default RecipeListScreen;

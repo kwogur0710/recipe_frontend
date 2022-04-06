@@ -1,8 +1,10 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, Button, Alert, Colors } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-function MainScreen({ navigation }) {
+const MainScreen = () => {
+    const navigation = useNavigation();
     return (
         <View style={styles.container}>
             <View style={styles.searchFrame}>
@@ -312,3 +314,5 @@ const styles = StyleSheet.create({
         width: '5%', //너비 : '80%'
     },
 });
+
+export default MainScreen;
