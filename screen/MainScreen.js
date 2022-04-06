@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, Button, Alert, Colors } from 'react-native';
 
 function MainScreen({ navigation }) {
-    const renderPost = ({}) => (
+    return (
         <View style={styles.container}>
             <View style={styles.searchFrame}>
                 <View style={styles.menuButton}></View>
