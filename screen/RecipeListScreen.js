@@ -5,29 +5,6 @@ import { useNavigation } from '@react-navigation/native';
 
 const RecipeListScreen = () => {
     const navigation = useNavigation();
-    const RecipeData = [
-      {
-        name: '레시피1'
-      },
-      {
-        name: '레시피2'
-      },
-      {
-        name: '레시피3'
-      },
-      {
-        name: '레시피4'
-      },
-      {
-        name: '레시피5'
-      },
-      {
-        name: '레시피6'
-      },
-      {
-        name: '레시피7'
-      }
-    ];
     return (
         <View style={styles.container}>
             <View style={styles.searchFrame}>
@@ -52,15 +29,13 @@ const RecipeListScreen = () => {
                 </View>
             </View>
             <View style={styles.recipeList}>
-                <FlatList data={RecipeData} keyExtractor={(index) => index} renderItem={({item}) => {
-                  return (
-                    <View style={styles.recipeListFrame}>
+                <View style={styles.recipeListFrame}>
                     <View style={styles.recipeListFrameImage}>
                         <Text style={styles.titleFont}>사진</Text>
                     </View>
                     <View style={styles.recipeListFrameData}>
                         <View style={styles.recipeListFrameDataTitle}>
-                            <Text style={styles.titleFont}>{item}</Text>
+                            <Text style={styles.titleFont}>레시피 이름</Text>
                         </View>
                         <View style={styles.recipeListFrameDataReaction}>
                             <View style={styles.recipeListFrameDataReactionFrame}>
@@ -84,8 +59,186 @@ const RecipeListScreen = () => {
                         </View>
                     </View>
                 </View>
-                  );
-                }} />
+                <View style={styles.recipeListFrame}>
+                    <View style={styles.recipeListFrameImage}>
+                        <Text style={styles.titleFont}>사진</Text>
+                    </View>
+                    <View style={styles.recipeListFrameData}>
+                        <View style={styles.recipeListFrameDataTitle}>
+                            <Text style={styles.titleFont}>레시피 이름</Text>
+                        </View>
+                        <View style={styles.recipeListFrameDataReaction}>
+                            <View style={styles.recipeListFrameDataReactionFrame}>
+                                <View style={styles.recipeListFrameDataReactionImage}></View>
+                                <View style={styles.recipeListFrameDataReactionText}>
+                                    <Text style={styles.reactionFont}>좋아요 수</Text>
+                                </View>
+                            </View>
+                            <View style={styles.recipeListFrameDataReactionFrame}>
+                                <View style={styles.recipeListFrameDataReactionImage}></View>
+                                <View style={styles.recipeListFrameDataReactionText}>
+                                    <Text style={styles.reactionFont}>공유 수</Text>
+                                </View>
+                            </View>
+                            <View style={styles.recipeListFrameDataReactionFrame}>
+                                <View style={styles.recipeListFrameDataReactionImage}></View>
+                                <View style={styles.recipeListFrameDataReactionText}>
+                                    <Text style={styles.reactionFont}>조회수</Text>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.recipeListFrame}>
+                    <View style={styles.recipeListFrameImage}>
+                        <Text style={styles.titleFont}>사진</Text>
+                    </View>
+                    <View style={styles.recipeListFrameData}>
+                        <View style={styles.recipeListFrameDataTitle}>
+                            <Text style={styles.titleFont}>레시피 이름</Text>
+                        </View>
+                        <View style={styles.recipeListFrameDataReaction}>
+                            <View style={styles.recipeListFrameDataReactionFrame}>
+                                <View style={styles.recipeListFrameDataReactionImage}></View>
+                                <View style={styles.recipeListFrameDataReactionText}>
+                                    <Text style={styles.reactionFont}>좋아요 수</Text>
+                                </View>
+                            </View>
+                            <View style={styles.recipeListFrameDataReactionFrame}>
+                                <View style={styles.recipeListFrameDataReactionImage}></View>
+                                <View style={styles.recipeListFrameDataReactionText}>
+                                    <Text style={styles.reactionFont}>공유 수</Text>
+                                </View>
+                            </View>
+                            <View style={styles.recipeListFrameDataReactionFrame}>
+                                <View style={styles.recipeListFrameDataReactionImage}></View>
+                                <View style={styles.recipeListFrameDataReactionText}>
+                                    <Text style={styles.reactionFont}>조회수</Text>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.recipeListFrame}>
+                    <View style={styles.recipeListFrameImage}>
+                        <Text style={styles.titleFont}>사진</Text>
+                    </View>
+                    <View style={styles.recipeListFrameData}>
+                        <View style={styles.recipeListFrameDataTitle}>
+                            <Text style={styles.titleFont}>레시피 이름</Text>
+                        </View>
+                        <View style={styles.recipeListFrameDataReaction}>
+                            <View style={styles.recipeListFrameDataReactionFrame}>
+                                <View style={styles.recipeListFrameDataReactionImage}></View>
+                                <View style={styles.recipeListFrameDataReactionText}>
+                                    <Text style={styles.reactionFont}>좋아요 수</Text>
+                                </View>
+                            </View>
+                            <View style={styles.recipeListFrameDataReactionFrame}>
+                                <View style={styles.recipeListFrameDataReactionImage}></View>
+                                <View style={styles.recipeListFrameDataReactionText}>
+                                    <Text style={styles.reactionFont}>공유 수</Text>
+                                </View>
+                            </View>
+                            <View style={styles.recipeListFrameDataReactionFrame}>
+                                <View style={styles.recipeListFrameDataReactionImage}></View>
+                                <View style={styles.recipeListFrameDataReactionText}>
+                                    <Text style={styles.reactionFont}>조회수</Text>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.recipeListFrame}>
+                    <View style={styles.recipeListFrameImage}>
+                        <Text style={styles.titleFont}>사진</Text>
+                    </View>
+                    <View style={styles.recipeListFrameData}>
+                        <View style={styles.recipeListFrameDataTitle}>
+                            <Text style={styles.titleFont}>레시피 이름</Text>
+                        </View>
+                        <View style={styles.recipeListFrameDataReaction}>
+                            <View style={styles.recipeListFrameDataReactionFrame}>
+                                <View style={styles.recipeListFrameDataReactionImage}></View>
+                                <View style={styles.recipeListFrameDataReactionText}>
+                                    <Text style={styles.reactionFont}>좋아요 수</Text>
+                                </View>
+                            </View>
+                            <View style={styles.recipeListFrameDataReactionFrame}>
+                                <View style={styles.recipeListFrameDataReactionImage}></View>
+                                <View style={styles.recipeListFrameDataReactionText}>
+                                    <Text style={styles.reactionFont}>공유 수</Text>
+                                </View>
+                            </View>
+                            <View style={styles.recipeListFrameDataReactionFrame}>
+                                <View style={styles.recipeListFrameDataReactionImage}></View>
+                                <View style={styles.recipeListFrameDataReactionText}>
+                                    <Text style={styles.reactionFont}>조회수</Text>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.recipeListFrame}>
+                    <View style={styles.recipeListFrameImage}>
+                        <Text style={styles.titleFont}>사진</Text>
+                    </View>
+                    <View style={styles.recipeListFrameData}>
+                        <View style={styles.recipeListFrameDataTitle}>
+                            <Text style={styles.titleFont}>레시피 이름</Text>
+                        </View>
+                        <View style={styles.recipeListFrameDataReaction}>
+                            <View style={styles.recipeListFrameDataReactionFrame}>
+                                <View style={styles.recipeListFrameDataReactionImage}></View>
+                                <View style={styles.recipeListFrameDataReactionText}>
+                                    <Text style={styles.reactionFont}>좋아요 수</Text>
+                                </View>
+                            </View>
+                            <View style={styles.recipeListFrameDataReactionFrame}>
+                                <View style={styles.recipeListFrameDataReactionImage}></View>
+                                <View style={styles.recipeListFrameDataReactionText}>
+                                    <Text style={styles.reactionFont}>공유 수</Text>
+                                </View>
+                            </View>
+                            <View style={styles.recipeListFrameDataReactionFrame}>
+                                <View style={styles.recipeListFrameDataReactionImage}></View>
+                                <View style={styles.recipeListFrameDataReactionText}>
+                                    <Text style={styles.reactionFont}>조회수</Text>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.recipeListFrame}>
+                    <View style={styles.recipeListFrameImage}>
+                        <Text style={styles.titleFont}>사진</Text>
+                    </View>
+                    <View style={styles.recipeListFrameData}>
+                        <View style={styles.recipeListFrameDataTitle}>
+                            <Text style={styles.titleFont}>레시피 이름</Text>
+                        </View>
+                        <View style={styles.recipeListFrameDataReaction}>
+                            <View style={styles.recipeListFrameDataReactionFrame}>
+                                <View style={styles.recipeListFrameDataReactionImage}></View>
+                                <View style={styles.recipeListFrameDataReactionText}>
+                                    <Text style={styles.reactionFont}>좋아요 수</Text>
+                                </View>
+                            </View>
+                            <View style={styles.recipeListFrameDataReactionFrame}>
+                                <View style={styles.recipeListFrameDataReactionImage}></View>
+                                <View style={styles.recipeListFrameDataReactionText}>
+                                    <Text style={styles.reactionFont}>공유 수</Text>
+                                </View>
+                            </View>
+                            <View style={styles.recipeListFrameDataReactionFrame}>
+                                <View style={styles.recipeListFrameDataReactionImage}></View>
+                                <View style={styles.recipeListFrameDataReactionText}>
+                                    <Text style={styles.reactionFont}>조회수</Text>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                </View>
             </View>
         </View>
     );
