@@ -3,8 +3,10 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
+import {colors, width, height} from './config/globalStyles'; //width,height 받아오기
 import MainScreen from "./screen/MainScreen";
 import RecipeListScreen from "./screen/RecipeListScreen";
+import RecipeListScreen2 from "./screen/RecipeListScreen2";
 
 const Stack = createStackNavigator();
 

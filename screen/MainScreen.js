@@ -1,12 +1,13 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, Button, Alert, Colors } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Button, Alert, Colors, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { height, marginWidth, width } from '../config/globalStyles';
 
 const MainScreen = () => {
     const navigation = useNavigation();
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <View style={styles.searchFrame}>
                 <View style={styles.menuButton}></View>
                 <View style={styles.search}>
@@ -55,24 +56,34 @@ const MainScreen = () => {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.recipeTypeButtonFrame}>
-                        <View style={styles.recipeTypeButtonImage}>
-                            <Text style={{ fontSize: 20 }}>사진</Text>
-                        </View>
-                        <View style={styles.recipeTypeButtonText}>
-                            <Text style={{ fontSize: 20 }}>일식</Text>
-                        </View>
+                        <TouchableOpacity onPress={() => navigation.navigate('RecipeListScreen')}>
+                            <View style={styles.recipeTypeButtonImage}>
+                                <Text style={{ fontSize: 20 }}>사진</Text>
+                            </View>
+                            <View style={styles.recipeTypeButtonText}>
+                                <Text style={{ fontSize: 20 }}>일식</Text>
+                            </View>
+                        </TouchableOpacity>
                     </View>
                     <View style={styles.recipeTypeButtonFrame}>
-                        <View style={styles.recipeTypeButtonImage}>
-                            <Text style={{ fontSize: 20 }}>사진</Text>
-                        </View>
-                        <View style={styles.recipeTypeButtonText}>
-                            <Text style={{ fontSize: 20 }}>중식</Text>
-                        </View>
+                        <TouchableOpacity onPress={() => navigation.navigate('RecipeListScreen')}>
+                            <View style={styles.recipeTypeButtonImage}>
+                                <Text style={{ fontSize: 20 }}>사진</Text>
+                            </View>
+                            <View style={styles.recipeTypeButtonText}>
+                                <Text style={{ fontSize: 20 }}>중식</Text>
+                            </View>
+                        </TouchableOpacity>
                     </View>
                     <View style={styles.recipeTypeButtonFrame}>
-                        <View style={styles.recipeTypeButtonImage}></View>
-                        <View style={styles.recipeTypeButtonText}></View>
+                        <TouchableOpacity onPress={() => navigation.navigate('RecipeListScreen')}>
+                            <View style={styles.recipeTypeButtonImage}>
+                                <Text style={{ fontSize: 20 }}>사진</Text>
+                            </View>
+                            <View style={styles.recipeTypeButtonText}>
+                                <Text style={{ fontSize: 20 }}>양식</Text>
+                            </View>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
@@ -91,73 +102,70 @@ const MainScreen = () => {
                     <View style={styles.recipeVideoYoutube}></View>
                 </View>
             </View>
-        </View>
+        </SafeAreaView>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {
         //바탕
         flex: 1,
         alignItems: 'center', //가로정렬 : 중앙
-        marginTop: '15%', //아래쪽 마진 : 10%
-        marginBottom: '10%', //아래쪽 마진 : 10%
+        marginTop: height * 20, //마진 : 10%
+        marginBottom: height * 20, //마진 : 10%
+        marginLeft: width * 20,
+        marginRight: width * 20,
     },
 
     searchFrame: {
         //검색창 프레임
-        height: '6%', //높이 : '10%'
         borderWidth: 3, //테두리 굵기
-        borderColor: '#6524FF', //테두리 색깔
-        borderRadius: 100, //테두리 둥글게 하는 수치
-        marginLeft: '5%', //왼쪽마진 : 5%
-        marginRight: '5%', //오른쪽마진 : 5%
+        height: height * 40, //높이
+        width: '100%', //너비
+        borderRadius: 15, //테두리 둥글게 하는 수치
         flexDirection: 'row', //정렬방향 : row(가로), column(세로)
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
-        backgroundColor: '#6524FF', // 바탕색
     },
     menuButton: {
         //메뉴 아이콘
-        borderWidth: 1, //테두리 굵기
-        height: '100%', //높이 : '100%'
-        width: '12%', //너비 : '11%'
-        marginLeft: '5%', //왼쪽 마진 : '5%'
-        borderColor: 'white', //테두리 색깔
+        //borderWidth: 1, //테두리 굵기
+        height: height * 35, //높이
+        width: width * 35, //너비
+        marginLeft: width * 10, //왼쪽 마진
     },
     search: {
         //검색창
         //borderWidth: 1, //테두리 굵기
-        height: '100%', //높이 : '100%'
-        width: '60%', //너비 : '78%'
+        flex: 1,
+        height: height * 35, //높이
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
     },
     searchButton: {
         //검색버튼
-        borderWidth: 1, //테두리 굵기
-        height: '100%', //높이 : '100%'
-        width: '12%', //너비 : '11%'
-        marginRight: '5%', //오른쪽 마진 : '5%'
-        borderColor: 'white', //테두리 색깔
+        //borderWidth: 1, //테두리 굵기
+        height: height * 35, //높이
+        width: width * 35, //너비
+        marginRight: width * 10, //왼쪽 마진 : '5%'
     },
 
     weekRecipeFrame: {
         //금주의 레시피 프레임
         //borderWidth: 1, //테두리 굵기
-        height: '30%', //높이 : '10%'
+        height: height * 206, //높이
+        width: '100%', //너비
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
-        width: '100%', //너비 : '100%'
-        marginTop: '3%', //위쪽 마진 : 3%
+        marginTop: height * 10, //위쪽 마진
     },
     weekRecipeText: {
         //금주의 레시피 글자
         //borderWidth: 1, //테두리 굵기
+        flex: 1,
+        width: '100%',
         alignItems: 'flex-start', //가로정렬 : 시작점
         justifyContent: 'center', //세로정렬 : 끝지점
-        marginLeft: '10%',
-        width: '100%', //너비 : '100%'
     },
 
     weekRecipeImageFrame: {
@@ -166,26 +174,26 @@ const styles = StyleSheet.create({
         flexDirection: 'row', //정렬방향 : row(가로), column(세로)
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
-        height: '55%', //높이 : '30%'
-        width: '100%', //너비 : '100%'
-        marginTop: '3%', //위쪽 마진 : 3%
+        height: height * 153, //높이 : '30%'
+        width: width * 272, //너비 : '100%'
+        marginTop: height * 6, //위쪽 마진
     },
     weekRecipeImage: {
         //금주의 레시피 이미지
         borderWidth: 1, //테두리 굵기
-        borderRadius: 20, //테두리 둥글게 하는 수치
+        borderRadius: 10, //테두리 둥글게 하는 수치
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
-        height: '100%', //높이 : '100%'
-        width: '60%', //너비 : '60%'
+        height: height * 153, //높이 : '30%'
+        width: width * 272, //너비 : '100%'
     },
     weekRecipeImageBlank: {
         //금주의 레시피 이미지 여백
         //borderWidth: 1, //테두리 굵기
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
-        height: '100%', //높이 : '100%'
-        width: '5%', //너비 : '10%'
+        height: height * 126, //높이 : '30%'
+        width: width * 10, //너비 : '10%'
     },
 
     weekRecipeBarFrame: {
@@ -194,79 +202,76 @@ const styles = StyleSheet.create({
         flexDirection: 'row', //정렬방향 : row(가로), column(세로)
         alignContent: 'space-between', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
-        height: '6%', //높이 : '10%'
-        width: '40%', //너비 : '40%'
-        marginTop: '3%', //위쪽마진 : 10
+        height: height * 10, //높이
+        width: width * 130, //너비
+        marginTop: height * 6,
     },
     weekRecipeBar: {
         //금주의 레시피 하단바
-        borderWidth: 2, //테두리 굵기
-        borderColor: '#6524FF', //윤곽색
-        borderRadius: 10, //테두리 둥글게 하는 수치
+        borderWidth: 1, //테두리 굵기
+        borderRadius: 5, //테두리 둥글게 하는 수치
         height: '100%', //높이 : '100%'
-        width: 25, //너비 : 25
+        width: width * 24, //너비 : 25
     },
     weekRecipeBarColor: {
         //금주의 레시피 하단바 색깔
-        //borderWidth: 2, //테두리 굵기
-        borderColor: '#6524FF', //윤곽색
+        borderWidth: 1, //테두리 굵기
         borderRadius: 10, //테두리 둥글게 하는 수치
         height: '100%', //높이 : '100%'
-        width: 40, //너비 : 40
-        backgroundColor: '#6524FF', //바탕색
+        width: width * 36, //너비
+        backgroundColor: 'black', //바탕색
+        borderColor: 'black', //윤곽색
     },
     weekRecipeBarBlank: {
         //금주의 레시피 하단바 여백
         //borderWidth: 1, //테두리 굵기
         height: '100%', //높이 : '100%'
-        width: 10, //너비 : 30
+        width: width * 8, //너비 : 30
     },
 
     recipeTypeFrame: {
         //음식 종류 프레임
-        height: '20%', //높이 : '10%'
         //borderWidth: 1, //테두리 굵기
-        alignItems: 'flex-start', //가로정렬 : 중앙
+        height: height * 124, //높이
+        alignItems: 'flex-start', //가로정렬
         justifyContent: 'center', //세로정렬 : 중앙
         width: '100%', //너비 : '100%'
-        marginTop: '3%', //위쪽 마진 : 3%
+        marginTop: height * 10, //위쪽 마진
     },
     recipeTypeText: {
         //음식 종류 글자
         //borderWidth: 1, //테두리 굵기
-        alignItems: 'flex-start', //가로정렬 : 시작점
-        justifyContent: 'center', //세로정렬 : 끝지점
-        marginLeft: '5%',
+        alignItems: 'flex-start', //가로정렬
+        justifyContent: 'center', //세로정렬
         width: '100%', //너비 : '100%'
     },
     recipeTypeButtonwidthFrame: {
         //음식 종류 버튼 폭 프레임
         //borderWidth: 1, //테두리 굵기
-        height: '60%', //높이 : 100%
+        height: height * 90, //높이 : 100%
         width: '100%', //너비 : '100%'
-        marginTop: '3%', //왼쪽 마진 : 5%
-        marginLeft: '5%', //왼쪽 마진 : 5%
+        marginTop: height * 4, //위쪽 마진 : 5%
         flexDirection: 'row', //정렬방향 : row(가로), column(세로)
     },
     recipeTypeButtonFrame: {
         //음식 종류 버튼 프레임
         //borderWidth: 1, //테두리 굵기
         height: '100%', //높이 : 100%
-        width: '20%', //너비 : 20%
-        marginRight: '10%',
+        width: width * 70, //너비 : 20%
+        marginRight: width * 16,
     },
     recipeTypeButtonImage: {
         //음식 종류 버튼 사진
         borderWidth: 1, //테두리 굵기
-        height: '70%', //높이 : 70%
-        width: '100%', //너비 : 100%
+        height: '75%', //높이
+        width: '100%', //너비
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
     },
     recipeTypeButtonText: {
         //음식 종류 버튼 글자
         borderWidth: 1, //테두리 굵기
-        height: '30%', //높이 : 30%
+        height: '25%', //높이 : 30%
         width: '100%', //너비 : 100%
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
@@ -274,44 +279,43 @@ const styles = StyleSheet.create({
 
     recipeVideoFrame: {
         //음식 영상 프레임
-        height: '30%', //높이 : '10%'
         //borderWidth: 1, //테두리 굵기
-        alignItems: 'center', //가로정렬 : 중앙
-        justifyContent: 'center', //세로정렬 : 중앙
-        width: '100%', //너비 : '100%'
-        marginTop: '3%', //위쪽 마진 : 3%
+        height: height * 180, //높이
+        width: '100%', //너비
+        alignItems: 'center', //가로정렬
+        justifyContent: 'center', //세로정렬
+        marginTop: height * 5, //위쪽 마진
     },
     recipeVideoText: {
         //borderWidth: 1, //테두리 굵기
-        alignItems: 'flex-start', //가로정렬 : 시작점
+        alignItems: 'flex-start', //가로정렬
         justifyContent: 'center', //세로정렬 : 끝지점
-        height: '20%', //높이 : '30%'
+        height: height * 30, //높이 : '30%'
         width: '100%', //너비 : '100%'
-        marginLeft: '10%', //왼쪽 마진 : 10%
     },
     recipeVideoYoutubeFrame: {
         //borderWidth: 1, //테두리 굵기
         flexDirection: 'row', //정렬방향 : row(가로), column(세로)
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
-        height: '70%', //높이 : '80%'
-        width: '100%', //너비 : '100%'
-        marginTop: '3%', //위쪽 마진 : 3%
+        height: height * 144, //높이 : '30%'
+        width: width * 256, //너비 : '100%'
+        marginTop: height * 6, //위쪽 마진
     },
     recipeVideoYoutube: {
         borderWidth: 1, //테두리 굵기
+        borderRadius: 10, //테두리 둥글게 하는 수치
+        height: height * 144, //높이 : '30%'
+        width: width * 256, //너비 : '100%'
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
-        borderRadius: 20, //테두리 둥글게 하는 수치
-        height: '100%', //높이 : '100%'
-        width: '80%', //너비 : '80%'
     },
     recipeVideoYoutubeBlank: {
         //borderWidth: 1, //테두리 굵기
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
         height: '100%', //높이 : '100%'
-        width: '5%', //너비 : '80%'
+        width: width * 5, //너비
     },
 });
 
