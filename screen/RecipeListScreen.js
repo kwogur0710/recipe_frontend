@@ -71,11 +71,21 @@ const RecipeListScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.searchFrame}>
-                <View style={styles.backButton}></View>
+                <View style={styles.backButton}>
+                    <Image
+                        source={require('../image/icon/back.png')}
+                        style={{ width: width * 34, height: width * 34 }}
+                    />
+                </View>
                 <View style={styles.search}>
                     <Text style={{ fontSize: 30 }}></Text>
                 </View>
-                <View style={styles.searchButton}></View>
+                <View style={styles.searchButton}>
+                    <Image
+                        source={require('../image/icon/search.png')}
+                        style={{ width: width * 32, height: width * 32 }}
+                    />
+                </View>
             </View>
             <View style={styles.arrayFrame}>
                 <View style={styles.array}>
@@ -112,7 +122,7 @@ const RecipeListScreen = () => {
                                     <View style={styles.recipeListFrameReactionFrame}>
                                         <View style={styles.recipeListFrameReactionImage}>
                                             <Image
-                                                source={require('../image/heart.png')}
+                                                source={require('../image/icon/heart.png')}
                                                 style={{ width: width * 22, height: width * 22 }}
                                             />
                                         </View>
@@ -123,7 +133,7 @@ const RecipeListScreen = () => {
                                     <View style={styles.recipeListFrameReactionFrame}>
                                         <View style={styles.recipeListFrameReactionImage}>
                                             <Image
-                                                source={require('../image/share.png')}
+                                                source={require('../image/icon/share.png')}
                                                 style={{ width: width * 22, height: width * 22 }}
                                             />
                                         </View>
@@ -168,6 +178,8 @@ const styles = StyleSheet.create({
         height: height * 35, //높이
         width: width * 35, //너비
         marginLeft: width * 10, //왼쪽 마진
+        justifyContent: 'center', //세로정렬 : 중앙
+        alignItems: 'center', //가로정렬 : 중앙
     },
     search: {
         //검색창
@@ -183,6 +195,8 @@ const styles = StyleSheet.create({
         height: height * 35, //높이
         width: width * 35, //너비
         marginRight: width * 10, //왼쪽 마진
+        justifyContent: 'center', //세로정렬 : 중앙
+        alignItems: 'center', //가로정렬 : 중앙
     },
 
     arrayFrame: {
