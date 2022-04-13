@@ -6,7 +6,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import {colors, width, height} from './config/globalStyles'; //width,height 받아오기
 import MainScreen from "./screen/MainScreen";
 import RecipeListScreen from "./screen/RecipeListScreen";
-import RecipeListScreen2 from "./screen/RecipeListScreen2";
+import RecipeIngredients from "./screen/RecipeIngredients";
+import MultiSelect from "./screen/MultiSelect";
+
 
 const Stack = createStackNavigator();
 
@@ -16,6 +18,8 @@ export default function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="MainScreen" component={MainScreen} />
         <Stack.Screen name="RecipeListScreen" component={RecipeListScreen} />
+        <Stack.Screen name="RecipeIngredients" component={RecipeIngredients} />
+        <Stack.Screen name="MultiSelect" component={MultiSelect} />
       </Stack.Navigator>
     </NavigationContainer>
   );
