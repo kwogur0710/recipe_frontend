@@ -1,10 +1,11 @@
 {
   "expo": {
-    "name": "recipe_frontend",
+    "name": "재료로 찾는 레시피",
     "slug": "recipe_frontend",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    
+    "icon": "./assets/recipe_appIcon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -20,6 +21,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.gostophabit.gostop",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
