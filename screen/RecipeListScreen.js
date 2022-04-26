@@ -12,6 +12,7 @@ import {
     FlatList,
     SafeAreaView,
     Image,
+    TextInput,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from "react-native-vector-icons/MaterialIcons";
@@ -79,7 +80,7 @@ const RecipeListScreen = () => {
                     />
                 </View>
                 <View style={styles.search}>
-                    <Text style={{ fontSize: 30 }}></Text>
+                    <TextInput style={{width:'100%',height:'100%', fontSize:20}} />
                 </View>
                 <View style={styles.searchButton}>
                     <Image
@@ -107,7 +108,6 @@ const RecipeListScreen = () => {
                 <FlatList
                     data={RecipeData}
                     numColumns={2}
-                    style={{}}
                     keyExtractor={(item) => JSON.stringify(item)}
                     renderItem={({ item }) => {
                         return (

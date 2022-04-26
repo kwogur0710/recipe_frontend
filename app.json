@@ -7,7 +7,7 @@
     
     "icon": "./assets/recipe_appIcon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/recipe_loding.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -23,7 +23,7 @@
     "android": {
       "package": "com.gostophabit.gostop",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/recipe_appIcon.png",
         "backgroundColor": "#FFFFFF"
       }
     },

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import {
     StyleSheet,
@@ -6,8 +6,6 @@ import {
     View,
     TouchableOpacity,
     Button,
-    Alert,
-    Colors,
     SafeAreaView,
     Image,
     ScrollView,
@@ -17,15 +15,34 @@ import { height, marginWidth, width } from '../config/globalStyles';
 
 const MainScreen = () => {
     const navigation = useNavigation();
+    const RecipeType = ({TypeImage, TypeName}) => {
+        return (
+            <View style={styles.recipeTypeButtonFrame}>
+                <TouchableOpacity onPress={() => navigation.navigate('RecipeListScreen',{data:TypeName})}>
+                    <View style={styles.recipeTypeButtonImage}>
+                        <Image
+                            source={TypeImage}
+                            style={{ width: '95%', height: '95%' }}
+                        />
+                    </View>
+                    <View style={styles.recipeTypeButtonText}>
+                        <Text style={{ fontSize: 20 }}>{TypeName}</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
+        );
+    };
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView>
                 <View style={styles.searchFrame}>
                     <View style={styles.menuButton}>
-                        <Image
-                            source={require('../image/icon/menu.png')}
-                            style={{ width: width * 34, height: width * 34 }}
-                        />
+                        <TouchableOpacity onPress={() => navigation.navigate('TestScreen')}>
+                            <Image
+                                source={require('../image/icon/menu.png')}
+                                style={{ width: width * 34, height: width * 34 }}
+                            />
+                        </TouchableOpacity>
                     </View>
                     <View style={styles.search}>
                         <Text style={{ fontSize: 30 }}></Text>
@@ -68,81 +85,11 @@ const MainScreen = () => {
                     </View>
                     <View style={styles.recipeTypeButtonwidthFrame}>
                         <ScrollView horizontal={true} numColumns={2}>
-                            <View style={styles.recipeTypeButtonFrame}>
-                                <TouchableOpacity
-                                    onPress={() => navigation.navigate('RecipeListScreen')}
-                                >
-                                    <View style={styles.recipeTypeButtonImage}>
-                                        <Image
-                                            source={require('../image/icon/korean_food.png')}
-                                            style={{ width: '95%', height: '95%' }}
-                                        />
-                                    </View>
-                                    <View style={styles.recipeTypeButtonText}>
-                                        <Text style={{ fontSize: 20 }}>한식</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.recipeTypeButtonFrame}>
-                                <TouchableOpacity
-                                    onPress={() => navigation.navigate('RecipeListScreen')}
-                                >
-                                    <View style={styles.recipeTypeButtonImage}>
-                                        <Image
-                                            source={require('../image/icon/japanese_food.png')}
-                                            style={{ width: '95%', height: '95%' }}
-                                        />
-                                    </View>
-                                    <View style={styles.recipeTypeButtonText}>
-                                        <Text style={{ fontSize: 20 }}>일식</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.recipeTypeButtonFrame}>
-                                <TouchableOpacity
-                                    onPress={() => navigation.navigate('RecipeListScreen')}
-                                >
-                                    <View style={styles.recipeTypeButtonImage}>
-                                        <Image
-                                            source={require('../image/icon/chinese_food.png')}
-                                            style={{ width: '95%', height: '95%' }}
-                                        />
-                                    </View>
-                                    <View style={styles.recipeTypeButtonText}>
-                                        <Text style={{ fontSize: 20 }}>중식</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.recipeTypeButtonFrame}>
-                                <TouchableOpacity
-                                    onPress={() => navigation.navigate('RecipeListScreen')}
-                                >
-                                    <View style={styles.recipeTypeButtonImage}>
-                                        <Image
-                                            source={require('../image/icon/western_food.png')}
-                                            style={{ width: '95%', height: '95%' }}
-                                        />
-                                    </View>
-                                    <View style={styles.recipeTypeButtonText}>
-                                        <Text style={{ fontSize: 20 }}>양식</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.recipeTypeButtonFrame}>
-                                <TouchableOpacity
-                                    onPress={() => navigation.navigate('RecipeListScreen')}
-                                >
-                                    <View style={styles.recipeTypeButtonImage}>
-                                        <Image
-                                            source={require('../image/icon/snack_food.png')}
-                                            style={{ width: '95%', height: '95%' }}
-                                        />
-                                    </View>
-                                    <View style={styles.recipeTypeButtonText}>
-                                        <Text style={{ fontSize: 20 }}>간식</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
+                            <RecipeType TypeImage = {require('../image/icon/korean_food.png')} TypeName = '한식' />
+                            <RecipeType TypeImage = {require('../image/icon/japanese_food.png')} TypeName = '일식' />
+                            <RecipeType TypeImage = {require('../image/icon/chinese_food.png')} TypeName = '중식' />
+                            <RecipeType TypeImage = {require('../image/icon/western_food.png')} TypeName = '양식' />
+                            <RecipeType TypeImage = {require('../image/icon/snack_food.png')} TypeName = '간식' />
                         </ScrollView>
                     </View>
                 </View>
@@ -198,7 +145,6 @@ const styles = StyleSheet.create({
     },
     search: {
         //검색창
-        //borderWidth: 1, //테두리 굵기
         flex: 1,
         height: height * 35, //높이
         alignItems: 'center', //가로정렬 : 중앙
@@ -206,7 +152,6 @@ const styles = StyleSheet.create({
     },
     searchButton: {
         //검색버튼
-        //borderWidth: 1, //테두리 굵기
         height: height * 35, //높이
         width: width * 35, //너비
         marginRight: width * 10, //왼쪽 마진 : '5%'
@@ -216,7 +161,6 @@ const styles = StyleSheet.create({
 
     weekRecipeFrame: {
         //금주의 레시피 프레임
-        //borderWidth: 1, //테두리 굵기
         height: height * 206, //높이
         width: '100%', //너비
         alignItems: 'center', //가로정렬 : 중앙
@@ -225,7 +169,6 @@ const styles = StyleSheet.create({
     },
     weekRecipeText: {
         //금주의 레시피 글자
-        //borderWidth: 1, //테두리 굵기
         flex: 1,
         width: '100%',
         alignItems: 'flex-start', //가로정렬 : 시작점
@@ -234,7 +177,6 @@ const styles = StyleSheet.create({
 
     weekRecipeImageFrame: {
         //금주의 레시피 이미지 프레임
-        //borderWidth: 1, //테두리 굵기
         flexDirection: 'row', //정렬방향 : row(가로), column(세로)
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
@@ -253,7 +195,6 @@ const styles = StyleSheet.create({
     },
     weekRecipeImageBlank: {
         //금주의 레시피 이미지 여백
-        //borderWidth: 1, //테두리 굵기
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
         height: height * 126, //높이 : '30%'
@@ -262,7 +203,6 @@ const styles = StyleSheet.create({
 
     weekRecipeBarFrame: {
         //금주의 레시피 하단바 프레임
-        //borderWidth: 1, //테두리 굵기
         flexDirection: 'row', //정렬방향 : row(가로), column(세로)
         alignContent: 'space-between', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
@@ -288,14 +228,12 @@ const styles = StyleSheet.create({
     },
     weekRecipeBarBlank: {
         //금주의 레시피 하단바 여백
-        //borderWidth: 1, //테두리 굵기
         height: '100%', //높이 : '100%'
         width: width * 8, //너비 : 30
     },
 
     recipeTypeFrame: {
         //음식 종류 프레임
-        //borderWidth: 1, //테두리 굵기
         height: height * 124, //높이
         alignItems: 'flex-start', //가로정렬
         justifyContent: 'center', //세로정렬 : 중앙
@@ -304,14 +242,12 @@ const styles = StyleSheet.create({
     },
     recipeTypeText: {
         //음식 종류 글자
-        //borderWidth: 1, //테두리 굵기
         alignItems: 'flex-start', //가로정렬
         justifyContent: 'center', //세로정렬
         width: '100%', //너비 : '100%'
     },
     recipeTypeButtonwidthFrame: {
         //음식 종류 버튼 폭 프레임
-        //borderWidth: 1, //테두리 굵기
         height: height * 90, //높이 : 100%
         width: '100%', //너비 : '100%'
         marginTop: height * 4, //위쪽 마진 : 5%
@@ -319,14 +255,12 @@ const styles = StyleSheet.create({
     },
     recipeTypeButtonFrame: {
         //음식 종류 버튼 프레임
-        //borderWidth: 1, //테두리 굵기
         height: '100%', //높이 : 100%
         width: width * 70, //너비 : 20%
         marginRight: width * 16,
     },
     recipeTypeButtonImage: {
         //음식 종류 버튼 사진
-        //borderWidth: 1, //테두리 굵기
         height: '75%', //높이
         width: '100%', //너비
         alignItems: 'center', //가로정렬 : 중앙
@@ -334,7 +268,6 @@ const styles = StyleSheet.create({
     },
     recipeTypeButtonText: {
         //음식 종류 버튼 글자
-        //borderWidth: 1, //테두리 굵기
         height: '25%', //높이 : 30%
         width: '100%', //너비 : 100%
         alignItems: 'center', //가로정렬 : 중앙
@@ -343,7 +276,6 @@ const styles = StyleSheet.create({
 
     recipeVideoFrame: {
         //음식 영상 프레임
-        //borderWidth: 1, //테두리 굵기
         height: height * 180, //높이
         width: '100%', //너비
         alignItems: 'center', //가로정렬
@@ -351,14 +283,12 @@ const styles = StyleSheet.create({
         marginTop: height * 5, //위쪽 마진
     },
     recipeVideoText: {
-        //borderWidth: 1, //테두리 굵기
         alignItems: 'flex-start', //가로정렬
         justifyContent: 'center', //세로정렬 : 끝지점
         height: height * 30, //높이 : '30%'
         width: '100%', //너비 : '100%'
     },
     recipeVideoYoutubeFrame: {
-        //borderWidth: 1, //테두리 굵기
         flexDirection: 'row', //정렬방향 : row(가로), column(세로)
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
@@ -375,7 +305,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center', //세로정렬 : 중앙
     },
     recipeVideoYoutubeBlank: {
-        //borderWidth: 1, //테두리 굵기
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
         height: '100%', //높이 : '100%'
