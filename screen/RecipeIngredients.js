@@ -124,7 +124,7 @@ const RecipeIngredients = () => {
                 <SearchBar
                     theme="white"
                     platform="default"
-                    placeholder={'재료를 입력하세요'}
+                    placeholder={'재료를 입력'}
                     containerStyle={styles.searchBarContainer}
                     onChangeText={onUpdateSearch}
                     value={search}
