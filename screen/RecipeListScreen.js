@@ -96,7 +96,7 @@ const RecipeListScreen = () => {
                     </View>
                 </View>
                 <View style={styles.array}>
-                    <Text style={styles.arrayFont}>한식</Text>
+                    <Text style={styles.arrayFont}> 한식 </Text>
                 </View>
                 <View style={styles.array}>
                     <TouchableOpacity onPress={() => navigation.navigate('RecipeIngredients')}>

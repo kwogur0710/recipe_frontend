@@ -8,8 +8,9 @@ import {
     TouchableOpacity,
     FlatList,
     SectionList,
+    ListView,
 } from 'react-native';
-import { SearchBar, Button, ThemeProvider } from '@rneui/themed';
+import { SearchBar, Button, ThemeProvider, ListItem, Icon, CheckBox } from '@rneui/themed';
 import { height, marginWidth, width } from '../config/globalStyles';
 
 const RecipeIngredients = () => {
@@ -50,7 +51,7 @@ const RecipeIngredients = () => {
                 '감자전분',
                 '파마산치즈가루',
             ],
-            value:[
+            select: [
                 'false',
                 'false',
                 'false',
@@ -81,7 +82,7 @@ const RecipeIngredients = () => {
                 'false',
                 'false',
                 'false',
-            ]
+            ],
         },
         {
             title: '육류',
@@ -114,7 +115,6 @@ const RecipeIngredients = () => {
         },
     ];
 
-
     const onUpdateSearch = (text) => {
         setSearch(text);
     };
@@ -131,15 +131,16 @@ const RecipeIngredients = () => {
                 />
             </View>
 
+
             <SectionList
                 sections={IngredientsData}
                 renderSectionHeader={({ section }) => (
-                    <TouchableOpacity onPress={() => {}}>
+                    <TouchableOpacity>
                         <Text style={styles.sectionHeader}>{section.title}</Text>
                     </TouchableOpacity>
                 )}
                 renderItem={({ item }) => (
-                    <TouchableOpacity>
+                    <TouchableOpacity  onPress={() => setCheck1(!check1)}>
                         <Text style={styles.item}>{item} </Text>
                     </TouchableOpacity>
                 )}

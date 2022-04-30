@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import {
     StyleSheet,
@@ -89,7 +89,6 @@ const MainScreen = () => {
                             <RecipeType TypeImage = {require('../image/icon/japanese_food.png')} TypeName = '일식' />
                             <RecipeType TypeImage = {require('../image/icon/chinese_food.png')} TypeName = '중식' />
                             <RecipeType TypeImage = {require('../image/icon/western_food.png')} TypeName = '양식' />
-                            <RecipeType TypeImage = {require('../image/icon/snack_food.png')} TypeName = '간식' />
                         </ScrollView>
                     </View>
                 </View>
