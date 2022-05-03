@@ -8,14 +8,55 @@ import {
     TouchableOpacity,
     FlatList,
     SectionList,
-    ListView,
+    SafeAreaView,
+    Platform,
 } from 'react-native';
-import { SearchBar, Button, ThemeProvider, ListItem, Icon, CheckBox } from '@rneui/themed';
 import { height, marginWidth, width } from '../config/globalStyles';
+import { AntDesign } from '@expo/vector-icons';
 
 const RecipeIngredients = () => {
-    const SectionListView = 'true';
     const [search, setSearch] = useState('');
+    const [selectedTitle, setSelectedTitle] = useState([]);
+    const [parts, setParts] = useState([]);
+    const SelectHandler = (name) => {
+        let a = [];
+        if (parts && parts.length > 0) {
+            if (parts.some((value) => value === name)) {
+                parts.forEach((value) => {
+                    if (value !== name) {
+                        a.push(value);
+                    }
+                });
+            } else {
+                a.push(...parts, name);
+            }
+        } else {
+            a.push(name);
+        }
+        setParts(a);
+    };
+    const SelectTitleHandler = (title) => {
+        let a = [];
+        if (selectedTitle && selectedTitle.length > 0) {
+            //조건문. 만약 배열에 값이 있고, 배열의 길이가 0 이상이면
+            if (selectedTitle.some((value) => value === title)) {
+                //조건문. 만약 클릭된게 배열에 있다면
+                selectedTitle.forEach((value) => {
+                    //반복문. 
+                    if (value !== title) {
+                        //조건문. 만약 클릭된게 배열에 없다면
+                        a.push(value);
+                    }
+                });
+            } else {
+                a.push(...selectedTitle, title);
+            }
+        } else {
+            a.push(title);
+        }
+        setSelectedTitle(a);
+        
+    };
     const IngredientsData = [
         {
             title: '기본 양념',
@@ -50,38 +91,6 @@ const RecipeIngredients = () => {
                 '와사비가루',
                 '감자전분',
                 '파마산치즈가루',
-            ],
-            select: [
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
-                'false',
             ],
         },
         {
@@ -119,34 +128,58 @@ const RecipeIngredients = () => {
         setSearch(text);
     };
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <View style={styles.view}>
-                <SearchBar
-                    theme="white"
-                    platform="default"
-                    placeholder={'재료를 입력'}
+                <TextInput
+                    placeholder={'재료를 입력하세요'}
+                    placeholderTextColor={'#D5D5D5'}
                     containerStyle={styles.searchBarContainer}
                     onChangeText={onUpdateSearch}
+                    style={{ fontSize: 15, color: 'black' }}
                     value={search}
                 />
+                <TouchableOpacity
+                    style={{ position: 'absolute', right: 0, top: 0, bottom: 0 }}
+                    hitSlop={{ top: 10, left: 10, bottom: 10, right: 10 }}
+                >
+                    <AntDesign name="search1" size={18} color="black" />
+                </TouchableOpacity>
             </View>
-
 
             <SectionList
                 sections={IngredientsData}
                 renderSectionHeader={({ section }) => (
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {
+                            SelectTitleHandler(section.title);
+                        }}
+                    >
                         <Text style={styles.sectionHeader}>{section.title}</Text>
                     </TouchableOpacity>
                 )}
-                renderItem={({ item }) => (
-                    <TouchableOpacity  onPress={() => setCheck1(!check1)}>
-                        <Text style={styles.item}>{item} </Text>
-                    </TouchableOpacity>
-                )}
+                renderItem={({ item, section }) => {
+                    return (selectedTitle.some((value)=> value === section.title)) ? null : ( 
+                        //if문으로 검색 내용이랑 같으면 보이고 다르면 null 
+                        <TouchableOpacity
+                            onPress={() => {
+                                SelectHandler(item);
+                            }}
+                            style={{
+                                justifyContent: 'space-between',
+                                flexDirection: 'row',
+                                paddingRight: 10,
+                            }}
+                        >
+                            <Text style={styles.item}>{item}</Text>
+                            {parts.some((value) => value == item) ? (
+                                <AntDesign name="check" size={24} color="black" />
+                            ) : null}
+                        </TouchableOpacity>
+                    );
+                }}
                 keyExtractor={(item, index) => index}
             />
-        </View>
+        </SafeAreaView>
     );
 };
 
@@ -154,7 +187,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         height: '100%',
-        paddingTop: height * 4,
+        paddingTop: Platform.OS === 'android' ? 20 : 0,
         borderWidth: 1,
     },
     sectionHeader: {
@@ -162,9 +195,9 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         paddingRight: 10,
         paddingBottom: 2,
-        fontSize: 14,
+        fontSize: 18,
         fontWeight: 'bold',
-        backgroundColor: 'rgba(247,247,247,1.0)',
+        backgroundColor: 'rgba(255, 255, 255, 0.8)',
     },
     item: {
         padding: 10,
