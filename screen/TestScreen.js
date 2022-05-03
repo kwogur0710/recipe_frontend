@@ -1,108 +1,31 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useState } from 'react';
+import { StyleSheet, SafeAreaView, Text, View, TouchableOpacity } from 'react-native';
+import { height, marginWidth, width } from '../config/globalStyles';
 
 const TestScreen = () => {
-  const [flexDirection, setflexDirection] = useState("column");
-
-  return (
-    <PreviewLayout
-      label="flexDirection"
-      values={["column", "row", "row-reverse", "column-reverse"]}
-      selectedValue={flexDirection}
-      setSelectedValue={setflexDirection}
-    >
-      <View
-        style={[styles.box, { backgroundColor: "powderblue" }]}
-      />
-      <View
-        style={[styles.box, { backgroundColor: "skyblue" }]}
-      />
-      <View
-        style={[styles.box, { backgroundColor: "steelblue" }]}
-      />
-      <Text> 조용상 </Text>
-    </PreviewLayout>
-  );
+    return (
+        <SafeAreaView style={styles.container}>
+            <View style={styles.View1}>
+                <TouchableOpacity>
+                    <Text style={styles.Text1}>안녕하세요</Text>
+                </TouchableOpacity>
+            </View>
+        </SafeAreaView>
+    );
 };
 
-const PreviewLayout = ({
-  label,
-  children,
-  values,
-  selectedValue,
-  setSelectedValue,
-}) => (
-  <View style={{ padding: 10, flex: 1 }}>
-    <Text style={styles.label}>{label}</Text>
-    <View style={styles.row}>
-      {values.map((value) => (
-        <TouchableOpacity
-          key={value}
-          onPress={() => setSelectedValue(value)}
-          style={[
-            styles.button,
-            selectedValue === value && styles.selected,
-          ]}
-        >
-          <Text
-            style={[
-              styles.buttonLabel,
-              selectedValue === value && styles.selectedLabel,
-            ]}
-          >
-            {value}
-          </Text>
-        </TouchableOpacity>
-      ))}
-    </View>
-    <View style={[styles.container, { [label]: selectedValue }]}>
-      {children}
-    </View>
-  </View>
-);
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 8,
-    backgroundColor: "aliceblue",
-  },
-  box: {
-    width: 50,
-    height: 50,
-  },
-  row: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-  },
-  button: {
-    paddingHorizontal: 8,
-    paddingVertical: 6,
-    borderRadius: 4,
-    backgroundColor: "oldlace",
-    alignSelf: "flex-start",
-    marginHorizontal: "1%",
-    marginBottom: 6,
-    minWidth: "48%",
-    textAlign: "center",
-  },
-  selected: {
-    backgroundColor: "coral",
-    borderWidth: 0,
-  },
-  buttonLabel: {
-    fontSize: 12,
-    fontWeight: "500",
-    color: "coral",
-  },
-  selectedLabel: {
-    color: "white",
-  },
-  label: {
-    textAlign: "center",
-    marginBottom: 10,
-    fontSize: 24,
-  },
+    container: {
+        flex: 1,
+        backgroundColor: 'black',
+    },
+    View1: {
+        backgroundColor: 'white',
+        height: height * 230,
+    },
+    Text1: {
+        fontSize: 40,
+    },
 });
 
 export default TestScreen;

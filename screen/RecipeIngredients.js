@@ -15,9 +15,13 @@ import { height, marginWidth, width } from '../config/globalStyles';
 import { AntDesign } from '@expo/vector-icons';
 
 const RecipeIngredients = () => {
-    const [search, setSearch] = useState('');
     const [selectedTitle, setSelectedTitle] = useState([]);
     const [parts, setParts] = useState([]);
+    const [search, setSearch] = useState('');
+    const onUpdateSearch = (text) => {
+        setSearch(text);
+    };
+
     const SelectHandler = (name) => {
         let a = [];
         if (parts && parts.length > 0) {
@@ -42,21 +46,38 @@ const RecipeIngredients = () => {
             if (selectedTitle.some((value) => value === title)) {
                 //조건문. 만약 클릭된게 배열에 있다면
                 selectedTitle.forEach((value) => {
-                    //반복문. 
+                    //반복문.
                     if (value !== title) {
                         //조건문. 만약 클릭된게 배열에 없다면
                         a.push(value);
                     }
                 });
             } else {
+                //원래있던 배열과 클린한 재료를 a배열에 추가
                 a.push(...selectedTitle, title);
-            }
+            } //클릭한 재료만 a배열에 추가
         } else {
             a.push(title);
         }
         setSelectedTitle(a);
-        
     };
+
+    const comparison = (a,b) => {
+        const [CHO] = useState('ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ');
+        const [JOONG] = useState('ㅏ','ㅐ','ㅑ','ㅒ','ㅓ','ㅔ','ㅕ','ㅖ','ㅗ','ㅘ','ㅙ','ㅚ','ㅛ','ㅜ','ㅝ','ㅞ','ㅟ','ㅠ','ㅡ','ㅢ','ㅣ');
+        const [JONG] = useState('','ㄱ','ㄲ','ㄳ','ㄴ','ㄵ','ㄶ','ㄷ','ㄹ','ㄺ','ㄻ','ㄼ','ㄽ','ㄾ','ㄿ','ㅀ','ㅁ','ㅂ','ㅄ','ㅅ','ㅆ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ');
+        for(const i = 0; i < a.length(); i++) { 
+            const uniVal = a.charAt(i); 
+            if(uniVal >= 0xAC00) { 
+                System.out.print(uniVal + "=>"); 
+                uniVal = (char)(uniVal - 0xAC00); 
+                const cho = (char)(uniVal/28/21); 
+                const joong = (char) ((uniVal)/28%21); 
+                const jong = (char) (uniVal % 28); 
+            System.out.println(CHO[cho] + JOONG[joong] + JONG[jong]); 
+        } else { System.out.println(uniVal + " => " + uniVal); } }
+    }
+
     const IngredientsData = [
         {
             title: '기본 양념',
@@ -91,11 +112,56 @@ const RecipeIngredients = () => {
                 '와사비가루',
                 '감자전분',
                 '파마산치즈가루',
+                '황색설탕',
+                '흑설탕',
+                '전분가루',
+                '찹쌀가루',
+                '튀김가루',
+                '미작',
+                '미림',
+                '청주',
+                '소주',
+                '치킨스톡',
+                '다시다',
+                '굴소스',
+                '멸치장국'
+
             ],
         },
         {
             title: '육류',
             data: ['돼지고기', '소고기', '닭고기', '양고기', '오리고기'],
+        },
+        {
+            title: '어패류',
+            data: [
+                '굴비',
+                '조기',
+                '고등어',
+                '갈치',
+                '꽁치',
+                '전어',
+                '명태',
+                '노가리',
+                '황태',
+                '은어',
+                '민물어종 가물치',
+                '쏘가리',
+                '메기',
+                '붕어',
+                '잉어',
+                '임연수',
+                '복어',
+                '삼치',
+                '조개',
+                '굴',
+                '전복',
+                '골뱅이',
+                '새우',
+                '딱새우',
+                '해삼',
+                '게'
+        ],
         },
         {
             title: '채소',
@@ -122,11 +188,27 @@ const RecipeIngredients = () => {
                 '감자',
             ],
         },
+        {
+            title: '면류',
+            data: ['스파게티', '펜네', '링귀니', '파르펠레', '토르텔리니','로델레'
+        ,'소면',
+        '당면',
+        '칼국수면',
+        '밀면',
+        '냉면',
+        '쫄면',
+        '메밀면',
+        '컬러 소면',
+        '중면',
+        '대면',
+        '쌀국수면',
+            '라면사리',
+            '중국당면',
+            '우동면'
+        ],
+        },
     ];
 
-    const onUpdateSearch = (text) => {
-        setSearch(text);
-    };
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.view}>
@@ -145,7 +227,6 @@ const RecipeIngredients = () => {
                     <AntDesign name="search1" size={18} color="black" />
                 </TouchableOpacity>
             </View>
-
             <SectionList
                 sections={IngredientsData}
                 renderSectionHeader={({ section }) => (
@@ -158,24 +239,31 @@ const RecipeIngredients = () => {
                     </TouchableOpacity>
                 )}
                 renderItem={({ item, section }) => {
-                    return (selectedTitle.some((value)=> value === section.title)) ? null : ( 
-                        //if문으로 검색 내용이랑 같으면 보이고 다르면 null 
-                        <TouchableOpacity
-                            onPress={() => {
-                                SelectHandler(item);
-                            }}
-                            style={{
-                                justifyContent: 'space-between',
-                                flexDirection: 'row',
-                                paddingRight: 10,
-                            }}
-                        >
-                            <Text style={styles.item}>{item}</Text>
-                            {parts.some((value) => value == item) ? (
-                                <AntDesign name="check" size={24} color="black" />
-                            ) : null}
-                        </TouchableOpacity>
-                    );
+                    return (search.includes(item) || search == "" ) ? (
+                        //글자가 같고, null이 아닐때
+                        selectedTitle.some((value) => value === section.title) ? null : (
+                            <TouchableOpacity
+                                onPress={() => {
+                                    SelectHandler(item);
+                                }}
+                                style={{
+                                    justifyContent: 'space-between',
+                                    flexDirection: 'row',
+                                    paddingRight: 10,
+                                }}
+                            >
+                                <Text style={styles.item}>{item}</Text>
+                                {parts.some((value) => value == item) ? (
+                                    <AntDesign
+                                        name="check"
+                                        size={24}
+                                        color="black"
+                                        style={{ padding: 9 }}
+                                    />
+                                ) : null}
+                            </TouchableOpacity>
+                        )
+                    ) : null;
                 }}
                 keyExtractor={(item, index) => index}
             />
@@ -221,6 +309,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: width * 10,
     },
+    checkbox: {},
 });
 
 export default RecipeIngredients;
