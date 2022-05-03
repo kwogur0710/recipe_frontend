@@ -219,6 +219,7 @@ const RecipeIngredients = () => {
             </View>
             <SectionList
                 sections={IngredientsData}
+                keyExtractor={(item, index) => index}
                 renderSectionHeader={({ section }) => (
                     <TouchableOpacity
                         onPress={() => {
@@ -255,7 +256,6 @@ const RecipeIngredients = () => {
                         )
                     ) : null;
                 }}
-                keyExtractor={(item, index) => index}
             />
         </SafeAreaView>
     );

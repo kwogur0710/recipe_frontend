@@ -9,19 +9,19 @@ import {
     SafeAreaView,
     Image,
     ScrollView,
+    Linking,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { height, marginWidth, width } from '../config/globalStyles';
+import { height, width, marginWidth } from '../config/globalStyles';
 import { RecipeTypeName } from './RecipeListScreen';
 
 const MainScreen = () => {
     const navigation = useNavigation();
-    const RecipeTypeName = '';
     const RecipeType = ({ TypeImage, TypeName }) => {
         return (
             <View style={styles.recipeTypeButtonFrame}>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('RecipeListScreen', {title: TypeName})}
+                    onPress={() => navigation.navigate('RecipeListScreen', { title: TypeName })}
                 >
                     <View style={styles.recipeTypeButtonImage}>
                         <Image source={TypeImage} style={{ width: '95%', height: '95%' }} />
@@ -33,94 +33,162 @@ const MainScreen = () => {
             </View>
         );
     };
+
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView>
-                <View style={styles.searchFrame}>
-                    <View style={styles.menuButton}>
-                        <TouchableOpacity onPress={() => navigation.navigate('TestScreen')}>
-                            <Image
-                                source={require('../image/icon/menu.png')}
-                                style={{ width: width * 34, height: width * 34 }}
-                            />
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.search}>
-                        <Text style={{ fontSize: 30 }}></Text>
-                    </View>
-                    <View style={styles.searchButton}>
+            <View style={styles.searchFrame}>
+                <View style={styles.menuButton}>
+                    <TouchableOpacity onPress={() => navigation.navigate('TestScreen')}>
                         <Image
-                            source={require('../image/icon/search.png')}
+                            source={require('../image/icon/menu.png')}
                             style={{ width: width * 34, height: width * 34 }}
                         />
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.search}>
+                    <Text style={{ fontSize: 30 }}></Text>
+                </View>
+                <View style={styles.searchButton}>
+                    <Image
+                        source={require('../image/icon/search.png')}
+                        style={{ width: width * 34, height: width * 34 }}
+                    />
+                </View>
+            </View>
+
+            <View style={styles.weekRecipeFrame}>
+                <View style={styles.weekRecipeText}>
+                    <Text style={{ fontSize: 30 }}>금주의 레시피</Text>
+                </View>
+                <View style={styles.weekRecipeImageFrame}>
+                    <View style={styles.weekRecipeImage}></View>
+                    <View style={styles.weekRecipeImageBlank} />
+                    <View style={styles.weekRecipeImage}>
+                        <Text style={{ fontSize: 20 }}>레시피 게시글</Text>
                     </View>
+                    <View style={styles.weekRecipeImageBlank} />
+                    <View style={styles.weekRecipeImage}></View>
+                </View>
+                <View style={styles.weekRecipeBarFrame}>
+                    <View style={styles.weekRecipeBar}></View>
+                    <View style={styles.weekRecipeBarBlank} />
+                    <View style={styles.weekRecipeBarColor}></View>
+                    <View style={styles.weekRecipeBarBlank} />
+                    <View style={styles.weekRecipeBar}></View>
+                    <View style={styles.weekRecipeBarBlank} />
+                    <View style={styles.weekRecipeBar}></View>
+                </View>
+            </View>
+
+            <View style={styles.recipeTypeFrame}>
+                <View style={styles.recipeTypeText}>
+                    <Text style={{ fontSize: 30 }}>레시피 종류</Text>
+                </View>
+                <View style={styles.recipeTypeButtonwidthFrame}>
+                    <RecipeType
+                        TypeImage={require('../image/icon/korean_food.png')}
+                        TypeName="한식"
+                    />
+                    <RecipeType
+                        TypeImage={require('../image/icon/japanese_food.png')}
+                        TypeName="일식"
+                    />
+                    <RecipeType
+                        TypeImage={require('../image/icon/chinese_food.png')}
+                        TypeName="중식"
+                    />
+                    <RecipeType
+                        TypeImage={require('../image/icon/western_food.png')}
+                        TypeName="양식"
+                    />
+                </View>
+            </View>
+
+            <View style={styles.recipeVideoFrame}>
+                <View style={styles.recipeVideoText}>
+                    <Text style={{ fontSize: 30 }}>오늘은 이거다!</Text>
                 </View>
 
-                <View style={styles.weekRecipeFrame}>
-                    <View style={styles.weekRecipeText}>
-                        <Text style={{ fontSize: 30 }}>금주의 레시피</Text>
-                    </View>
-                    <View style={styles.weekRecipeImageFrame}>
-                        <View style={styles.weekRecipeImage}></View>
-                        <View style={styles.weekRecipeImageBlank} />
-                        <View style={styles.weekRecipeImage}>
-                            <Text style={{ fontSize: 20 }}>레시피 게시글</Text>
-                        </View>
-                        <View style={styles.weekRecipeImageBlank} />
-                        <View style={styles.weekRecipeImage}></View>
-                    </View>
-                    <View style={styles.weekRecipeBarFrame}>
-                        <View style={styles.weekRecipeBar}></View>
-                        <View style={styles.weekRecipeBarBlank} />
-                        <View style={styles.weekRecipeBarColor}></View>
-                        <View style={styles.weekRecipeBarBlank} />
-                        <View style={styles.weekRecipeBar}></View>
-                        <View style={styles.weekRecipeBarBlank} />
-                        <View style={styles.weekRecipeBar}></View>
-                    </View>
-                </View>
+                <View style={styles.recipeVideoYoutubeBlank}></View>
 
-                <View style={styles.recipeTypeFrame}>
-                    <View style={styles.recipeTypeText}>
-                        <Text style={{ fontSize: 30 }}>레시피 종류</Text>
-                    </View>
-                    <View style={styles.recipeTypeButtonwidthFrame}>
-                        <ScrollView horizontal={true} numColumns={2}>
-                            <RecipeType
-                                TypeImage={require('../image/icon/korean_food.png')}
-                                TypeName='한식'
-                            ></RecipeType>
-                            <RecipeType
-                                TypeImage={require('../image/icon/japanese_food.png')}
-                                TypeName='일식'
-                            ></RecipeType>
-                            <RecipeType
-                                TypeImage={require('../image/icon/chinese_food.png')}
-                                TypeName='중식'
-                            ></RecipeType>
-                            <RecipeType
-                                TypeImage={require('../image/icon/western_food.png')}
-                                TypeName='양식'
-                            ></RecipeType>
-                        </ScrollView>
-                    </View>
-                </View>
+                <ScrollView horizontal={true}>
+                    <View style={styles.recipeVideoYoutube}>
+                        <TouchableOpacity
+                            onPress={() =>
+                                Linking.openURL('https://www.youtube.com/watch?v=vz6Hpuss1Lc')
+                            }
+                        >
+                            <Image
+                                style={{
+                                    height: height * 140,
+                                    width: width * 250,
+                                    marginLeft: '1%',
+                                    marginTop: -5,
+                                    resizeMode: 'contain',
+                                    borderRadius: 5,
+                                }}
+                                source={require('../image/youtube1.png')}
+                            />
+                        </TouchableOpacity>
 
-                <View style={styles.recipeVideoFrame}>
-                    <View style={styles.recipeVideoText}>
-                        <Text style={{ fontSize: 30 }}>오늘은 이거다!</Text>
+                        <Text style={{ fontSize: 20, marginLeft: 2 }}>
+                            🔥700만이 뽑은 초간단 인생 요리 15가지🔥[만개의레시피]
+                        </Text>
                     </View>
-                    <View style={styles.recipeVideoYoutubeFrame}>
-                        <View style={styles.recipeVideoYoutube}></View>
-                        <View style={styles.recipeVideoYoutubeBlank}></View>
-                        <View style={styles.recipeVideoYoutube}>
-                            <Text style={{ fontSize: 20 }}>유튜브 영상</Text>
-                        </View>
-                        <View style={styles.recipeVideoYoutubeBlank}></View>
-                        <View style={styles.recipeVideoYoutube}></View>
+
+                    <View style={styles.recipeVideoYoutubeBlank2}></View>
+
+                    <View style={styles.recipeVideoYoutube}>
+                        <TouchableOpacity
+                            onPress={() =>
+                                Linking.openURL('https://www.youtube.com/watch?v=tqejXJK2LXQ')
+                            }
+                        >
+                            <Image
+                                style={{
+                                    height: height * 140,
+                                    width: width * 250,
+                                    marginLeft: '1%',
+                                    marginTop: -5,
+                                    resizeMode: 'contain',
+                                    borderRadius: 5,
+                                }}
+                                source={require('../image/youtube2.png')}
+                            />
+                        </TouchableOpacity>
+
+                        <Text style={{ fontSize: 20, marginLeft: '1%' }}>
+                            [깐풍두부] 가성비 끝판왕 두부요리🥇
+                        </Text>
                     </View>
-                </View>
-            </ScrollView>
+
+                    <View style={styles.recipeVideoYoutubeBlank2}></View>
+
+                    <View style={styles.recipeVideoYoutube}>
+                        <TouchableOpacity
+                            onPress={() =>
+                                Linking.openURL('https://www.youtube.com/watch?v=dhCYZQUHxGU')
+                            }
+                        >
+                            <Image
+                                style={{
+                                    height: height * 140,
+                                    width: width * 250,
+                                    marginLeft: '1%',
+                                    marginTop: -5,
+                                    resizeMode: 'contain',
+                                    borderRadius: 5,
+                                }}
+                                source={require('../image/youtube3.png')}
+                            />
+                        </TouchableOpacity>
+
+                        <Text style={{ fontSize: 20, marginLeft: '1%' }}>
+                            ★ 뚝딱뚝딱 84가지 초간단 레시피 [만개의레시피]
+                        </Text>
+                    </View>
+                </ScrollView>
+            </View>
         </SafeAreaView>
     );
 };
@@ -267,9 +335,9 @@ const styles = StyleSheet.create({
     },
     recipeTypeButtonFrame: {
         //음식 종류 버튼 프레임
-        height: '100%', //높이 : 100%
+        height: height * 88, //높이 : 100%
         width: width * 70, //너비 : 20%
-        marginRight: width * 16,
+        marginRight: width * 12,
     },
     recipeTypeButtonImage: {
         //음식 종류 버튼 사진
@@ -288,7 +356,7 @@ const styles = StyleSheet.create({
 
     recipeVideoFrame: {
         //음식 영상 프레임
-        height: height * 180, //높이
+        height: height * 300, //높이
         width: '100%', //너비
         alignItems: 'center', //가로정렬
         justifyContent: 'center', //세로정렬
@@ -309,18 +377,28 @@ const styles = StyleSheet.create({
         marginTop: height * 6, //위쪽 마진
     },
     recipeVideoYoutube: {
-        borderWidth: 1, //테두리 굵기
         borderRadius: 10, //테두리 둥글게 하는 수치
-        height: height * 144, //높이 : '30%'
+        height: height * 200, //높이 : '30%'
         width: width * 256, //너비 : '100%'
-        alignItems: 'center', //가로정렬 : 중앙
-        justifyContent: 'center', //세로정렬 : 중앙
+        alignItems: 'flex-start', //가로정렬 : 중앙
+        justifyContent: 'flex-start', //세로정렬 : 중앙
     },
     recipeVideoYoutubeBlank: {
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
-        height: '100%', //높이 : '100%'
+        height: height * 10, //높이 : '100%'
         width: width * 5, //너비
+    },
+    recipeVideoYoutubeBlank2: {
+        alignItems: 'center', //가로정렬 : 중앙
+        justifyContent: 'center', //세로정렬 : 중앙
+        height: height * 10, //높이 : '100%'
+        width: width * 5, //너비
+    },
+    button: {
+        alignItems: 'center',
+        backgroundColor: '#DDDDDD',
+        padding: 10,
     },
 });
 

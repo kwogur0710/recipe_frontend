@@ -7,7 +7,6 @@ import {
     View,
     TouchableOpacity,
     Button,
-    Alert,
     Colors,
     FlatList,
     SafeAreaView,
@@ -15,291 +14,331 @@ import {
     TextInput,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Icon from "react-native-vector-icons/MaterialIcons";
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const RecipeListScreen = ({route}) => {
+const RecipeListScreen = ({ route }) => {
     const navigation = useNavigation();
     const TypeName = useState(route.params?.title);
     const RecipeData = [
         {
-            type:'한식',
+            id: '1001',
+            type: '한식',
             title: '설렁탕',
             love: 650,
             follow: 340,
             img: require('../image/korean_food/image_1.jpeg'),
         },
         {
-            type:'한식',
+            id: '1002',
+            type: '한식',
             title: '김치찌개',
             love: 592,
             follow: 234,
             img: require('../image/korean_food/image_2.jpeg'),
         },
         {
-            type:'한식',
+            id: '1003',
+            type: '한식',
             title: '김밥',
             love: 312,
             follow: 364,
             img: require('../image/korean_food/image_3.jpeg'),
         },
         {
-            type:'한식',
+            id: '1004',
+            type: '한식',
             title: '미역국',
             love: 342,
             follow: 754,
             img: require('../image/korean_food/image_4.jpeg'),
         },
         {
-            type:'한식',
+            id: '1005',
+            type: '한식',
             title: '닭백숙',
             love: 123,
             follow: 343,
             img: require('../image/korean_food/image_5.jpeg'),
         },
         {
-            type:'한식',
+            id: '1006',
+            type: '한식',
             title: '비빔밥',
             love: 234,
             follow: 263,
             img: require('../image/korean_food/image_6.jpeg'),
         },
         {
-            type:'한식',
+            id: '1007',
+            type: '한식',
             title: '갈치조림',
             love: 435,
             follow: 642,
             img: require('../image/korean_food/image_7.jpeg'),
         },
         {
-            type:'한식',
+            id: '1008',
+            type: '한식',
             title: '불고기',
             love: 765,
             follow: 432,
             img: require('../image/korean_food/image_8.jpeg'),
         },
         {
-            type:'한식',
+            id: '1009',
+            type: '한식',
             title: '부추무침',
             love: 95,
             follow: 42,
             img: require('../image/korean_food/boochoo.jpg'),
         },
         {
-            type:'한식',
+            id: '1010',
+            type: '한식',
             title: '참치주먹밥',
             love: 999,
             follow: 999,
             img: require('../image/korean_food/joomukbob.jpg'),
         },
         {
-            type:'중식',
-            title: '짜장면',
-            love: 882,
-            follow: 522,
-            img: require('../image/chinese_food/jajang.jpg'),
-        },
-        {
-            type:'중식',
-            title: '짬뽕',
-            love: 672,
-            follow: 323,
-            img: require('../image/chinese_food/jjambbong.jpg'),
-        },
-        {
-            type:'중식',
-            title: '깐풍기',
-            love: 623,
-            follow: 113,
-            img: require('../image/chinese_food/kkanpungki.jpg'),
-        },
-        {
-            type:'중식',
-            title: '마라탕',
-            love: 1,
-            follow: 1,
-            img: require('../image/chinese_food/mara.jpg'),
-        },
-        {
-            type:'중식',
-            title: '난자완스',
-            love: 65,
-            follow: 3,
-            img: require('../image/chinese_food/nanja.jpg'),
-        },
-        {
-            type:'중식',
-            title: '팔보채',
-            love: 82,
-            follow: 31,
-            img: require('../image/chinese_food/palbo.jpg'),
-        },
-        {
-            type:'중식',
-            title: '탕수육',
-            love: 777,
-            follow: 555,
-            img: require('../image/chinese_food/tangsu.jpg'),
-        },
-        {
-            type:'중식',
-            title: '양장피',
-            love: 61,
-            follow: 21,
-            img: require('../image/chinese_food/yangjangpi.jpg'),
-        },
-        {
-            type:'중식',
-            title: '고추잡채',
-            love: 72,
-            follow: 23,
-            img: require('../image/chinese_food/gocu.jpg'),
-        },
-        {
-            type:'중식',
-            title: '딤섬',
-            love: 11,
-            follow: 3,
-            img: require('../image/chinese_food/dimsum.jpg'),
-        },
-        {
-            type:'양식',
-            title: '치킨 또띠아',
-            love: 110,
-            follow: 32,
-            img: require('../image/western_food/chikin.jpg'),
-        },
-        {
-            type:'양식',
-            title: '크림 파스타',
-            love: 999,
-            follow: 262,
-            img: require('../image/western_food/creampasta.jpg'),
-        },
-        {
-            type:'양식',
-            title: '고르곤졸라 피자',
-            love: 683,
-            follow: 435,
-            img: require('../image/western_food/gorgon.jpg'),
-        },
-        {
-            type:'양식',
-            title: '햄버거',
-            love: 829,
-            follow: 145,
-            img: require('../image/western_food/hambuk.jpg'),
-        },
-        {
-            type:'양식',
-            title: '로제 파스타',
-            love: 999,
-            follow: 255,
-            img: require('../image/western_food/lojepasta.jpg'),
-        },
-        {
-            type:'양식',
-            title: '티본 스테이크',
-            love: 760,
-            follow: 562,
-            img: require('../image/western_food/tibon.jpg'),
-        },
-        {
-            type:'양식',
-            title: '토마호크 스테이크',
-            love: 321,
-            follow: 33,
-            img: require('../image/western_food/tomahork.jpg'),
-        },
-        {
-            type:'양식',
-            title: '토마토 파스타',
-            love: 120,
-            follow: 11,
-            img: require('../image/western_food/tomatopasta.jpg'),
-        },
-        {
-            type:'양식',
-            title: '토마토 스프',
-            love: 110,
-            follow: 32,
-            img: require('../image/western_food/tomatosupe.jpg'),
-        },
-        {
-            type:'양식',
-            title: '또띠아 피자',
-            love: 150,
-            follow: 2,
-            img: require('../image/western_food/ttotiapija.jpg'),
-        },
-        {
-            type:'일식',
+            id: '2001',
+            type: '일식',
             title: '덴푸라',
             love: 122,
             follow: 43,
             img: require('../image/japanese_food/denpura.jpg'),
         },
         {
-            type:'일식',
+            id: '2002',
+            type: '일식',
             title: '돈코츠 라멘',
             love: 425,
             follow: 243,
             img: require('../image/japanese_food/donkoturamen.jpg'),
         },
         {
-            type:'일식',
+            id: '2003',
+            type: '일식',
             title: '두부유부초밥',
             love: 522,
             follow: 153,
             img: require('../image/japanese_food/dubuyubu.jpg'),
         },
         {
-            type:'일식',
+            id: '2004',
+            type: '일식',
             title: '어묵우동',
             love: 52,
             follow: 0,
             img: require('../image/japanese_food/emukudong.jpg'),
         },
         {
-            type:'일식',
+            id: '2005',
+            type: '일식',
             title: '가라아게',
             love: 22,
             follow: 4,
             img: require('../image/japanese_food/karaage.jpg'),
         },
         {
-            type:'일식',
+            id: '2006',
+            type: '일식',
             title: '규동',
             love: 12,
             follow: 3,
             img: require('../image/japanese_food/kudong.jpg'),
         },
         {
-            type:'일식',
+            id: '2007',
+            type: '일식',
             title: '모츠나베',
             love: 0,
             follow: 0,
             img: require('../image/japanese_food/mochunabe.jpg'),
         },
         {
-            type:'일식',
+            id: '2008',
+            type: '일식',
             title: '오니기리',
             love: 333,
             follow: 43,
             img: require('../image/japanese_food/onigiri.jpg'),
         },
         {
-            type:'일식',
+            id: '2009',
+            type: '일식',
             title: '야끼우동',
             love: 149,
             follow: 111,
             img: require('../image/japanese_food/yakiudong.jpg'),
         },
         {
-            type:'일식',
+            id: '2010',
+            type: '일식',
             title: '연어초밥',
             love: 367,
             follow: 13,
             img: require('../image/japanese_food/yenususi.jpg'),
+        },
+        {
+            id: '3001',
+            type: '중식',
+            title: '짜장면',
+            love: 882,
+            follow: 522,
+            img: require('../image/chinese_food/jajang.jpg'),
+        },
+        {
+            id: '3002',
+            type: '중식',
+            title: '짬뽕',
+            love: 672,
+            follow: 323,
+            img: require('../image/chinese_food/jjambbong.jpg'),
+        },
+        {
+            id: '3003',
+            type: '중식',
+            title: '깐풍기',
+            love: 623,
+            follow: 113,
+            img: require('../image/chinese_food/kkanpungki.jpg'),
+        },
+        {
+            id: '3004',
+            type: '중식',
+            title: '마라탕',
+            love: 1,
+            follow: 1,
+            img: require('../image/chinese_food/mara.jpg'),
+        },
+        {
+            id: '3005',
+            type: '중식',
+            title: '난자완스',
+            love: 65,
+            follow: 3,
+            img: require('../image/chinese_food/nanja.jpg'),
+        },
+        {
+            id: '3006',
+            type: '중식',
+            title: '팔보채',
+            love: 82,
+            follow: 31,
+            img: require('../image/chinese_food/palbo.jpg'),
+        },
+        {
+            id: '3007',
+            type: '중식',
+            title: '탕수육',
+            love: 777,
+            follow: 555,
+            img: require('../image/chinese_food/tangsu.jpg'),
+        },
+        {
+            id: '3008',
+            type: '중식',
+            title: '양장피',
+            love: 61,
+            follow: 21,
+            img: require('../image/chinese_food/yangjangpi.jpg'),
+        },
+        {
+            id: '3009',
+            type: '중식',
+            title: '고추잡채',
+            love: 72,
+            follow: 23,
+            img: require('../image/chinese_food/gocu.jpg'),
+        },
+        {
+            id: '3010',
+            type: '중식',
+            title: '딤섬',
+            love: 11,
+            follow: 3,
+            img: require('../image/chinese_food/dimsum.jpg'),
+        },
+        {
+            id: '4001',
+            type: '양식',
+            title: '치킨 또띠아',
+            love: 110,
+            follow: 32,
+            img: require('../image/western_food/chikin.jpg'),
+        },
+        {
+            id: '4002',
+            type: '양식',
+            title: '크림 파스타',
+            love: 999,
+            follow: 262,
+            img: require('../image/western_food/creampasta.jpg'),
+        },
+        {
+            id: '4003',
+            type: '양식',
+            title: '고르곤졸라 피자',
+            love: 683,
+            follow: 435,
+            img: require('../image/western_food/gorgon.jpg'),
+        },
+        {
+            id: '4004',
+            type: '양식',
+            title: '햄버거',
+            love: 829,
+            follow: 145,
+            img: require('../image/western_food/hambuk.jpg'),
+        },
+        {
+            id: '4005',
+            type: '양식',
+            title: '로제 파스타',
+            love: 999,
+            follow: 255,
+            img: require('../image/western_food/lojepasta.jpg'),
+        },
+        {
+            id: '4006',
+            type: '양식',
+            title: '티본 스테이크',
+            love: 760,
+            follow: 562,
+            img: require('../image/western_food/tibon.jpg'),
+        },
+        {
+            id: '4007',
+            type: '양식',
+            title: '토마호크 스테이크',
+            love: 321,
+            follow: 33,
+            img: require('../image/western_food/tomahork.jpg'),
+        },
+        {
+            id: '4008',
+            type: '양식',
+            title: '토마토 파스타',
+            love: 120,
+            follow: 11,
+            img: require('../image/western_food/tomatopasta.jpg'),
+        },
+        {
+            id: '4009',
+            type: '양식',
+            title: '토마토 스프',
+            love: 110,
+            follow: 32,
+            img: require('../image/western_food/tomatosupe.jpg'),
+        },
+        {
+            id: '4010',
+            type: '양식',
+            title: '또띠아 피자',
+            love: 150,
+            follow: 2,
+            img: require('../image/western_food/ttotiapija.jpg'),
         },
     ];
 
@@ -313,7 +352,7 @@ const RecipeListScreen = ({route}) => {
                     />
                 </View>
                 <View style={styles.search}>
-                    <TextInput style={{width:'100%',height:'100%', fontSize:20}} />
+                    <TextInput style={{ width: '100%', height: '100%', fontSize: 20 }} />
                 </View>
                 <View style={styles.searchButton}>
                     <Image
@@ -341,12 +380,13 @@ const RecipeListScreen = ({route}) => {
                 <FlatList
                     data={RecipeData}
                     numColumns={2}
-                    keyExtractor={(item) => JSON.stringify(item)}
+                    keyExtractor={(item) => String(item.id)}
+                    style={{ margin: 5, width: 354 }}
+                    columnWrapperStyle={{ flex: 1, justifyContent: 'space-around' }}
                     renderItem={({ item }) => {
-                        return (
-                            TypeName.includes(item.type) ? 
+                        return TypeName.some((value) => value === item.type) ? (
                             <View style={styles.recipeListFrame}>
-                                <View style={styles.recipeListFrameImage}>
+                                <View>
                                     <Image
                                         source={item.img}
                                         style={{ width: width * 158, height: width * 158 }}
@@ -380,7 +420,7 @@ const RecipeListScreen = ({route}) => {
                                     </View>
                                 </View>
                             </View>
-                         : null );
+                        ) : null;
                     }}
                 />
             </View>
@@ -465,37 +505,27 @@ const styles = StyleSheet.create({
         borderWidth: 1, //테두리 굵기
         alignItems: 'center', //가로정렬 : 중앙
         width: width * 160, //너비
-        height: height * 210, //높이
-        marginBottom: height * 6, //마진 : 5%
-    },
-    recipeListFrameImage: {
-        //레시피 리스트 프레임(이미지)
-        //borderWidth: 1, //테두리 굵기
-        width: width * 160, //너비 : '100%'
-        height: width * 160, //높이
-        alignItems: 'center', //가로정렬 : 중앙
-        justifyContent: 'center', //세로정렬 : 중앙
+        height: height * 204, //높이
+        marginBottom: height * 4, //마진 : 5%
     },
     recipeListFrameTitle: {
         //레시피 리스트 프레임(제목)
         borderWidth: 1, //테두리 굵기
         width: width * 160, //너비
-        height: height * 32, //높이
+        height: height * 28, //높이
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
     },
     recipeListFrameReaction: {
         //레시피 리스트 리액션
-        borderWidth: 1, //테두리 굵기
         width: width * 160, //너비
-        height: height * 26, //높이
+        height: height * 22, //높이
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
         flexDirection: 'row', //정렬방향 : row(가로), column(세로)
     },
     recipeListFrameReactionFrame: {
         //레시피 리스트 리액션 프레임(이미지 + 텍스트)
-        //borderWidth: 1,
         flex: 1,
         height: '100%', //높이
         alignItems: 'center', //가로정렬 : 중앙
@@ -504,7 +534,6 @@ const styles = StyleSheet.create({
     },
     recipeListFrameReactionImage: {
         //레시피 리스트 리액션 이미지
-        //borderWidth: 1,
         flex: 2,
         height: '100%', //높이 : '100%'
         alignItems: 'center', //가로정렬 : 중앙
@@ -512,7 +541,6 @@ const styles = StyleSheet.create({
     },
     recipeListFrameReactionText: {
         //레시피 리스트 리액션 텍스트
-        //borderWidth: 1,
         flex: 3,
         height: '100%', //높이 : '100%'
         alignItems: 'center', //가로정렬 : 중앙

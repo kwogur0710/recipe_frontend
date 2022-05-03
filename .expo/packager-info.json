@@ -3,6 +3,7 @@
   "expoServerPort": 19000,
   "packagerPort": 19000,
   "packagerPid": null,
+
   "expoServerNgrokUrl": "https://9v-9bf.anonymous.recipe-frontend.exp.direct",
   "packagerNgrokUrl": "https://9v-9bf.anonymous.recipe-frontend.exp.direct",
   "ngrokPid": 15516,
