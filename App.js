@@ -18,11 +18,10 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home" screenOptions={{headerMode: false}}>
         <Stack.Screen name="MainScreen" component={MainScreen} />
-        <Stack.Screen name="TestScreen" component={TestScreen} />
         <Stack.Screen name="RecipeListScreen" component={RecipeListScreen} />
         <Stack.Screen name="RecipeIngredients" component={RecipeIngredients} />
+        <Stack.Screen name="TestScreen" component={TestScreen} />
         <Stack.Screen name="MultiSelect" component={MultiSelect} />
-        
       </Stack.Navigator>
     </NavigationContainer>
   );
