@@ -12,18 +12,19 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { height, marginWidth, width } from '../config/globalStyles';
+import { RecipeTypeName } from './RecipeListScreen';
 
 const MainScreen = () => {
     const navigation = useNavigation();
-    const RecipeType = ({TypeImage, TypeName}) => {
+    const RecipeTypeName = '일식';
+    const RecipeType = ({ TypeImage, TypeName }) => {
         return (
             <View style={styles.recipeTypeButtonFrame}>
-                <TouchableOpacity onPress={() => navigation.navigate('RecipeListScreen',{data:TypeName})}>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('RecipeListScreen', {title: TypeName})}
+                >
                     <View style={styles.recipeTypeButtonImage}>
-                        <Image
-                            source={TypeImage}
-                            style={{ width: '95%', height: '95%' }}
-                        />
+                        <Image source={TypeImage} style={{ width: '95%', height: '95%' }} />
                     </View>
                     <View style={styles.recipeTypeButtonText}>
                         <Text style={{ fontSize: 20 }}>{TypeName}</Text>
@@ -85,10 +86,22 @@ const MainScreen = () => {
                     </View>
                     <View style={styles.recipeTypeButtonwidthFrame}>
                         <ScrollView horizontal={true} numColumns={2}>
-                            <RecipeType TypeImage = {require('../image/icon/korean_food.png')} TypeName = '한식' />
-                            <RecipeType TypeImage = {require('../image/icon/japanese_food.png')} TypeName = '일식' />
-                            <RecipeType TypeImage = {require('../image/icon/chinese_food.png')} TypeName = '중식' />
-                            <RecipeType TypeImage = {require('../image/icon/western_food.png')} TypeName = '양식' />
+                            <RecipeType
+                                TypeImage={require('../image/icon/korean_food.png')}
+                                TypeName="한식"
+                            ></RecipeType>
+                            <RecipeType
+                                TypeImage={require('../image/icon/japanese_food.png')}
+                                TypeName="일식"
+                            ></RecipeType>
+                            <RecipeType
+                                TypeImage={require('../image/icon/chinese_food.png')}
+                                TypeName="중식"
+                            ></RecipeType>
+                            <RecipeType
+                                TypeImage={require('../image/icon/western_food.png')}
+                                TypeName="양식"
+                            ></RecipeType>
                         </ScrollView>
                     </View>
                 </View>

@@ -17,7 +17,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import Icon from "react-native-vector-icons/MaterialIcons";
 
-const RecipeListScreen = () => {
+const RecipeListScreen = ({route}) => {
     const navigation = useNavigation();
     const RecipeData = [
         {
@@ -96,7 +96,7 @@ const RecipeListScreen = () => {
                     </View>
                 </View>
                 <View style={styles.array}>
-                    <Text style={styles.arrayFont}> 한식 </Text>
+                    <Text style={styles.arrayFont}> {route.params?.title} </Text>
                 </View>
                 <View style={styles.array}>
                     <TouchableOpacity onPress={() => navigation.navigate('RecipeIngredients')}>
