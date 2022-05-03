@@ -9,15 +9,22 @@ import {
     SafeAreaView,
     Image,
     ScrollView,
+    Linking,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { height, marginWidth, width } from '../config/globalStyles';
 import { RecipeTypeName } from './RecipeListScreen';
+let imagePath1 = require('../image/youtube1.png');
+let imagePath2 = require('../image/youtube2.png');
+let imagePath3 = require('../image/youtube3.png');
+
+
 
 const MainScreen = () => {
     const navigation = useNavigation();
     const RecipeTypeName = '일식';
     const RecipeType = ({ TypeImage, TypeName }) => {
+        
         return (
             <View style={styles.recipeTypeButtonFrame}>
                 <TouchableOpacity
@@ -31,8 +38,10 @@ const MainScreen = () => {
                     </View>
                 </TouchableOpacity>
             </View>
+            
         );
     };
+    
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView>
@@ -107,18 +116,59 @@ const MainScreen = () => {
                 </View>
 
                 <View style={styles.recipeVideoFrame}>
+
                     <View style={styles.recipeVideoText}>
                         <Text style={{ fontSize: 30 }}>오늘은 이거다!</Text>
                     </View>
-                    <View style={styles.recipeVideoYoutubeFrame}>
-                        <View style={styles.recipeVideoYoutube}></View>
-                        <View style={styles.recipeVideoYoutubeBlank}></View>
-                        <View style={styles.recipeVideoYoutube}>
-                            <Text style={{ fontSize: 20 }}>유튜브 영상</Text>
-                        </View>
-                        <View style={styles.recipeVideoYoutubeBlank}></View>
-                        <View style={styles.recipeVideoYoutube}></View>
+
+                    <View style={styles.recipeVideoYoutubeBlank}></View>
+
+                    <ScrollView horizontal={true} numColumns={2}>
+
+                    <View style={styles.recipeVideoYoutube}>
+                    
+                    <TouchableOpacity onPress={() => Linking.openURL("https://www.youtube.com/watch?v=vz6Hpuss1Lc")}>
+                    <Image
+                    style={{height: height * 140, width: width * 250, marginLeft: '1%', marginTop: -5, resizeMode:'contain',  borderRadius: 5}}
+                    source={imagePath1} />
+                    </TouchableOpacity>
+
+                     <Text style={{ fontSize: 20, marginLeft: '1%'}}>🔥700만이 뽑은 초간단 인생 요리 15가지🔥[만개의레시피]</Text>
+                    </View>              
+
+                    <View style={styles.recipeVideoYoutubeBlank2}></View>
+
+                    <View style={styles.recipeVideoYoutube}>
+                    
+                    <TouchableOpacity onPress={() => Linking.openURL("https://www.youtube.com/watch?v=tqejXJK2LXQ")}>
+                    <Image
+                    style={{height : height * 140, width: width * 250, marginLeft: '1%', marginTop: -5, resizeMode:'contain', borderRadius: 5}}
+                    source={imagePath2}
+                    />
+                    </TouchableOpacity>
+
+                    
+
+                    <Text style={{ fontSize: 20, marginLeft: '1%'}}>[깐풍두부] 가성비 끝판왕 두부요리🥇</Text>
                     </View>
+
+                    <View style={styles.recipeVideoYoutubeBlank2}></View>
+
+                    <View style={styles.recipeVideoYoutube}>
+                    
+                    <TouchableOpacity onPress={() => Linking.openURL("https://www.youtube.com/watch?v=dhCYZQUHxGU")}>
+                    <Image
+                    style={{height: height * 140, width: width * 250, marginLeft: '1%', marginTop: -5, resizeMode:'contain', borderRadius: 5}}
+                    source={imagePath3}
+                    />
+                    </TouchableOpacity>
+
+                    <Text style={{ fontSize: 20, marginLeft: '1%'}}>★ 뚝딱뚝딱 84가지 초간단 레시피 [만개의레시피]</Text>
+                    </View>
+
+                    
+
+                    </ScrollView>
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -288,7 +338,7 @@ const styles = StyleSheet.create({
 
     recipeVideoFrame: {
         //음식 영상 프레임
-        height: height * 180, //높이
+        height: height * 300, //높이
         width: '100%', //너비
         alignItems: 'center', //가로정렬
         justifyContent: 'center', //세로정렬
@@ -311,17 +361,29 @@ const styles = StyleSheet.create({
     recipeVideoYoutube: {
         borderWidth: 1, //테두리 굵기
         borderRadius: 10, //테두리 둥글게 하는 수치
-        height: height * 144, //높이 : '30%'
+        height: height * 200, //높이 : '30%'
         width: width * 256, //너비 : '100%'
-        alignItems: 'center', //가로정렬 : 중앙
-        justifyContent: 'center', //세로정렬 : 중앙
+        alignItems: 'flex-start', //가로정렬 : 중앙
+        justifyContent: 'flex-start', //세로정렬 : 중앙
     },
     recipeVideoYoutubeBlank: {
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
-        height: '100%', //높이 : '100%'
+        height:height * 10, //높이 : '100%'
         width: width * 5, //너비
     },
+    recipeVideoYoutubeBlank2: {
+        alignItems: 'center', //가로정렬 : 중앙
+        justifyContent: 'center', //세로정렬 : 중앙
+        height:height * 10, //높이 : '100%'
+        width: width * 5, //너비
+    },
+    button: {
+        alignItems: "center",
+        backgroundColor: "#DDDDDD",
+        padding: 10
+      },
+
 });
 
 export default MainScreen;
