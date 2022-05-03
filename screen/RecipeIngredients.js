@@ -265,8 +265,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         height: '100%',
-        paddingTop: Platform.OS === 'android' ? 20 : 0,
-        borderWidth: 1,
+        paddingTop: Platform.OS === 'android' ? 40 : 0,
     },
     sectionHeader: {
         paddingTop: 2,

@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
         //바탕
         flex: 1,
         alignItems: 'center', //가로정렬 : 중앙
-        marginTop: height * 20, //마진 : 10%
+        paddingTop: Platform.OS === 'android' ? 40 : 0,
         marginBottom: height * 20, //마진 : 10%
         marginLeft: width * 20,
         marginRight: width * 20,
