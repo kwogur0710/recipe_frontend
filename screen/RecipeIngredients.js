@@ -18,6 +18,7 @@ const RecipeIngredients = () => {
     const [selectedTitle, setSelectedTitle] = useState([]);
     const [parts, setParts] = useState([]);
     const [search, setSearch] = useState('');
+    const result = useState();
     const onUpdateSearch = (text) => {
         setSearch(text);
     };
@@ -62,92 +63,6 @@ const RecipeIngredients = () => {
         setSelectedTitle(a);
     };
 
-    const comparison = (a, b) => {
-        /*const [CHO] = useState(
-            'ㄱ',
-            'ㄲ',
-            'ㄴ',
-            'ㄷ',
-            'ㄸ',
-            'ㄹ',
-            'ㅁ',
-            'ㅂ',
-            'ㅃ',
-            'ㅅ',
-            'ㅆ',
-            'ㅇ',
-            'ㅈ',
-            'ㅉ',
-            'ㅊ',
-            'ㅋ',
-            'ㅌ',
-            'ㅍ',
-            'ㅎ'
-        );
-        const [JOONG] = useState(
-            'ㅏ',
-            'ㅐ',
-            'ㅑ',
-            'ㅒ',
-            'ㅓ',
-            'ㅔ',
-            'ㅕ',
-            'ㅖ',
-            'ㅗ',
-            'ㅘ',
-            'ㅙ',
-            'ㅚ',
-            'ㅛ',
-            'ㅜ',
-            'ㅝ',
-            'ㅞ',
-            'ㅟ',
-            'ㅠ',
-            'ㅡ',
-            'ㅢ',
-            'ㅣ'
-        );
-        const [JONG] = useState(
-            '',
-            'ㄱ',
-            'ㄲ',
-            'ㄳ',
-            'ㄴ',
-            'ㄵ',
-            'ㄶ',
-            'ㄷ',
-            'ㄹ',
-            'ㄺ',
-            'ㄻ',
-            'ㄼ',
-            'ㄽ',
-            'ㄾ',
-            'ㄿ',
-            'ㅀ',
-            'ㅁ',
-            'ㅂ',
-            'ㅄ',
-            'ㅅ',
-            'ㅆ',
-            'ㅇ',
-            'ㅈ',
-            'ㅊ',
-            'ㅋ',
-            'ㅌ',
-            'ㅍ',
-            'ㅎ'
-        );*/
-        for (const i = 0; i < a.length(); i++) {
-            const uniVal = a.charAt(i);
-            if (uniVal >= 0xac00) {
-                uniVal = char(uniVal - 0xac00);
-                const choA = char(uniVal / 28 / 21);
-                const joongA = char((uniVal / 28) % 21);
-                const jongA = char(uniVal % 28);
-            } 
-        }
-    };
-
     const IngredientsData = [
         {
             title: '기본 양념',
@@ -182,11 +97,55 @@ const RecipeIngredients = () => {
                 '와사비가루',
                 '감자전분',
                 '파마산치즈가루',
+                '황색설탕',
+                '흑설탕',
+                '전분가루',
+                '찹쌀가루',
+                '튀김가루',
+                '미작',
+                '미림',
+                '청주',
+                '소주',
+                '치킨스톡',
+                '다시다',
+                '굴소스',
+                '멸치장국',
             ],
         },
         {
             title: '육류',
             data: ['돼지고기', '소고기', '닭고기', '양고기', '오리고기'],
+        },
+        {
+            title: '어패류',
+            data: [
+                '굴비',
+                '조기',
+                '고등어',
+                '갈치',
+                '꽁치',
+                '전어',
+                '명태',
+                '노가리',
+                '황태',
+                '은어',
+                '민물어종 가물치',
+                '쏘가리',
+                '메기',
+                '붕어',
+                '잉어',
+                '임연수',
+                '복어',
+                '삼치',
+                '조개',
+                '굴',
+                '전복',
+                '골뱅이',
+                '새우',
+                '딱새우',
+                '해삼',
+                '게',
+            ],
         },
         {
             title: '채소',
@@ -213,6 +172,31 @@ const RecipeIngredients = () => {
                 '감자',
             ],
         },
+        {
+            title: '면류',
+            data: [
+                '스파게티',
+                '펜네',
+                '링귀니',
+                '파르펠레',
+                '토르텔리니',
+                '로델레',
+                '소면',
+                '당면',
+                '칼국수면',
+                '밀면',
+                '냉면',
+                '쫄면',
+                '메밀면',
+                '컬러 소면',
+                '중면',
+                '대면',
+                '쌀국수면',
+                '라면사리',
+                '중국당면',
+                '우동면',
+            ],
+        },
     ];
 
     return (
@@ -226,7 +210,6 @@ const RecipeIngredients = () => {
                     style={{ fontSize: 15, color: 'black' }}
                     value={search}
                 />
-                {JONG}
                 <TouchableOpacity
                     style={{ position: 'absolute', right: 0, top: 0, bottom: 0 }}
                     hitSlop={{ top: 10, left: 10, bottom: 10, right: 10 }}
@@ -246,7 +229,7 @@ const RecipeIngredients = () => {
                     </TouchableOpacity>
                 )}
                 renderItem={({ item, section }) => {
-                    return search.includes(item) || search == '' ? (
+                    return item.includes(search) || search == '' ? (
                         //글자가 같고, null이 아닐때
                         selectedTitle.some((value) => value === section.title) ? null : (
                             <TouchableOpacity

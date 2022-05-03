@@ -16,7 +16,7 @@ import { RecipeTypeName } from './RecipeListScreen';
 
 const MainScreen = () => {
     const navigation = useNavigation();
-    const RecipeTypeName = '일식';
+    const RecipeTypeName = '';
     const RecipeType = ({ TypeImage, TypeName }) => {
         return (
             <View style={styles.recipeTypeButtonFrame}>
@@ -88,19 +88,19 @@ const MainScreen = () => {
                         <ScrollView horizontal={true} numColumns={2}>
                             <RecipeType
                                 TypeImage={require('../image/icon/korean_food.png')}
-                                TypeName="한식"
+                                TypeName='한식'
                             ></RecipeType>
                             <RecipeType
                                 TypeImage={require('../image/icon/japanese_food.png')}
-                                TypeName="일식"
+                                TypeName='일식'
                             ></RecipeType>
                             <RecipeType
                                 TypeImage={require('../image/icon/chinese_food.png')}
-                                TypeName="중식"
+                                TypeName='중식'
                             ></RecipeType>
                             <RecipeType
                                 TypeImage={require('../image/icon/western_food.png')}
-                                TypeName="양식"
+                                TypeName='양식'
                             ></RecipeType>
                         </ScrollView>
                     </View>
