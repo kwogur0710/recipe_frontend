@@ -62,21 +62,91 @@ const RecipeIngredients = () => {
         setSelectedTitle(a);
     };
 
-    const comparison = (a,b) => {
-        const [CHO] = useState('ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ');
-        const [JOONG] = useState('ㅏ','ㅐ','ㅑ','ㅒ','ㅓ','ㅔ','ㅕ','ㅖ','ㅗ','ㅘ','ㅙ','ㅚ','ㅛ','ㅜ','ㅝ','ㅞ','ㅟ','ㅠ','ㅡ','ㅢ','ㅣ');
-        const [JONG] = useState('','ㄱ','ㄲ','ㄳ','ㄴ','ㄵ','ㄶ','ㄷ','ㄹ','ㄺ','ㄻ','ㄼ','ㄽ','ㄾ','ㄿ','ㅀ','ㅁ','ㅂ','ㅄ','ㅅ','ㅆ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ');
-        for(const i = 0; i < a.length(); i++) { 
-            const uniVal = a.charAt(i); 
-            if(uniVal >= 0xAC00) { 
-                System.out.print(uniVal + "=>"); 
-                uniVal = (char)(uniVal - 0xAC00); 
-                const cho = (char)(uniVal/28/21); 
-                const joong = (char) ((uniVal)/28%21); 
-                const jong = (char) (uniVal % 28); 
-            System.out.println(CHO[cho] + JOONG[joong] + JONG[jong]); 
-        } else { System.out.println(uniVal + " => " + uniVal); } }
-    }
+    const comparison = (a, b) => {
+        /*const [CHO] = useState(
+            'ㄱ',
+            'ㄲ',
+            'ㄴ',
+            'ㄷ',
+            'ㄸ',
+            'ㄹ',
+            'ㅁ',
+            'ㅂ',
+            'ㅃ',
+            'ㅅ',
+            'ㅆ',
+            'ㅇ',
+            'ㅈ',
+            'ㅉ',
+            'ㅊ',
+            'ㅋ',
+            'ㅌ',
+            'ㅍ',
+            'ㅎ'
+        );
+        const [JOONG] = useState(
+            'ㅏ',
+            'ㅐ',
+            'ㅑ',
+            'ㅒ',
+            'ㅓ',
+            'ㅔ',
+            'ㅕ',
+            'ㅖ',
+            'ㅗ',
+            'ㅘ',
+            'ㅙ',
+            'ㅚ',
+            'ㅛ',
+            'ㅜ',
+            'ㅝ',
+            'ㅞ',
+            'ㅟ',
+            'ㅠ',
+            'ㅡ',
+            'ㅢ',
+            'ㅣ'
+        );
+        const [JONG] = useState(
+            '',
+            'ㄱ',
+            'ㄲ',
+            'ㄳ',
+            'ㄴ',
+            'ㄵ',
+            'ㄶ',
+            'ㄷ',
+            'ㄹ',
+            'ㄺ',
+            'ㄻ',
+            'ㄼ',
+            'ㄽ',
+            'ㄾ',
+            'ㄿ',
+            'ㅀ',
+            'ㅁ',
+            'ㅂ',
+            'ㅄ',
+            'ㅅ',
+            'ㅆ',
+            'ㅇ',
+            'ㅈ',
+            'ㅊ',
+            'ㅋ',
+            'ㅌ',
+            'ㅍ',
+            'ㅎ'
+        );*/
+        for (const i = 0; i < a.length(); i++) {
+            const uniVal = a.charAt(i);
+            if (uniVal >= 0xac00) {
+                uniVal = char(uniVal - 0xac00);
+                const choA = char(uniVal / 28 / 21);
+                const joongA = char((uniVal / 28) % 21);
+                const jongA = char(uniVal % 28);
+            } 
+        }
+    };
 
     const IngredientsData = [
         {
@@ -156,6 +226,7 @@ const RecipeIngredients = () => {
                     style={{ fontSize: 15, color: 'black' }}
                     value={search}
                 />
+                {JONG}
                 <TouchableOpacity
                     style={{ position: 'absolute', right: 0, top: 0, bottom: 0 }}
                     hitSlop={{ top: 10, left: 10, bottom: 10, right: 10 }}
@@ -175,7 +246,7 @@ const RecipeIngredients = () => {
                     </TouchableOpacity>
                 )}
                 renderItem={({ item, section }) => {
-                    return (search.includes(item) || search == "" ) ? (
+                    return search.includes(item) || search == '' ? (
                         //글자가 같고, null이 아닐때
                         selectedTitle.some((value) => value === section.title) ? null : (
                             <TouchableOpacity
