@@ -20,6 +20,7 @@ const TestScreen = () => {
       <View
         style={[styles.box, { backgroundColor: "steelblue" }]}
       />
+      <Text> 조용상 </Text>
     </PreviewLayout>
   );
 };
