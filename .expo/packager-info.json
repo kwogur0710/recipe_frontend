@@ -3,8 +3,8 @@
   "expoServerPort": 19000,
   "packagerPort": 19000,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerNgrokUrl": "https://jk-yn5.anonymous.recipe-frontend.exp.direct",
+  "packagerNgrokUrl": "https://jk-yn5.anonymous.recipe-frontend.exp.direct",
+  "ngrokPid": 10776,
   "webpackServerPort": null
 }
