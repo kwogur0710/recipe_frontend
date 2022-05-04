@@ -386,7 +386,7 @@ const RecipeListScreen = ({ route }) => {
                     renderItem={({ item }) => {
                         return TypeName.some((value) => value === item.type) ? (
                             <View style={styles.recipeListFrame}>
-                                <View>
+                                <View >
                                     <Image
                                         source={item.img}
                                         style={{ width: width * 158, height: width * 158 }}
@@ -504,13 +504,11 @@ const styles = StyleSheet.create({
         //레시피 리스트 프레임(위 아래 나누는 프레임)
         borderWidth: 1, //테두리 굵기
         alignItems: 'center', //가로정렬 : 중앙
-        width: width * 160, //너비
-        height: height * 204, //높이
         marginBottom: height * 4, //마진 : 5%
     },
     recipeListFrameTitle: {
         //레시피 리스트 프레임(제목)
-        borderWidth: 1, //테두리 굵기
+        borderBottomWidth: 1, //테두리 굵기
         width: width * 160, //너비
         height: height * 28, //높이
         alignItems: 'center', //가로정렬 : 중앙

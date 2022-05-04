@@ -24,7 +24,7 @@ const MainScreen = () => {
                     onPress={() => navigation.navigate('RecipeListScreen', { title: TypeName })}
                 >
                     <View style={styles.recipeTypeButtonImage}>
-                        <Image source={TypeImage} style={{ width: '95%', height: '95%' }} />
+                        <Image source={TypeImage} style={{ width: 70, height: 70 }} />
                     </View>
                     <View style={styles.recipeTypeButtonText}>
                         <Text style={{ fontSize: 20 }}>{TypeName}</Text>
