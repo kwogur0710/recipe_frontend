@@ -21,7 +21,7 @@ const MainScreen = () => {
         return (
             <View style={styles.recipeTypeButtonFrame}>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('RecipeListScreen', { title: TypeName })}
+                    onPress={() => navigation.navigate('RecipeListScreen', { type: TypeName })}
                 >
                     <View style={styles.recipeTypeButtonImage}>
                         <Image source={TypeImage} style={{ width: 70, height: 70 }} />

@@ -13,10 +13,13 @@ import {
 } from 'react-native';
 import { height, marginWidth, width } from '../config/globalStyles';
 import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
-const RecipeIngredients = () => {
+const RecipeIngredientsScreen = ({ route }) => {
+    const navigation = useNavigation();
+    const TypeName = route.params?.type;
     const [selectedTitle, setSelectedTitle] = useState([]);
-    const [parts, setParts] = useState([]);
+    const [parts, setParts] = useState(route.params?.parts);
     const [search, setSearch] = useState('');
     const result = useState();
     const onUpdateSearch = (text) => {
@@ -199,6 +202,7 @@ const RecipeIngredients = () => {
         },
     ];
 
+    console.log(parts, TypeName);
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.view}>
@@ -244,7 +248,7 @@ const RecipeIngredients = () => {
                                 }}
                             >
                                 <Text style={styles.item}>{item}</Text>
-                                {parts.some((value) => value == item) ? (
+                                {parts && parts.some((value) => value == item) ? (
                                     <AntDesign
                                         name="check"
                                         size={24}
@@ -257,6 +261,15 @@ const RecipeIngredients = () => {
                     ) : null;
                 }}
             />
+            <TouchableOpacity
+                onPress={() =>
+                    navigation.navigate('RecipeListScreen', { parts: parts, type: TypeName })
+                }
+            >
+                <View style={styles.apply}>
+                    <Text style={styles.applyFont}> 적용 </Text>
+                </View>
+            </TouchableOpacity>
         </SafeAreaView>
     );
 };
@@ -298,7 +311,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: width * 10,
     },
-    checkbox: {},
+    apply: {
+        width: '100%',
+        height: 30,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: 1,
+        paddingHorizontal: 10,
+    },
+    applyFont: {
+        fontSize:14,
+    },
 });
 
-export default RecipeIngredients;
+export default RecipeIngredientsScreen;
