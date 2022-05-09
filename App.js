@@ -7,6 +7,7 @@ import {colors, width, height} from './config/globalStyles'; //width,height ë°›ì
 import MainScreen from "./screen/MainScreen";
 import RecipeListScreen from "./screen/RecipeListScreen";
 import RecipeIngredientsScreen from "./screen/RecipeIngredientsScreen";
+import RecipeBoardScreen from "./screen/RecipeBoardScreen";
 import TestScreen from "./screen/TestScreen";
 
 
@@ -19,6 +20,7 @@ export default function App() {
         <Stack.Screen name="MainScreen" component={MainScreen} />
         <Stack.Screen name="RecipeListScreen" component={RecipeListScreen} />
         <Stack.Screen name="RecipeIngredientsScreen" component={RecipeIngredientsScreen} />
+        <Stack.Screen name="RecipeBoardScreen" component={RecipeBoardScreen} />
         <Stack.Screen name="TestScreen" component={TestScreen} />
       </Stack.Navigator>
     </NavigationContainer>
