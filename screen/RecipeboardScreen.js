@@ -6,7 +6,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 
 type Props = {};
-export default class App extends Recipeboard1<Props> {
+export default class App extends Recipeboard<Props> {
   render() {
     return (
       <SafeAreaView style={styles.container}>
@@ -83,3 +83,5 @@ text_3:{
 }
 
 });
+
+export default RecipeboardScreen;

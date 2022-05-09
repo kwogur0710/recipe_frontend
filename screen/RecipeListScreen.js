@@ -417,12 +417,20 @@ const RecipeListScreen = ({ route }) => {
                     renderItem={({ item }) => {
                         return (
                             <View style={styles.recipeListFrame}>
+                                <TouchableOpacity
+                                onPress={() =>
+                                    navigation.navigate('RecipeboardScreen', {
+                                        parts: route.params?.parts,
+                                        type: TypeName,
+                                    })
+                                }>
                                 <View>
                                     <Image
                                         source={item.img}
                                         style={{ width: width * 158, height: width * 158 }}
                                     />
                                 </View>
+                                </TouchableOpacity>
                                 <View style={styles.recipeListFrameTitle}>
                                     <Text style={styles.titleFont}>{item.title}</Text>
                                 </View>
