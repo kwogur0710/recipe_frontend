@@ -5,11 +5,15 @@ import { height, marginWidth, width } from '../config/globalStyles';
 const TestScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.View1}>
-                <TouchableOpacity>
-                    <Text style={styles.Text1}>안녕하세요</Text>
-                </TouchableOpacity>
-            </View>
+                <View style={styles.View1}>
+                    <Text style={styles.Text1}> 설정 </Text>
+                </View>
+                <View style={styles.View1}>
+                    <Text style={styles.Text1}> 설정 </Text>
+                </View>
+                <View style={styles.View1}>
+                    <Text style={styles.Text1}> 설정 </Text>
+                </View>
         </SafeAreaView>
     );
 };
@@ -17,14 +21,14 @@ const TestScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'black',
     },
     View1: {
-        backgroundColor: 'white',
-        height: height * 230,
+        borderTopWidth: 1,
+        borderLeftWidth: 1,
+        borderRightWidth: 1,
     },
     Text1: {
-        fontSize: 40,
+        fontSize: 20,
     },
 });
 
