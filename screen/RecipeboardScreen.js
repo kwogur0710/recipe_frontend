@@ -6,10 +6,9 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 
 type Props = {};
-export default class App extends Recipeboard1<Props> {
+export default class App extends Recipeboard<Props> {
   render() {
     return (
-<<<<<<< HEAD
       <SafeAreaView style={styles.container}>
         <ScrollView>
       <View>
@@ -49,25 +48,11 @@ export default class App extends Recipeboard1<Props> {
         </View>
         </ScrollView>
       </SafeAreaView>
-=======
-        <SafeAreaView style={styles.container}>
-                <View style={styles.View1}>
-                    <Text style={styles.Text1}> 설정 </Text>
-                </View>
-                <View style={styles.View1}>
-                    <Text style={styles.Text1}> 설정 </Text>
-                </View>
-                <View style={styles.View1}>
-                    <Text style={styles.Text1}> 설정 </Text>
-                </View>
-        </SafeAreaView>
->>>>>>> 6c5fbd786617e425b2007af3766318ba4ca9fa44
     );
   }
 }
 
 const styles = StyleSheet.create({
-<<<<<<< HEAD
   container: {
     //바탕
     flex: 1,
@@ -96,19 +81,7 @@ text_3:{
   fontSize: 15,
   marginLeft: 10
 }
-=======
-    container: {
-        flex: 1,
-    },
-    View1: {
-        borderTopWidth: 1,
-        borderLeftWidth: 1,
-        borderRightWidth: 1,
-    },
-    Text1: {
-        fontSize: 20,
-    },
-});
->>>>>>> 6c5fbd786617e425b2007af3766318ba4ca9fa44
 
 });
+
+export default RecipeboardScreen;
