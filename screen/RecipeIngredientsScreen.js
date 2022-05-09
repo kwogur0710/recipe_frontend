@@ -27,6 +27,7 @@ const RecipeIngredientsScreen = ({ route }) => {
     };
 
     const SelectHandler = (name) => {
+        console.log('SelectHandler');
         let a = [];
         if (parts && parts.length > 0) {
             if (parts.some((value) => value === name)) {
@@ -44,6 +45,7 @@ const RecipeIngredientsScreen = ({ route }) => {
         setParts(a);
     };
     const SelectTitleHandler = (title) => {
+        console.log('SelectTitleHandler');
         let a = [];
         if (selectedTitle && selectedTitle.length > 0) {
             //조건문. 만약 배열에 값이 있고, 배열의 길이가 0 이상이면
@@ -202,7 +204,7 @@ const RecipeIngredientsScreen = ({ route }) => {
         },
     ];
 
-    console.log(parts, TypeName);
+    console.log(parts);
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.view}>
@@ -321,7 +323,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
     },
     applyFont: {
-        fontSize:14,
+        fontSize: 14,
     },
 });
 
