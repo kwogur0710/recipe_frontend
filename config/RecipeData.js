@@ -6,6 +6,8 @@ export const RecipeData = [
         love: 650,
         follow: 340,
         img: require('../image/korean_food/image_1.jpeg'),
+        recipedifficulty: 3,
+        recipeserving: 1,
         recipeInMaterial: [
             '소 사골 ',
             '소주(소주잔) ',
@@ -26,6 +28,8 @@ export const RecipeData = [
         love: 592,
         follow: 234,
         img: require('../image/korean_food/image_2.jpeg'),
+        recipedifficulty: 2,
+        recipeserving: 1,
         recipeInMaterial: [
             '돼지고기 항정살 ',
             '신김치 ',
@@ -45,6 +49,8 @@ export const RecipeData = [
         love: 312,
         follow: 364,
         img: require('../image/korean_food/image_3.jpeg'),
+        recipedifficulty: 2,
+        recipeserving: 1,
         recipeInMaterial: [
             '김밥용김 ',
             '밥 ',
@@ -66,6 +72,8 @@ export const RecipeData = [
         love: 342,
         follow: 754,
         img: require('../image/korean_food/image_4.jpeg'),
+        recipedifficulty: 2,
+        recipeserving: 1,
         recipeInMaterial: [
             '소고기(국거리용) ',
             '미역 ',
@@ -85,6 +93,8 @@ export const RecipeData = [
         love: 123,
         follow: 343,
         img: require('../image/korean_food/image_5.jpeg'),
+        recipedifficulty: 5,
+        recipeserving: 1,
         recipeInMaterial: ['생닭', '대추', '통마늘', '약재', '물', '찹쌀', '소금'],
         recipeDetail:
             '1. 찹쌀을 충분히 불려주세요.(찹쌀은 찬 물에 2시간 이상 불려야 해요.)\n2. 찹쌀을 불리는 동안, 닭을 손질하고 씻어주세요.\n3. 기름 덩어리, 잡내 제거를 위해 닭의 꽁지, 목덜미 비계, 뼈 주변에 붙은 내장을 제거해줍니다.\n4. 넣고 끓일 재료를 냄비에 모두 넣어주세요.(불린 찹쌀, 대추, 마늘, 약재(인삼이 없을 경우 황기만 들어가도 괜찮습니다)\n5. 닭을 넣고 물 2L를 부어주세요.\n6. 강불에서 7분간 끓여주세요.\n7. 약불로 줄이고 30분간 푹 끓여주시면 완성!\n8. 마지막에 냄비에 소금 1숟갈을 넣어주셔도 좋고 덜어 드시면서 원하는 만큼의 소금간을 따로 하셔도 좋습니다.',
@@ -96,6 +106,8 @@ export const RecipeData = [
         love: 234,
         follow: 263,
         img: require('../image/korean_food/image_6.jpeg'),
+        recipedifficulty: 2,
+        recipeserving: 1,
         recipeInMaterial: [
             '돼지고기 ',
             '애호박 ',
@@ -118,6 +130,8 @@ export const RecipeData = [
         love: 435,
         follow: 642,
         img: require('../image/korean_food/image_7.jpeg'),
+        recipedifficulty: 3,
+        recipeserving: 1,
         recipeInMaterial: [
             '갈치 ',
             '무 ',
@@ -144,6 +158,8 @@ export const RecipeData = [
         love: 765,
         follow: 432,
         img: require('../image/korean_food/image_8.jpeg'),
+        recipedifficulty: 3,
+        recipeserving: 1,
         recipeInMaterial: [
             '돼지고기 ',
             '다진마늘 ',
@@ -167,6 +183,8 @@ export const RecipeData = [
         love: 95,
         follow: 42,
         img: require('../image/korean_food/boochoo.jpg'),
+        recipedifficulty: 1,
+        recipeserving: 1,
         recipeInMaterial: [
             '부추 ',
             '양파 ',
@@ -188,6 +206,8 @@ export const RecipeData = [
         love: 999,
         follow: 999,
         img: require('../image/korean_food/joomukbob.jpg'),
+        recipedifficulty: 1,
+        recipeserving: 1,
         recipeInMaterial: [
             '밥 ',
             '참치통조림 ',
@@ -209,7 +229,9 @@ export const RecipeData = [
         love: 122,
         follow: 43,
         img: require('../image/japanese_food/denpura.jpg'),
-        recipeInMaterial: [ //1인분
+        recipedifficulty: 2, //난이도
+        recipeserving: 1, //인분
+        recipeInMaterial: [ 
             '튀김가루 5스푼 ',
             '중력분 5스푼 ',
             '얼음물 8스푼 ',
@@ -226,6 +248,8 @@ export const RecipeData = [
         love: 425,
         follow: 243,
         img: require('../image/japanese_food/donkoturamen.jpg'),
+        recipedifficulty: 5,
+        recipeserving: 3,
         recipeInMaterial: [//3인분
             '돼지등뼈사골 1팩 ',
             '영계 1마리 ',
@@ -251,7 +275,6 @@ export const RecipeData = [
         ],
         recipeDetail: 
             '1. 돼지등뼈는 찬물에 담궈서 핏물 빼기.(하룻밤) 핏물 뺀 돼지등뼈랑 영계를 같이 넣고 끓이기.한소끔하면 첫물을 버리고 찬물을 부어 다시 중불에서 끓이기.\n 2. 대추,황기는 한소끔 한 뒤 넣고 약불로 교체하고 난뒤 국물이 뽀얗게 우러 날 때까지 끓이기. 닭이 익으면 살코기는 발라서 따로 사용하셔요. 뼈만 넣어서 푹 고아요. 3~4시간소요. \n 3. 푹 고운 육수를 고운체에 받쳐서 육수만 따로 식혀서 기름띠를 제거해요. \n 4. 3인분~ 육수에 된장(미소)1T를 고운 체망에 풀고 다시마 한장을 넣어요. 15분후에 끓여요.\n 5. 양파,흰파,마늘(2:1:0.5)비율로 간 향신채 OR 양파요리당을 준비해요. \n 6.달궈진 세라믹(뚝배기)에 참기름1t를 두르고 돼지고기다짐육과 양파요리당1T(향신채)를 넣어서 볶아 주어요. \n 7. 고기가 반쯤 익었을때 맛간장1t를 넣어서 볶아 주어요. \n 8. 단맛을 위해 설탕 1t을 넣어 주셔요.  돼지고기에 고소한 단맛을 주는 비밀병기입니다. \n 9. 돼지고기가 익고 난 뒤 설탕 1t를 넣어 주셔요. 마지막에 후추 톡톡 \n 10. 고명으로 올라가는 볶은돼지고기의 맛을 꼭 확인 하셔요 \n 11. 달걀은 찬물을 붓고 소금1t를 넣어서 ~7분만 삶아요. 젓가락으로 저어 주면 노른자가 중심에 가요. 찬물에 달걀을 넣고 식힐 때 식초1t를 넣으면 껍질이 잘 분리 되어요. \n 12. 숙주,부추를 잘 씻어서 체반에 두어요. 영양부추말고 일반부추를 사용하셔요. \n 13. 돈코츠라멘은 다진마늘이 큰 역할을 합니다. 살짝 느끼 할 수 있는 돼지육수를 칼칼한 맛을 유도 하면서 국물맛에 풍미를 더해 주어요. 1인당 1톨 \n 14. 마늘 빻은 절구통에 멸치액젓1t,고춧가루,깨소금을 넣고 부추 1공기를 넣고 무쳤어요. 약식 부추겉절이가 완성 \n 15. 실파(쪽파)는 잘게 썰어서 준비하고 반숙 달걀은 반으로 잘라 주어요. 볶은돼지고기,부추겉절이,다진마늘...고명으로 들어갈 재료가 셋팅 되었어요. \n 16. 면이 정말 중요 해요. 전 생 칼국수 면을 준비했는데 면이 별로 였어요. 일본 생라멘이 가장 좋구요. 아니면 일본 인스턴트라멘을 준비하셔요. \n 17. 칼국수 삶을 물이 끓고 있을 때...칼국수 면을 체반에 넣어요. 그리고 흐르는 물에 재빨리 씻어 주었어요. \n 18. 팔팔 끓는 물에 칼국수 면을 삶아요. \n 19. 옆불에 육수를 끓이고 있어요. 한소끔하면 다시마를 건져내요. \n 20. 익힌 칼국수 면을 체반에 1인분씩 넣고 육수에 토렴을 해요. 육수맛이 면에 잘 배이도록. 넣었다 뺐다를 2번만 해요. \n 21.숙주도 살짝 육수에 토렴을 해요. \n 22. 대접에 면을 중간에 넣고 고명을 빙 둘러 넣어요. 마른김도 한장 올렸네요. \n 23. 팔팔 끓는 육수를 대접에 부어요. 다진마늘은 육수맛을 일단 보고 난 뒤 추가로 넣으셔요. '
-        
     },
     {
         id: '2003',
@@ -260,6 +283,8 @@ export const RecipeData = [
         love: 522,
         follow: 153,
         img: require('../image/japanese_food/dubuyubu.jpg'),
+        recipedifficulty: 1,
+        recipeserving: 1,
         recipeInMaterial: [ //1인분
             '두부 1모 ',
             '초밥용 유부 1PK ',
@@ -275,6 +300,8 @@ export const RecipeData = [
         love: 52,
         follow: 0,
         img: require('../image/japanese_food/emukudong.jpg'),
+        recipedifficulty: 2,
+        recipeserving: 1,
         recipeInMaterial: [ //1인분
             '어묵 1봉 ',
             '파 약간 ',
@@ -295,6 +322,8 @@ export const RecipeData = [
         love: 22,
         follow: 4,
         img: require('../image/japanese_food/karaage.jpg'),
+        recipedifficulty: 3,
+        recipeserving: 4,
         recipeInMaterial: [ //3~4인분
             '닭 다리살 1kg ',
             '간장 4큰술 ',
@@ -315,6 +344,8 @@ export const RecipeData = [
         love: 12,
         follow: 3,
         img: require('../image/japanese_food/kudong.jpg'),
+        recipedifficulty: 3,
+        recipeserving: 2,
         recipeInMaterial: [ //2인분
             '소고기(불고기용) 150g ',
             '마늘 3쪽 ',
@@ -339,6 +370,8 @@ export const RecipeData = [
         love: 0,
         follow: 0,
         img: require('../image/japanese_food/mochunabe.jpg'),
+        recipedifficulty: 2,
+        recipeserving: 2,
         recipeInMaterial: [ //2인분
             '양배추 1/2 ',
             '팽이버섯 1봉지 ',
@@ -365,6 +398,8 @@ export const RecipeData = [
         love: 333,
         follow: 43,
         img: require('../image/japanese_food/onigiri.jpg'),
+        recipedifficulty: 1,
+        recipeserving: 2,
         recipeInMaterial: [ //2인분
             '쌀밥 2공기 ',
             '김 ',
@@ -381,6 +416,8 @@ export const RecipeData = [
         love: 149,
         follow: 111,
         img: require('../image/japanese_food/yakiudong.jpg'),
+        recipedifficulty: 3,
+        recipeserving: 1,
         recipeInMaterial: [ //1인분
             '진간장 2큰술 ',
             '식초 2/3큰술 ',
@@ -407,6 +444,8 @@ export const RecipeData = [
         love: 367,
         follow: 13,
         img: require('../image/japanese_food/yenususi.jpg'),
+        recipedifficulty: 2,
+        recipeserving: 3,
         recipeInMaterial: [ //3인분
             '생연어 400g ',
             '밥 3인분 ',

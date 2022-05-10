@@ -32,7 +32,8 @@ const RecipeBoardScreen = ({ route }) => {
                     <View>
                         <Text style={styles.TitleText}>{Recipe.title}</Text>
                         <Text style={styles.SubTitleText}>소요시간 : 30분</Text>
-                        <Text style={styles.SubTitleText}>난이도 : ✿✿</Text>
+                        <Text style={styles.SubTitleText}>난이도 : {Recipe.recipedifficulty}</Text>
+                        <Text style={styles.SubTitleText}>인분 : {Recipe.recipeserving}인분</Text>
                     </View>
                     <View style={styles.border} />
                     <Text style={styles.SubTitleText}>재료</Text>

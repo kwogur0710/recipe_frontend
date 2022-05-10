@@ -108,12 +108,12 @@ const RecipeListScreen = ({ route }) => {
                                             <View style={{ flexDirection: 'row' }}>
                                                 <View style={{ width: '50%' }}>
                                                     <Text style={styles.recipeListTextFont}>
-                                                        난이도 : {}
+                                                        난이도 : {item.recipedifficulty}
                                                     </Text>
                                                 </View>
                                                 <View style={{ width: '50%' }}>
                                                     <Text style={styles.recipeListTextFont}>
-                                                        인분 : {}
+                                                        인분 : {item.recipeserving}인분
                                                     </Text>
                                                 </View>
                                             </View>
