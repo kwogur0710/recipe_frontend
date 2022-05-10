@@ -99,7 +99,7 @@ const RecipeListScreen = ({ route }) => {
                                     <View style={styles.recipeListFrame}>
                                         <Image style={styles.recipeListImg} source={item.img} />
                                         <View style={styles.recipeListTextFrame}>
-                                            <Text style={{ fontSize: 24, height: 24 }}>
+                                            <Text style={{ fontSize: 19, height: 24 }}>
                                                 {item.title}
                                             </Text>
                                             <Text style={styles.recipeListTextFont}>
@@ -108,12 +108,12 @@ const RecipeListScreen = ({ route }) => {
                                             <View style={{ flexDirection: 'row' }}>
                                                 <View style={{ width: '50%' }}>
                                                     <Text style={styles.recipeListTextFont}>
-                                                        난이도 : {}
+                                                        난이도 : {item.recipedifficulty}
                                                     </Text>
                                                 </View>
                                                 <View style={{ width: '50%' }}>
                                                     <Text style={styles.recipeListTextFont}>
-                                                        인분 : {}
+                                                        인분 : {item.recipeserving}인분
                                                     </Text>
                                                 </View>
                                             </View>
@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
     },
     recipeListTextFont: {
         marginTop: 6,
-        fontSize: 16,
+        fontSize: 12,
         height: 16,
     },
 });

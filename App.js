@@ -7,7 +7,7 @@ import {colors, width, height} from './config/globalStyles'; //width,height ë°›ì
 import MainScreen from "./screen/MainScreen";
 import RecipeListScreen from "./screen/RecipeListScreen";
 import RecipeIngredientsScreen from "./screen/RecipeIngredientsScreen";
-import RecipeBoardScreen from "./screen/RecipeBoardScreen";
+import RecipeBoardScreen from "./screen/RecipeboardScreen";
 import TestScreen from "./screen/TestScreen";
 
 
