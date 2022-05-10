@@ -315,15 +315,16 @@ const styles = StyleSheet.create({
     },
     apply: {
         width: '100%',
-        height: 30,
+        height: height * 40,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 1,
+        borderColor: 'gray',
         paddingHorizontal: 10,
     },
     applyFont: {
-        fontSize: 14,
+        fontSize: 20,
     },
 });
 

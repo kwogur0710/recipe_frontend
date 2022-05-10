@@ -14,13 +14,9 @@ const RecipeBoardScreen = ({ route }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView style={{}}>
+            <ScrollView style={{width:'100%'}}>
                 <View>
-                    <Image
-                        style={styles.img}
-                        resizeMode="cover"
-                        source={Recipe.img}
-                    />
+                    <Image style={styles.img} resizeMode="cover" source={Recipe.img} />
                 </View>
                 <View style={styles.profileImgView}>
                     <Image
@@ -31,22 +27,20 @@ const RecipeBoardScreen = ({ route }) => {
                 <View style={styles.RecipeTextView}>
                     <View>
                         <Text style={styles.TitleText}>{Recipe.title}</Text>
-                        <Text style={styles.SubTitleText}>소요시간 : 30분</Text>
-                        <Text style={styles.SubTitleText}>난이도 : ✿✿</Text>
+                        <Text style={styles.SubTitleText}>소요시간 : {Recipe.recipeTime} 분</Text>
+                        <Text style={styles.SubTitleText}>난이도 : {Recipe.recipedifficulty} 단계</Text>
+                        <Text style={styles.SubTitleText}>인분 : {Recipe.recipeserving} 인분</Text>
                     </View>
                     <View style={styles.border} />
                     <Text style={styles.SubTitleText}>재료</Text>
-                    <Text style={styles.ContentText}>
-                        {Recipe.recipeInMaterial}
-                    </Text>
+                    <Text style={styles.ContentText}>{Recipe.recipeInMaterial}</Text>
                     <View style={styles.border} />
                     <View>
                         <Text style={styles.SubTitleText}>조리 순서</Text>
-                        <Text style={styles.ContentText}>
-                            {Recipe.recipeDetail}
-                        </Text>
+                        <Text style={styles.ContentText}>{Recipe.recipeDetail}</Text>
                     </View>
                 </View>
+                <View style={{ paddingBottom: 100 }} />
             </ScrollView>
         </SafeAreaView>
     );
@@ -55,19 +49,16 @@ const RecipeBoardScreen = ({ route }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        height:'100%',
+        width:'100%',
         alignItems: 'center',
         paddingTop: Platform.OS === 'android' ? 40 : 0,
-        paddingLeft: 20,
-        paddingRight: 20,
     },
     img: {
-        width: 390,
+        width:'100%',
         height: 300,
-        resizeMode: 'contain',
     },
     profileImgView: {
-        width: 390,
+        width:'100%',
         height: 1,
         alignItems: 'center',
         justifyContent: 'center',
@@ -78,29 +69,28 @@ const styles = StyleSheet.create({
     profileImg: {
         width: 100,
         height: 100,
-        backgroundColor: 'white',
         borderRadius: 100,
     },
     RecipeTextView: {
         marginTop: 6,
-        marginLeft: 20,
-        marginRight: 20,
-        paddingTop: 6,
-        marginBottom: 6,
-        width: 350,
-        top: 40,
+        paddingLeft: width * 10,
+        paddingRight: width * 10,
+        paddingTop: height * 6,
+        marginBottom: height * 6,
+        width: '100%',
+        top: height * 40,
     },
     border: {
-        borderTopWidth: 2,
+        borderTopWidth: height * 2,
         borderColor: 'gray',
-        marginTop: 6,
-        marginBottom: 6,
+        marginTop: height * 6,
+        marginBottom: height * 6,
         width: '100%',
     },
     TitleText: {
         fontSize: 34,
-        marginTop: 4,
-        marginBottom: 4,
+        marginTop: height * 4,
+        marginBottom: height * 4,
     },
     SubTitleText: {
         fontSize: 22,
@@ -108,8 +98,9 @@ const styles = StyleSheet.create({
     },
     ContentText: {
         fontSize: 15,
-        marginLeft: 10,
-        marginTop: 4,
+        paddingLeft: width * 10,
+        marginBottom: height * 6,
+        
     },
 });
 

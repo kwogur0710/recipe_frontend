@@ -111,7 +111,7 @@ const MainScreen = () => {
 
                 <View style={styles.recipeVideoYoutubeBlank}></View>
 
-                <ScrollView horizontal={true}>
+                <ScrollView horizontal={true} >
                     <View style={styles.recipeVideoYoutube}>
                         <TouchableOpacity
                             onPress={() =>
@@ -356,7 +356,7 @@ const styles = StyleSheet.create({
 
     recipeVideoFrame: {
         //음식 영상 프레임
-        height: height * 300, //높이
+        height: height * 230, //높이
         width: '100%', //너비
         alignItems: 'center', //가로정렬
         justifyContent: 'center', //세로정렬

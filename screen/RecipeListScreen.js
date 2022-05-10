@@ -12,12 +12,11 @@ import {
     SafeAreaView,
     Image,
     TextInput,
-    ScrollView
+    ScrollView,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { RecipeData } from '../config/RecipeData';
-
 
 const RecipeListScreen = ({ route }) => {
     const navigation = useNavigation();
@@ -97,23 +96,31 @@ const RecipeListScreen = ({ route }) => {
                             >
                                 <View style={styles.recipeList}>
                                     <View style={styles.recipeListFrame}>
-                                        <Image style={styles.recipeListImg} source={item.img} />
+                                        <View>
+                                            <Image source={item.img} style={styles.recipeListImg} />
+                                        </View>
+
                                         <View style={styles.recipeListTextFrame}>
-                                            <Text style={{ fontSize: 24, height: 24 }}>
+                                            <Text style={{ fontSize: 20, height: 22 }}>
                                                 {item.title}
                                             </Text>
                                             <Text style={styles.recipeListTextFont}>
                                                 {item.recipeInMaterial}
                                             </Text>
                                             <View style={{ flexDirection: 'row' }}>
-                                                <View style={{ width: '50%' }}>
+                                                <View style={{ flex: 1 }}>
                                                     <Text style={styles.recipeListTextFont}>
-                                                        난이도 : {}
+                                                        시간 : {item.recipeTime}분
                                                     </Text>
                                                 </View>
-                                                <View style={{ width: '50%' }}>
+                                                <View style={{ flex: 1 }}>
                                                     <Text style={styles.recipeListTextFont}>
-                                                        인분 : {}
+                                                        난이도 : {item.recipedifficulty}
+                                                    </Text>
+                                                </View>
+                                                <View style={{ flex: 1 }}>
+                                                    <Text style={styles.recipeListTextFont}>
+                                                        인분 : {item.recipeserving}인분
                                                     </Text>
                                                 </View>
                                             </View>
@@ -130,7 +137,6 @@ const RecipeListScreen = ({ route }) => {
 };
 
 const styles = StyleSheet.create({
-    
     container: {
         //바탕
         flex: 1,
@@ -195,23 +201,24 @@ const styles = StyleSheet.create({
     },
     recipeList: {
         borderWidth: 1, //테두리 굵기
-        alignItems: 'center', //가로정렬 : 중앙
         marginBottom: height * 4, //마진 : 5%
         borderRadius: 10,
     },
     recipeListFrame: {
         flexDirection: 'row',
-        width: 344,
-        height: 80,
+        width: width * 344,
+        height: height * 80,
+        borderRadius: 10,
     },
     recipeListImg: {
-        width: 100,
-        height: 80,
-        borderRadius: 10
+        width: width * 100,
+        height: height * 80,
+        borderRadius: 10,
     },
     recipeListTextFrame: {
         padding: 4,
-        width: 242,
+        width: width * 214,
+        height: height * 80,
     },
 
     arrayFont: {
@@ -225,7 +232,7 @@ const styles = StyleSheet.create({
     },
     recipeListTextFont: {
         marginTop: 6,
-        fontSize: 16,
+        fontSize: 14,
         height: 16,
     },
 });
