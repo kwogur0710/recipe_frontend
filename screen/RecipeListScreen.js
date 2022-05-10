@@ -130,6 +130,7 @@ const RecipeListScreen = ({ route }) => {
 };
 
 const styles = StyleSheet.create({
+    
     container: {
         //바탕
         flex: 1,
