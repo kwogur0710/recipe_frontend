@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
         //바탕
         flex: 1,
         alignItems: 'center', //가로정렬 : 중앙
-        paddingTop: Platform.OS === 'android' ? 40 : 0,
+        paddingTop: Platform.OS === 'android' ? height * 40 : 0,
         marginBottom: height * 20, //마진 : 10%
         marginLeft: width * 20,
         marginRight: width * 20,
@@ -213,6 +213,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row', //정렬방향 : row(가로), column(세로)
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
+        backgroundColor: '#fff',
+        width: '100%',
+        shadowColor: '#000000',
+        shadowRadius: 4,
+        shadowOffset: { height: 4, width: 0 },
+        shadowOpacity: 0.5,
     },
     menuButton: {
         //메뉴 아이콘
@@ -266,12 +272,17 @@ const styles = StyleSheet.create({
     },
     weekRecipeImage: {
         //금주의 레시피 이미지
-        borderWidth: 1, //테두리 굵기
         borderRadius: 10, //테두리 둥글게 하는 수치
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
         height: height * 153, //높이 : '30%'
         width: width * 272, //너비 : '100%'
+        backgroundColor: '#fff',
+        width: '100%',
+        shadowColor: '#000000',
+        shadowRadius: 4,
+        shadowOffset: { height: 4, width: 0 },
+        shadowOpacity: 0.5,
     },
     weekRecipeImageBlank: {
         //금주의 레시피 이미지 여백
@@ -295,7 +306,7 @@ const styles = StyleSheet.create({
         borderWidth: 1, //테두리 굵기
         borderRadius: 5, //테두리 둥글게 하는 수치
         height: '100%', //높이 : '100%'
-        width: width * 24, //너비 : 25
+        width: width * 24, //너비 : 24
     },
     weekRecipeBarColor: {
         //금주의 레시피 하단바 색깔
@@ -319,6 +330,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center', //세로정렬 : 중앙
         width: '100%', //너비 : '100%'
         marginTop: height * 10, //위쪽 마진
+        borderRadius:10,
+        backgroundColor: '#fff',
+        shadowColor: '#000000',
+        shadowRadius: 4,
+        shadowOffset: { height: 2, width: 0 },
+        shadowOpacity: 0.5,
     },
     recipeTypeText: {
         //음식 종류 글자
@@ -338,6 +355,7 @@ const styles = StyleSheet.create({
         height: height * 88, //높이 : 100%
         width: width * 70, //너비 : 20%
         marginRight: width * 12,
+        borderRadius:10,
     },
     recipeTypeButtonImage: {
         //음식 종류 버튼 사진
@@ -361,6 +379,11 @@ const styles = StyleSheet.create({
         alignItems: 'center', //가로정렬
         justifyContent: 'center', //세로정렬
         marginTop: height * 5, //위쪽 마진
+        backgroundColor: '#fff',
+        shadowColor: '#000000',
+        shadowRadius: 4,
+        shadowOffset: { height: 2, width: 0 },
+        shadowOpacity: 0.5,
     },
     recipeVideoText: {
         alignItems: 'flex-start', //가로정렬

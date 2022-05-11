@@ -25,11 +25,11 @@ const RecipeListScreen = ({ route }) => {
     const [search, setSearch] = useState('');
     const onUpdateSearch = (text) => {
         setSearch(text);
-        console.log(search);
+        //console.log(search);
     };
     useEffect(() => {
         setParts(route.params?.parts), [route.params?.parts];
-        console.log(parts);
+        //console.log(parts);
     });
     return (
         <SafeAreaView style={styles.container}>
@@ -59,9 +59,13 @@ const RecipeListScreen = ({ route }) => {
             </View>
             <View style={styles.arrayFrame}>
                 <View style={styles.array}>
-                    <View>
-                        <Text style={styles.arrayFont}>추천순</Text>
-                    </View>
+                    <TouchableOpacity
+                        onPress={() =>
+                            navigation.navigate('RecipeAddScreen')
+                        }
+                    >
+                        <Text style={styles.arrayFont}>추가</Text>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.array}>
                     <Text style={styles.arrayFont}> {TypeName} </Text>
@@ -101,26 +105,31 @@ const RecipeListScreen = ({ route }) => {
                                         </View>
 
                                         <View style={styles.recipeListTextFrame}>
-                                            <Text style={{ fontSize: 20, height: 22 }}>
+                                            <Text
+                                                style={{
+                                                    fontSize: height * 20,
+                                                    height: height * 22,
+                                                }}
+                                            >
                                                 {item.title}
                                             </Text>
                                             <Text style={styles.recipeListTextFont}>
-                                                {item.recipeInMaterial}
+                                                {item.material}
                                             </Text>
                                             <View style={{ flexDirection: 'row' }}>
                                                 <View style={{ flex: 1 }}>
                                                     <Text style={styles.recipeListTextFont}>
-                                                        시간 : {item.recipeTime}분
+                                                        시간 : {item.time}분
                                                     </Text>
                                                 </View>
                                                 <View style={{ flex: 1 }}>
                                                     <Text style={styles.recipeListTextFont}>
-                                                        난이도 : {item.recipedifficulty}
+                                                        난이도 : {item.difficulty}
                                                     </Text>
                                                 </View>
                                                 <View style={{ flex: 1 }}>
                                                     <Text style={styles.recipeListTextFont}>
-                                                        인분 : {item.recipeserving}인분
+                                                        인분 : {item.serving}인분
                                                     </Text>
                                                 </View>
                                             </View>
@@ -141,7 +150,7 @@ const styles = StyleSheet.create({
         //바탕
         flex: 1,
         alignItems: 'center', //가로정렬 : 중앙
-        paddingTop: Platform.OS === 'android' ? 40 : 0,
+        paddingTop: Platform.OS === 'android' ? height * 40 : 0,
         marginBottom: height * 20,
         marginLeft: width * 20,
         marginRight: width * 20,
@@ -156,10 +165,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row', //정렬방향 : row(가로), column(세로)
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
+        backgroundColor: '#fff',
+        width: '100%',
+        shadowColor: '#000000',
+        shadowRadius: 4,
+        shadowOffset: { height: 4, width: 0 },
+        shadowOpacity: 0.5,
     },
     backButton: {
         //메뉴 아이콘
-        //borderWidth: 1, //테두리 굵기
         height: height * 35, //높이
         width: width * 35, //너비
         marginLeft: width * 10, //왼쪽 마진
@@ -168,7 +182,6 @@ const styles = StyleSheet.create({
     },
     search: {
         //검색창
-        //borderWidth: 1, //테두리 굵기
         flex: 1,
         height: height * 35, //높이
         alignItems: 'center', //가로정렬 : 중앙
@@ -176,7 +189,6 @@ const styles = StyleSheet.create({
     },
     searchButton: {
         //검색버튼
-        //borderWidth: 1, //테두리 굵기
         height: height * 35, //높이
         width: width * 35, //너비
         marginRight: width * 10, //왼쪽 마진
@@ -203,6 +215,13 @@ const styles = StyleSheet.create({
         borderWidth: 1, //테두리 굵기
         marginBottom: height * 4, //마진 : 5%
         borderRadius: 10,
+        marginBottom: height * 10,
+        backgroundColor: '#fff',
+        width: '100%',
+        shadowColor: '#000000',
+        shadowRadius: 4,
+        shadowOffset: { height: 2, width: 0 },
+        shadowOpacity: 0.5,
     },
     recipeListFrame: {
         flexDirection: 'row',
@@ -216,24 +235,21 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     recipeListTextFrame: {
-        padding: 4,
+        padding: height * 4,
         width: width * 214,
         height: height * 80,
     },
 
     arrayFont: {
-        fontSize: width * 20,
+        fontSize: height * 20,
     },
     titleFont: {
-        fontSize: width * 20,
-    },
-    reactionFont: {
-        fontSize: width * 14,
+        fontSize: height * 20,
     },
     recipeListTextFont: {
-        marginTop: 6,
-        fontSize: 14,
-        height: 16,
+        marginTop: height * 6,
+        fontSize: height * 14,
+        height: height * 16,
     },
 });
 

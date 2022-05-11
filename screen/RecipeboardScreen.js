@@ -27,17 +27,17 @@ const RecipeBoardScreen = ({ route }) => {
                 <View style={styles.RecipeTextView}>
                     <View>
                         <Text style={styles.TitleText}>{Recipe.title}</Text>
-                        <Text style={styles.SubTitleText}>소요시간 : {Recipe.recipeTime} 분</Text>
-                        <Text style={styles.SubTitleText}>난이도 : {Recipe.recipedifficulty} 단계</Text>
-                        <Text style={styles.SubTitleText}>인분 : {Recipe.recipeserving} 인분</Text>
+                        <Text style={styles.SubTitleText}>소요시간 : {Recipe.time} 분</Text>
+                        <Text style={styles.SubTitleText}>난이도 : {Recipe.difficulty} 단계</Text>
+                        <Text style={styles.SubTitleText}>인분 : {Recipe.serving} 인분</Text>
                     </View>
                     <View style={styles.border} />
                     <Text style={styles.SubTitleText}>재료</Text>
-                    <Text style={styles.ContentText}>{Recipe.recipeInMaterial}</Text>
+                    <Text style={styles.ContentText}>{Recipe.material}</Text>
                     <View style={styles.border} />
                     <View>
                         <Text style={styles.SubTitleText}>조리 순서</Text>
-                        <Text style={styles.ContentText}>{Recipe.recipeDetail}</Text>
+                        <Text style={styles.ContentText}>{Recipe.detail}</Text>
                     </View>
                 </View>
                 <View style={{ paddingBottom: 100 }} />
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         flex: 1,
         width:'100%',
         alignItems: 'center',
-        paddingTop: Platform.OS === 'android' ? 40 : 0,
+        paddingTop: Platform.OS === 'android' ? height * 40 : 0,
     },
     img: {
         width:'100%',
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         shadowColor: 'black', //그림자 색상
         shadowOpacity: 0.6, //그림자 투명도
-        shadowOffset: { width: 2, height: 4 }, //그림자 위치
+        shadowOffset: { height: 4, width: 0 }, //그림자 위치
     },
     profileImg: {
         width: 100,

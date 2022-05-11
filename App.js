@@ -9,6 +9,7 @@ import RecipeListScreen from "./screen/RecipeListScreen";
 import RecipeIngredientsScreen from "./screen/RecipeIngredientsScreen";
 import RecipeBoardScreen from "./screen/RecipeboardScreen";
 import TestScreen from "./screen/TestScreen";
+import RecipeAddScreen from "./screen/RecipeAddScreen";
 
 
 const Stack = createStackNavigator();
@@ -21,6 +22,7 @@ export default function App() {
         <Stack.Screen name="RecipeListScreen" component={RecipeListScreen} />
         <Stack.Screen name="RecipeIngredientsScreen" component={RecipeIngredientsScreen} />
         <Stack.Screen name="RecipeBoardScreen" component={RecipeBoardScreen} />
+        <Stack.Screen name="RecipeAddScreen" component={RecipeAddScreen} />
         <Stack.Screen name="TestScreen" component={TestScreen} />
       </Stack.Navigator>
     </NavigationContainer>

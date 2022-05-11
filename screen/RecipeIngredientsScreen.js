@@ -14,6 +14,7 @@ import {
 import { height, marginWidth, width } from '../config/globalStyles';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import {IngredientsData} from '../config/RecipeData';
 
 const RecipeIngredientsScreen = ({ route }) => {
     const navigation = useNavigation();
@@ -27,7 +28,6 @@ const RecipeIngredientsScreen = ({ route }) => {
     };
 
     const SelectHandler = (name) => {
-        console.log('SelectHandler');
         let a = [];
         if (parts && parts.length > 0) {
             if (parts.some((value) => value === name)) {
@@ -44,8 +44,8 @@ const RecipeIngredientsScreen = ({ route }) => {
         }
         setParts(a);
     };
+    
     const SelectTitleHandler = (title) => {
-        console.log('SelectTitleHandler');
         let a = [];
         if (selectedTitle && selectedTitle.length > 0) {
             //조건문. 만약 배열에 값이 있고, 배열의 길이가 0 이상이면
@@ -68,141 +68,7 @@ const RecipeIngredientsScreen = ({ route }) => {
         setSelectedTitle(a);
     };
 
-    const IngredientsData = [
-        {
-            title: '기본 양념',
-            data: [
-                '식용유',
-                '소금',
-                '설탕',
-                '후추',
-                '참기름',
-                '들기름',
-                '식초',
-                '맛술',
-                '다진파',
-                '다진마늘',
-                '고춧가루',
-                '깨소금',
-                '건다시마',
-                '진간장',
-                '국간장',
-                '된장',
-                '고추장',
-                '액젓',
-                '새우젓',
-                '꿀',
-                '물엿',
-                '올리브유',
-                '올리고당',
-                '검은께',
-                '생강가루',
-                '들깨가루',
-                '겨자가루',
-                '와사비가루',
-                '감자전분',
-                '파마산치즈가루',
-                '황색설탕',
-                '흑설탕',
-                '전분가루',
-                '찹쌀가루',
-                '튀김가루',
-                '미작',
-                '미림',
-                '청주',
-                '소주',
-                '치킨스톡',
-                '다시다',
-                '굴소스',
-                '멸치장국',
-            ],
-        },
-        {
-            title: '육류',
-            data: ['돼지고기', '소고기', '닭고기', '양고기', '오리고기'],
-        },
-        {
-            title: '어패류',
-            data: [
-                '굴비',
-                '조기',
-                '고등어',
-                '갈치',
-                '꽁치',
-                '전어',
-                '명태',
-                '노가리',
-                '황태',
-                '은어',
-                '민물어종 가물치',
-                '쏘가리',
-                '메기',
-                '붕어',
-                '잉어',
-                '임연수',
-                '복어',
-                '삼치',
-                '조개',
-                '굴',
-                '전복',
-                '골뱅이',
-                '새우',
-                '딱새우',
-                '해삼',
-                '게',
-            ],
-        },
-        {
-            title: '채소',
-            data: [
-                '콩나물',
-                '당근',
-                '오이',
-                '상추',
-                '깻잎',
-                '피망',
-                '양파',
-                '대파',
-                '토마토',
-                '마늘',
-                '고추',
-                '가지',
-                '배',
-                '수박',
-                '감',
-                '딸기',
-                '레몬',
-                '브롤콜리',
-                '고구마',
-                '감자',
-            ],
-        },
-        {
-            title: '면류',
-            data: [
-                '스파게티',
-                '펜네',
-                '링귀니',
-                '파르펠레',
-                '토르텔리니',
-                '로델레',
-                '소면',
-                '당면',
-                '칼국수면',
-                '밀면',
-                '냉면',
-                '쫄면',
-                '메밀면',
-                '컬러 소면',
-                '중면',
-                '대면',
-                '쌀국수면',
-                '라면사리',
-                '중국당면',
-                '우동면',
-            ],
-        },
-    ];
+    
 
     console.log(parts);
     return (
@@ -280,7 +146,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         height: '100%',
-        paddingTop: Platform.OS === 'android' ? 40 : 0,
+        paddingTop: Platform.OS === 'android' ? height * 40 : 0,
     },
     sectionHeader: {
         paddingTop: 2,
