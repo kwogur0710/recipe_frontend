@@ -14,7 +14,7 @@ const RecipeBoardScreen = ({ route }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView style={{width:'100%'}}>
+            <ScrollView style={{ width: '100%' }}>
                 <View>
                     <Image style={styles.img} resizeMode="cover" source={Recipe.img} />
                 </View>
@@ -49,16 +49,16 @@ const RecipeBoardScreen = ({ route }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        width:'100%',
+        width: '100%',
         alignItems: 'center',
         paddingTop: Platform.OS === 'android' ? height * 40 : 0,
     },
     img: {
-        width:'100%',
+        width: '100%',
         height: 300,
     },
     profileImgView: {
-        width:'100%',
+        width: '100%',
         height: 1,
         alignItems: 'center',
         justifyContent: 'center',
@@ -100,7 +100,6 @@ const styles = StyleSheet.create({
         fontSize: 15,
         paddingLeft: width * 10,
         marginBottom: height * 6,
-        
     },
 });
 

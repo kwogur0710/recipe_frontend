@@ -56,89 +56,81 @@ const RecipeAddScreen = () => {
         <SafeAreaView style={styles.container}>
             <View>
                 <View style={{ flexDirection: 'row' }}>
-                    <Text style={styles.text}> 제목 : </Text>
                     <TextInput
                         onChange={(e) => onChange('title', e)}
                         value={title}
                         style={styles.TextInput}
-                        placeholder={'title'}
+                        placeholder={'레시피 제목'}
                         placeholderTextColor={'#D5D5D5'}
                     />
                 </View>
                 <View style={{ flexDirection: 'row' }}>
-                    <Text style={styles.text}> 타입 : </Text>
                     <TextInput
                         onChange={(e) => onChange('type', e)}
                         value={type}
                         style={styles.TextInput}
-                        placeholder={'type'}
+                        placeholder={'음식 종류'}
                         placeholderTextColor={'#D5D5D5'}
                     />
                 </View>
                 <View style={{ flexDirection: 'row' }}>
-                    <Text style={styles.text}> 이미지 : </Text>
                     <TextInput
                         onChange={(e) => onChange('img', e)}
                         value={img}
                         style={styles.TextInput}
-                        placeholder={'image'}
+                        placeholder={'사진'}
                         placeholderTextColor={'#D5D5D5'}
                     />
                 </View>
 
                 <View style={{ flexDirection: 'row' }}>
-                    <Text style={styles.text}> 난이도 : </Text>
                     <TextInput
                         onChange={(e) => onChange('difficulty', e)}
                         value={difficulty}
                         style={styles.TextInput}
-                        placeholder={'difficulty'}
+                        placeholder={'난이도'}
                         placeholderTextColor={'#D5D5D5'}
                     />
                 </View>
 
                 <View style={{ flexDirection: 'row' }}>
-                    <Text style={styles.text}> 인분 : </Text>
                     <TextInput
                         onChange={(e) => onChange('serving', e)}
                         value={serving}
                         style={styles.TextInput}
-                        placeholder={'serving'}
+                        placeholder={'인분'}
                         placeholderTextColor={'#D5D5D5'}
                     />
                 </View>
 
                 <View style={{ flexDirection: 'row' }}>
-                    <Text style={styles.text}> 시간 : </Text>
                     <TextInput
                         onChange={(e) => onChange('time', e)}
                         value={time}
                         style={styles.TextInput}
-                        placeholder={'time'}
+                        placeholder={'소요 시간'}
                         placeholderTextColor={'#D5D5D5'}
                     />
                 </View>
 
                 <View style={{ flexDirection: 'row' }}>
-                    <Text style={styles.text}> 재료 : </Text>
                     <TextInput
                         onChange={(e) => onChange('material', e)}
                         value={material}
                         style={styles.TextInput}
-                        placeholder={'material'}
+                        placeholder={'재료'}
                         placeholderTextColor={'#D5D5D5'}
                     />
                 </View>
 
                 <View style={{ flexDirection: 'row' }}>
-                    <Text style={styles.text}> 레시피 : </Text>
                     <UselessTextInput
                         multiline
                         numberOfLines={4}
                         onChange={(e) => onChange('detail', e)}
                         value={detail}
                         style={styles.TextInputBox}
-                        placeholder={'detail'}
+                        placeholder={'레시피 내용'}
                         placeholderTextColor={'#D5D5D5'}
                     />
                 </View>
@@ -151,9 +143,9 @@ const RecipeAddScreen = () => {
                 onPress={() => {
                     navigation.navigate('MainScreen'), Save(inputs);
                 }}
-                style={{alignItems:'center', width:'100%'}}
+                style={{alignItems:'center', width:'100%',  borderWidth:1, borderColor:'gray'}}
             >
-                <Text style={{ fontSize: 30 }}>저장</Text>
+                <Text style={{ fontSize: 30, }}>저장</Text>
             </TouchableOpacity>
         </SafeAreaView>
     );
@@ -168,18 +160,6 @@ const styles = StyleSheet.create({
         marginLeft: width * 20,
         marginRight: width * 20,
     },
-    TextInputBox: {
-        paddingLeft: 15,
-        paddingRight: 15,
-        paddingTop: 10,
-        paddingBottom: 10,
-        fontSize: 15,
-        color: 'black',
-        borderWidth: 1,
-        borderColor: 'gray',
-        width: '70%',
-        height: height * 200,
-    },
     TextInput: {
         paddingLeft: 15,
         paddingRight: 15,
@@ -187,13 +167,23 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         fontSize: 15,
         color: 'black',
-        borderWidth: 1,
+        borderBottomWidth: 1,
         borderColor: 'gray',
-        width: '70%',
+        width: '100%',
+        marginBottom: height * 10
     },
-    text: {
-        fontSize: 16,
-        width: '20%',
+    TextInputBox: {
+        paddingLeft: 15,
+        paddingRight: 15,
+        paddingTop: 10,
+        paddingBottom: 10,
+        fontSize: 15,
+        color: 'black',
+        borderBottomWidth: 1,
+        borderColor: 'gray',
+        width: '100%',
+        height: height * 200,
+        marginBottom: height * 10
     },
 });
 

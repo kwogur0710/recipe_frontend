@@ -17,6 +17,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { RecipeData } from '../config/RecipeData';
+import { Feather } from '@expo/vector-icons';
 
 const RecipeListScreen = ({ route }) => {
     const navigation = useNavigation();
@@ -25,71 +26,58 @@ const RecipeListScreen = ({ route }) => {
     const [search, setSearch] = useState('');
     const onUpdateSearch = (text) => {
         setSearch(text);
-        //console.log(search);
     };
     useEffect(() => {
         setParts(route.params?.parts), [route.params?.parts];
-        //console.log(parts);
     });
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.searchFrame}>
-                <View style={styles.backButton}>
-                    <Image
-                        source={require('../image/icon/back.png')}
-                        style={{ width: width * 34, height: width * 34 }}
-                    />
-                </View>
-                <View style={styles.search}>
-                    <TextInput
-                        placeholder={'메뉴를 입력하세요'}
-                        placeholderTextColor={'#D5D5D5'}
-                        containerStyle={styles.searchBarContainer}
-                        onChangeText={onUpdateSearch}
-                        style={{ width: '100%', height: '100%', fontSize: 20, color: 'black' }}
-                        value={search}
-                    />
-                </View>
-                <View style={styles.searchButton}>
-                    <Image
-                        source={require('../image/icon/search.png')}
-                        style={{ width: width * 32, height: width * 32 }}
-                    />
-                </View>
-            </View>
-            <View style={styles.arrayFrame}>
-                <View style={styles.array}>
-                    <TouchableOpacity
-                        onPress={() =>
-                            navigation.navigate('RecipeAddScreen')
-                        }
-                    >
-                        <Text style={styles.arrayFont}>추가</Text>
+                <Text style={styles.TypeNameFont}>{TypeName}</Text>
+                <View style={{ flexDirection: 'row' }}>
+                    <TouchableOpacity style={styles.TopBtn} onPress={() => {}}>
+                        <Feather
+                            name="search"
+                            size={30}
+                            color="black"
+                            style={{ marginRight: width * 5 }}
+                        />
                     </TouchableOpacity>
-                </View>
-                <View style={styles.array}>
-                    <Text style={styles.arrayFont}> {TypeName} </Text>
-                </View>
-                <View style={styles.array}>
                     <TouchableOpacity
-                        onPress={() =>
-                            navigation.navigate('RecipeIngredientsScreen', {
-                                parts: parts,
-                                type: TypeName,
-                            })
-                        }
+                        style={styles.TopBtn}
+                        onPress={() => {
+                            navigation.navigate('RecipeIngredientsScreen');
+                        }}
                     >
-                        <Text style={styles.arrayFont}>재료선택</Text>
+                        <Feather
+                            name="filter"
+                            size={30}
+                            color="black"
+                            style={{ marginRight: width * 5 }}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.TopBtn}
+                        onPress={() => {
+                            navigation.navigate('RecipeAddScreen');
+                        }}
+                    >
+                        <Feather
+                            name="plus"
+                            size={30}
+                            color="black"
+                            style={{ marginRight: width * 5 }}
+                        />
                     </TouchableOpacity>
                 </View>
             </View>
-            <View style={{ marginTop: 2, flex: 1 }}>
+            <View style={{ marginTop: height * 4, flex: 1 }}>
                 <FlatList
                     data={RecipeData.filter((value) => value.type == TypeName)}
                     keyExtractor={(item) => String(item.id)}
                     renderItem={({ item }) => {
                         return item.title.includes(search) ||
-                            item.recipeInMaterial.some((value) => value === search) ||
+                            item.material.includes(search) ||
                             search === '' ? (
                             <TouchableOpacity
                                 onPress={() =>
@@ -105,33 +93,37 @@ const RecipeListScreen = ({ route }) => {
                                         </View>
 
                                         <View style={styles.recipeListTextFrame}>
-                                            <Text
-                                                style={{
-                                                    fontSize: height * 20,
-                                                    height: height * 22,
-                                                }}
-                                            >
+                                            <Text style={styles.recipeTitleTextFont}>
                                                 {item.title}
                                             </Text>
-                                            <Text style={styles.recipeListTextFont}>
+                                            <Text style={styles.materialTextFont}>
                                                 {item.material}
                                             </Text>
                                             <View style={{ flexDirection: 'row' }}>
                                                 <View style={{ flex: 1 }}>
-                                                    <Text style={styles.recipeListTextFont}>
+                                                    <Text style={styles.recipeTextFont}>
                                                         시간 : {item.time}분
                                                     </Text>
                                                 </View>
                                                 <View style={{ flex: 1 }}>
-                                                    <Text style={styles.recipeListTextFont}>
+                                                    <Text style={styles.recipeTextFont}>
                                                         난이도 : {item.difficulty}
                                                     </Text>
                                                 </View>
                                                 <View style={{ flex: 1 }}>
-                                                    <Text style={styles.recipeListTextFont}>
+                                                    <Text style={styles.recipeTextFont}>
                                                         인분 : {item.serving}인분
                                                     </Text>
                                                 </View>
+                                            </View>
+                                            <View style={{alignItems:'center', justifyContent:'flex-end', flexDirection: 'row'}}>
+                                                <Feather
+                                                    name="heart"
+                                                    size={20}
+                                                    color="red"
+                                                    style={{ marginRight: width * 5 }}
+                                                />
+                                                <Text>33</Text>
                                             </View>
                                         </View>
                                     </View>
@@ -157,71 +149,30 @@ const styles = StyleSheet.create({
     },
 
     searchFrame: {
-        //검색창 프레임
-        borderWidth: 3, //테두리 굵기
         height: height * 40, //높이
-        width: '100%', //너비
-        borderRadius: 15, //테두리 둥글게 하는 수치
-        flexDirection: 'row', //정렬방향 : row(가로), column(세로)
-        alignItems: 'center', //가로정렬 : 중앙
-        justifyContent: 'center', //세로정렬 : 중앙
-        backgroundColor: '#fff',
-        width: '100%',
-        shadowColor: '#000000',
-        shadowRadius: 4,
-        shadowOffset: { height: 4, width: 0 },
-        shadowOpacity: 0.5,
+        width: width * 360, //너비
+        flexDirection: 'row', //정렬방향
+        alignItems: 'center', //가로정렬
+        justifyContent: 'space-between', //세로정렬
+        paddingTop: height * 4,
+        paddingBottom: height * 4,
+        paddingRight: width * 20,
+        paddingLeft: width * 20,
+        borderBottomWidth: 1,
+        borderColor: 'gray',
     },
-    backButton: {
-        //메뉴 아이콘
-        height: height * 35, //높이
-        width: width * 35, //너비
-        marginLeft: width * 10, //왼쪽 마진
-        justifyContent: 'center', //세로정렬 : 중앙
-        alignItems: 'center', //가로정렬 : 중앙
-    },
-    search: {
-        //검색창
-        flex: 1,
-        height: height * 35, //높이
-        alignItems: 'center', //가로정렬 : 중앙
-        justifyContent: 'center', //세로정렬 : 중앙
-    },
-    searchButton: {
-        //검색버튼
-        height: height * 35, //높이
-        width: width * 35, //너비
-        marginRight: width * 10, //왼쪽 마진
-        justifyContent: 'center', //세로정렬 : 중앙
-        alignItems: 'center', //가로정렬 : 중앙
-    },
-
-    arrayFrame: {
-        //정렬 프레임
-        borderWidth: 1, //테두리 굵기
-        height: height * 26, //높이
-        width: '100%', //너비
-        marginTop: height * 6, //위쪽 마진
-        flexDirection: 'row', //정렬방향 : row(가로), column(세로)
-    },
-    array: {
-        //정렬 버튼
-        borderWidth: 1, //테두리 굵기
-        flex: 1,
-        alignItems: 'center', //가로정렬 : 중앙
-        justifyContent: 'center', //세로정렬 : 중앙
+    TopBtn: {
+        alignItems: 'center', //가로정렬
+        justifyContent: 'center', //세로정렬
+        marginRight: width * 2,
+        marginLeft: width * 2,
     },
     recipeList: {
-        borderWidth: 1, //테두리 굵기
-        marginBottom: height * 4, //마진 : 5%
+        paddingTop: height * 6,
+        paddingBottom: height * 6,
+        borderBottomWidth: 1,
+        borderColor: 'gray',
         borderRadius: 10,
-        marginBottom: height * 10,
-        backgroundColor: '#fff',
-        width: '100%',
-        shadowColor: '#000000',
-        shadowRadius: 4,
-        shadowOffset: { height: 2, width: 0 },
-        shadowOpacity: 0.5,
     },
     recipeListFrame: {
         flexDirection: 'row',
@@ -239,17 +190,28 @@ const styles = StyleSheet.create({
         width: width * 214,
         height: height * 80,
     },
+    TypeImg: {
+        width: 10,
+        height: 10,
+    },
 
-    arrayFont: {
+    TypeNameFont: {
         fontSize: height * 20,
     },
-    titleFont: {
+    recipeTitleTextFont: {
         fontSize: height * 20,
+        height: height * 24,
+        marginBottom: height * 2,
     },
-    recipeListTextFont: {
-        marginTop: height * 6,
-        fontSize: height * 14,
+    materialTextFont: {
+        fontSize: height * 12,
         height: height * 16,
+        marginBottom: height * 2,
+    },
+    recipeTextFont: {
+        fontSize: height * 12,
+        height: height * 16,
+        marginBottom: height * 2,
     },
 });
 

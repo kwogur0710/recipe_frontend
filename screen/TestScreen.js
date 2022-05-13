@@ -1,98 +1,97 @@
 import React, { useState } from 'react';
-import {
-    StyleSheet,
-    Text,
-    View,
-    Image,
-    SafeAreaView,
-    TextInput,
-    TouchableOpacity,
-} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { StyleSheet, SafeAreaView, Text, View, TouchableOpacity, Image } from 'react-native';
 import { height, marginWidth, width } from '../config/globalStyles';
-import { RecipeData } from '../config/RecipeData';
 
 const TestScreen = () => {
-    const navigation = useNavigation();
-    const [inputs, setInputs] = useState({
-        id: '',
-        type: '',
-        title: '',
-        img: '',
-        recipedifficulty: '',
-        recipeserving: '',
-        recipeTime: '',
-        recipeInMaterial: '',
-        recipeDetail: '',
-    });
-
-    const {
-        id,
-        type,
-        title,
-        img,
-        recipedifficulty,
-        recipeserving,
-        recipeTime,
-        recipeInMaterial,
-        recipeDetail,
-    } = inputs;
-
-    const onChange = (keyvalue, e) => {
-        const { text } = e.nativeEvent;
-        setInputs({
-            ...inputs,
-            [keyvalue]: text,
-        });
-        console.log(inputs);
-    };
-    const Save = (value) => {
-        RecipeData.push(inputs);
-        console.log('저장', inputs, RecipeData);
-    };
     return (
         <SafeAreaView style={styles.container}>
-            <View style={{ flexDirection: 'row' }}>
-                <Text style={{ fontSize: 15, width: '20%' }}> 제목 : </Text>
-                <TextInput
-                    onChange={(e) => onChange('title', e)}
-                    value={title}
-                    style={styles.TextInput}
-                    placeholder={'title'}
-                    placeholderTextColor={'#D5D5D5'}
-                />
+            <View style={styles.View1}>
+                <Text style={styles.Text1}> 레시피 </Text>
             </View>
-            <View style={{ flexDirection: 'row' }}>
-                <Text style={{ fontSize: 15, width: '20%' }}> 타입 : </Text>
-                <TextInput
-                    onChange={(e) => onChange('type', e)}
-                    value={type}
-                    style={styles.TextInput}
-                    placeholder={'type'}
-                    placeholderTextColor={'#D5D5D5'}
-                />
-            </View>
-            <View style={{ flexDirection: 'row' }}>
-                <Text style={{ fontSize: 15, width: '20%' }}> 난이도 : </Text>
-                <TextInput
-                    onChange={(e) => onChange('recipedifficulty', e)}
-                    value={recipedifficulty}
-                    style={styles.TextInput}
-                    placeholder={'난이도'}
-                    placeholderTextColor={'#D5D5D5'}
-                />
+            <View style={styles.container2}>
+                <View style={styles.View2}>
+                    <Text style={styles.Text3}> 방문한 레시피 </Text>
+                </View>
+                <View style={styles.View2}>
+                    <Text style={styles.Text3}> 스크랩 </Text>
+                </View>
+                <View style={styles.View2}>
+                    <Text style={styles.Text3}> 노트 </Text>
+                </View>
+                <View style={styles.View2}>
+                    <Text style={styles.Text3}> 레시피 리뷰 </Text>
+                </View>
             </View>
 
-            <Text>
-                {inputs.title} {inputs.type} {inputs.recipedifficulty}
-            </Text>
-            <TouchableOpacity
-                onPress={() =>
-                    {navigation.navigate('MainScreen'), Save(inputs)}
-                }
-            >
-                <Text style={{ fontSize: 30 }}>저장</Text>
-            </TouchableOpacity>
+            <View style={styles.View6}>
+                <Text style={styles.Text1}> </Text>
+            </View>
+            <View style={styles.View1}>
+                <Text style={styles.Text1}> 재료 </Text>
+            </View>
+            <View style={styles.container2}>
+                <View style={styles.View2}>
+                    <Text style={styles.Text3}> 최근에 사용한 재료 </Text>
+                </View>
+                <View style={styles.View2}>
+                    <Text style={styles.Text3}> 즐겨찾는 재료 </Text>
+                </View>
+                <View style={styles.View2}>
+                    <Text style={styles.Text3}> 재료구매 </Text>
+                </View>
+                <View style={styles.View2}>
+                    <Text style={styles.Text3}> 구매내역 </Text>
+                </View>
+            </View>
+
+            <View style={styles.View7}>
+                <Image
+                    source={require('../image/icon/setting.png')}
+                    style={{ width: 40, height: 40, marginBottom: 6, marginRight: 20, marginLeft:10 }}
+                />
+                <Text style={styles.Text2}> 알림 </Text>
+            </View>
+            <View style={styles.View7}>
+                <Image
+                    source={require('../image/icon/setting.png')}
+                    style={{ width: 40, height: 40, marginBottom: 6, marginRight: 20, marginLeft:10 }}
+                />
+                <Text style={styles.Text2}> 문의하기 </Text>
+            </View>
+            <View style={styles.View7}>
+                <Image
+                    source={require('../image/icon/setting.png')}
+                    style={{ width: 40, height: 40, marginBottom: 6, marginRight: 20, marginLeft:10 }}
+                />
+                <Text style={styles.Text2}> 앱 추천하기 </Text>
+            </View>
+            <View style={styles.View7}>
+                <Image
+                    source={require('../image/icon/setting.png')}
+                    style={{ width: 40, height: 40, marginBottom: 6, marginRight: 20, marginLeft:10 }}
+                />
+                <Text style={styles.Text2}> 설정 </Text>
+            </View>
+
+            <View style={styles.View6}>
+                <Text style={styles.Text1}> </Text>
+            </View>
+
+            <View style={styles.container2}>
+                <View style={styles.View2}>
+                    <Image
+                        source={require('../image/icon/setting.png')}
+                        style={{ width: 40, height: 40, marginBottom: 6 }}
+                    />
+                    <Text style={styles.Text3}> 이벤트 </Text>
+                </View>
+                <View style={styles.View2}>
+                    <Text style={styles.Text3}> 공지사항 </Text>
+                </View>
+                <View style={styles.View2}>
+                    <Text style={styles.Text3}> 광고문의 </Text>
+                </View>
+            </View>
         </SafeAreaView>
     );
 };
@@ -101,21 +100,63 @@ const styles = StyleSheet.create({
     container: {
         //바탕
         flex: 1,
-        paddingTop: Platform.OS === 'android' ? height * 40 : 0,
+        alignItems: 'center', //가로정렬 : 중앙
+        paddingTop: Platform.OS === 'android' ? 40 : 0,
         marginBottom: height * 20, //마진 : 10%
-        marginLeft: width * 20,
-        marginRight: width * 20,
     },
-    TextInput: {
-        paddingLeft: 15,
-        paddingRight: 15,
-        paddingTop: 10,
-        paddingBottom: 10,
-        fontSize: 15,
-        color: 'black',
+    View1: {
+        justifyContent: 'center',
+        height: height * 40,
+        width: '100%',
+        borderBottomWidth: 1,
+    },
+    container2: {
+        height: height * 84,
+        width: '100%',
+        flexDirection: 'row',
+    },
+    View2: {
+        flex: 1,
+        borderLeftWidth: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    View6: {
+        borderBottomWidth: 1,
+        justifyContent: 'center',
+        backgroundColor: 'gray',
+        width: '100%',
+    },
+    View7: {
+        height: height * 70,
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
         borderWidth: 1,
-        borderColor: 'gray',
-        width: '70%',
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'flex-start'
+    },
+
+    Text1: {
+        fontSize: 20,
+    },
+    Text2: {
+        fontSize: 30,
+    },
+    Text3: {
+        fontSize: 15,
+    },
+    searchFrame: {
+        //검색창 프레임
+        borderWidth: 3, //테두리 굵기
+        height: height * 40, //높이
+        width: '100%', //너비
+        borderRadius: 15, //테두리 둥글게 하는 수치
+        flexDirection: 'row', //정렬방향 : row(가로), column(세로)
+        alignItems: 'center', //가로정렬 : 중앙
+        justifyContent: 'center', //세로정렬 : 중앙
     },
 });
 

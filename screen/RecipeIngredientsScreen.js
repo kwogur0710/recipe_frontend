@@ -14,7 +14,7 @@ import {
 import { height, marginWidth, width } from '../config/globalStyles';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import {IngredientsData} from '../config/RecipeData';
+import { IngredientsData} from '../config/RecipeData';
 
 const RecipeIngredientsScreen = ({ route }) => {
     const navigation = useNavigation();
@@ -44,7 +44,7 @@ const RecipeIngredientsScreen = ({ route }) => {
         }
         setParts(a);
     };
-    
+
     const SelectTitleHandler = (title) => {
         let a = [];
         if (selectedTitle && selectedTitle.length > 0) {

@@ -21,7 +21,7 @@ const MainScreen = () => {
         return (
             <View style={styles.recipeTypeButtonFrame}>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('RecipeListScreen', { type: TypeName })}
+                    onPress={() => navigation.navigate('RecipeListScreen', { type: TypeName } )}
                 >
                     <View style={styles.recipeTypeButtonImage}>
                         <Image source={TypeImage} style={{ width: 70, height: 70 }} />
@@ -206,19 +206,12 @@ const styles = StyleSheet.create({
 
     searchFrame: {
         //검색창 프레임
-        borderWidth: 3, //테두리 굵기
         height: height * 40, //높이
         width: '100%', //너비
         borderRadius: 15, //테두리 둥글게 하는 수치
         flexDirection: 'row', //정렬방향 : row(가로), column(세로)
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
-        backgroundColor: '#fff',
-        width: '100%',
-        shadowColor: '#000000',
-        shadowRadius: 4,
-        shadowOffset: { height: 4, width: 0 },
-        shadowOpacity: 0.5,
     },
     menuButton: {
         //메뉴 아이콘
@@ -277,12 +270,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center', //세로정렬 : 중앙
         height: height * 153, //높이 : '30%'
         width: width * 272, //너비 : '100%'
-        backgroundColor: '#fff',
-        width: '100%',
-        shadowColor: '#000000',
-        shadowRadius: 4,
-        shadowOffset: { height: 4, width: 0 },
-        shadowOpacity: 0.5,
+        borderWidth:1
     },
     weekRecipeImageBlank: {
         //금주의 레시피 이미지 여백
@@ -330,12 +318,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center', //세로정렬 : 중앙
         width: '100%', //너비 : '100%'
         marginTop: height * 10, //위쪽 마진
-        borderRadius:10,
-        backgroundColor: '#fff',
-        shadowColor: '#000000',
-        shadowRadius: 4,
-        shadowOffset: { height: 2, width: 0 },
-        shadowOpacity: 0.5,
     },
     recipeTypeText: {
         //음식 종류 글자
@@ -379,11 +361,6 @@ const styles = StyleSheet.create({
         alignItems: 'center', //가로정렬
         justifyContent: 'center', //세로정렬
         marginTop: height * 5, //위쪽 마진
-        backgroundColor: '#fff',
-        shadowColor: '#000000',
-        shadowRadius: 4,
-        shadowOffset: { height: 2, width: 0 },
-        shadowOpacity: 0.5,
     },
     recipeVideoText: {
         alignItems: 'flex-start', //가로정렬
