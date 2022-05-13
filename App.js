@@ -1,30 +1,32 @@
-import "react-native-gesture-handler";
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import 'react-native-gesture-handler';
+import React, { useState } from 'react';
+import { colors, width, height } from './config/globalStyles';
+import { useFonts } from 'expo-font';
+import AppLoading from 'expo-app-loading';
+import { LogBox } from 'react-native';
+import RootStack from './src/route/RootStack';
+import DrawerNavigation from './src/route/DrawerNavigation';
 
-import {colors, width, height} from './config/globalStyles'; //width,height 받아오기
-import MainScreen from "./screen/MainScreen";
-import RecipeListScreen from "./screen/RecipeListScreen";
-import RecipeIngredientsScreen from "./screen/RecipeIngredientsScreen";
-import RecipeBoardScreen from "./screen/RecipeboardScreen";
-import TestScreen from "./screen/TestScreen";
-import RecipeAddScreen from "./screen/RecipeAddScreen";
-
-
-const Stack = createStackNavigator();
+LogBox.ignoreLogs(['Remote debugger']);
 
 export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home" screenOptions={{headerMode: false}}>
-        <Stack.Screen name="MainScreen" component={MainScreen} />
-        <Stack.Screen name="RecipeListScreen" component={RecipeListScreen} />
-        <Stack.Screen name="RecipeIngredientsScreen" component={RecipeIngredientsScreen} />
-        <Stack.Screen name="RecipeBoardScreen" component={RecipeBoardScreen} />
-        <Stack.Screen name="RecipeAddScreen" component={RecipeAddScreen} />
-        <Stack.Screen name="TestScreen" component={TestScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+    let [fontsLoaded] = useFonts({
+        PretendardBlack: require('./assets/fonts/Pretendard-Black.ttf'),
+        PretendardBold: require('./assets/fonts/Pretendard-Bold.ttf'),
+        PretendardExtraBold: require('./assets/fonts/Pretendard-ExtraBold.ttf'),
+        PretendardExtraLight: require('./assets/fonts/Pretendard-ExtraLight.ttf'),
+        PretendardLight: require('./assets/fonts/Pretendard-Light.ttf'),
+        PretendardMedium: require('./assets/fonts/Pretendard-Medium.ttf'),
+        PretendardRegular: require('./assets/fonts/Pretendard-Regular.ttf'),
+        PretendardSemiBold: require('./assets/fonts/Pretendard-SemiBold.ttf'),
+        PretendardThin: require('./assets/fonts/Pretendard-Thin.ttf'),
+        PretendardVariable: require('./assets/fonts/PretendardVariable.ttf'),
+    });
+    
+    console.log(fontsLoaded);
+
+    return (
+      fontsLoaded ? <RootStack /> : <AppLoading />
+      
+    );
 }
