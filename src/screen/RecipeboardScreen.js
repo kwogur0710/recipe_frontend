@@ -16,7 +16,7 @@ const RecipeBoardScreen = ({ route }) => {
         <SafeAreaView style={styles.container}>
             <ScrollView style={{ width: '100%' }}>
                 <View>
-                    <Image style={styles.img} resizeMode="cover" source={Recipe.img} />
+                <Image style={styles.img} resizeMode="cover" source={Recipe.img} />
                 </View>
                 <View style={styles.profileImgView}>
                     <Image
@@ -33,7 +33,9 @@ const RecipeBoardScreen = ({ route }) => {
                     </View>
                     <View style={styles.border} />
                     <Text style={styles.SubTitleText}>재료</Text>
-                    <Text style={styles.ContentText}>{Recipe.material}</Text>
+                    <Text style={styles.ContentText}>
+                        {Recipe.material.toString().replace(/\,/gi, ' ')}
+                    </Text>
                     <View style={styles.border} />
                     <View>
                         <Text style={styles.SubTitleText}>조리 순서</Text>
@@ -91,15 +93,18 @@ const styles = StyleSheet.create({
         fontSize: 34,
         marginTop: height * 4,
         marginBottom: height * 4,
+        fontFamily: 'PretendardSemiBold',
     },
     SubTitleText: {
         fontSize: 22,
         margin: 2,
+        fontFamily: 'PretendardMedium',
     },
     ContentText: {
         fontSize: 15,
         paddingLeft: width * 10,
         marginBottom: height * 6,
+        fontFamily: 'PretendardLight',
     },
 });
 

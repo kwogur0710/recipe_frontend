@@ -79,7 +79,7 @@ const RecipeIngredientsScreen = ({ route }) => {
                     placeholderTextColor={'#D5D5D5'}
                     containerStyle={styles.searchBarContainer}
                     onChangeText={onUpdateSearch}
-                    style={{ fontSize: 15, color: 'black' }}
+                    style={{ fontSize: 15, color: 'black', fontFamily: 'PretendardSemiBold' }}
                     value={search}
                 />
                 <TouchableOpacity
@@ -155,12 +155,14 @@ const styles = StyleSheet.create({
         paddingBottom: 2,
         fontSize: 18,
         fontWeight: 'bold',
-        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+        backgroundColor: 'rgba(255, 255, 255,1)',
+        fontFamily: 'PretendardSemiBold'
     },
     item: {
         padding: 10,
         fontSize: 18,
         height: 44,
+        fontFamily: 'PretendardRegular'
     },
     view: {
         margin: 10,

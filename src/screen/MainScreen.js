@@ -49,9 +49,8 @@ const MainScreen = () => {
                         style={{ width: width * 34, height: width * 34 }}
                     />
                 </TouchableOpacity>
-                <Text style={{ fontSize: height * 20, fontFamily: 'PretendardVariable' }}>
-                    {' '}
-                    재료로 찾는 레시피{' '}
+                <Text style={{ fontSize: height * 20, fontFamily: 'PretendardBold' }}>
+                    재료로 찾는 레시피
                 </Text>
                 <View style={{ flexDirection: 'row', width: width * 70 }}>
                     <TouchableOpacity style={styles.TopBtn} onPress={() => {}}>
@@ -75,7 +74,7 @@ const MainScreen = () => {
 
             <View style={styles.weekRecipeFrame}>
                 <View style={styles.weekRecipeText}>
-                    <Text style={{ fontSize: 30, fontFamily: 'PretendardVariable' }}>
+                    <Text style={{ fontSize: 30, fontFamily: 'PretendardSemiBold' }}>
                         금주의 레시피
                     </Text>
                 </View>
@@ -83,7 +82,7 @@ const MainScreen = () => {
                     <View style={styles.weekRecipeImage}></View>
                     <View style={styles.weekRecipeImageBlank} />
                     <View style={styles.weekRecipeImage}>
-                        <Text style={{ fontSize: 20 }}>레시피 게시글</Text>
+                        <Text style={{ fontSize: 20, fontFamily: 'PretendardSemiBold' }}>레시피 게시글</Text>
                     </View>
                     <View style={styles.weekRecipeImageBlank} />
                     <View style={styles.weekRecipeImage}></View>
@@ -101,7 +100,7 @@ const MainScreen = () => {
 
             <View style={styles.recipeTypeFrame}>
                 <View style={styles.recipeTypeText}>
-                    <Text style={{ fontSize: 30, fontFamily: 'PretendardVariable' }}>
+                    <Text style={{ fontSize: 30, fontFamily: 'PretendardSemiBold' }}>
                         레시피 종류
                     </Text>
                 </View>
@@ -127,7 +126,7 @@ const MainScreen = () => {
 
             <View style={styles.recipeVideoFrame}>
                 <View style={styles.recipeVideoText}>
-                    <Text style={{ fontSize: 30, fontFamily: 'PretendardVariable' }}>
+                    <Text style={{ fontSize: 30, fontFamily: 'PretendardSemiBold' }}>
                         오늘은 이거다!
                     </Text>
                 </View>

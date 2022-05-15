@@ -35,15 +35,6 @@ const RecipeListScreen = ({ route }) => {
             <View style={styles.searchFrame}>
                 <Text style={styles.TypeNameFont}>{TypeName}</Text>
                 <View style={{ flexDirection: 'row' }}>
-                    <TouchableOpacity style={styles.TopBtn} onPress={() => {
-                            navigation.navigate('MainScreen');}}>
-                        <Feather
-                            name="search"
-                            size={30}
-                            color="black"
-                            style={{ marginRight: width * 5 }}
-                        />
-                    </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.TopBtn}
                         onPress={() => {
@@ -52,6 +43,15 @@ const RecipeListScreen = ({ route }) => {
                     >
                         <Feather
                             name="filter"
+                            size={30}
+                            color="black"
+                            style={{ marginRight: width * 5 }}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.TopBtn} onPress={() => {
+                            navigation.navigate('MainScreen');}}>
+                        <Feather
+                            name="search"
                             size={30}
                             color="black"
                             style={{ marginRight: width * 5 }}
@@ -123,7 +123,7 @@ const RecipeListScreen = ({ route }) => {
                                                     color="red"
                                                     style={{ marginRight: width * 5 }}
                                                 />
-                                                <Text>33</Text>
+                                                <Text style={styles.recipeTextFont}>33</Text>
                                             </View>
                                         </View>
                                     </View>
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     },
     recipeListFrame: {
         flexDirection: 'row',
-        width: width * 344,
+        width: width * 320,
         height: height * 80,
         borderRadius: 10,
     },
@@ -197,21 +197,25 @@ const styles = StyleSheet.create({
 
     TypeNameFont: {
         fontSize: height * 20,
+        fontFamily: 'PretendardSemiBold'
     },
     recipeTitleTextFont: {
         fontSize: height * 20,
         height: height * 24,
         marginBottom: height * 2,
+        fontFamily: 'PretendardSemiBold',
     },
     materialTextFont: {
         fontSize: height * 12,
         height: height * 16,
-        marginBottom: height * 2,
+        marginBottom: height * 2, 
+        fontFamily: 'PretendardRegular'
     },
     recipeTextFont: {
         fontSize: height * 12,
         height: height * 16,
-        marginBottom: height * 2,
+        marginBottom: height * 2, 
+        fontFamily: 'PretendardRegular'
     },
 });
 
