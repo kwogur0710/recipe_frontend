@@ -1,0 +1,38 @@
+0000000000000000000000000000000000000000 c1403b8af2b9431918047d2f08ca8284f04b6997 Jaehyeok Kang <kwogur0710@naver.com> 1649334656 +0900	clone: from github.com:kwogur0710/recipe_frontend.git
+c1403b8af2b9431918047d2f08ca8284f04b6997 5afd39b2ed46f4a043f71b2b5feeb72038823803 Jaehyeok Kang <kwogur0710@naver.com> 1649443466 +0900	commit: Flat Scroll 완성
+5afd39b2ed46f4a043f71b2b5feeb72038823803 ba2639f8c202505145caa286e3e9cdf940546f10 Jaehyeok Kang <kwogur0710@naver.com> 1649680848 +0900	commit: 홈화면 레시피 화면 연결
+ba2639f8c202505145caa286e3e9cdf940546f10 d6484605732f844b61203c91eaa7a7b431199c5d Jaehyeok Kang <kwogur0710@naver.com> 1649687370 +0900	commit: 홈화면 레시피 화면 아이콘 추가-1
+d6484605732f844b61203c91eaa7a7b431199c5d 698a727f0706094f2decd86ceb582abde780aeec Jaehyeok Kang <kwogur0710@naver.com> 1649854369 +0900	commit: 검색화면 생성중
+698a727f0706094f2decd86ceb582abde780aeec e9e9cda4a86f39c573294f17a8fd1983bcd6f161 Jaehyeok Kang <kwogur0710@naver.com> 1650043463 +0900	commit: 검색바 텍스트 입력 완료
+e9e9cda4a86f39c573294f17a8fd1983bcd6f161 c23ba885d37ed1d6092ea3bd4b705978060bd2a5 Jaehyeok Kang <kwogur0710@naver.com> 1650980137 +0900	commit: 재료 리스트 추가
+c23ba885d37ed1d6092ea3bd4b705978060bd2a5 c23ba885d37ed1d6092ea3bd4b705978060bd2a5 Jaehyeok Kang <kwogur0710@naver.com> 1651154668 +0900	checkout: moving from master to master
+c23ba885d37ed1d6092ea3bd4b705978060bd2a5 313114e13468d9e6cdab0dacb71aa107e9304f72 Jaehyeok Kang <kwogur0710@naver.com> 1651154731 +0900	commit: expo 업데이트
+313114e13468d9e6cdab0dacb71aa107e9304f72 3de486367b4d1afd28617ada4128693a8cba7a65 Jaehyeok Kang <kwogur0710@naver.com> 1651338282 +0900	commit: 중간점검
+3de486367b4d1afd28617ada4128693a8cba7a65 b8e33aea890696672a5487839fc7fb024d0c084a Jaehyeok Kang <kwogur0710@naver.com> 1651581495 +0900	commit: node_modules
+b8e33aea890696672a5487839fc7fb024d0c084a 373d7515a11dca311ef0372104b18c9a09bd33a2 Jaehyeok Kang <kwogur0710@naver.com> 1651581631 +0900	commit: node_modules
+373d7515a11dca311ef0372104b18c9a09bd33a2 6df5fa45de2c1c9a46d5631e5ccab561cfe73f78 Jaehyeok Kang <kwogur0710@naver.com> 1651585220 +0900	commit: test
+6df5fa45de2c1c9a46d5631e5ccab561cfe73f78 08110e16349a6b26dbfa35474704af891cb1cde8 Jaehyeok Kang <kwogur0710@naver.com> 1651593351 +0900	commit: test
+08110e16349a6b26dbfa35474704af891cb1cde8 1d45b13416be8579cfd6e8d16bc74252a5918304 Jaehyeok Kang <kwogur0710@naver.com> 1651594169 +0900	commit: 검색창 만드는중
+1d45b13416be8579cfd6e8d16bc74252a5918304 bd2b151767adc29cc55d54fec845d72ac593e7fc Jaehyeok Kang <kwogur0710@naver.com> 1651597918 +0900	commit (merge): 검색창 만드는중
+bd2b151767adc29cc55d54fec845d72ac593e7fc 6eec905cd0dfa1776ce930a4fcf8fc2b3e99597e Jaehyeok Kang <kwogur0710@naver.com> 1651603999 +0900	commit (merge): 레시피 게시글 목록 수정중
+6eec905cd0dfa1776ce930a4fcf8fc2b3e99597e a4a308e31d53a00bf26076137c734711e7b5e724 Jaehyeok Kang <kwogur0710@naver.com> 1651606381 +0900	commit: 검색창 만드는중
+a4a308e31d53a00bf26076137c734711e7b5e724 cdeae54ed52a1508a562d65a68b723949ad9b827 Jaehyeok Kang <kwogur0710@naver.com> 1651631729 +0900	commit: 안드로이드 탑 마진 설정
+cdeae54ed52a1508a562d65a68b723949ad9b827 eb316204482ecab204103b5a4a6ef02939fd7587 Jaehyeok Kang <kwogur0710@naver.com> 1652012789 +0900	commit: FlatList 수정 및 재료 연동 수정중
+eb316204482ecab204103b5a4a6ef02939fd7587 6c5fbd786617e425b2007af3766318ba4ca9fa44 Jaehyeok Kang <kwogur0710@naver.com> 1652090609 +0900	commit: 종류별로 레시피 확인, 선택한 재료 저장
+6c5fbd786617e425b2007af3766318ba4ca9fa44 03e71ab80a4a50f936a741bf375764ede567d3fc Jaehyeok Kang <kwogur0710@naver.com> 1652116662 +0900	commit: pull
+03e71ab80a4a50f936a741bf375764ede567d3fc c050e90adf560d53590a4d019cc5cfefd6ef22ac Jaehyeok Kang <kwogur0710@naver.com> 1652127179 +0900	commit (merge): 레시피 리스트 수정 및 레시피 게시글 만드는중
+c050e90adf560d53590a4d019cc5cfefd6ef22ac 1311111f84a1f59cf37ff4dbfcd7e63ebea12000 Jaehyeok Kang <kwogur0710@naver.com> 1652199044 +0900	commit: pull
+1311111f84a1f59cf37ff4dbfcd7e63ebea12000 13b5ef8e1003c9293f11ea4819cb382d235ae029 Jaehyeok Kang <kwogur0710@naver.com> 1652203267 +0900	commit (merge): 레시피 리스트 디자인 수정
+13b5ef8e1003c9293f11ea4819cb382d235ae029 60799a46b9df2e2d6bf9d08c685eb242baf2324b Jaehyeok Kang <kwogur0710@naver.com> 1652295330 +0900	commit: 레시피 글쓰기 기능 추가중
+60799a46b9df2e2d6bf9d08c685eb242baf2324b af1bdf5701cb17d829b2a29c41e2e211aec65151 Jaehyeok Kang <kwogur0710@naver.com> 1652425445 +0900	commit: 레시피 리스트 디자인 수정
+af1bdf5701cb17d829b2a29c41e2e211aec65151 19720edf783b234a196fca21a27c64785e01da67 Jaehyeok Kang <kwogur0710@naver.com> 1652469672 +0900	commit: 앱 디자인 수정
+19720edf783b234a196fca21a27c64785e01da67 93d954bd3c0106f582d1c3d9e9994f8be52663e2 Jaehyeok Kang <kwogur0710@naver.com> 1652469686 +0900	pull origin master: Merge made by the 'recursive' strategy.
+93d954bd3c0106f582d1c3d9e9994f8be52663e2 4a36cb004141ccc185110f48c11cbd6d826db83e Jaehyeok Kang <kwogur0710@naver.com> 1652592817 +0900	commit: 앱 디자인 수정
+4a36cb004141ccc185110f48c11cbd6d826db83e 8f9aeab988782c38f367b8203760b6816833158a Jaehyeok Kang <kwogur0710@naver.com> 1652595411 +0900	commit: 앱 디자인 수정
+8f9aeab988782c38f367b8203760b6816833158a cb15693e55ae476f4f3428878969640e4e851cc3 Jaehyeok Kang <kwogur0710@naver.com> 1652595416 +0900	commit: 앱 디자인 수정
+cb15693e55ae476f4f3428878969640e4e851cc3 f9a1e308c265840bfd1a0e61dc16eed213f18878 Jaehyeok Kang <kwogur0710@naver.com> 1652595420 +0900	commit: 앱 디자인 수정
+f9a1e308c265840bfd1a0e61dc16eed213f18878 7d2b0caabca3866d25eb52ae434ada91dc01d37c Jaehyeok Kang <kwogur0710@naver.com> 1652595426 +0900	commit: 앱 디자인 수정
+7d2b0caabca3866d25eb52ae434ada91dc01d37c 56c5eb00768b7f51369386be97df4bdfbc484ed5 Jaehyeok Kang <kwogur0710@naver.com> 1652595429 +0900	commit: 앱 디자인 수정
+56c5eb00768b7f51369386be97df4bdfbc484ed5 e069682e42a116f1c491be8f3387fd079deb4b57 Jaehyeok Kang <kwogur0710@naver.com> 1652595450 +0900	commit: 앱 디자인 수정
+e069682e42a116f1c491be8f3387fd079deb4b57 99fb90b4565c956a4b0dea73fa48a848624fc455 Jaehyeok Kang <kwogur0710@naver.com> 1652595463 +0900	commit: 앱 디자인 수정
+99fb90b4565c956a4b0dea73fa48a848624fc455 5b021707885347f6a0cc1bc1c6e60c0cc072d109 Jaehyeok Kang <kwogur0710@naver.com> 1652595486 +0900	commit: 앱 디자인 수정
