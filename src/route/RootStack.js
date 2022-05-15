@@ -16,13 +16,12 @@ const Stack = createStackNavigator();
 const RootStack = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Main" screenOptions={{headerMode: false}}>
+            <Stack.Navigator initialRouteName="Main" screenOptions={{ headerMode: false }}>
                 <Stack.Screen name="MainScreen" component={MainScreen} />
                 <Stack.Screen name="RecipeListScreen" component={RecipeListScreen} />
                 <Stack.Screen name="RecipeIngredientsScreen" component={RecipeIngredientsScreen} />
                 <Stack.Screen name="RecipeBoardScreen" component={RecipeBoardScreen} />
                 <Stack.Screen name="RecipeAddScreen" component={RecipeAddScreen} />
-                <Stack.Screen name="TestScreen" component={TestScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );

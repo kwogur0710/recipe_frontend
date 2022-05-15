@@ -5,7 +5,6 @@ import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { LogBox } from 'react-native';
 import RootStack from './src/route/RootStack';
-import DrawerNavigation from './src/route/DrawerNavigation';
 
 LogBox.ignoreLogs(['Remote debugger']);
 
