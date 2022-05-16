@@ -53,7 +53,7 @@ const MainScreen = () => {
                     재료로 찾는 레시피
                 </Text>
                 <View style={{ flexDirection: 'row', width: width * 70 }}>
-                    <TouchableOpacity style={styles.TopBtn} onPress={() => {}}>
+                    <TouchableOpacity style={styles.TopBtn} onPress={() => {navigation.navigate('SearchScreen')}}>
                         <Feather
                             name="search"
                             size={30}
