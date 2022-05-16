@@ -40,7 +40,7 @@ const MainScreen = () => {
             <View style={styles.searchFrame}>
                 <TouchableOpacity
                     onPress={() => {
-                        navigation.navigate('TestScreen');
+                        navigation.navigate('SettingScreen');
                     }}
                     style={{ width: width * 70 }}
                 >

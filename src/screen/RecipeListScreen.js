@@ -22,14 +22,50 @@ import { Feather } from '@expo/vector-icons';
 const RecipeListScreen = ({ route }) => {
     const navigation = useNavigation();
     const TypeName = route.params?.type;
-    const [parts, setParts] = useState(route.params?.parts);
-    const [search, setSearch] = useState('');
-    const onUpdateSearch = (text) => {
-        setSearch(text);
-    };
+    const [RecipeId, setRecipeId] = useState([]);
+    const [ingredient, setingredient] = useState(route.params?.ingredient);
     useEffect(() => {
-        setParts(route.params?.parts), [route.params?.parts];
-    });
+        setingredient(route.params?.ingredient);
+    }, [route.params?.ingredient]);
+
+    const RecipeFilter = (item) => {
+        let a = 'false';
+        item.material.forEach((element) => {
+            console.log('반복');
+            if(element.includes(ingredient)){
+                console.log('if문');
+                a = 'true';
+            }
+        });
+        console.log(a);
+        return a;
+    };
+
+    /*
+        if (RecipeId && RecipeId.length > 0) {
+        //레시피ID에 값이 있을때
+        if (RecipeId.some((value) => value !== Recipe.id)) {
+            console.log('레시피ID에 RecipeData.id가 없음(중복확인)');
+            //레시피ID랑 리스트ID랑 같지 않으면
+            Recipe.material.forEach((element) => {
+                console.log('RecipeData 반복문');
+                if (element.includes(ingredient)) {
+                    console.log('Recipe.material에 재료가 존재');
+                    //레시피 재료랑 필터랑 같은지 확인
+                    if (a.some((value) => value !== Recipe.id)) {
+                        //a에 item.id 값이 없는지 확인
+                        a.push(Recipe.id);
+                    }
+                } else {
+                    a.push(...RecipeId, Recipe.id);
+                }
+            });
+        } else {
+            a.push(...RecipeId);
+        }
+        setRecipeId(a);
+        return RecipeId;
+    }*/
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.searchFrame}>
@@ -38,7 +74,10 @@ const RecipeListScreen = ({ route }) => {
                     <TouchableOpacity
                         style={styles.TopBtn}
                         onPress={() => {
-                            navigation.navigate('RecipeIngredientsScreen');
+                            navigation.navigate('RecipeIngredientsScreen', {
+                                ingredient: ingredient,
+                                type: TypeName,
+                            });
                         }}
                     >
                         <Feather
@@ -48,8 +87,12 @@ const RecipeListScreen = ({ route }) => {
                             style={{ marginRight: width * 5 }}
                         />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.TopBtn} onPress={() => {
-                            navigation.navigate('SearchScreen');}}>
+                    <TouchableOpacity
+                        style={styles.TopBtn}
+                        onPress={() => {
+                            navigation.navigate('SearchScreen');
+                        }}
+                    >
                         <Feather
                             name="search"
                             size={30}
@@ -63,11 +106,7 @@ const RecipeListScreen = ({ route }) => {
                             navigation.navigate('RecipeAddScreen');
                         }}
                     >
-                        <Feather
-                            name="plus"
-                            size={30}
-                            color="black"
-                        />
+                        <Feather name="plus" size={30} color="black" />
                     </TouchableOpacity>
                 </View>
             </View>
@@ -76,9 +115,8 @@ const RecipeListScreen = ({ route }) => {
                     data={RecipeData.filter((value) => value.type == TypeName)}
                     keyExtractor={(item) => String(item.id)}
                     renderItem={({ item }) => {
-                        return item.title.includes(search) ||
-                            item.material.includes(search) ||
-                            search === '' ? (
+                        return !(ingredient && ingredient.length > 0) || 
+                        RecipeFilter(item)==='true' ? (
                             <TouchableOpacity
                                 onPress={() =>
                                     navigation.navigate('RecipeBoardScreen', {
@@ -116,7 +154,13 @@ const RecipeListScreen = ({ route }) => {
                                                     </Text>
                                                 </View>
                                             </View>
-                                            <View style={{alignItems:'center', justifyContent:'flex-end', flexDirection: 'row'}}>
+                                            <View
+                                                style={{
+                                                    alignItems: 'center',
+                                                    justifyContent: 'flex-end',
+                                                    flexDirection: 'row',
+                                                }}
+                                            >
                                                 <Feather
                                                     name="heart"
                                                     size={20}
@@ -196,7 +240,7 @@ const styles = StyleSheet.create({
 
     TypeNameFont: {
         fontSize: height * 20,
-        fontFamily: 'PretendardSemiBold'
+        fontFamily: 'PretendardBold',
     },
     recipeTitleTextFont: {
         fontSize: height * 20,
@@ -207,14 +251,14 @@ const styles = StyleSheet.create({
     materialTextFont: {
         fontSize: height * 12,
         height: height * 16,
-        marginBottom: height * 2, 
-        fontFamily: 'PretendardRegular'
+        marginBottom: height * 2,
+        fontFamily: 'PretendardRegular',
     },
     recipeTextFont: {
         fontSize: height * 12,
         height: height * 16,
-        marginBottom: height * 2, 
-        fontFamily: 'PretendardRegular'
+        marginBottom: height * 2,
+        fontFamily: 'PretendardRegular',
     },
 });
 

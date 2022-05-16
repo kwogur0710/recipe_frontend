@@ -20,7 +20,7 @@ const RecipeIngredientsScreen = ({ route }) => {
     const navigation = useNavigation();
     const TypeName = route.params?.type;
     const [selectedTitle, setSelectedTitle] = useState([]);
-    const [parts, setParts] = useState(route.params?.parts);
+    const [ingredient, setingredient] = useState(route.params?.ingredient);
     const [search, setSearch] = useState('');
     const result = useState();
     const onUpdateSearch = (text) => {
@@ -29,20 +29,20 @@ const RecipeIngredientsScreen = ({ route }) => {
 
     const SelectHandler = (name) => {
         let a = [];
-        if (parts && parts.length > 0) {
-            if (parts.some((value) => value === name)) {
-                parts.forEach((value) => {
+        if (ingredient && ingredient.length > 0) {
+            if (ingredient.some((value) => value === name)) {
+                ingredient.forEach((value) => {
                     if (value !== name) {
                         a.push(value);
                     }
                 });
             } else {
-                a.push(...parts, name);
+                a.push(...ingredient, name);
             }
         } else {
             a.push(name);
         }
-        setParts(a);
+        setingredient(a);
     };
 
     const SelectTitleHandler = (title) => {
@@ -70,7 +70,7 @@ const RecipeIngredientsScreen = ({ route }) => {
 
     
 
-    console.log(parts);
+    console.log(ingredient);
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.view}>
@@ -116,7 +116,7 @@ const RecipeIngredientsScreen = ({ route }) => {
                                 }}
                             >
                                 <Text style={styles.item}>{item}</Text>
-                                {parts && parts.some((value) => value == item) ? (
+                                {ingredient && ingredient.some((value) => value == item) ? (
                                     <AntDesign
                                         name="check"
                                         size={24}
@@ -131,7 +131,7 @@ const RecipeIngredientsScreen = ({ route }) => {
             />
             <TouchableOpacity
                 onPress={() =>
-                    navigation.navigate('RecipeListScreen', { parts: parts, type: TypeName })
+                    navigation.navigate('RecipeListScreen', { ingredient: ingredient, type: TypeName })
                 }
             >
                 <View style={styles.apply}>
