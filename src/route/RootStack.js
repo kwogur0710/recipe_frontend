@@ -22,6 +22,7 @@ const RootStack = () => {
                 <Stack.Screen name="RecipeIngredientsScreen" component={RecipeIngredientsScreen} />
                 <Stack.Screen name="RecipeBoardScreen" component={RecipeBoardScreen} />
                 <Stack.Screen name="RecipeAddScreen" component={RecipeAddScreen} />
+                <Stack.Screen name="TestScreen" component={TestScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );
