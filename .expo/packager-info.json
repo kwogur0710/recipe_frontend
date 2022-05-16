@@ -1,10 +1,10 @@
 {
-  "expoServerPort": 19000,
+  "expoServerPort": null,
   "packagerPort": 19000,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerNgrokUrl": "https://9v-9bf.anonymous.recipe-frontend.exp.direct",
+  "packagerNgrokUrl": "https://9v-9bf.anonymous.recipe-frontend.exp.direct",
+  "ngrokPid": 14796,
   "webpackServerPort": null,
   "devToolsPort": 19002
 }
