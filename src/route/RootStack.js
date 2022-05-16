@@ -10,6 +10,7 @@ import RecipeIngredientsScreen from '../screen/RecipeIngredientsScreen';
 import RecipeBoardScreen from '../screen/RecipeboardScreen';
 import RecipeAddScreen from '../screen/RecipeAddScreen';
 import TestScreen from '../screen/TestScreen';
+import SearchScreen from '../screen/SearchScreen';
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,8 @@ const RootStack = () => {
                 <Stack.Screen name="RecipeIngredientsScreen" component={RecipeIngredientsScreen} />
                 <Stack.Screen name="RecipeBoardScreen" component={RecipeBoardScreen} />
                 <Stack.Screen name="RecipeAddScreen" component={RecipeAddScreen} />
+                <Stack.Screen name="TestScreen" component={TestScreen} />
+                <Stack.Screen name="SearchScreen" component={SearchScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );

@@ -49,7 +49,7 @@ const RecipeListScreen = ({ route }) => {
                         />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.TopBtn} onPress={() => {
-                            navigation.navigate('MainScreen');}}>
+                            navigation.navigate('SearchScreen');}}>
                         <Feather
                             name="search"
                             size={30}
@@ -172,7 +172,6 @@ const styles = StyleSheet.create({
         paddingBottom: height * 6,
         borderBottomWidth: 1,
         borderColor: 'gray',
-        borderRadius: 10,
     },
     recipeListFrame: {
         flexDirection: 'row',
@@ -202,7 +201,7 @@ const styles = StyleSheet.create({
     recipeTitleTextFont: {
         fontSize: height * 20,
         height: height * 24,
-        marginBottom: height * 2,
+        paddingBottom: height * 4,
         fontFamily: 'PretendardSemiBold',
     },
     materialTextFont: {

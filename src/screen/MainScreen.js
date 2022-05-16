@@ -44,16 +44,13 @@ const MainScreen = () => {
                     }}
                     style={{ width: width * 70 }}
                 >
-                    <Image
-                        source={require('../../image/icon/menu.png')}
-                        style={{ width: width * 34, height: width * 34 }}
-                    />
+                    <Feather name="menu" size={30} color="black" />
                 </TouchableOpacity>
                 <Text style={{ fontSize: height * 20, fontFamily: 'PretendardBold' }}>
                     재료로 찾는 레시피
                 </Text>
                 <View style={{ flexDirection: 'row', width: width * 70 }}>
-                    <TouchableOpacity style={styles.TopBtn} onPress={() => {}}>
+                    <TouchableOpacity style={styles.TopBtn} onPress={() => {navigation.navigate('SearchScreen')}}>
                         <Feather
                             name="search"
                             size={30}

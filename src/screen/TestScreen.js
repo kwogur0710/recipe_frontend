@@ -8,6 +8,7 @@ import {
   Image,
 } from "react-native";
 import { height, marginWidth, width } from "../../config/globalStyles";
+import { Feather } from '@expo/vector-icons';
 
 const TestScreen = () => {
   return (
