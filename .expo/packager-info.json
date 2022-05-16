@@ -1,6 +1,10 @@
 {
   "expoServerPort": null,
+<<<<<<< HEAD
   "packagerPort": 19000,
+=======
+  "packagerPort": null,
+>>>>>>> bb242fa33d7ecdaa1863e8ef446bc05b57f01114
   "packagerPid": null,
   "expoServerNgrokUrl": "https://9v-9bf.anonymous.recipe-frontend.exp.direct",
   "packagerNgrokUrl": "https://9v-9bf.anonymous.recipe-frontend.exp.direct",

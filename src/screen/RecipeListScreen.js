@@ -49,7 +49,7 @@ const RecipeListScreen = ({ route }) => {
                         />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.TopBtn} onPress={() => {
-                            navigation.navigate('MainScreen');}}>
+                            navigation.navigate('SearchScreen');}}>
                         <Feather
                             name="search"
                             size={30}
