@@ -12,46 +12,38 @@ import { height, marginWidth, width } from "../../config/globalStyles";
 const TestScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
-
       <View style={styles.View7}>
         <Image
-          source={require("../../image/icon/search.png")}
+          source={require("../../image/icon/profile.png")}
           style={styles.View11}
         />
+
         <Text style={styles.Text2}> SAU Recipe </Text>
-      </View>
-
-
-      <View style={styles.View10}>
-        <Text style={styles.Text1}> </Text>
-      </View>
-
-      <View style={styles.View7}>
-        <Image
-          source={require("../../image/icon/search.png")}
-          style={styles.View8}
-        />
-        <Text style={styles.Text1}> 좋아요 </Text>
-      </View>
-
-      <View style={styles.View10}>
-        <Text style={styles.Text1}> </Text>
-      </View>
-
-
-      <View style={styles.View7}>
-        <Image
-          source={require("../../image/icon/search.png")}
-          style={styles.View8}
-        />
-        <Text style={styles.Text1}> 도움말 </Text>
       </View>
 
       
 
       <View style={styles.View7}>
         <Image
-          source={require("../../image/icon/search.png")}
+          source={require("../../image/icon/heart.png")}
+          style={styles.View8}
+        />
+        <Text style={styles.Text1}> 좋아요 </Text>
+      </View>
+
+     
+
+      <View style={styles.View7}>
+        <Image
+          source={require("../../image/icon/help.png")}
+          style={styles.View8}
+        />
+        <Text style={styles.Text1}> 도움말 </Text>
+      </View>
+
+      <View style={styles.View7}>
+        <Image
+          source={require("../../image/icon/megaphone.png")}
           style={styles.View8}
         />
         <Text style={styles.Text1}> 공지사항 </Text>
@@ -59,13 +51,9 @@ const TestScreen = () => {
 
       
 
-      <View style={styles.View10}>
-        <Text style={styles.Text1}> </Text>
-      </View>
-
       <View style={styles.View7}>
         <Image
-          source={require("../../image/icon/search.png")}
+          source={require("../../image/icon/setting.png")}
           style={styles.View8}
         />
         <Text style={styles.Text1}> 설정 </Text>
@@ -124,6 +112,7 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginBottom: 6,
     marginLeft: 10,
+    marginTop: 10,
   },
   View9: {
     width: width * 40,
@@ -141,11 +130,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   View11: {
-    width: width * 30,
-    height: width * 30,
+    width: width * 50,
+    height: width * 50,
     marginRight: 20,
     marginBottom: 6,
     marginLeft: 10,
+    borderRadius:100,
   },
 
   Text1: {
@@ -156,6 +146,15 @@ const styles = StyleSheet.create({
   },
   Text3: {
     fontSize: 15,
+  },
+  Text4: {
+    fontSize: 10,
+    marginLeft: 20,
+    marginTop: 5,
+    borderWidth: 1,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
   },
   searchFrame: {
     //검색창 프레임
