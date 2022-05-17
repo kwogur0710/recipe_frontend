@@ -22,50 +22,26 @@ import { Feather } from '@expo/vector-icons';
 const RecipeListScreen = ({ route }) => {
     const navigation = useNavigation();
     const TypeName = route.params?.type;
-    const [RecipeId, setRecipeId] = useState([]);
     const [ingredient, setingredient] = useState(route.params?.ingredient);
     useEffect(() => {
         setingredient(route.params?.ingredient);
     }, [route.params?.ingredient]);
 
     const RecipeFilter = (item) => {
-        let a = 'false';
+        let a = '';
         item.material.forEach((element) => {
-            console.log('반복');
-            if(element.includes(ingredient)){
-                console.log('if문');
-                a = 'true';
+            if (a !== item.id) {
+                console.log(element);
+                if (ingredient.includes(element)) {
+                    console.log('true');
+                    a = item.id;
+                }
             }
         });
-        console.log(a);
+        console.log('a는', a);
         return a;
     };
 
-    /*
-        if (RecipeId && RecipeId.length > 0) {
-        //레시피ID에 값이 있을때
-        if (RecipeId.some((value) => value !== Recipe.id)) {
-            console.log('레시피ID에 RecipeData.id가 없음(중복확인)');
-            //레시피ID랑 리스트ID랑 같지 않으면
-            Recipe.material.forEach((element) => {
-                console.log('RecipeData 반복문');
-                if (element.includes(ingredient)) {
-                    console.log('Recipe.material에 재료가 존재');
-                    //레시피 재료랑 필터랑 같은지 확인
-                    if (a.some((value) => value !== Recipe.id)) {
-                        //a에 item.id 값이 없는지 확인
-                        a.push(Recipe.id);
-                    }
-                } else {
-                    a.push(...RecipeId, Recipe.id);
-                }
-            });
-        } else {
-            a.push(...RecipeId);
-        }
-        setRecipeId(a);
-        return RecipeId;
-    }*/
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.searchFrame}>
@@ -115,8 +91,8 @@ const RecipeListScreen = ({ route }) => {
                     data={RecipeData.filter((value) => value.type == TypeName)}
                     keyExtractor={(item) => String(item.id)}
                     renderItem={({ item }) => {
-                        return !(ingredient && ingredient.length > 0) || 
-                        RecipeFilter(item)==='true' ? (
+                        return !(ingredient && ingredient.length > 0) ||
+                            RecipeFilter(item) === item.id ? (
                             <TouchableOpacity
                                 onPress={() =>
                                     navigation.navigate('RecipeBoardScreen', {
