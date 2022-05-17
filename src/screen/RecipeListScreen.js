@@ -22,25 +22,28 @@ import { Feather } from '@expo/vector-icons';
 const RecipeListScreen = ({ route }) => {
     const navigation = useNavigation();
     const TypeName = route.params?.type;
+    const [RecipeID, setRecipeID] = useState(['']);
     const [ingredient, setingredient] = useState(route.params?.ingredient);
     useEffect(() => {
         setingredient(route.params?.ingredient);
+        setRecipeID(['']);
     }, [route.params?.ingredient]);
 
     const RecipeFilter = (item) => {
-        let a = '';
+        let a = 'false';
         item.material.forEach((element) => {
-            if (a !== item.id) {
-                console.log(element);
+            if (a === 'false') {
                 if (ingredient.includes(element)) {
-                    console.log('true');
-                    a = item.id;
+                    a='true';
+                    console.log(a, 'push');
+                    RecipeID.push(item.id)
                 }
             }
         });
-        console.log('a는', a);
+        console.log('id', item.id);
         return a;
     };
+    console.log('RecipeID', RecipeID);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -92,7 +95,7 @@ const RecipeListScreen = ({ route }) => {
                     keyExtractor={(item) => String(item.id)}
                     renderItem={({ item }) => {
                         return !(ingredient && ingredient.length > 0) ||
-                            RecipeFilter(item) === item.id ? (
+                            RecipeFilter(item) === 'true' ? (
                             <TouchableOpacity
                                 onPress={() =>
                                     navigation.navigate('RecipeBoardScreen', {
@@ -220,7 +223,7 @@ const styles = StyleSheet.create({
     },
     recipeTitleTextFont: {
         fontSize: height * 20,
-        height: height * 24,
+        height: height * 26,
         paddingBottom: height * 4,
         fontFamily: 'PretendardSemiBold',
     },
