@@ -1,7 +1,3 @@
-export const GetId = () => {
-    Math.floor(Math.random() * 10000);
-};
-
 export const RecipeData = [
     {
         id: 1001,

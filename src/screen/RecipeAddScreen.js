@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     StyleSheet,
     Text,
@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { height, marginWidth, width } from '../../config/globalStyles';
-import { RecipeData, GetId } from '../../config/RecipeData';
+import { RecipeData } from '../../config/RecipeData';
 import * as ImagePicker from 'expo-image-picker';
 
 const UselessTextInput = (props) => {
@@ -25,12 +25,15 @@ const UselessTextInput = (props) => {
         />
     );
 };
+const GetId = () => {
+    return Math.floor(Math.random() * 10000);
+};
 
 const RecipeAddScreen = () => {
     const navigation = useNavigation();
     const [value, onChangeText] = React.useState('Useless Multiline Placeholder');
     const [inputs, setInputs] = useState({
-        id: GetId,
+        id: GetId(),
         title: '',
         type: '',
         img: '',
@@ -50,6 +53,7 @@ const RecipeAddScreen = () => {
         });
         console.log(inputs);
     };
+
     const Save = (value) => {
         RecipeData.push(inputs);
     };
@@ -78,29 +82,15 @@ const RecipeAddScreen = () => {
         if (result.cancelled) {
             return null; // 이미지 업로드 취소한 경우
         }
-
-        // 이미지 업로드 결과 및 이미지 경로 업데이트
-        console.log(result);
-        console.log('imageUrl',imageUrl);
-        setImageUrl(result.uri);
-{/*
-        // 서버에 요청 보내기
-        const localUri = result.uri;
-        const filename = localUri.split('/').pop();
-        const match = /\.(\w+)$/.exec(filename ?? '');
-        const type = match ? `image/${match[1]}` : `image`;
-        const formData = new FormData();
-        formData.append('image', { uri: localUri, name: filename, type });
-
-        await axios({
-            method: 'post',
-            url: '{API주소}',
-            headers: {
-                'content-type': 'multipart/form-data',
-            },
-            data: formData,
+        setInputs({
+            ...inputs,
+            img: { uri: result.uri },
         });
-*/}
+        // 이미지 업로드 결과 및 이미지 경로 업데이트
+        setImageUrl(result.uri);
+        console.log('inputs', inputs.img);
+        console.log(result);
+        console.log('imageUrl', imageUrl);
     };
 
     return (
@@ -112,7 +102,7 @@ const RecipeAddScreen = () => {
                             width: width * 100,
                             height: height * 100,
                             justifyContent: 'center',
-                            alignItems: 'center'
+                            alignItems: 'center',
                         }}
                         onPress={uploadImage}
                     >
@@ -264,3 +254,24 @@ const styles = StyleSheet.create({
 });
 
 export default RecipeAddScreen;
+
+{
+    /* //이미지 업로드 기능
+        // 서버에 요청 보내기
+        const localUri = result.uri;
+        const filename = localUri.split('/').pop();
+        const match = /\.(\w+)$/.exec(filename ?? '');
+        const type = match ? `image/${match[1]}` : `image`;
+        const formData = new FormData();
+        formData.append('image', { uri: localUri, name: filename, type });
+
+        await axios({
+            method: 'post',
+            url: '{API주소}',
+            headers: {
+                'content-type': 'multipart/form-data',
+            },
+            data: formData,
+        });
+*/
+}
