@@ -8,8 +8,9 @@ import {
     TextInput,
     TouchableOpacity,
     Pressable,
-    Button,
     ScrollView,
+    Modal,
+    FlatList,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { height, marginWidth, width } from '../../config/globalStyles';
@@ -25,13 +26,23 @@ const UselessTextInput = (props) => {
         />
     );
 };
+
 const GetId = () => {
     return Math.floor(Math.random() * 10000);
 };
 
 const RecipeAddScreen = () => {
     const navigation = useNavigation();
+    const [visibleMoal, setVisibleModal] = useState(false);
     const [value, onChangeText] = React.useState('Useless Multiline Placeholder');
+    const [modalBtn, setModalBtn] = useState();
+    const modalData = [
+        {
+            type: ['한식', '일식', '중식', '양식'],
+            difficulty: ['1', '2', '3', '4', '5'],
+            serving: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+        },
+    ];
     const [inputs, setInputs] = useState({
         id: GetId(),
         title: '',
@@ -92,14 +103,75 @@ const RecipeAddScreen = () => {
         console.log(result);
         console.log('imageUrl', imageUrl);
     };
+    const BtnList = ({ name }) => {
+        return (
+            <TouchableOpacity onPress={() => {}}>
+                <View
+                    style={{
+                        padding: width * 10,
+                        borderBottomWidth: 1,
+                        borderColor: 'gray',
+                        alignItems: 'center',
+                    }}
+                >
+                    <Text> {name} </Text>
+                </View>
+            </TouchableOpacity>
+        );
+    };
+    const ModalList = () => {
+        return (
+            <SafeAreaView>
+                <Modal animationType="slide" transparent={true} visible={visibleMoal}>
+                    <View
+                        style={{
+                            flex: 1,
+                            flexDirection: 'row',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <View
+                            style={{
+                                flex: 0.5,
+                                borderRadius: 5,
+                                borderColor: '#cccccc',
+                                borderWidth: 1,
+                                backgroundColor: '#ffffff',
+                                padding: 5,
+                            }}
+                        >
+                            <BtnList name={'한식'} />
+                            <BtnList name={'일식'} />
+                            <BtnList name={'중식'} />
+                            <BtnList name={'양식'} />
+
+                            <TouchableOpacity onPress={() => setVisibleModal(false)}>
+                                <View
+                                    style={{
+                                        padding: width * 10,
+                                        borderColor: 'gray',
+                                        alignItems: 'center',
+                                    }}
+                                >
+                                    <Text>닫기</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </Modal>
+            </SafeAreaView>
+        );
+    };
 
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView>
+                <ModalList />
                 <View>
                     <TouchableOpacity
                         style={{
-                            width: width * 100,
+                            width: height * 100,
                             height: height * 100,
                             justifyContent: 'center',
                             alignItems: 'center',
@@ -107,13 +179,13 @@ const RecipeAddScreen = () => {
                         onPress={uploadImage}
                     >
                         {!imageUrl ? (
-                            <Text style={{ flex: 1, borderWidth: 1 }}>사진 추가하기</Text>
+                            <Text style={{ flex: 1 }}>사진 추가하기</Text>
                         ) : (
                             <Image
                                 source={{ uri: imageUrl }}
                                 style={{
-                                    width: width * 100,
-                                    height: height * 100,
+                                    width: '100%',
+                                    height: '100%',
                                 }}
                             />
                         )}
@@ -136,17 +208,13 @@ const RecipeAddScreen = () => {
                             placeholderTextColor={'#D5D5D5'}
                         />
                     </View>
-                    {/*
-                    <View style={{ flexDirection: 'row' }}>
-                        <TextInput
-                            onChange={(e) => onChange('img', e)}
-                            value={img}
-                            style={styles.TextInput}
-                            placeholder={'사진'}
-                            placeholderTextColor={'#D5D5D5'}
-                        />
-                    </View>
-*/}
+                    <TouchableOpacity
+                        onPress={() => {
+                            setVisibleModal(true), setModalBtn('1');
+                        }}
+                    >
+                        <Text> 음식종류!</Text>
+                    </TouchableOpacity>
                     <View style={{ flexDirection: 'row' }}>
                         <TextInput
                             onChange={(e) => onChange('difficulty', e)}
