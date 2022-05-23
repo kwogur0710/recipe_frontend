@@ -16,6 +16,7 @@ import { useNavigation } from '@react-navigation/native';
 import { height, marginWidth, width } from '../../config/globalStyles';
 import { RecipeData } from '../../config/RecipeData';
 import * as ImagePicker from 'expo-image-picker';
+import { Feather } from '@expo/vector-icons';
 
 const UselessTextInput = (props) => {
     return (
@@ -35,14 +36,6 @@ const RecipeAddScreen = () => {
     const navigation = useNavigation();
     const [visibleMoal, setVisibleModal] = useState(false);
     const [value, onChangeText] = React.useState('Useless Multiline Placeholder');
-    const [modalBtn, setModalBtn] = useState();
-    const modalData = [
-        {
-            type: ['한식', '일식', '중식', '양식'],
-            difficulty: ['1', '2', '3', '4', '5'],
-            serving: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-        },
-    ];
     const [inputs, setInputs] = useState({
         id: GetId(),
         title: '',
@@ -105,7 +98,15 @@ const RecipeAddScreen = () => {
     };
     const BtnList = ({ name }) => {
         return (
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity
+                onPress={() => {
+                    setVisibleModal(false),
+                        setInputs({
+                            ...inputs,
+                            type: name,
+                        });
+                }}
+            >
                 <View
                     style={{
                         padding: width * 10,
@@ -114,12 +115,19 @@ const RecipeAddScreen = () => {
                         alignItems: 'center',
                     }}
                 >
-                    <Text> {name} </Text>
+                    <Text
+                        style={{
+                            fontSize: height * 16,
+                            fontFamily: 'PretendardRegular',
+                        }}
+                    >
+                        {name}
+                    </Text>
                 </View>
             </TouchableOpacity>
         );
     };
-    const ModalList = () => {
+    const ModalList = ({ name }) => {
         return (
             <SafeAreaView>
                 <Modal animationType="slide" transparent={true} visible={visibleMoal}>
@@ -129,6 +137,7 @@ const RecipeAddScreen = () => {
                             flexDirection: 'row',
                             justifyContent: 'center',
                             alignItems: 'center',
+                            backgroundColor: 'rgba(100, 100, 100, 0.5)',
                         }}
                     >
                         <View
@@ -139,6 +148,7 @@ const RecipeAddScreen = () => {
                                 borderWidth: 1,
                                 backgroundColor: '#ffffff',
                                 padding: 5,
+                                justifyContent: 'center',
                             }}
                         >
                             <BtnList name={'한식'} />
@@ -154,7 +164,14 @@ const RecipeAddScreen = () => {
                                         alignItems: 'center',
                                     }}
                                 >
-                                    <Text>닫기</Text>
+                                    <Text
+                                        style={{
+                                            fontSize: height * 16,
+                                            fontFamily: 'PretendardRegular',
+                                        }}
+                                    >
+                                        취소
+                                    </Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
@@ -163,11 +180,10 @@ const RecipeAddScreen = () => {
             </SafeAreaView>
         );
     };
-
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView>
-                <ModalList />
+                <ModalList name="type" />
                 <View>
                     <TouchableOpacity
                         style={{
@@ -179,41 +195,55 @@ const RecipeAddScreen = () => {
                         onPress={uploadImage}
                     >
                         {!imageUrl ? (
-                            <Text style={{ flex: 1 }}>사진 추가하기</Text>
+                            <View
+                                style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    borderColor: 'gray',
+                                    borderWidth: 1,
+                                    borderRadius: 14,
+                                }}
+                            >
+                                <Feather name="camera" size={40} color="black" />
+                                <Text
+                                    style={{
+                                        fontSize: height * 12,
+                                        fontFamily: 'PretendardRegular',
+                                    }}
+                                >
+                                    사진 선택
+                                </Text>
+                            </View>
                         ) : (
                             <Image
                                 source={{ uri: imageUrl }}
                                 style={{
                                     width: '100%',
                                     height: '100%',
+                                    borderRadius: 14,
                                 }}
                             />
                         )}
                     </TouchableOpacity>
-                    <View style={{ flexDirection: 'row' }}>
+                    <View style={{ flexDirection: 'row', marginTop: height * 4 }}>
                         <TextInput
                             onChange={(e) => onChange('title', e)}
                             value={title}
                             style={styles.TextInput}
                             placeholder={'레시피 제목'}
-                            placeholderTextColor={'#D5D5D5'}
+                            placeholderTextColor={'gray'}
                         />
                     </View>
-                    <View style={{ flexDirection: 'row' }}>
-                        <TextInput
-                            onChange={(e) => onChange('type', e)}
-                            value={type}
-                            style={styles.TextInput}
-                            placeholder={'음식 종류'}
-                            placeholderTextColor={'#D5D5D5'}
-                        />
-                    </View>
+
                     <TouchableOpacity
+                        style={styles.TypeInput}
                         onPress={() => {
-                            setVisibleModal(true), setModalBtn('1');
+                            setVisibleModal(true);
                         }}
                     >
-                        <Text> 음식종류!</Text>
+                        {inputs.type ? <Text> {inputs.type} </Text> : <Text>음식 종류</Text>}
                     </TouchableOpacity>
                     <View style={{ flexDirection: 'row' }}>
                         <TextInput
@@ -221,7 +251,7 @@ const RecipeAddScreen = () => {
                             value={difficulty}
                             style={styles.TextInput}
                             placeholder={'난이도'}
-                            placeholderTextColor={'#D5D5D5'}
+                            placeholderTextColor={'gray'}
                         />
                     </View>
 
@@ -231,7 +261,7 @@ const RecipeAddScreen = () => {
                             value={serving}
                             style={styles.TextInput}
                             placeholder={'인분'}
-                            placeholderTextColor={'#D5D5D5'}
+                            placeholderTextColor={'gray'}
                         />
                     </View>
 
@@ -241,7 +271,7 @@ const RecipeAddScreen = () => {
                             value={time}
                             style={styles.TextInput}
                             placeholder={'소요 시간'}
-                            placeholderTextColor={'#D5D5D5'}
+                            placeholderTextColor={'gray'}
                         />
                     </View>
 
@@ -251,7 +281,7 @@ const RecipeAddScreen = () => {
                             value={material}
                             style={styles.TextInput}
                             placeholder={'재료'}
-                            placeholderTextColor={'#D5D5D5'}
+                            placeholderTextColor={'gray'}
                         />
                     </View>
 
@@ -263,7 +293,7 @@ const RecipeAddScreen = () => {
                             value={detail}
                             style={styles.TextInputBox}
                             placeholder={'레시피 내용'}
-                            placeholderTextColor={'#D5D5D5'}
+                            placeholderTextColor={'gray'}
                         />
                     </View>
                 </View>
@@ -303,6 +333,18 @@ const styles = StyleSheet.create({
         color: 'black',
         borderBottomWidth: 1,
         borderColor: 'gray',
+        width: '100%',
+        marginBottom: height * 10,
+    },
+    TypeInput: {
+        paddingLeft: 15,
+        paddingRight: 15,
+        paddingTop: 10,
+        paddingBottom: 10,
+        fontSize: 15,
+        color: 'black',
+        borderColor: 'gray',
+        borderBottomWidth: 1,
         width: '100%',
         marginBottom: height * 10,
     },
