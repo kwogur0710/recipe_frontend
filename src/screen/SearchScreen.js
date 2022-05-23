@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#939597",
     marginLeft: height * 15,
     marginRight: height * 15,
-    borderRadius: 14,
+    borderRadius: 16,
   },
   TextInputTop: {
     //금주의 레시피 프레임
