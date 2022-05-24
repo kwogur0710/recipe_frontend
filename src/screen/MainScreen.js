@@ -27,7 +27,7 @@ const MainScreen = ({ name }) => {
     useEffect(() => {
         if (!isFocused) return undefined;
         const timer = setTimeout(() => {
-            console.log(num);
+            console.log("금주의 레시피 순서 : ",num);
             num < 2 ? setNum((previousNum) => previousNum + 1) : setNum(0);
         }, 5000);
         return () => {
@@ -47,26 +47,33 @@ const MainScreen = ({ name }) => {
                 <View style={styles.weekRecipe}>
                     <ImageBackground
                         style={{
+                            borderRadius: 16,
                             width: width * 320,
                             height: height * 200,
-                            borderRadius: 10,
                             marginTop: 1,
                             justifyContent: 'flex-end',
                             alignItems: 'center',
+                            backgroundColor: '#fff',
+                            shadowColor: '#000000',
+                            shadowOffset: { height: height * 1, width: width * 0 },
+                            shadowOpacity: 0.5,
                         }}
+                        imageStyle={{borderRadius: 16}}
                         source={item[0].img}
                     >
                         <View
                             style={{
+                                borderRadius: 16,
+                                fontSize: height * 34,
                                 width: '100%',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                backgroundColor: 'rgba(255, 255, 255,0.7)',
+                                backgroundColor: 'rgba(255, 255, 255,0.8)',
                             }}
                         >
                             <Text
                                 style={{
-                                    fontSize: 30,
+                                    fontSize: height * 24,
                                     fontFamily: 'PretendardVariable',
                                 }}
                             >
@@ -239,7 +246,8 @@ const MainScreen = ({ name }) => {
                                 />
                             </TouchableOpacity>
 
-                            <Text style={{ fontSize: 20, marginLeft: '1%' }}>
+                            <Text style={{ fontSize: 20, marginLeft: width*2,
+                                    fontFamily: 'PretendardVariable', }}>
                                 [깐풍두부] 가성비 끝판왕 두부요리🥇
                             </Text>
                         </View>

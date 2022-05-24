@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
         //금주의 레시피 이미지
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center',
-        marginTop: height * 4,
     },
     recipeTypeFrame: {
         //음식 종류 프레임
