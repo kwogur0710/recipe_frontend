@@ -14,9 +14,11 @@ import { RecipeTypeName } from './RecipeListScreen';
 import { Feather } from '@expo/vector-icons';
 import styles from '../components/MainComponents/styles';
 import { useNavigation } from '@react-navigation/native';
+import { RecipeData } from '../../config/RecipeData';
 
 const MainScreen = () => {
     const navigation = useNavigation();
+    
     const RecipeType = ({ TypeImage, TypeName }) => {
         return (
             <View style={styles.recipeTypeButtonFrame}>
@@ -71,30 +73,44 @@ const MainScreen = () => {
 
             <View style={styles.weekRecipeFrame}>
                 <View style={styles.weekRecipeText}>
-                    <Text style={{ fontSize: 30, fontFamily: 'PretendardSemiBold' }}>
+                    <Text style={{ fontSize: 30, fontFamily: 'PretendardSemiBold'}}>
                         금주의 레시피
                     </Text>
                 </View>
-                <View style={styles.weekRecipeImageFrame}>
-                    <View style={styles.weekRecipeImage}></View>
+                <ScrollView horizontal={true} style={{height:130}}>
                     <View style={styles.weekRecipeImageBlank} />
                     <View style={styles.weekRecipeImage}>
-                        <Text style={{ fontSize: 20, fontFamily: 'PretendardSemiBold' }}>레시피 게시글</Text>
+                    <Recipetitle
+                        titleName="김치찌개"
+                    />
+                    <Image
+                        style={{height: 130,width: 280,resizeMode: 'stretch',borderRadius: 10,marginTop: 1,}}
+                        source={require('../../image/korean_food/image_2.jpeg')}/>
+                        <View style={{flexDirection: 'row'}}>
+                            <Text style={{marginTop:7,fontSize: 17}}>백종원의 돼지고기 김치찌개 </Text>
+                        </View>
                     </View>
                     <View style={styles.weekRecipeImageBlank} />
-                    <View style={styles.weekRecipeImage}></View>
-                </View>
-                <View style={styles.weekRecipeBarFrame}>
-                    <View style={styles.weekRecipeBar}></View>
-                    <View style={styles.weekRecipeBarBlank} />
-                    <View style={styles.weekRecipeBarColor}></View>
-                    <View style={styles.weekRecipeBarBlank} />
-                    <View style={styles.weekRecipeBar}></View>
-                    <View style={styles.weekRecipeBarBlank} />
-                    <View style={styles.weekRecipeBar}></View>
-                </View>
+                    <View style={styles.weekRecipeImage}>
+                    <Image
+                        style={{height: 130,width: 280,resizeMode: 'stretch',borderRadius: 10,marginTop: 1,}}
+                        source={require('../../image/japanese_food/donkoturamen.jpg')}/>
+                        <View style={{flexDirection: 'row'}}>
+                            <Text style={{marginTop:7,fontSize: 17}}>구수하고 진한 그 맛~!돈코츠라멘 만들기</Text>
+                        </View>
+                    </View>
+                    <View style={styles.weekRecipeImageBlank} />
+                    <View style={styles.weekRecipeImage}>
+                    <Image
+                        style={{height: 130,width: 280,resizeMode: 'stretch',borderRadius: 10,marginTop: 1,}}
+                        source={require('../../image/chinese_food/jajang.jpg')}/>
+                        <View style={{flexDirection: 'row'}}>
+                            <Text style={{marginTop:7,fontSize: 17}}>고든램지도 인정한 그맛 짜장면 만들기</Text>
+                        </View>
+                    </View>
+                </ScrollView>
             </View>
-
+            
             <View style={styles.recipeTypeFrame}>
                 <View style={styles.recipeTypeText}>
                     <Text style={{ fontSize: 30, fontFamily: 'PretendardSemiBold' }}>

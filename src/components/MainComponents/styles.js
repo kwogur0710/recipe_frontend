@@ -57,12 +57,11 @@ const styles = StyleSheet.create({
     },
     weekRecipeImage: {
         //금주의 레시피 이미지
-        borderRadius: 10, //테두리 둥글게 하는 수치
         alignItems: 'center', //가로정렬 : 중앙
-        justifyContent: 'center', //세로정렬 : 중앙
+        //justifyContent: 'center', //세로정렬 : 중앙
         height: height * 153, //높이 : '30%'
         width: width * 272, //너비 : '100%'
-        borderWidth: 1,
+       
     },
     weekRecipeImageBlank: {
         //금주의 레시피 이미지 여백
@@ -192,6 +191,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#DDDDDD',
         padding: 10,
     },
+
 });
 
 export default styles;
