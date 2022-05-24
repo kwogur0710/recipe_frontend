@@ -12,6 +12,7 @@ const RecipeBoardScreen = ({ route }) => {
         console.log(Recipe);
     });
 
+    console.log(Recipe);
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView style={{ width: '100%' }}>

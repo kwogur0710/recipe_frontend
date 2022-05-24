@@ -22,14 +22,29 @@ import { Feather } from '@expo/vector-icons';
 const RecipeListScreen = ({ route }) => {
     const navigation = useNavigation();
     const TypeName = route.params?.type;
-    const [parts, setParts] = useState(route.params?.parts);
-    const [search, setSearch] = useState('');
-    const onUpdateSearch = (text) => {
-        setSearch(text);
-    };
+    const [RecipeID, setRecipeID] = useState(['']);
+    const [ingredient, setingredient] = useState(route.params?.ingredient);
     useEffect(() => {
-        setParts(route.params?.parts), [route.params?.parts];
-    });
+        setingredient(route.params?.ingredient);
+        setRecipeID(['']);
+    }, [route.params?.ingredient]);
+
+    const RecipeFilter = (item) => {
+        let a = 'false';
+        item.material.forEach((element) => {
+            if (a === 'false') {
+                if (ingredient.includes(element)) {
+                    a='true';
+                    console.log(a, 'push');
+                    RecipeID.push(item.id)
+                }
+            }
+        });
+        console.log('id', item.id);
+        return a;
+    };
+    console.log('RecipeID', RecipeID);
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.searchFrame}>
@@ -38,7 +53,10 @@ const RecipeListScreen = ({ route }) => {
                     <TouchableOpacity
                         style={styles.TopBtn}
                         onPress={() => {
-                            navigation.navigate('RecipeIngredientsScreen');
+                            navigation.navigate('RecipeIngredientsScreen', {
+                                ingredient: ingredient,
+                                type: TypeName,
+                            });
                         }}
                     >
                         <Feather
@@ -48,8 +66,12 @@ const RecipeListScreen = ({ route }) => {
                             style={{ marginRight: width * 5 }}
                         />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.TopBtn} onPress={() => {
-                            navigation.navigate('SearchScreen');}}>
+                    <TouchableOpacity
+                        style={styles.TopBtn}
+                        onPress={() => {
+                            navigation.navigate('SearchScreen');
+                        }}
+                    >
                         <Feather
                             name="search"
                             size={30}
@@ -63,11 +85,7 @@ const RecipeListScreen = ({ route }) => {
                             navigation.navigate('RecipeAddScreen');
                         }}
                     >
-                        <Feather
-                            name="plus"
-                            size={30}
-                            color="black"
-                        />
+                        <Feather name="plus" size={30} color="black" />
                     </TouchableOpacity>
                 </View>
             </View>
@@ -76,9 +94,8 @@ const RecipeListScreen = ({ route }) => {
                     data={RecipeData.filter((value) => value.type == TypeName)}
                     keyExtractor={(item) => String(item.id)}
                     renderItem={({ item }) => {
-                        return item.title.includes(search) ||
-                            item.material.includes(search) ||
-                            search === '' ? (
+                        return !(ingredient && ingredient.length > 0) ||
+                            RecipeFilter(item) === 'true' ? (
                             <TouchableOpacity
                                 onPress={() =>
                                     navigation.navigate('RecipeBoardScreen', {
@@ -116,7 +133,13 @@ const RecipeListScreen = ({ route }) => {
                                                     </Text>
                                                 </View>
                                             </View>
-                                            <View style={{alignItems:'center', justifyContent:'flex-end', flexDirection: 'row'}}>
+                                            <View
+                                                style={{
+                                                    alignItems: 'center',
+                                                    justifyContent: 'flex-end',
+                                                    flexDirection: 'row',
+                                                }}
+                                            >
                                                 <Feather
                                                     name="heart"
                                                     size={20}
@@ -172,7 +195,6 @@ const styles = StyleSheet.create({
         paddingBottom: height * 6,
         borderBottomWidth: 1,
         borderColor: 'gray',
-        borderRadius: 10,
     },
     recipeListFrame: {
         flexDirection: 'row',
@@ -197,25 +219,25 @@ const styles = StyleSheet.create({
 
     TypeNameFont: {
         fontSize: height * 20,
-        fontFamily: 'PretendardSemiBold'
+        fontFamily: 'PretendardBold',
     },
     recipeTitleTextFont: {
         fontSize: height * 20,
-        height: height * 24,
-        marginBottom: height * 2,
+        height: height * 26,
+        paddingBottom: height * 4,
         fontFamily: 'PretendardSemiBold',
     },
     materialTextFont: {
         fontSize: height * 12,
         height: height * 16,
-        marginBottom: height * 2, 
-        fontFamily: 'PretendardRegular'
+        marginBottom: height * 2,
+        fontFamily: 'PretendardRegular',
     },
     recipeTextFont: {
         fontSize: height * 12,
         height: height * 16,
-        marginBottom: height * 2, 
-        fontFamily: 'PretendardRegular'
+        marginBottom: height * 2,
+        fontFamily: 'PretendardRegular',
     },
 });
 

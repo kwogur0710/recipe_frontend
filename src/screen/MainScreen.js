@@ -40,14 +40,11 @@ const MainScreen = () => {
             <View style={styles.searchFrame}>
                 <TouchableOpacity
                     onPress={() => {
-                        navigation.navigate('TestScreen');
+                        navigation.navigate('SettingScreen');
                     }}
                     style={{ width: width * 70 }}
                 >
-                    <Image
-                        source={require('../../image/icon/menu.png')}
-                        style={{ width: width * 34, height: width * 34 }}
-                    />
+                    <Feather name="menu" size={30} color="black" />
                 </TouchableOpacity>
                 <Text style={{ fontSize: height * 20, fontFamily: 'PretendardBold' }}>
                     재료로 찾는 레시피
@@ -74,7 +71,7 @@ const MainScreen = () => {
 
             <View style={styles.weekRecipeFrame}>
                 <View style={styles.weekRecipeText}>
-                    <Text style={{ fontSize: 30, fontFamily: 'PretendardSemiBold' }}>
+                    <Text style={{ fontSize: height*20, fontFamily: 'PretendardSemiBold' }}>
                         금주의 레시피
                     </Text>
                 </View>
@@ -82,7 +79,7 @@ const MainScreen = () => {
                     <View style={styles.weekRecipeImage}></View>
                     <View style={styles.weekRecipeImageBlank} />
                     <View style={styles.weekRecipeImage}>
-                        <Text style={{ fontSize: 20, fontFamily: 'PretendardSemiBold' }}>레시피 게시글</Text>
+                        <Text style={{ fontSize:  height*15, fontFamily: 'PretendardSemiBold' }}>레시피 게시글</Text>
                     </View>
                     <View style={styles.weekRecipeImageBlank} />
                     <View style={styles.weekRecipeImage}></View>
@@ -100,7 +97,7 @@ const MainScreen = () => {
 
             <View style={styles.recipeTypeFrame}>
                 <View style={styles.recipeTypeText}>
-                    <Text style={{ fontSize: 30, fontFamily: 'PretendardSemiBold' }}>
+                    <Text style={{ fontSize:  height*20, fontFamily: 'PretendardSemiBold' }}>
                         레시피 종류
                     </Text>
                 </View>
@@ -126,7 +123,7 @@ const MainScreen = () => {
 
             <View style={styles.recipeVideoFrame}>
                 <View style={styles.recipeVideoText}>
-                    <Text style={{ fontSize: 30, fontFamily: 'PretendardSemiBold' }}>
+                    <Text style={{ fontSize: height*20, fontFamily: 'PretendardSemiBold' }}>
                         오늘은 이거다!
                     </Text>
                 </View>
@@ -155,8 +152,8 @@ const MainScreen = () => {
 
                         <Text
                             style={{
-                                fontSize: 20,
-                                marginLeft: 2,
+                                fontSize:  height*15,
+                                marginLeft: 10,
                                 fontFamily: 'PretendardVariable',
                             }}
                         >
@@ -185,7 +182,7 @@ const MainScreen = () => {
                             />
                         </TouchableOpacity>
 
-                        <Text style={{ fontSize: 20, marginLeft: '1%' }}>
+                        <Text style={{ fontSize: height*15, marginLeft: 10 ,fontFamily: 'PretendardVariable',}}>
                             [깐풍두부] 가성비 끝판왕 두부요리🥇
                         </Text>
                     </View>
@@ -211,7 +208,7 @@ const MainScreen = () => {
                             />
                         </TouchableOpacity>
 
-                        <Text style={{ fontSize: 20, marginLeft: '1%' }}>
+                        <Text style={{ fontSize:  height*15, marginLeft: 10, fontFamily: 'PretendardVariable', }}>
                             ★ 뚝딱뚝딱 84가지 초간단 레시피 [만개의레시피]
                         </Text>
                     </View>
