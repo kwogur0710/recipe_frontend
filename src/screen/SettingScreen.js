@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     },
     settingFrame: {
         flexDirection: 'row',
-        borderTopWidth: 1,
+        borderTopWidth: 0.1,
         borderColor: 'gray',
         paddingLeft: width * 20,
         height: height * 50,
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     },
     SettingText: {
         marginLeft: width * 10,
-        fontSize: 15,
+        fontSize: height*12,
         fontFamily: 'PretendardRegular' 
     },
 

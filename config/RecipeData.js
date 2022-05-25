@@ -2,6 +2,7 @@ export const RecipeData = [
     {
         id: 1001,
         type: '한식',
+        
         title: '설렁탕',
         img: require('../image/korean_food/image_1.jpeg'),
         difficulty: 3,
