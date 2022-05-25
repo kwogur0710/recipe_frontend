@@ -97,7 +97,7 @@ const MainScreen = ({ name }) => {
                         <Image source={TypeImage} style={{ width: 70, height: 70 }} />
                     </View>
                     <View style={styles.recipeTypeButtonText}>
-                        <Text style={{ fontSize: 20, fontFamily: 'PretendardVariable' }}>
+                        <Text style={{ fontSize: height * 20, fontFamily: 'PretendardVariable' }}>
                             {TypeName}
                         </Text>
                     </View>
