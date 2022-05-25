@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native";
-import { height, width } from "../../../config/globalStyles";
+import { StyleSheet } from 'react-native';
+import { height, width } from '../../../config/globalStyles';
 
 const styles = StyleSheet.create({
     container: {
@@ -14,14 +14,12 @@ const styles = StyleSheet.create({
 
     searchFrame: {
         height: height * 40, //높이
-        width: width * 360, //너비
+        width: '100%', //너비
         flexDirection: 'row', //정렬방향
         alignItems: 'center', //가로정렬
         justifyContent: 'space-between', //세로정렬
         paddingTop: height * 4,
         paddingBottom: height * 4,
-        paddingRight: width * 10,
-        paddingLeft: width * 10,
     },
     TopBtn: {
         alignItems: 'center', //가로정렬
@@ -32,77 +30,16 @@ const styles = StyleSheet.create({
 
     weekRecipeFrame: {
         //금주의 레시피 프레임
-        height: height * 206, //높이
         width: '100%', //너비
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center', //세로정렬 : 중앙
         marginTop: height * 10, //위쪽 마진
     },
-    weekRecipeText: {
-        //금주의 레시피 글자
-        flex: 1,
-        width: '100%',
-        alignItems: 'flex-start', //가로정렬 : 시작점
-        justifyContent: 'center', //세로정렬 : 끝지점
-    },
-
-    weekRecipeImageFrame: {
-        //금주의 레시피 이미지 프레임
-        flexDirection: 'row', //정렬방향 : row(가로), column(세로)
-        alignItems: 'center', //가로정렬 : 중앙
-        justifyContent: 'center', //세로정렬 : 중앙
-        height: height * 153, //높이 : '30%'
-        width: width * 272, //너비 : '100%'
-        marginTop: height * 6, //위쪽 마진
-    },
-    weekRecipeImage: {
+    weekRecipe: {
         //금주의 레시피 이미지
-        borderRadius: 10, //테두리 둥글게 하는 수치
         alignItems: 'center', //가로정렬 : 중앙
-        justifyContent: 'center', //세로정렬 : 중앙
-        height: height * 153, //높이 : '30%'
-        width: width * 272, //너비 : '100%'
-        borderWidth: 1,
+        justifyContent: 'center',
     },
-    weekRecipeImageBlank: {
-        //금주의 레시피 이미지 여백
-        alignItems: 'center', //가로정렬 : 중앙
-        justifyContent: 'center', //세로정렬 : 중앙
-        height: height * 126, //높이 : '30%'
-        width: width * 10, //너비 : '10%'
-    },
-
-    weekRecipeBarFrame: {
-        //금주의 레시피 하단바 프레임
-        flexDirection: 'row', //정렬방향 : row(가로), column(세로)
-        alignContent: 'space-between', //가로정렬 : 중앙
-        justifyContent: 'center', //세로정렬 : 중앙
-        height: height * 10, //높이
-        width: width * 130, //너비
-        marginTop: height * 6,
-    },
-    weekRecipeBar: {
-        //금주의 레시피 하단바
-        borderWidth: 1, //테두리 굵기
-        borderRadius: 5, //테두리 둥글게 하는 수치
-        height: '100%', //높이 : '100%'
-        width: width * 24, //너비 : 24
-    },
-    weekRecipeBarColor: {
-        //금주의 레시피 하단바 색깔
-        borderWidth: 1, //테두리 굵기
-        borderRadius: 10, //테두리 둥글게 하는 수치
-        height: '100%', //높이 : '100%'
-        width: width * 36, //너비
-        backgroundColor: 'black', //바탕색
-        borderColor: 'black', //윤곽색
-    },
-    weekRecipeBarBlank: {
-        //금주의 레시피 하단바 여백
-        height: '100%', //높이 : '100%'
-        width: width * 8, //너비 : 30
-    },
-
     recipeTypeFrame: {
         //음식 종류 프레임
         height: height * 124, //높이
