@@ -158,37 +158,43 @@ const MainScreen = ({ name }) => {
                         item={RecipeData.filter((value) => value.title === weekTitle[num])}
                     />
                 </View>
-
-                <View style={styles.recipeTypeFrame}>
-                    <View style={styles.recipeTypeText}>
-                        <Text style={{ fontSize: 30, fontFamily: 'PretendardSemiBold' }}>
-                            음식 종류
-                        </Text>
-                    </View>
-                    <View style={styles.recipeTypeButtonwidthFrame}>
-                        <RecipeType
-                            TypeImage={require('../../image/icon/korean_food.png')}
-                            TypeName="한식"
-                        />
-                        <RecipeType
-                            TypeImage={require('../../image/icon/japanese_food.png')}
-                            TypeName="일식"
-                        />
-                        <RecipeType
-                            TypeImage={require('../../image/icon/chinese_food.png')}
-                            TypeName="중식"
-                        />
-                        <RecipeType
-                            TypeImage={require('../../image/icon/western_food.png')}
-                            TypeName="양식"
-                        />
-                    </View>
+            <View style={styles.recipeVideoFrame}>
+                <View style={styles.recipeVideoText}>
+                    <Text style={{ fontSize: height*20, fontFamily: 'PretendardSemiBold' }}>
+                        오늘은 이거다!
+                    </Text>
                 </View>
 
-                <View style={styles.recipeVideoFrame}>
-                    <View style={styles.recipeVideoText}>
-                        <Text style={{ fontSize: 30, fontFamily: 'PretendardSemiBold' }}>
-                            오늘은 이거다!
+                <View style={styles.recipeVideoYoutubeBlank}></View>
+
+                <ScrollView horizontal={true}>
+                    <View style={styles.recipeVideoYoutube}>
+                        <TouchableOpacity
+                            onPress={() =>
+                                Linking.openURL('https://www.youtube.com/watch?v=vz6Hpuss1Lc')
+                            }
+                        >
+                            <Image
+                                style={{
+                                    height: height * 140,
+                                    width: width * 250,
+                                    marginLeft: '1%',
+                                    marginTop: -5,
+                                    resizeMode: 'contain',
+                                    borderRadius: 5,
+                                }}
+                                source={require('../../image/youtube1.png')}
+                            />
+                        </TouchableOpacity>
+
+                        <Text
+                            style={{
+                                fontSize:  height*15,
+                                marginLeft: 10,
+                                fontFamily: 'PretendardVariable',
+                            }}
+                        >
+                            🔥700만이 뽑은 초간단 인생 요리 15가지🔥[만개의레시피]
                         </Text>
                     </View>
 
@@ -224,8 +230,11 @@ const MainScreen = ({ name }) => {
                                 🔥700만이 뽑은 초간단 인생 요리 15가지🔥[만개의레시피]
                             </Text>
                         </View>
+                        <Text style={{ fontSize: height*15, marginLeft: 10 ,fontFamily: 'PretendardVariable',}}>
+                            [깐풍두부] 가성비 끝판왕 두부요리🥇
+                        </Text>
+                    </View>
 
-                        <View style={styles.recipeVideoYoutubeBlank2}></View>
 
                         <View style={styles.recipeVideoYoutube}>
                             <TouchableOpacity
@@ -272,14 +281,13 @@ const MainScreen = ({ name }) => {
                                     source={require('../../image/youtube3.png')}
                                 />
                             </TouchableOpacity>
+                        <Text style={{ fontSize:  height*15, marginLeft: 10, fontFamily: 'PretendardVariable', }}>
+                            ★ 뚝딱뚝딱 84가지 초간단 레시피 [만개의레시피]
+                        </Text>
+                    </View>
+                </ScrollView>
+            </View>
 
-                            <Text style={{ fontSize: 20, marginLeft: '1%' }}>
-                                ★ 뚝딱뚝딱 84가지 초간단 레시피 [만개의레시피]
-                            </Text>
-                        </View>
-                    </ScrollView>
-                </View>
-            </ScrollView>
         </SafeAreaView>
     );
 };
