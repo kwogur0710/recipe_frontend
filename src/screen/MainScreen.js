@@ -162,7 +162,7 @@ const MainScreen = ({ name }) => {
                 <View style={styles.recipeTypeFrame}>
                     <View style={styles.recipeTypeText}>
                         <Text style={{ fontSize: 30, fontFamily: 'PretendardSemiBold' }}>
-                            레시피 종류
+                            음식 종류
                         </Text>
                     </View>
                     <View style={styles.recipeTypeButtonwidthFrame}>
