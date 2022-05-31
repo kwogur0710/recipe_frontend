@@ -110,9 +110,8 @@ const RecipeAddScreen = () => {
                 <View
                     style={{
                         padding: width * 10,
-                        borderBottomWidth: 1,
+                        paddingLeft: width * 30,
                         borderColor: 'gray',
-                        alignItems: 'center',
                     }}
                 >
                     <Text
@@ -134,7 +133,6 @@ const RecipeAddScreen = () => {
                     <View
                         style={{
                             flex: 1,
-                            flexDirection: 'row',
                             justifyContent: 'center',
                             alignItems: 'center',
                             backgroundColor: 'rgba(100, 100, 100, 0.5)',
@@ -142,32 +140,61 @@ const RecipeAddScreen = () => {
                     >
                         <View
                             style={{
-                                flex: 0.5,
-                                borderRadius: 5,
+
+                                top: height * 182,
+                                width: '100%',
+                                height: height * 350,
+                                borderTopRightRadius: 30,
+                                borderTopLeftRadius: 30,
                                 borderColor: '#cccccc',
                                 borderWidth: 1,
                                 backgroundColor: '#ffffff',
                                 padding: 5,
-                                justifyContent: 'center',
+                                justifyContent: 'space-between',
                             }}
                         >
-                            <BtnList name={'한식'} />
-                            <BtnList name={'일식'} />
-                            <BtnList name={'중식'} />
-                            <BtnList name={'양식'} />
-
-                            <TouchableOpacity onPress={() => setVisibleModal(false)}>
+                            <View>
+                                <Text
+                                    style={{
+                                        paddingTop: height * 20,
+                                        paddingBottom: height * 10,
+                                        paddingLeft: width * 30,
+                                        fontSize: height * 20,
+                                        fontFamily: 'PretendardSemiBold',
+                                    }}
+                                >
+                                    음식 종류
+                                </Text>
+                                <BtnList name={'한식'} />
+                                <BtnList name={'일식'} />
+                                <BtnList name={'중식'} />
+                                <BtnList name={'양식'} />
+                            </View>
+                            <TouchableOpacity
+                                style={{
+                                    width: '100%',
+                                    height: height * 40,
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                }}
+                                onPress={() => {
+                                    setVisibleModal(false);
+                                }}
+                            >
                                 <View
                                     style={{
-                                        padding: width * 10,
+                                        width: width * 400,
+                                        height: height * 50,
                                         borderColor: 'gray',
                                         alignItems: 'center',
+                                        justifyContent: 'center',
+                                        backgroundColor: '#9d6ab9',
                                     }}
                                 >
                                     <Text
                                         style={{
                                             fontSize: height * 16,
-                                            fontFamily: 'PretendardRegular',
+                                            fontFamily: 'PretendardSemiBold',
                                         }}
                                     >
                                         취소
@@ -183,7 +210,7 @@ const RecipeAddScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView>
-                <ModalList name="type" />
+                <ModalList />
                 <View>
                     <TouchableOpacity
                         style={{
@@ -286,7 +313,7 @@ const RecipeAddScreen = () => {
                     </View>
 
                     <View style={{ flexDirection: 'row' }}>
-                        <UselessTextInput
+                        <TextInput
                             multiline
                             numberOfLines={4}
                             onChange={(e) => onChange('detail', e)}
@@ -303,12 +330,13 @@ const RecipeAddScreen = () => {
                     }}
                     style={{
                         alignItems: 'center',
+                        justifyContent: 'center',
                         width: '100%',
-                        borderWidth: 1,
-                        borderColor: 'gray',
+                        height: height * 40,
+                        backgroundColor: '#9d6ab9',
                     }}
                 >
-                    <Text style={{ fontSize: 30 }}>저장</Text>
+                    <Text style={{ fontSize: 30, fontFamily: 'PretendardSemiBold', color:'black' }}>저장</Text>
                 </TouchableOpacity>
             </ScrollView>
         </SafeAreaView>
@@ -320,7 +348,6 @@ const styles = StyleSheet.create({
         //바탕
         flex: 1,
         paddingTop: Platform.OS === 'android' ? height * 40 : 0,
-        marginBottom: height * 20, //마진 : 10%
         marginLeft: width * 20,
         marginRight: width * 20,
     },
@@ -360,6 +387,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: height * 200,
         marginBottom: height * 10,
+        textAlignVertical: 'top',
     },
 });
 

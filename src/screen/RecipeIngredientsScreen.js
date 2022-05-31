@@ -14,10 +14,11 @@ import {
 import { height, marginWidth, width } from '../../config/globalStyles';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { IngredientsData} from '../../config/RecipeData';
+import { IngredientsData } from '../../config/RecipeData';
 
 const RecipeIngredientsScreen = ({ route }) => {
     const navigation = useNavigation();
+    const backScreen = route.params?.screen;
     const TypeName = route.params?.type;
     const [selectedTitle, setSelectedTitle] = useState([]);
     const [ingredient, setingredient] = useState(route.params?.ingredient);
@@ -67,10 +68,6 @@ const RecipeIngredientsScreen = ({ route }) => {
         }
         setSelectedTitle(a);
     };
-
-    
-
-    console.log(ingredient);
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.view}>
@@ -130,9 +127,16 @@ const RecipeIngredientsScreen = ({ route }) => {
                 }}
             />
             <TouchableOpacity
-                onPress={() =>
-                    navigation.navigate('RecipeListScreen', { ingredient: ingredient, type: TypeName })
-                }
+                onPress={() => {
+                    backScreen == 'recipeListScreen'
+                        ? navigation.navigate('RecipeListScreen', {
+                              ingredient: ingredient,
+                              type: TypeName,
+                          })
+                        : null;
+                    backScreen == 'searchScreen' ? navigation.navigate('SearchScreen', 
+                    {ingredient: ingredient}) : null;
+                }}
             >
                 <View style={styles.apply}>
                     <Text style={styles.applyFont}> 적용 </Text>
@@ -156,13 +160,13 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         backgroundColor: 'rgba(255, 255, 255,1)',
-        fontFamily: 'PretendardSemiBold'
+        fontFamily: 'PretendardSemiBold',
     },
     item: {
         padding: 10,
         fontSize: 18,
         height: 44,
-        fontFamily: 'PretendardRegular'
+        fontFamily: 'PretendardRegular',
     },
     view: {
         margin: 10,

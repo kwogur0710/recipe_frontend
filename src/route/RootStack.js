@@ -7,7 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MainScreen from '../screen/MainScreen';
 import RecipeListScreen from '../screen/RecipeListScreen';
 import RecipeIngredientsScreen from '../screen/RecipeIngredientsScreen';
-import RecipeBoardScreen from '../screen/RecipeboardScreen';
+import RecipeBoardScreen from '../screen/RecipeBoardScreen';
 import RecipeAddScreen from '../screen/RecipeAddScreen';
 import SettingScreen from '../screen/SettingScreen';
 import SearchScreen from '../screen/SearchScreen';
@@ -25,37 +25,37 @@ const RootStack = () => {
         <NavigationContainer>
             <Tab.Navigator
                 initialRouteName="MainScreen"
-                shifting={true}
-                activeColor="#f0edf6"
-                inactiveColor="#3e2465"
-                barStyle={{ backgroundColor: '#694fad' }}
-                labeled={true}
-                backBehavior={"none"}
+                backBehavior={'none'}
+                screenOptions={{
+                    tabBarActiveTintColor: '#9d6ab9',
+                    tabBarShowLabel: false,
+                    headerShown: false,
+                }}
             >
                 <Tab.Screen
-                    name="MainScreen"
-                    component={MainScreen}
+                    name="MainStack"
+                    component={MainStackScreen}
                     options={{
                         tabBarIcon: (props) => TabIcon({ ...props, name: 'home' }),
                     }}
                 />
                 <Tab.Screen
-                    name="SearchScreen"
-                    component={SearchScreen}
+                    name="SearchStack"
+                    component={SearchStackScreen}
                     options={{
                         tabBarIcon: (props) => TabIcon({ ...props, name: 'search' }),
                     }}
                 />
                 <Tab.Screen
-                    name="RecipeAddScreen"
+                    name="RecipeAddStack"
                     component={RecipeAddScreen}
                     options={{
                         tabBarIcon: (props) => TabIcon({ ...props, name: 'plus' }),
                     }}
                 />
                 <Tab.Screen
-                    name="SettingScreen"
-                    component={SettingScreen}
+                    name="SettingStack"
+                    component={SettingStackScreen}
                     options={{
                         tabBarIcon: (props) => TabIcon({ ...props, name: 'settings' }),
                     }}
@@ -64,5 +64,63 @@ const RootStack = () => {
         </NavigationContainer>
     );
 };
-
 export default RootStack;
+
+const MainStack = createStackNavigator();
+const MainStackScreen = () => {
+    return (
+        <MainStack.Navigator
+            screenOptions={{
+                headerShown: false,
+            }}
+        >
+            <MainStack.Screen name="MainScreen" component={MainScreen} />
+            <MainStack.Screen name="RecipeListScreen" component={RecipeListScreen} />
+            <MainStack.Screen name="RecipeBoardScreen" component={RecipeBoardScreen} />
+            <MainStack.Screen name="RecipeIngredientsScreen" component={RecipeIngredientsScreen} />
+            <MainStack.Screen name="RecipeAddScreen" component={RecipeAddScreen} />
+        </MainStack.Navigator>
+    );
+};
+
+const SearchStack = createStackNavigator();
+const SearchStackScreen = () => {
+    return (
+        <SearchStack.Navigator
+            screenOptions={{
+                headerShown: false,
+            }}
+        >
+            <SearchStack.Screen name="SearchScreen" component={SearchScreen} />
+            <SearchStack.Screen name="RecipeBoardScreen" component={RecipeBoardScreen} />
+            <SearchStack.Screen name="RecipeIngredientsScreen" component={RecipeIngredientsScreen} />
+        </SearchStack.Navigator>
+    );
+};
+
+
+const RecipeAddStack = createStackNavigator();
+const RecipeAddStackScreen = () => {
+    return (
+        <RecipeAddStack.Navigator
+            screenOptions={{
+                headerShown: false,
+            }}
+        >
+            <RecipeAddStack.Screen name="RecipeAddScreen" component={RecipeAddScreen} />
+        </RecipeAddStack.Navigator>
+    );
+};
+
+const SettingStack = createStackNavigator();
+const SettingStackScreen = () => {
+    return (
+        <SettingStack.Navigator
+            screenOptions={{
+                headerShown: false,
+            }}
+        >
+            <SettingStack.Screen name="SettingScreen" component={SettingScreen} />
+        </SettingStack.Navigator>
+    );
+};

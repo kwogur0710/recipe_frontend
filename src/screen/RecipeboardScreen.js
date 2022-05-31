@@ -95,17 +95,20 @@ const styles = StyleSheet.create({
         marginTop: height * 4,
         marginBottom: height * 4,
         fontFamily: 'PretendardSemiBold',
+        color:'#222222'
     },
     SubTitleText: {
         fontSize: 22,
         margin: 2,
         fontFamily: 'PretendardMedium',
+        color:'#222222'
     },
     ContentText: {
         fontSize: 15,
         paddingLeft: width * 10,
         marginBottom: height * 6,
         fontFamily: 'PretendardLight',
+        color:'#666666'
     },
 });
 

@@ -11,30 +11,55 @@ import {
     TextInput,
     ScrollView,
     TouchableOpacity,
+    RefreshControl,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { RecipeData } from '../../config/RecipeData';
 import { Feather } from '@expo/vector-icons';
 
-const SearchScreen = () => {
+const wait = (timeout) => {
+    return new Promise((resolve) => setTimeout(resolve, timeout));
+};
+const SearchScreen = ({ route }) => {
     const navigation = useNavigation();
+    const [refreshing, setRefreshing] = React.useState(false);
+    const [ingredient, setingredient] = useState(route.params?.ingredient);
+    useEffect(() => {
+        setingredient(route.params?.ingredient);
+    }, [route.params?.ingredient]);
+
+    const onRefresh = React.useCallback(() => {
+        setRefreshing(true);
+        wait(2000).then(() => setRefreshing(false));
+    }, []);
     const [search, setSearch] = useState('');
     const onUpdateSearch = (text) => {
         setSearch(text);
     };
 
-    const RecipeFilter = (item) => {
+    const SearchFilter = (item) => {
         let a = 'false';
         if (a === 'false') {
             if (item.title.includes(search)) {
                 a = 'true';
-                console.log(a, 'push');
             }
         }
         return a;
     };
+    const IngredientFilter = (item) => {
+        let a = 'false';
+        item.material.forEach((element) => {
+            if (a === 'false') {
+                if (ingredient.includes(element)) {
+                    a = 'true';
+                }
+            }
+        });
+        return a;
+    };
 
+    console.log(ingredient);
     console.log(search);
     return (
         <SafeAreaView style={styles.container}>
@@ -48,18 +73,40 @@ const SearchScreen = () => {
                     style={{
                         fontSize: 15,
                         fontFamily: 'PretendardSemiBold',
-                        width: width * 250,
+                        width: width * 230,
                     }}
                     value={search}
                 />
+                <TouchableOpacity
+                    style={styles.TopBtn}
+                    onPress={() => {
+                        navigation.navigate('RecipeIngredientsScreen', {
+                            ingredient: ingredient,
+                            screen: 'searchScreen',
+                        });
+                    }}
+                >
+                    <Feather
+                        name="filter"
+                        size={30}
+                        color="black"
+                        style={{ marginRight: width * 5 }}
+                    />
+                </TouchableOpacity>
             </View>
 
             <View style={{ marginTop: height * 4, flex: 1 }}>
                 <FlatList
                     data={RecipeData}
                     keyExtractor={(item) => String(item.id)}
+                    refreshControl={
+                        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                    }
                     renderItem={({ item }) => {
-                        return RecipeFilter(item) === 'true' ? (
+                        return (!(search && search.length > 0) && !ingredient) ||
+                            (!search && IngredientFilter(item) === 'true') ||
+                            (!ingredient.length > 0 && SearchFilter(item) === 'true') ||
+                            (IngredientFilter(item) === 'true' && SearchFilter(item) === 'true') ? (
                             <TouchableOpacity
                                 onPress={() =>
                                     navigation.navigate('RecipeBoardScreen', {
@@ -69,10 +116,7 @@ const SearchScreen = () => {
                             >
                                 <View style={styles.recipeList}>
                                     <View style={styles.recipeListFrame}>
-                                        <View>
-                                            <Image source={item.img} style={styles.recipeListImg} />
-                                        </View>
-
+                                        <Image source={item.img} style={styles.recipeListImg} />
                                         <View style={styles.recipeListTextFrame}>
                                             <Text style={styles.recipeTitleTextFont}>
                                                 {item.title}
@@ -96,21 +140,6 @@ const SearchScreen = () => {
                                                         인분 : {item.serving}인분
                                                     </Text>
                                                 </View>
-                                            </View>
-                                            <View
-                                                style={{
-                                                    alignItems: 'center',
-                                                    justifyContent: 'flex-end',
-                                                    flexDirection: 'row',
-                                                }}
-                                            >
-                                                <Feather
-                                                    name="heart"
-                                                    size={20}
-                                                    color="red"
-                                                    style={{ marginRight: width * 5 }}
-                                                />
-                                                <Text style={styles.recipeTextFont}>33</Text>
                                             </View>
                                         </View>
                                     </View>
@@ -136,17 +165,13 @@ const styles = StyleSheet.create({
         width: width * 320, //너비
         flexDirection: 'row', //정렬방향
         alignItems: 'center', //가로정렬
-        justifyContent: 'flex-start', //세로정렬
+        justifyContent: 'center', //세로정렬
         paddingTop: height * 4,
         paddingBottom: height * 4,
         paddingRight: width * 10,
         paddingLeft: width * 10,
-        borderBottomWidth: 1,
-        marginTop:height * 4,
-        marginLeft: height * 15,
-        marginRight: height * 15,
-        borderRadius: 16,
-        borderWidth:1
+        backgroundColor:'#e8e8e8',
+        borderRadius:16,
     },
 
     TopBtn: {
@@ -170,7 +195,6 @@ const styles = StyleSheet.create({
         paddingBottom: height * 6,
         borderBottomWidth: 1,
         borderColor: 'gray',
-        alignItems: 'center',
     },
     recipeListFrame: {
         flexDirection: 'row',
@@ -184,29 +208,29 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     recipeListTextFrame: {
-        padding: height * 4,
+        paddingLeft: width * 4,
+        paddingRight: width * 4,
         width: width * 214,
         height: height * 80,
     },
-    TypeImg: {
-        width: 10,
-        height: 10,
+
+    TitleFont: {
+        fontSize: height * 20,
+        fontFamily: 'PretendardBold',
     },
     recipeTitleTextFont: {
-        fontSize: height * 20,
-        height: height * 26,
-        paddingBottom: height * 4,
+        fontSize: height * 18,
+        marginBottom: height * 2,
         fontFamily: 'PretendardSemiBold',
     },
     materialTextFont: {
-        fontSize: height * 12,
-        height: height * 16,
+        fontSize: height * 14,
+        height: height * 20,
         marginBottom: height * 2,
         fontFamily: 'PretendardRegular',
     },
     recipeTextFont: {
         fontSize: height * 12,
-        height: height * 16,
         marginBottom: height * 2,
         fontFamily: 'PretendardRegular',
     },
