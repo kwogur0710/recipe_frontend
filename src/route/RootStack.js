@@ -57,7 +57,7 @@ const RootStack = () => {
                     name="SettingStack"
                     component={SettingStackScreen}
                     options={{
-                        tabBarIcon: (props) => TabIcon({ ...props, name: 'settings' }),
+                        tabBarIcon: (props) => TabIcon({ ...props, name: 'menu' }),
                     }}
                 />
             </Tab.Navigator>

@@ -13,8 +13,6 @@ import {
     RefreshControl,
 } from 'react-native';
 import { height, width, marginWidth } from '../../config/globalStyles';
-import { RecipeTypeName } from './RecipeListScreen';
-import { Feather } from '@expo/vector-icons';
 import styles from '../components/MainComponents/styles';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { RecipeData } from '../../config/RecipeData';
@@ -209,7 +207,7 @@ const MainScreen = ({ name }) => {
                     </Text>
                     <View style={styles.recipeTypeButtonwidthFrame}>
                         <RecipeType
-                            TypeImage={require('../../image/icon/korean_food.png')}
+                            TypeImage={require('../../image/icon/all_food.png')}
                             TypeName="전체"
                         />
                         <RecipeType

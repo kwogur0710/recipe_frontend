@@ -12,7 +12,7 @@ import {
     Platform,
 } from 'react-native';
 import { height, marginWidth, width } from '../../config/globalStyles';
-import { AntDesign } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { IngredientsData } from '../../config/RecipeData';
 
@@ -71,6 +71,7 @@ const RecipeIngredientsScreen = ({ route }) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.view}>
+                <Feather name="search" size={18} color="black" style={{marginLeft:width*4, marginRight:width*4}} />
                 <TextInput
                     placeholder={'재료를 입력하세요'}
                     placeholderTextColor={'#D5D5D5'}
@@ -79,12 +80,6 @@ const RecipeIngredientsScreen = ({ route }) => {
                     style={{ fontSize: 15, color: 'black', fontFamily: 'PretendardSemiBold' }}
                     value={search}
                 />
-                <TouchableOpacity
-                    style={{ position: 'absolute', right: 0, top: 0, bottom: 0 }}
-                    hitSlop={{ top: 10, left: 10, bottom: 10, right: 10 }}
-                >
-                    <AntDesign name="search1" size={18} color="black" />
-                </TouchableOpacity>
             </View>
             <SectionList
                 sections={IngredientsData}
@@ -114,7 +109,7 @@ const RecipeIngredientsScreen = ({ route }) => {
                             >
                                 <Text style={styles.item}>{item}</Text>
                                 {ingredient && ingredient.some((value) => value == item) ? (
-                                    <AntDesign
+                                    <Feather
                                         name="check"
                                         size={24}
                                         color="black"
@@ -134,8 +129,9 @@ const RecipeIngredientsScreen = ({ route }) => {
                               type: TypeName,
                           })
                         : null;
-                    backScreen == 'searchScreen' ? navigation.navigate('SearchScreen', 
-                    {ingredient: ingredient}) : null;
+                    backScreen == 'searchScreen'
+                        ? navigation.navigate('SearchScreen', { ingredient: ingredient })
+                        : null;
                 }}
             >
                 <View style={styles.apply}>
@@ -170,6 +166,8 @@ const styles = StyleSheet.create({
     },
     view: {
         margin: 10,
+        flexDirection:'row',
+        alignItems:'center',
     },
     searchBarContainer: {
         paddingLeft: 15,
@@ -194,6 +192,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'gray',
         paddingHorizontal: 10,
+        backgroundColor: '#9d6ab9',
     },
     applyFont: {
         fontSize: 20,

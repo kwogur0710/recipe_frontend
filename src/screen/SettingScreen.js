@@ -1,35 +1,48 @@
 import React, { useState } from 'react';
 import { StyleSheet, SafeAreaView, Text, View, TouchableOpacity, Image } from 'react-native';
 import { height, marginWidth, width } from '../../config/globalStyles';
-import { Feather } from '@expo/vector-icons';
+import { Feather, Entypo } from '@expo/vector-icons';
 
 const SettingScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.profileFrame}>
-                <Image source={require('../../image/icon/profile.png')} style={styles.profileImage} />
-                <Text style={styles.profileText}> SAU Recipe </Text>
-            </View>
+            <TouchableOpacity>
+                <View style={styles.profileFrame}>
+                    <Image
+                        source={require('../../image/icon/profile.png')}
+                        style={styles.profileImage}
+                    />
+                    <Text style={styles.profileText}> SAU Recipe </Text>
+                </View>
+            </TouchableOpacity>
 
-            <View style={styles.settingFrame}>
-                <Image source={require('../../image/icon/heart.png')} style={styles.SettingImage} />
-                <Text style={styles.SettingText}> 좋아요 </Text>
-            </View>
-
-            <View style={styles.settingFrame}>
-                <Image source={require('../../image/icon/help.png')} style={styles.SettingImage} />
-                <Text style={styles.SettingText}> 도움말 </Text>
-            </View>
-
-            <View style={styles.settingFrame}>
-                <Image source={require('../../image/icon/megaphone.png')} style={styles.SettingImage} />
-                <Text style={styles.SettingText}> 공지사항 </Text>
-            </View>
-
-            <View style={styles.settingFrame}>
-                <Image source={require('../../image/icon/setting.png')} style={styles.SettingImage} />
-                <Text style={styles.SettingText}> 설정 </Text>
-            </View>
+            <TouchableOpacity>
+                <View style={styles.settingFrame}>
+                    <Feather name="heart" size={22} color="black" />
+                    <Text style={styles.SettingText}> 좋아요 </Text>
+                </View>
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <View style={styles.settingFrame}>
+                    <Feather name="help-circle" size={22} color="black" />
+                    <Text style={styles.SettingText}> 도움말 </Text>
+                </View>
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <View style={styles.settingFrame}>
+                    <Image
+                        source={require('../../image/icon/megaphone.png')}
+                        style={styles.SettingImage}
+                    />
+                    <Text style={styles.SettingText}> 공지사항 </Text>
+                </View>
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <View style={styles.settingFrame}>
+                    <Feather name="settings" size={22} color="black" />
+                    <Text style={styles.SettingText}> 설정 </Text>
+                </View>
+            </TouchableOpacity>
         </SafeAreaView>
     );
 };
@@ -69,17 +82,16 @@ const styles = StyleSheet.create({
         width: width * 60,
         height: width * 60,
         borderRadius: 100,
-    },    
+    },
     profileText: {
         fontSize: 30,
-        fontFamily: 'PretendardSemiBold' 
+        fontFamily: 'PretendardSemiBold',
     },
     SettingText: {
         marginLeft: width * 10,
-        fontSize: height*12,
-        fontFamily: 'PretendardRegular' 
+        fontSize: height * 14,
+        fontFamily: 'PretendardRegular',
     },
-
 });
 
 export default SettingScreen;
