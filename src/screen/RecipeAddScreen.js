@@ -133,15 +133,13 @@ const RecipeAddScreen = () => {
                     <View
                         style={{
                             flex: 1,
-                            justifyContent: 'center',
+                            justifyContent: 'flex-end',
                             alignItems: 'center',
                             backgroundColor: 'rgba(100, 100, 100, 0.5)',
                         }}
                     >
                         <View
                             style={{
-
-                                top: height * 182,
                                 width: '100%',
                                 height: height * 350,
                                 borderTopRightRadius: 30,
@@ -333,10 +331,10 @@ const RecipeAddScreen = () => {
                         justifyContent: 'center',
                         width: '100%',
                         height: height * 40,
-                        backgroundColor: '#9d6ab9',
+                        backgroundColor: '#8721be',
                     }}
                 >
-                    <Text style={{ fontSize: 30, fontFamily: 'PretendardSemiBold', color:'black' }}>저장</Text>
+                    <Text style={{ fontSize: 30, fontFamily: 'PretendardSemiBold', color:'rgb(255,255,255)' }}>저장</Text>
                 </TouchableOpacity>
             </ScrollView>
         </SafeAreaView>

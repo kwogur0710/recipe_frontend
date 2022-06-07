@@ -67,7 +67,7 @@ const SearchScreen = ({ route }) => {
                 <Feather name="search" size={30} color="black" style={{ marginRight: width * 5 }} />
                 <TextInput
                     placeholder={'레시피 제목을 입력하세요'}
-                    placeholderTextColor={'#D5D5D5'}
+                    placeholderTextColor={'#959595'}
                     containerStyle={styles.searchBarContainer}
                     onChangeText={onUpdateSearch}
                     style={{

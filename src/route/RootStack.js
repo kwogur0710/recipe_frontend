@@ -27,7 +27,7 @@ const RootStack = () => {
                 initialRouteName="MainScreen"
                 backBehavior={'none'}
                 screenOptions={{
-                    tabBarActiveTintColor: '#9d6ab9',
+                    tabBarActiveTintColor: '#FF432A',
                     tabBarShowLabel: false,
                     headerShown: false,
                 }}
