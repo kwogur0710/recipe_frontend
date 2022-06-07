@@ -35,7 +35,7 @@ const RecipeBoardScreen = ({ route }) => {
                     <View style={styles.border} />
                     <Text style={styles.SubTitleText}>재료</Text>
                     <Text style={styles.ContentText}>
-                        {Recipe.material.toString().replace(/\,/gi, ' ')}
+                        {Recipe.amount.toString().replace(/\,/gi, '\n')}
                     </Text>
                     <View style={styles.border} />
                     <View>
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         color:'#222222'
     },
     ContentText: {
-        fontSize: 15,
+        fontSize: 16,
         paddingLeft: width * 10,
         marginBottom: height * 6,
         fontFamily: 'PretendardLight',
