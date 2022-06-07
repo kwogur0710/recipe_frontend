@@ -1,9 +1,0 @@
-{
-  "devToolsPort": 19002,
-<<<<<<< HEAD
-  "expoServerPort": 19000,
-=======
-  "expoServerPort": null,
->>>>>>> 3565aef16604300c0645aefd6c94a6376c7fc653
-  "packagerPort": 19000
-}
