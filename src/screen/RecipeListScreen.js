@@ -30,7 +30,7 @@ const RecipeListScreen = ({ route }) => {
     const TypeName = route.params?.type;
     const [RecipeID, setRecipeID] = useState(['']);
     const [ingredient, setingredient] = useState(route.params?.ingredient);
-    
+
     useEffect(() => {
         setingredient(route.params?.ingredient);
         setRecipeID(['']);
@@ -68,7 +68,7 @@ const RecipeListScreen = ({ route }) => {
                             navigation.navigate('RecipeIngredientsScreen', {
                                 ingredient: ingredient,
                                 type: TypeName,
-                                screen: 'recipeListScreen'
+                                screen: 'recipeListScreen',
                             });
                         }}
                     >
@@ -174,11 +174,16 @@ const styles = StyleSheet.create({
         marginLeft: width * 2,
     },
     recipeList: {
-        paddingTop: height * 6,
-        paddingBottom: height * 6,
-        borderBottomWidth: 1,
+        marginBottom: height * 4,
+        marginTop: height * 4,
+        borderRadius: 10,
         borderColor: 'gray',
-        },
+        backgroundColor: '#ffffff',
+        shadowColor: '#999999',
+        shadowRadius: 2,
+        shadowOffset: { height: 4, width: 0 },
+        shadowOpacity: 0.3,
+    },
     recipeListFrame: {
         flexDirection: 'row',
         width: width * 320,
@@ -208,7 +213,7 @@ const styles = StyleSheet.create({
     },
     materialTextFont: {
         fontSize: height * 14,
-        height: height * 20,
+        height: height * 18,
         marginBottom: height * 2,
         fontFamily: 'PretendardRegular',
     },

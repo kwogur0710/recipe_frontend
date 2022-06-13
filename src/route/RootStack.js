@@ -27,7 +27,7 @@ const RootStack = () => {
                 initialRouteName="MainScreen"
                 backBehavior={'none'}
                 screenOptions={{
-                    tabBarActiveTintColor: '#FF432A',
+                    tabBarActiveTintColor: '#8721be',
                     tabBarShowLabel: false,
                     headerShown: false,
                 }}
@@ -48,9 +48,10 @@ const RootStack = () => {
                 />
                 <Tab.Screen
                     name="RecipeAddStack"
-                    component={RecipeAddScreen}
+                    component={RecipeAddStackScreen}
                     options={{
                         tabBarIcon: (props) => TabIcon({ ...props, name: 'plus' }),
+                        //tabBarStyle: { display: 'none' },
                     }}
                 />
                 <Tab.Screen
@@ -93,7 +94,10 @@ const SearchStackScreen = () => {
         >
             <SearchStack.Screen name="SearchScreen" component={SearchScreen} />
             <SearchStack.Screen name="RecipeBoardScreen" component={RecipeBoardScreen} />
-            <SearchStack.Screen name="RecipeIngredientsScreen" component={RecipeIngredientsScreen} />
+            <SearchStack.Screen
+                name="RecipeIngredientsScreen"
+                component={RecipeIngredientsScreen}
+            />
         </SearchStack.Navigator>
     );
 };
@@ -103,9 +107,9 @@ const RecipeAddStack = createStackNavigator();
 const RecipeAddStackScreen = () => {
     return (
         <RecipeAddStack.Navigator
-            screenOptions={{
-                headerShown: false,
-            }}
+        screenOptions={{
+            headerShown: false
+        }}
         >
             <RecipeAddStack.Screen name="RecipeAddScreen" component={RecipeAddScreen} />
         </RecipeAddStack.Navigator>

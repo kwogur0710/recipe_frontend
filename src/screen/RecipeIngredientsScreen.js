@@ -192,10 +192,12 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'gray',
         paddingHorizontal: 10,
-        backgroundColor: '#9d6ab9',
+        backgroundColor: '#8721be',
     },
     applyFont: {
         fontSize: 20,
+        color:'#ffffff',
+        fontFamily: 'PretendardSemiBold',
     },
 });
 

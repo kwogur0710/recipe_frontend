@@ -17,7 +17,7 @@ const RecipeBoardScreen = ({ route }) => {
         <SafeAreaView style={styles.container}>
             <ScrollView style={{ width: '100%' }}>
                 <View>
-                <Image style={styles.img} resizeMode="cover" source={Recipe.img} />
+                    <Image style={styles.img} resizeMode="cover" source={Recipe.img} />
                 </View>
                 <View style={styles.profileImgView}>
                     <Image
@@ -28,9 +28,9 @@ const RecipeBoardScreen = ({ route }) => {
                 <View style={styles.RecipeTextView}>
                     <View>
                         <Text style={styles.TitleText}>{Recipe.title}</Text>
-                        <Text style={styles.SubTitleText}>소요시간 : {Recipe.time} 분</Text>
-                        <Text style={styles.SubTitleText}>난이도 : {Recipe.difficulty} 단계</Text>
-                        <Text style={styles.SubTitleText}>인분 : {Recipe.serving} 인분</Text>
+                        <Text style={styles.SubText}>시간 : {Recipe.time} 분</Text>
+                        <Text style={styles.SubText}>난이도 : {Recipe.difficulty} 단계</Text>
+                        <Text style={styles.SubText}>인분 : {Recipe.serving} 인분</Text>
                     </View>
                     <View style={styles.border} />
                     <Text style={styles.SubTitleText}>재료</Text>
@@ -91,24 +91,30 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     TitleText: {
-        fontSize: 34,
+        fontSize: height * 24,
         marginTop: height * 4,
         marginBottom: height * 4,
         fontFamily: 'PretendardSemiBold',
-        color:'#222222'
+        color: '#222222',
     },
-    SubTitleText: {
-        fontSize: 22,
+    SubText: {
+        fontSize: width * 16,
         margin: 2,
         fontFamily: 'PretendardMedium',
-        color:'#222222'
+        color: '#333333',
+    },
+    SubTitleText: {
+        fontSize: height * 16,
+        margin: 2,
+        fontFamily: 'PretendardMedium',
+        color: '#333333',
     },
     ContentText: {
         fontSize: 16,
         paddingLeft: width * 10,
         marginBottom: height * 6,
         fontFamily: 'PretendardLight',
-        color:'#666666'
+        color: '#666666',
     },
 });
 

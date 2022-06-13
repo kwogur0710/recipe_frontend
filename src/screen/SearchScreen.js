@@ -22,6 +22,7 @@ const wait = (timeout) => {
     return new Promise((resolve) => setTimeout(resolve, timeout));
 };
 const SearchScreen = ({ route }) => {
+    console.log('ingredient',ingredient);
     const navigation = useNavigation();
     const [refreshing, setRefreshing] = React.useState(false);
     const [ingredient, setingredient] = useState(route.params?.ingredient);
@@ -36,6 +37,7 @@ const SearchScreen = ({ route }) => {
     const [search, setSearch] = useState('');
     const onUpdateSearch = (text) => {
         setSearch(text);
+        console.log('search',search);
     };
 
     const SearchFilter = (item) => {

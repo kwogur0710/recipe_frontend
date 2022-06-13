@@ -1,12 +1,25 @@
 import React, { useState } from 'react';
-import { StyleSheet, SafeAreaView, Text, View, TouchableOpacity, Image } from 'react-native';
+import {
+    StyleSheet,
+    SafeAreaView,
+    Text,
+    View,
+    TouchableOpacity,
+    Image,
+    ToastAndroid,
+} from 'react-native';
 import { height, marginWidth, width } from '../../config/globalStyles';
 import { Feather, Entypo } from '@expo/vector-icons';
 
 const SettingScreen = () => {
+    const showToast = () => {
+        Platform.OS === 'android'
+            ? ToastAndroid.show('준비중인 기능입니다!', ToastAndroid.SHORT)
+            : null;
+    };
     return (
         <SafeAreaView style={styles.container}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => showToast()}>
                 <View style={styles.profileFrame}>
                     <Image
                         source={require('../../image/icon/profile.png')}
@@ -16,19 +29,19 @@ const SettingScreen = () => {
                 </View>
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => showToast()}>
                 <View style={styles.settingFrame}>
                     <Feather name="heart" size={22} color="black" />
                     <Text style={styles.SettingText}> 좋아요 </Text>
                 </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => showToast()}>
                 <View style={styles.settingFrame}>
                     <Feather name="help-circle" size={22} color="black" />
                     <Text style={styles.SettingText}> 도움말 </Text>
                 </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => showToast()}>
                 <View style={styles.settingFrame}>
                     <Image
                         source={require('../../image/icon/megaphone.png')}
@@ -37,7 +50,7 @@ const SettingScreen = () => {
                     <Text style={styles.SettingText}> 공지사항 </Text>
                 </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => showToast()}>
                 <View style={styles.settingFrame}>
                     <Feather name="settings" size={22} color="black" />
                     <Text style={styles.SettingText}> 설정 </Text>

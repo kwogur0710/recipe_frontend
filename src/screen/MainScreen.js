@@ -16,7 +16,6 @@ import { height, width, marginWidth } from '../../config/globalStyles';
 import styles from '../components/MainComponents/styles';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { RecipeData } from '../../config/RecipeData';
-import { Timer, Time } from '../components/MainComponents/Timer';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 const wait = (timeout) => {
     return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -107,15 +106,32 @@ const MainScreen = ({ name }) => {
                 >
                     <View
                         style={{
-                            width: '100%',
+                            width: width * 54,
+                            height: width * 54,
+                            borderRadius: 100,
+                            borderColor:'#333333',
+                            borderWidth: 1,
                             justifyContent: 'center',
                             alignItems: 'center',
+                            marginBottom: height * 4,
                         }}
                     >
-                        <Image
-                            source={TypeImage}
-                            style={{ width: width * 54, height: width * 54 }}
-                        />
+                        {TypeName === '전체' ? (
+                            <Text
+                                style={{
+                                    fontSize: height * 18,
+                                    fontFamily: 'PretendardSemiBold',
+                                    color: '#222222',
+                                }}
+                            >
+                                ALL
+                            </Text>
+                        ) : (
+                            <Image
+                                source={TypeImage}
+                                style={{ width: width * 36, height: width * 36 }}
+                            />
+                        )}
                     </View>
                     <View
                         style={{
@@ -129,7 +145,7 @@ const MainScreen = ({ name }) => {
                                 marginTop: height * 2,
                                 fontSize: height * 12,
                                 fontFamily: 'PretendardSemiBold',
-                                color:'#222222'
+                                color: '#222222',
                             }}
                         >
                             {TypeName}
@@ -149,11 +165,10 @@ const MainScreen = ({ name }) => {
                 >
                     <Image
                         style={{
-                            height: height * 120,
-                            width: width * 250,
+                            height: height * 130,
+                            width: width * 240,
                             marginLeft: width * 2,
                             borderRadius: 6,
-                            borderWidth: 1,
                         }}
                         source={image}
                     />
@@ -174,20 +189,19 @@ const MainScreen = ({ name }) => {
     };
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.searchFrame}>
-                <Text style={{ fontSize: height * 20, fontFamily: 'PretendardBold', color:'#222222' }}>
+            <View style={styles.TopBar}>
+                <Text
+                    style={{
+                        fontSize: height * 20,
+                        fontFamily: 'PretendardBold',
+                        color: '#222222',
+                    }}
+                >
                     재료로 찾는 레시피
                 </Text>
-                <View
-                    style={{
-                        flexDirection: 'row',
-                        width: width * 60,
-                        justifyContent: 'space-between',
-                    }}
-                ></View>
             </View>
             <ScrollView
-                style={{ width: '100%'}}
+                style={{ width: '100%' }}
                 refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
             >
                 <View style={{ height: height * 10 }} />
@@ -200,7 +214,7 @@ const MainScreen = ({ name }) => {
                             fontFamily: 'PretendardSemiBold',
                             marginTop: height * 4,
                             marginBottom: height * 4,
-                            color:'#222222'
+                            color: '#222222',
                         }}
                     >
                         음식 종류
@@ -236,7 +250,7 @@ const MainScreen = ({ name }) => {
                             fontFamily: 'PretendardSemiBold',
                             marginTop: height * 4,
                             marginBottom: height * 4,
-                            color:'#222222'
+                            color: '#222222',
                         }}
                     >
                         오늘은 이거다!

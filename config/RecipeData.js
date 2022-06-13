@@ -333,6 +333,13 @@ export const RecipeData = [
       serving: 1, //인분
       time: 35,
       material: [
+        "튀김가루",
+        "중력분",
+        "얼음물",
+        "계란 노른자",
+        "새우",
+      ],
+      amount: [
         "튀김가루 5스푼",
         "중력분 5스푼",
         "얼음물 8스푼",

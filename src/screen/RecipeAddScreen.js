@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     StyleSheet,
     Text,
@@ -11,6 +11,7 @@ import {
     ScrollView,
     Modal,
     FlatList,
+    ToastAndroid,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { height, marginWidth, width } from '../../config/globalStyles';
@@ -18,24 +19,29 @@ import { RecipeData } from '../../config/RecipeData';
 import * as ImagePicker from 'expo-image-picker';
 import { Feather } from '@expo/vector-icons';
 
-const UselessTextInput = (props) => {
-    return (
-        <TextInput
-            {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
-            editable
-            maxLength={40}
-        />
-    );
-};
-
 const GetId = () => {
     return Math.floor(Math.random() * 10000);
 };
 
 const RecipeAddScreen = () => {
     const navigation = useNavigation();
-    const [visibleMoal, setVisibleModal] = useState(false);
-    const [value, onChangeText] = React.useState('Useless Multiline Placeholder');
+    const [visibleModal, setVisibleModal] = useState(false);
+    const [visibleMaterialModal, setVisibleMaterialModal] = useState(false);
+    const showToastSave = (text) => {
+        Platform.OS === 'android'
+            ? ToastAndroid.show('모든 항목을 입력해주세요!', ToastAndroid.SHORT)
+            : null;
+    };
+    const showToastTest = (text) => {
+        Platform.OS === 'android'
+            ? ToastAndroid.show('준비중인 기능입니다!', ToastAndroid.SHORT)
+            : null;
+    };
+
+    const [modalName, setModalName] = useState('');
+    const [modalValue, setModalValue] = useState('');
+    const [modalList, setModalList] = useState('');
+    const [modalE, setModalUnit] = useState('');
     const [inputs, setInputs] = useState({
         id: GetId(),
         title: '',
@@ -46,8 +52,17 @@ const RecipeAddScreen = () => {
         time: '',
         material: '',
         detail: '',
+        amount: '',
     });
-    const { id, type, title, img, difficulty, serving, time, material, detail } = inputs;
+    const { id, type, title, img, difficulty, serving, time, material, detail, amount } = inputs;
+
+    const timeset = () => {
+        let a = [];
+        for (let i = 5; i <= 100; i += 5) {
+            a.push(i);
+        }
+        return a;
+    };
 
     const onChange = (keyvalue, e) => {
         const { text } = e.nativeEvent;
@@ -55,11 +70,54 @@ const RecipeAddScreen = () => {
             ...inputs,
             [keyvalue]: text,
         });
-        console.log(inputs);
+        console.log(keyvalue, text);
     };
 
+    const pressSave = (value, name) => {
+        const text = name;
+        setInputs({
+            ...inputs,
+            [value]: text,
+        });
+        console.log(inputs);
+    };
+    const InputSave = () => {
+        let m = [];
+        let a = [];
+        addList.map((item) => {
+            console.log('item', item);
+            m.push(item.materialB);
+            a.push(item.materialB + item.amountB);
+        });
+        if (materialA) m.push(materialA);
+        if (amountA) a.push(materialA + amountA);
+        setInputs({
+            ...inputs,
+            material: m,
+            amount: a,
+        });
+        console.log('inputs', inputs.material, inputs.amount);
+    };
     const Save = (value) => {
+        InputSave();
         RecipeData.push(inputs);
+        inputsReset();
+    };
+    const inputsReset = () => {
+        setImageUrl('');
+        setInputs({
+            id: GetId(),
+            title: '',
+            type: '',
+            img: '',
+            difficulty: '',
+            serving: '',
+            time: '',
+            material: '',
+            detail: '',
+            amount: '',
+        });
+        setAddList([]);
     };
 
     // 현재 이미지 주소
@@ -96,22 +154,48 @@ const RecipeAddScreen = () => {
         console.log(result);
         console.log('imageUrl', imageUrl);
     };
-    const BtnList = ({ name }) => {
+    const [addList, setAddList] = useState([]);
+    const materialAdd = () => {
+        const materialB = inputsA.materialA;
+        const amountB = inputsA.amountA;
+        const recipe = { materialB, amountB };
+        setInputsA({ materialA: '', amountA: '' });
+        setAddList([...addList, recipe]);
+        console.log('addList', addList);
+        console.log(materialA, amountA);
+        console.log(material, amount);
+        InputSave();
+    };
+    const [inputsA, setInputsA] = useState({ materialA: '', amountA: '' });
+    const { materialA, amountA } = inputsA;
+    const onUpdateMaterial = (text) => {
+        setInputsA({
+            ...inputsA,
+            materialA: text,
+        });
+        console.log(inputsA);
+    };
+    const onUpdateAmount = (value) => {
+        const text = value;
+        setInputsA({
+            ...inputsA,
+            amountA: text,
+        });
+    };
+    const BtnList = ({ value, name, e }) => {
         return (
             <TouchableOpacity
                 onPress={() => {
                     setVisibleModal(false),
-                        setInputs({
-                            ...inputs,
-                            type: name,
-                        });
+                        pressSave(value, name),
+                        console.log('pressSave', value, name);
                 }}
             >
                 <View
                     style={{
                         padding: width * 10,
                         paddingLeft: width * 30,
-                        borderColor: 'gray',
+                        borderColor: '#999999',
                     }}
                 >
                     <Text
@@ -120,22 +204,23 @@ const RecipeAddScreen = () => {
                             fontFamily: 'PretendardRegular',
                         }}
                     >
-                        {name}
+                        {name} {e}
                     </Text>
                 </View>
             </TouchableOpacity>
         );
     };
-    const ModalList = ({ name }) => {
+    const ModalList = ({ name, value, list, e }) => {
         return (
             <SafeAreaView>
-                <Modal animationType="slide" transparent={true} visible={visibleMoal}>
+                <Modal animationType="slide" transparent={true} visible={visibleModal}>
                     <View
                         style={{
                             flex: 1,
                             justifyContent: 'flex-end',
                             alignItems: 'center',
                             backgroundColor: 'rgba(100, 100, 100, 0.5)',
+                            bottom: Platform.OS !== 'android' ? height * 20 : 0,
                         }}
                     >
                         <View
@@ -161,12 +246,16 @@ const RecipeAddScreen = () => {
                                         fontFamily: 'PretendardSemiBold',
                                     }}
                                 >
-                                    음식 종류
+                                    {modalName}
                                 </Text>
-                                <BtnList name={'한식'} />
-                                <BtnList name={'일식'} />
-                                <BtnList name={'중식'} />
-                                <BtnList name={'양식'} />
+                                <FlatList
+                                    data={list}
+                                    style={{ height: height * 200 }}
+                                    keyExtractor={(item) => String(item)}
+                                    renderItem={({ item }) => {
+                                        return <BtnList value={value} name={item} e={e} />;
+                                    }}
+                                />
                             </View>
                             <TouchableOpacity
                                 style={{
@@ -183,16 +272,17 @@ const RecipeAddScreen = () => {
                                     style={{
                                         width: width * 400,
                                         height: height * 50,
-                                        borderColor: 'gray',
+                                        borderColor: '#999999',
                                         alignItems: 'center',
                                         justifyContent: 'center',
-                                        backgroundColor: '#9d6ab9',
+                                        backgroundColor: '#8721be',
                                     }}
                                 >
                                     <Text
                                         style={{
                                             fontSize: height * 16,
                                             fontFamily: 'PretendardSemiBold',
+                                            color: '#ffffff',
                                         }}
                                     >
                                         취소
@@ -207,28 +297,43 @@ const RecipeAddScreen = () => {
     };
     return (
         <SafeAreaView style={styles.container}>
+            <View style={styles.TopBar}>
+                <Text style={{ fontSize: height * 16, fontFamily: 'PretendardSemiBold' }}>
+                    레시피 작성
+                </Text>
+            </View>
             <ScrollView>
-                <ModalList />
-                <View>
+                <ModalList name={modalName} value={modalValue} list={modalList} e={modalE} />
+                <View
+                    style={{
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginBottom: height * 6,
+                    }}
+                >
+                    <TextInput
+                        onChange={(e) => onChange('title', e)}
+                        value={title}
+                        style={styles.TitleInput}
+                        placeholder={'레시피 제목'}
+                        placeholderTextColor={'#999999'}
+                    />
                     <TouchableOpacity
                         style={{
-                            width: height * 100,
-                            height: height * 100,
-                            justifyContent: 'center',
-                            alignItems: 'center',
+                            marginTop: height * 4,
+                            marginBottom: height * 4,
                         }}
                         onPress={uploadImage}
                     >
                         {!imageUrl ? (
                             <View
                                 style={{
-                                    width: '100%',
-                                    height: '100%',
+                                    padding: 20,
+                                    borderWidth: 1,
+                                    borderRadius: 10,
                                     justifyContent: 'center',
                                     alignItems: 'center',
-                                    borderColor: 'gray',
-                                    borderWidth: 1,
-                                    borderRadius: 14,
+                                    borderColor: '#999999',
                                 }}
                             >
                                 <Feather name="camera" size={40} color="black" />
@@ -245,86 +350,181 @@ const RecipeAddScreen = () => {
                             <Image
                                 source={{ uri: imageUrl }}
                                 style={{
-                                    width: '100%',
-                                    height: '100%',
-                                    borderRadius: 14,
+                                    width: width * 320,
+                                    height: width * 320,
+                                    borderRadius: 10,
                                 }}
                             />
                         )}
                     </TouchableOpacity>
-                    <View style={{ flexDirection: 'row', marginTop: height * 4 }}>
-                        <TextInput
-                            onChange={(e) => onChange('title', e)}
-                            value={title}
-                            style={styles.TextInput}
-                            placeholder={'레시피 제목'}
-                            placeholderTextColor={'gray'}
-                        />
-                    </View>
-
                     <TouchableOpacity
                         style={styles.TypeInput}
                         onPress={() => {
                             setVisibleModal(true);
+                            setModalName('음식 종류');
+                            setModalValue('type');
+                            setModalList(['한식', '일식', '중식', '양식']);
+                            setModalUnit('');
                         }}
                     >
-                        {inputs.type ? <Text> {inputs.type} </Text> : <Text>음식 종류</Text>}
+                        {inputs.type ? (
+                            <Text style={styles.TextRecipe}> {inputs.type} </Text>
+                        ) : (
+                            <Text style={styles.TextRecipe}>음식 종류</Text>
+                        )}
                     </TouchableOpacity>
-                    <View style={{ flexDirection: 'row' }}>
-                        <TextInput
-                            onChange={(e) => onChange('difficulty', e)}
-                            value={difficulty}
-                            style={styles.TextInput}
-                            placeholder={'난이도'}
-                            placeholderTextColor={'gray'}
-                        />
-                    </View>
+                    <TouchableOpacity
+                        style={styles.TypeInput}
+                        onPress={() => {
+                            setVisibleModal(true);
+                            setModalName('난이도');
+                            setModalValue('difficulty');
+                            setModalList(['1', '2', '3', '4', '5']);
+                            setModalUnit('단계');
+                        }}
+                    >
+                        {inputs.difficulty ? (
+                            <Text style={styles.TextRecipe}> {inputs.difficulty} 단계</Text>
+                        ) : (
+                            <Text style={styles.TextRecipe}>난이도</Text>
+                        )}
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.TypeInput}
+                        onPress={() => {
+                            setVisibleModal(true);
+                            setModalName('인분');
+                            setModalValue('serving');
+                            setModalList(['1', '2', '3', '4', '5', '6']);
+                            setModalUnit('인분');
+                        }}
+                    >
+                        {inputs.serving ? (
+                            <Text style={styles.TextRecipe}> {inputs.serving} 인분 </Text>
+                        ) : (
+                            <Text style={styles.TextRecipe}>인분</Text>
+                        )}
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.TypeInput}
+                        onPress={() => {
+                            setVisibleModal(true);
+                            setModalName('소요시간');
+                            setModalValue('time');
+                            setModalUnit('분');
+                            setModalList(timeset());
+                        }}
+                    >
+                        {inputs.time ? (
+                            <Text style={styles.TextRecipe}> {inputs.time} 분 </Text>
+                        ) : (
+                            <Text style={styles.TextRecipe}>소요시간</Text>
+                        )}
+                    </TouchableOpacity>
 
-                    <View style={{ flexDirection: 'row' }}>
-                        <TextInput
-                            onChange={(e) => onChange('serving', e)}
-                            value={serving}
-                            style={styles.TextInput}
-                            placeholder={'인분'}
-                            placeholderTextColor={'gray'}
-                        />
+                    <View style={styles.materialTypeInput}>
+                        {addList.map((item) => {
+                            return (
+                                <View
+                                    key={String(item.materialB + item.amountB)}
+                                    style={{
+                                        flexDirection: 'row',
+                                        width: '100%',
+                                        alignItems: 'center',
+                                        justifyContent: 'space-between',
+                                    }}
+                                >
+                                    <View style={styles.materialList}>
+                                        <Text style={styles.materialListText}>
+                                            {item.materialB}
+                                        </Text>
+                                    </View>
+                                    <View style={styles.materialList}>
+                                        <Text style={styles.materialListText}>{item.amountB}</Text>
+                                    </View>
+                                </View>
+                            );
+                        })}
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                width: '100%',
+                                alignItems: 'center',
+                                justifyContent: 'space-between',
+                            }}
+                        >
+                            <TextInput
+                                onChangeText={(text) => onUpdateMaterial(text)}
+                                value={materialA}
+                                style={styles.materialInputText}
+                                placeholder={'재료'}
+                                placeholderTextColor={'#999999'}
+                            />
+                            <TextInput
+                                onChangeText={(text) => onUpdateAmount(text)}
+                                value={amountA}
+                                style={styles.materialInputText}
+                                placeholder={'재료 양'}
+                                placeholderTextColor={'#999999'}
+                            />
+                        </View>
+                        <View style={{width:'100%', justifyContent:'center', alignItems:'center'}}>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    !materialA && !amountA
+                                        ? null
+                                        : (materialAdd(), console.log('재료 추가 Press'));
+                                }}
+                                style={{
+                                    width: width * 100,
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    marginTop: height * 4,
+                                    marginBottom: height * 14,
+                                    borderRadius: 10,
+                                    backgroundColor: '#8721be',
+                                }}
+                            >
+                                <Text
+                                    style={{
+                                        fontSize: height * 16,
+                                        fontFamily: 'PretendardSemiBold',
+                                        padding: height * 4,
+                                        color: '#ffffff',
+                                    }}
+                                >
+                                    재료 추가
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-
-                    <View style={{ flexDirection: 'row' }}>
-                        <TextInput
-                            onChange={(e) => onChange('time', e)}
-                            value={time}
-                            style={styles.TextInput}
-                            placeholder={'소요 시간'}
-                            placeholderTextColor={'gray'}
-                        />
-                    </View>
-
-                    <View style={{ flexDirection: 'row' }}>
-                        <TextInput
-                            onChange={(e) => onChange('material', e)}
-                            value={material}
-                            style={styles.TextInput}
-                            placeholder={'재료'}
-                            placeholderTextColor={'gray'}
-                        />
-                    </View>
-
-                    <View style={{ flexDirection: 'row' }}>
-                        <TextInput
-                            multiline
-                            numberOfLines={4}
-                            onChange={(e) => onChange('detail', e)}
-                            value={detail}
-                            style={styles.TextInputBox}
-                            placeholder={'레시피 내용'}
-                            placeholderTextColor={'gray'}
-                        />
-                    </View>
+                    <TextInput
+                        multiline
+                        numberOfLines={10}
+                        onChange={(e) => onChange('detail', e)}
+                        value={detail}
+                        style={styles.TextInputBox}
+                        placeholder={'레시피 내용'}
+                        placeholderTextColor={'#999999'}
+                    />
                 </View>
                 <TouchableOpacity
                     onPress={() => {
-                        navigation.navigate('MainScreen'), Save(inputs);
+                        /*
+                        inputs.id != '' &&
+                        inputs.title !== '' &&
+                        inputs.type != '' &&
+                        inputs.difficulty != '' &&
+                        inputs.material != '' &&
+                        inputs.time != '' &&
+                        inputs.material != '' &&
+                        inputs.detail != '' &&
+                        inputs.amount != ''
+                            ?*/ navigation.navigate('MainScreen'),
+                            Save(inputs),
+                            console.log(inputs, '저장성공');
+                        //: console.log('저장 실패'),
+                        //showToastSave();
                     }}
                     style={{
                         alignItems: 'center',
@@ -332,9 +532,19 @@ const RecipeAddScreen = () => {
                         width: '100%',
                         height: height * 40,
                         backgroundColor: '#8721be',
+                        marginBottom: height * 30,
+                        borderRadius: 10,
                     }}
                 >
-                    <Text style={{ fontSize: 30, fontFamily: 'PretendardSemiBold', color:'rgb(255,255,255)' }}>저장</Text>
+                    <Text
+                        style={{
+                            fontSize: 30,
+                            fontFamily: 'PretendardSemiBold',
+                            color: 'rgb(255,255,255)',
+                        }}
+                    >
+                        저장
+                    </Text>
                 </TouchableOpacity>
             </ScrollView>
         </SafeAreaView>
@@ -343,49 +553,93 @@ const RecipeAddScreen = () => {
 
 const styles = StyleSheet.create({
     container: {
-        //바탕
         flex: 1,
         paddingTop: Platform.OS === 'android' ? height * 40 : 0,
         marginLeft: width * 20,
         marginRight: width * 20,
     },
-    TextInput: {
-        paddingLeft: 15,
-        paddingRight: 15,
-        paddingTop: 10,
-        paddingBottom: 10,
-        fontSize: 15,
-        color: 'black',
-        borderBottomWidth: 1,
-        borderColor: 'gray',
+    TopBar: {
+        height: height * 30,
         width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    TitleInput: {
+        width: '100%',
+        paddingLeft: width * 8,
+        paddingRight: width * 8,
+        paddingTop: height * 8,
+        paddingBottom: height * 8,
         marginBottom: height * 10,
+        fontSize: height * 14,
+        color: '#333333',
+        borderColor: '#999999',
+        borderBottomWidth: 1,
+    },
+    materialTypeInput: {
+        width: '100%',
+        paddingLeft: width * 8,
+        paddingRight: width * 8,
+        paddingTop: height * 14,
+        paddingBottom: height * 14,
+        borderColor: '#999999',
     },
     TypeInput: {
-        paddingLeft: 15,
-        paddingRight: 15,
-        paddingTop: 10,
-        paddingBottom: 10,
-        fontSize: 15,
-        color: 'black',
-        borderColor: 'gray',
-        borderBottomWidth: 1,
         width: '100%',
-        marginBottom: height * 10,
+        paddingLeft: width * 8,
+        paddingRight: width * 8,
+        paddingTop: height * 14,
+        paddingBottom: height * 14,
+        borderColor: '#999999',
+        borderBottomWidth: 1,
+    },
+    TextRecipe: {
+        fontSize: height * 14,
+        fontFamily: 'PretendardRegular',
+    },
+    materialList: {
+        width: width * 130,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingLeft: width * 2,
+        paddingRight: width * 2,
+        paddingTop: height * 2,
+        paddingBottom: height * 2,
+        borderColor: '#999999',
+    },
+    materialListText: {
+        fontSize: height * 14,
+        fontFamily: 'PretendardRegular',
+        color: '#333333',
+    },
+    materialInputText: {
+        width: width * 130,
+        paddingLeft: width * 8,
+        paddingRight: width * 8,
+        paddingTop: height * 8,
+        paddingBottom: height * 8,
+        marginTop: height * 6,
+        marginBottom: height * 6,
+        fontSize: height * 14,
+        color: '#333333',
+        borderColor: '#999999',
+        borderBottomWidth: 1,
     },
     TextInputBox: {
-        paddingLeft: 15,
-        paddingRight: 15,
-        paddingTop: 10,
-        paddingBottom: 10,
-        fontSize: 15,
-        color: 'black',
-        borderBottomWidth: 1,
-        borderColor: 'gray',
         width: '100%',
         height: height * 200,
+        paddingLeft: width * 8,
+        paddingRight: width * 8,
+        paddingTop: height * 8,
+        paddingBottom: height * 8,
         marginBottom: height * 10,
         textAlignVertical: 'top',
+        borderColor: '#999999',
+        borderWidth: 1,
+        borderRadius: 10,
+        fontFamily: 'PretendardRegular',
+        color: '#333333',
+        fontSize: height * 14,
     },
 });
 

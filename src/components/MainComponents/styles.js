@@ -12,23 +12,17 @@ const styles = StyleSheet.create({
         marginRight: width * 20,
     },
 
-    searchFrame: {
+    TopBar: {
         height: height * 40, //높이
         width: width * 360, //너비
         flexDirection: 'row', //정렬방향
         alignItems: 'center', //가로정렬
-        justifyContent: 'space-between', //세로정렬
+        justifyContent: 'center', //세로정렬
         paddingTop: height * 4,
         paddingBottom: height * 4,
         paddingRight: width * 20,
         paddingLeft: width * 20,
         borderColor: 'gray',
-    },
-    TopBtn: {
-        alignItems: 'center', //가로정렬
-        justifyContent: 'center', //세로정렬
-        marginRight: width * 2,
-        marginLeft: width * 2,
     },
 
     weekRecipeFrame: {
