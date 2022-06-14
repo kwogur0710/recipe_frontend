@@ -223,7 +223,7 @@ const MainScreen = ({ name }) => {
                         onPress={() => {
                             navigation.navigate('RecipeAddScreen');
                         }}
-                        style={{ padding: 4 }}
+                        style={styles.TopBtn}
                     >
                         <Feather name="plus" size={26} color="black" />
                     </TouchableOpacity>

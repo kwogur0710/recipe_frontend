@@ -142,8 +142,17 @@ const RecipeIngredientsScreen = ({ route }) => {
                         : null;
                 }}
             >
-                <View style={styles.apply}>
-                    <Text style={styles.applyFont}> 적용 </Text>
+                <View
+                    style={{
+                        width: '100%',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        padding: 6,
+                    }}
+                >
+                    <View style={styles.apply}>
+                        <Text style={styles.applyFont}> 적용 </Text>
+                    </View>
                 </View>
             </TouchableOpacity>
         </SafeAreaView>
@@ -167,6 +176,7 @@ const styles = StyleSheet.create({
         paddingBottom: height * 4,
         paddingRight: width * 10,
         paddingLeft: width * 10,
+        marginBottom: height * 6,
         backgroundColor: '#e8e8e8',
         borderRadius: 16,
     },
@@ -210,27 +220,14 @@ const styles = StyleSheet.create({
         fontSize: height * 16,
         fontFamily: 'PretendardRegular',
     },
-    view: {
-        margin: 10,
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
     searchBarContainer: {
         paddingLeft: 15,
         paddingRight: 15,
         paddingTop: 10,
         paddingBottom: 10,
     },
-    IngredientsListView: {
-        width: '100%',
-        height: height * 40,
-        borderBottomWidth: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: width * 10,
-    },
     apply: {
-        width: '100%',
+        width: width * 300,
         height: height * 40,
         flexDirection: 'row',
         alignItems: 'center',
@@ -239,6 +236,7 @@ const styles = StyleSheet.create({
         borderColor: 'gray',
         paddingHorizontal: 10,
         backgroundColor: '#8721be',
+        borderRadius: 10,
     },
     applyFont: {
         fontSize: 20,

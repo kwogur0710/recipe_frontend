@@ -29,6 +29,7 @@ const RecipeAddScreen = () => {
     const [visibleMaterialModal, setVisibleMaterialModal] = useState(false);
     const showToast = (text) => {
         Platform.OS === 'android' ? ToastAndroid.show(text, ToastAndroid.SHORT) : null;
+        console.log('showToast', text)
     };
 
     const [modalName, setModalName] = useState('');
@@ -83,7 +84,7 @@ const RecipeAddScreen = () => {
             a.push(item.materialB + item.amountB);
         });
         if (materialA) m.push(materialA);
-        if (amountA) a.push(materialA + amountA);
+        if (amountA) a.push(materialA + ' ' + amountA);
         setInputs({
             ...inputs,
             material: m,
@@ -531,9 +532,8 @@ const RecipeAddScreen = () => {
                 <TouchableOpacity
                     onPress={() => {
                         materialA.length > 0 || amountA.length > 0
-                            ? showToast('재료 항목 옆 플러스 버튼을 눌러주세요!')
-                            : null,
-                            inputs.id != '' &&
+                            ? showToast('재료추가 버튼을 눌러주세요!')
+                            : (inputs.id != '' &&
                             inputs.title !== '' &&
                             inputs.type != '' &&
                             inputs.difficulty != '' &&
@@ -541,12 +541,13 @@ const RecipeAddScreen = () => {
                             inputs.time != '' &&
                             inputs.material != '' &&
                             inputs.detail != '' &&
-                            inputs.amount != ''
+                            inputs.amount != '' &&
+                            imageUrl != ''
                                 ? (navigation.navigate('MainScreen'),
                                   Save(inputs),
                                   console.log(inputs, '저장성공'))
                                 : (console.log('저장 실패'),
-                                  showToast('모든 항목을 입력해주세요!'));
+                                  showToast('모든 항목을 입력해주세요!')));
                     }}
                     style={{
                         alignItems: 'center',
