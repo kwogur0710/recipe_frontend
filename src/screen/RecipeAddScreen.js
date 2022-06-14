@@ -27,15 +27,8 @@ const RecipeAddScreen = () => {
     const navigation = useNavigation();
     const [visibleModal, setVisibleModal] = useState(false);
     const [visibleMaterialModal, setVisibleMaterialModal] = useState(false);
-    const showToastSave = (text) => {
-        Platform.OS === 'android'
-            ? ToastAndroid.show('모든 항목을 입력해주세요!', ToastAndroid.SHORT)
-            : null;
-    };
-    const showToastTest = (text) => {
-        Platform.OS === 'android'
-            ? ToastAndroid.show('준비중인 기능입니다!', ToastAndroid.SHORT)
-            : null;
+    const showToast = (text) => {
+        Platform.OS === 'android' ? ToastAndroid.show(text, ToastAndroid.SHORT) : null;
     };
 
     const [modalName, setModalName] = useState('');
@@ -118,6 +111,19 @@ const RecipeAddScreen = () => {
             amount: '',
         });
         setAddList([]);
+    };
+    const addListRemove = (item) => {
+        const a = addList;
+        let b = [];
+        console.log(a);
+
+        a.filter((e)=>{
+            e.amountB === item.amountB && e.materialB === item.materialB 
+            ? console.log('같은거 발견!', e, item)
+            : b.push(e);
+        })
+        setAddList(b);
+
     };
 
     // 현재 이미지 주소
@@ -298,11 +304,30 @@ const RecipeAddScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.TopBar}>
-                <Text style={{ fontSize: height * 16, fontFamily: 'PretendardSemiBold' }}>
-                    레시피 작성
-                </Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <TouchableOpacity
+                        style={styles.TopBtn}
+                        onPress={() => {
+                            navigation.goBack();
+                        }}
+                    >
+                        <Feather name="chevron-left" size={26} color="black" />
+                    </TouchableOpacity>
+                    <Text
+                        style={{
+                            fontSize: height * 20,
+                            fontFamily: 'PretendardBold',
+                            color: '#222222',
+                            marginLeft: width * 4,
+                        }}
+                    >
+                        레시피 글쓰기
+                    </Text>
+                    <View style={styles.TopBtn} />
+                </View>
+                <View style={styles.TopBtn} />
             </View>
-            <ScrollView>
+            <ScrollView style={{ width: '100%' }}>
                 <ModalList name={modalName} value={modalValue} list={modalList} e={modalE} />
                 <View
                     style={{
@@ -311,13 +336,6 @@ const RecipeAddScreen = () => {
                         marginBottom: height * 6,
                     }}
                 >
-                    <TextInput
-                        onChange={(e) => onChange('title', e)}
-                        value={title}
-                        style={styles.TitleInput}
-                        placeholder={'레시피 제목'}
-                        placeholderTextColor={'#999999'}
-                    />
                     <TouchableOpacity
                         style={{
                             marginTop: height * 4,
@@ -357,6 +375,13 @@ const RecipeAddScreen = () => {
                             />
                         )}
                     </TouchableOpacity>
+                    <TextInput
+                        onChange={(e) => onChange('title', e)}
+                        value={title}
+                        style={styles.TitleInput}
+                        placeholder={'레시피 제목'}
+                        placeholderTextColor={'#999999'}
+                    />
                     <TouchableOpacity
                         style={styles.TypeInput}
                         onPress={() => {
@@ -442,6 +467,17 @@ const RecipeAddScreen = () => {
                                     <View style={styles.materialList}>
                                         <Text style={styles.materialListText}>{item.amountB}</Text>
                                     </View>
+                                    <TouchableOpacity
+                                        onPress={() => {
+                                            addListRemove(item);
+                                        }}
+                                        style={{
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                        }}
+                                    >
+                                        <Feather name="minus" size={20} color="black" />
+                                    </TouchableOpacity>
                                 </View>
                             );
                         })}
@@ -474,14 +510,11 @@ const RecipeAddScreen = () => {
                                         : (materialAdd(), console.log('재료 추가 Press'));
                                 }}
                                 style={{
-                                    width: width * 30,
                                     justifyContent: 'center',
                                     alignItems: 'center',
-                                    backgroundColor: '#8721be',
-                                    borderRadius:10,
                                 }}
                             >
-                                <Feather name="plus" size={20} color="white" />
+                                <Feather name="plus" size={20} color="black" />
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -497,21 +530,23 @@ const RecipeAddScreen = () => {
                 </View>
                 <TouchableOpacity
                     onPress={() => {
-                        /*
-                        inputs.id != '' &&
-                        inputs.title !== '' &&
-                        inputs.type != '' &&
-                        inputs.difficulty != '' &&
-                        inputs.material != '' &&
-                        inputs.time != '' &&
-                        inputs.material != '' &&
-                        inputs.detail != '' &&
-                        inputs.amount != ''
-                            ?*/ navigation.navigate('MainScreen'),
-                            Save(inputs),
-                            console.log(inputs, '저장성공');
-                        //: console.log('저장 실패'),
-                        //showToastSave();
+                        materialA.length > 0 || amountA.length > 0
+                            ? showToast('재료 항목 옆 플러스 버튼을 눌러주세요!')
+                            : null,
+                            inputs.id != '' &&
+                            inputs.title !== '' &&
+                            inputs.type != '' &&
+                            inputs.difficulty != '' &&
+                            inputs.material != '' &&
+                            inputs.time != '' &&
+                            inputs.material != '' &&
+                            inputs.detail != '' &&
+                            inputs.amount != ''
+                                ? (navigation.navigate('MainScreen'),
+                                  Save(inputs),
+                                  console.log(inputs, '저장성공'))
+                                : (console.log('저장 실패'),
+                                  showToast('모든 항목을 입력해주세요!'));
                     }}
                     style={{
                         alignItems: 'center',
@@ -541,15 +576,27 @@ const RecipeAddScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        alignItems: 'center', //가로정렬 : 중앙
+        justifyContent: 'center',
         paddingTop: Platform.OS === 'android' ? height * 40 : 0,
         marginLeft: width * 20,
         marginRight: width * 20,
     },
     TopBar: {
-        height: height * 30,
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
+        height: height * 40, //높이
+        width: width * 360, //너비
+        flexDirection: 'row', //정렬방향
+        alignItems: 'center', //가로정렬
+        justifyContent: 'space-between', //세로정렬
+        paddingTop: height * 4,
+        paddingBottom: height * 4,
+        paddingRight: width * 20,
+        paddingLeft: width * 20,
+        borderColor: 'gray',
+    },
+    TopBtn: {
+        width: width * 30,
+        padding: 4,
     },
     TitleInput: {
         width: '100%',

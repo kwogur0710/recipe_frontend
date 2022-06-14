@@ -23,108 +23,16 @@ const TabIcon = ({ name, size, color }) => {
 const RootStack = () => {
     return (
         <NavigationContainer>
-            <Tab.Navigator
-                initialRouteName="MainScreen"
-                backBehavior={'none'}
-                screenOptions={{
-                    tabBarActiveTintColor: '#8721be',
-                    tabBarShowLabel: false,
-                    headerShown: false,
-                }}
-            >
-                <Tab.Screen
-                    name="MainStack"
-                    component={MainStackScreen}
-                    options={{
-                        tabBarIcon: (props) => TabIcon({ ...props, name: 'home' }),
-                    }}
-                />
-                <Tab.Screen
-                    name="SearchStack"
-                    component={SearchStackScreen}
-                    options={{
-                        tabBarIcon: (props) => TabIcon({ ...props, name: 'search' }),
-                    }}
-                />
-                <Tab.Screen
-                    name="RecipeAddStack"
-                    component={RecipeAddStackScreen}
-                    options={{
-                        tabBarIcon: (props) => TabIcon({ ...props, name: 'plus' }),
-                        //tabBarStyle: { display: 'none' },
-                    }}
-                />
-                <Tab.Screen
-                    name="SettingStack"
-                    component={SettingStackScreen}
-                    options={{
-                        tabBarIcon: (props) => TabIcon({ ...props, name: 'menu' }),
-                    }}
-                />
-            </Tab.Navigator>
+            <Stack.Navigator initialRouteName="Main" screenOptions={{ headerMode: false }}>
+                <Stack.Screen name="MainScreen" component={MainScreen} />
+                <Stack.Screen name="RecipeListScreen" component={RecipeListScreen} />
+                <Stack.Screen name="RecipeBoardScreen" component={RecipeBoardScreen} />
+                <Stack.Screen name="RecipeIngredientsScreen" component={RecipeIngredientsScreen} />
+                <Stack.Screen name="RecipeAddScreen" component={RecipeAddScreen} />
+                <Stack.Screen name="SearchScreen" component={SearchScreen} />
+                <Stack.Screen name="SettingScreen" component={SettingScreen} />
+            </Stack.Navigator>
         </NavigationContainer>
     );
 };
 export default RootStack;
-
-const MainStack = createStackNavigator();
-const MainStackScreen = () => {
-    return (
-        <MainStack.Navigator
-            screenOptions={{
-                headerShown: false,
-            }}
-        >
-            <MainStack.Screen name="MainScreen" component={MainScreen} />
-            <MainStack.Screen name="RecipeListScreen" component={RecipeListScreen} />
-            <MainStack.Screen name="RecipeBoardScreen" component={RecipeBoardScreen} />
-            <MainStack.Screen name="RecipeIngredientsScreen" component={RecipeIngredientsScreen} />
-            <MainStack.Screen name="RecipeAddScreen" component={RecipeAddScreen} />
-        </MainStack.Navigator>
-    );
-};
-
-const SearchStack = createStackNavigator();
-const SearchStackScreen = () => {
-    return (
-        <SearchStack.Navigator
-            screenOptions={{
-                headerShown: false,
-            }}
-        >
-            <SearchStack.Screen name="SearchScreen" component={SearchScreen} />
-            <SearchStack.Screen name="RecipeBoardScreen" component={RecipeBoardScreen} />
-            <SearchStack.Screen
-                name="RecipeIngredientsScreen"
-                component={RecipeIngredientsScreen}
-            />
-        </SearchStack.Navigator>
-    );
-};
-
-
-const RecipeAddStack = createStackNavigator();
-const RecipeAddStackScreen = () => {
-    return (
-        <RecipeAddStack.Navigator
-        screenOptions={{
-            headerShown: false
-        }}
-        >
-            <RecipeAddStack.Screen name="RecipeAddScreen" component={RecipeAddScreen} />
-        </RecipeAddStack.Navigator>
-    );
-};
-
-const SettingStack = createStackNavigator();
-const SettingStackScreen = () => {
-    return (
-        <SettingStack.Navigator
-            screenOptions={{
-                headerShown: false,
-            }}
-        >
-            <SettingStack.Screen name="SettingScreen" component={SettingScreen} />
-        </SettingStack.Navigator>
-    );
-};

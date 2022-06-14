@@ -59,9 +59,45 @@ const RecipeListScreen = ({ route }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.searchFrame}>
-                <Text style={styles.TitleFont}>{TypeName}</Text>
+            <View style={styles.TopBar}>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <TouchableOpacity
+                        style={styles.TopBtn}
+                        onPress={() => {
+                            navigation.goBack();
+                        }}
+                    >
+                        <Feather name="chevron-left" size={26} color="black" />
+                    </TouchableOpacity>
+                    <Text
+                        style={{
+                            fontSize: height * 20,
+                            fontFamily: 'PretendardBold',
+                            color: '#222222',
+                            marginLeft: width * 4,
+                        }}
+                    >
+                        {TypeName}
+                    </Text>
+                    <View style={styles.TopBtn} />
+                </View>
                 <View style={{ flexDirection: 'row' }}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            navigation.navigate('RecipeAddScreen');
+                        }}
+                        style={styles.TopBtn}
+                    >
+                        <Feather name="plus" size={26} color="black" />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {
+                            navigation.navigate('SearchScreen');
+                        }}
+                        style={styles.TopBtn}
+                    >
+                        <Feather name="search" size={26} color="black" />
+                    </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.TopBtn}
                         onPress={() => {
@@ -72,12 +108,7 @@ const RecipeListScreen = ({ route }) => {
                             });
                         }}
                     >
-                        <Feather
-                            name="filter"
-                            size={30}
-                            color="black"
-                            style={{ marginRight: width * 5 }}
-                        />
+                        <Feather name="filter" size={26} color="black" />
                     </TouchableOpacity>
                 </View>
             </View>
@@ -146,15 +177,14 @@ const RecipeListScreen = ({ route }) => {
 
 const styles = StyleSheet.create({
     container: {
-        //바탕
         flex: 1,
-        alignItems: 'center', //가로정렬 : 중앙
+        alignItems: 'center',
         paddingTop: Platform.OS === 'android' ? height * 40 : 0,
         marginLeft: width * 20,
         marginRight: width * 20,
     },
 
-    searchFrame: {
+    TopBar: {
         height: height * 40, //높이
         width: width * 360, //너비
         flexDirection: 'row', //정렬방향
@@ -164,14 +194,11 @@ const styles = StyleSheet.create({
         paddingBottom: height * 4,
         paddingRight: width * 20,
         paddingLeft: width * 20,
-        borderBottomWidth: 1,
         borderColor: 'gray',
     },
     TopBtn: {
-        alignItems: 'center', //가로정렬
-        justifyContent: 'center', //세로정렬
-        marginRight: width * 2,
-        marginLeft: width * 2,
+        justifyContent: 'center',
+        padding: 4,
     },
     recipeList: {
         marginBottom: height * 4,

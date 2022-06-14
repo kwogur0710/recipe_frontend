@@ -16,6 +16,7 @@ import { height, width, marginWidth } from '../../config/globalStyles';
 import styles from '../components/MainComponents/styles';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { RecipeData } from '../../config/RecipeData';
+import { Feather } from '@expo/vector-icons';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 const wait = (timeout) => {
     return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -109,7 +110,7 @@ const MainScreen = ({ name }) => {
                             width: width * 54,
                             height: width * 54,
                             borderRadius: 100,
-                            borderColor:'#333333',
+                            borderColor: '#333333',
                             borderWidth: 1,
                             justifyContent: 'center',
                             alignItems: 'center',
@@ -165,8 +166,8 @@ const MainScreen = ({ name }) => {
                 >
                     <Image
                         style={{
-                            height: height * 130,
-                            width: width * 240,
+                            height: width * 140,
+                            width: width * 250,
                             marginLeft: width * 2,
                             borderRadius: 6,
                         }}
@@ -190,6 +191,16 @@ const MainScreen = ({ name }) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.TopBar}>
+                <View style={{ width: width * 60 }}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            navigation.navigate('SettingScreen');
+                        }}
+                        style={styles.TopBtn}
+                    >
+                        <Feather name="menu" size={26} color="black" />
+                    </TouchableOpacity>
+                </View>
                 <Text
                     style={{
                         fontSize: height * 20,
@@ -199,6 +210,24 @@ const MainScreen = ({ name }) => {
                 >
                     재료로 찾는 레시피
                 </Text>
+                <View style={{ width: width * 60, flexDirection: 'row' }}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            navigation.navigate('SearchScreen');
+                        }}
+                        style={styles.TopBtn}
+                    >
+                        <Feather name="search" size={26} color="black" />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {
+                            navigation.navigate('RecipeAddScreen');
+                        }}
+                        style={{ padding: 4 }}
+                    >
+                        <Feather name="plus" size={26} color="black" />
+                    </TouchableOpacity>
+                </View>
             </View>
             <ScrollView
                 style={{ width: '100%' }}

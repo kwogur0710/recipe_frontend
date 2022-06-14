@@ -22,7 +22,7 @@ const wait = (timeout) => {
     return new Promise((resolve) => setTimeout(resolve, timeout));
 };
 const SearchScreen = ({ route }) => {
-    console.log('ingredient',ingredient);
+    console.log('ingredient', ingredient);
     const navigation = useNavigation();
     const [refreshing, setRefreshing] = React.useState(false);
     const [ingredient, setingredient] = useState(route.params?.ingredient);
@@ -37,7 +37,7 @@ const SearchScreen = ({ route }) => {
     const [search, setSearch] = useState('');
     const onUpdateSearch = (text) => {
         setSearch(text);
-        console.log('search',search);
+        console.log('search', search);
     };
 
     const SearchFilter = (item) => {
@@ -66,7 +66,7 @@ const SearchScreen = ({ route }) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.searchFrame}>
-                <Feather name="search" size={30} color="black" style={{ marginRight: width * 5 }} />
+                <Feather name="search" size={26} color="black" style={{ marginRight: width * 5 }} />
                 <TextInput
                     placeholder={'레시피 제목을 입력하세요'}
                     placeholderTextColor={'#959595'}
@@ -90,9 +90,8 @@ const SearchScreen = ({ route }) => {
                 >
                     <Feather
                         name="filter"
-                        size={30}
+                        size={26}
                         color="black"
-                        style={{ marginRight: width * 5 }}
                     />
                 </TouchableOpacity>
             </View>
@@ -158,9 +157,10 @@ const SearchScreen = ({ route }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        height: '100%',
-        paddingTop: Platform.OS === 'android' ? height * 40 : 0,
         alignItems: 'center',
+        paddingTop: Platform.OS === 'android' ? height * 40 : 0,
+        marginLeft: width * 20,
+        marginRight: width * 20,
     },
     searchFrame: {
         height: height * 40, //높이
@@ -172,8 +172,8 @@ const styles = StyleSheet.create({
         paddingBottom: height * 4,
         paddingRight: width * 10,
         paddingLeft: width * 10,
-        backgroundColor:'#e8e8e8',
-        borderRadius:16,
+        backgroundColor: '#e8e8e8',
+        borderRadius: 16,
     },
 
     TopBtn: {
@@ -193,10 +193,15 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
     },
     recipeList: {
-        paddingTop: height * 6,
-        paddingBottom: height * 6,
-        borderBottomWidth: 1,
+        marginBottom: height * 4,
+        marginTop: height * 4,
+        borderRadius: 10,
         borderColor: 'gray',
+        backgroundColor: '#ffffff',
+        shadowColor: '#999999',
+        shadowRadius: 2,
+        shadowOffset: { height: 4, width: 0 },
+        shadowOpacity: 0.3,
     },
     recipeListFrame: {
         flexDirection: 'row',
@@ -227,7 +232,7 @@ const styles = StyleSheet.create({
     },
     materialTextFont: {
         fontSize: height * 14,
-        height: height * 20,
+        height: height * 18,
         marginBottom: height * 2,
         fontFamily: 'PretendardRegular',
     },

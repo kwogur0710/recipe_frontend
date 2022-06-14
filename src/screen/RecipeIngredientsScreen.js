@@ -70,18 +70,34 @@ const RecipeIngredientsScreen = ({ route }) => {
     };
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.view}>
-                <Feather name="search" size={18} color="black" style={{marginLeft:width*4, marginRight:width*4}} />
+            <View style={styles.searchFrame}>
+                <Feather name="search" size={26} color="black" style={{ marginRight: width * 5 }} />
                 <TextInput
                     placeholder={'재료를 입력하세요'}
                     placeholderTextColor={'#D5D5D5'}
                     containerStyle={styles.searchBarContainer}
                     onChangeText={onUpdateSearch}
-                    style={{ fontSize: 15, color: 'black', fontFamily: 'PretendardSemiBold' }}
+                    style={{
+                        fontSize: 15,
+                        fontFamily: 'PretendardSemiBold',
+                        width: width * 230,
+                    }}
                     value={search}
                 />
+                <TouchableOpacity
+                    style={styles.TopBtn}
+                    onPress={() => {
+                        navigation.navigate('RecipeIngredientsScreen', {
+                            ingredient: ingredient,
+                            screen: 'searchScreen',
+                        });
+                    }}
+                >
+                    <Feather name="filter" size={26} color="black" />
+                </TouchableOpacity>
             </View>
             <SectionList
+                style={{ width: '100%' }}
                 sections={IngredientsData}
                 keyExtractor={(item, index) => index}
                 renderSectionHeader={({ section }) => (
@@ -101,20 +117,11 @@ const RecipeIngredientsScreen = ({ route }) => {
                                 onPress={() => {
                                     SelectHandler(item);
                                 }}
-                                style={{
-                                    justifyContent: 'space-between',
-                                    flexDirection: 'row',
-                                    paddingRight: 10,
-                                }}
+                                style={styles.itemTextBox}
                             >
-                                <Text style={styles.item}>{item}</Text>
+                                <Text style={styles.itemText}>{item}</Text>
                                 {ingredient && ingredient.some((value) => value == item) ? (
-                                    <Feather
-                                        name="check"
-                                        size={24}
-                                        color="black"
-                                        style={{ padding: 9 }}
-                                    />
+                                    <Feather name="check" size={24} color="black" />
                                 ) : null}
                             </TouchableOpacity>
                         )
@@ -122,6 +129,7 @@ const RecipeIngredientsScreen = ({ route }) => {
                 }}
             />
             <TouchableOpacity
+                style={{ width: '100%', borderRadius: 10 }}
                 onPress={() => {
                     backScreen == 'recipeListScreen'
                         ? navigation.navigate('RecipeListScreen', {
@@ -146,28 +154,66 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         height: '100%',
+        alignItems: 'center',
         paddingTop: Platform.OS === 'android' ? height * 40 : 0,
     },
+    searchFrame: {
+        height: height * 40, //높이
+        width: width * 320, //너비
+        flexDirection: 'row', //정렬방향
+        alignItems: 'center', //가로정렬
+        justifyContent: 'center', //세로정렬
+        paddingTop: height * 4,
+        paddingBottom: height * 4,
+        paddingRight: width * 10,
+        paddingLeft: width * 10,
+        backgroundColor: '#e8e8e8',
+        borderRadius: 16,
+    },
+    TypeNameFont: {
+        fontSize: height * 20,
+        fontFamily: 'PretendardBold',
+    },
+    searchBarContainer: {
+        paddingLeft: 15,
+        paddingRight: 15,
+        paddingTop: 10,
+        paddingBottom: 10,
+    },
+    TopBtn: {
+        alignItems: 'center', //가로정렬
+        justifyContent: 'center', //세로정렬
+        marginRight: width * 2,
+        marginLeft: width * 2,
+    },
+
     sectionHeader: {
-        paddingTop: 2,
-        paddingLeft: 10,
-        paddingRight: 10,
-        paddingBottom: 2,
-        fontSize: 18,
+        paddingTop: height * 2,
+        paddingBottom: height * 2,
+        paddingLeft: width * 20,
+        paddingRight: width * 20,
+        fontSize: height * 18,
         fontWeight: 'bold',
         backgroundColor: 'rgba(255, 255, 255,1)',
         fontFamily: 'PretendardSemiBold',
     },
-    item: {
-        padding: 10,
-        fontSize: 18,
-        height: 44,
+    itemTextBox: {
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        paddingTop: height * 6,
+        paddingBottom: height * 6,
+        paddingLeft: width * 20,
+        paddingRight: width * 20,
+    },
+    itemText: {
+        fontSize: height * 16,
         fontFamily: 'PretendardRegular',
     },
     view: {
         margin: 10,
-        flexDirection:'row',
-        alignItems:'center',
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     searchBarContainer: {
         paddingLeft: 15,
@@ -196,7 +242,7 @@ const styles = StyleSheet.create({
     },
     applyFont: {
         fontSize: 20,
-        color:'#ffffff',
+        color: '#ffffff',
         fontFamily: 'PretendardSemiBold',
     },
 });

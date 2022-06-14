@@ -10,8 +10,10 @@ import {
 } from 'react-native';
 import { height, marginWidth, width } from '../../config/globalStyles';
 import { Feather, Entypo } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const SettingScreen = () => {
+    const navigation = useNavigation();
     const showToast = () => {
         Platform.OS === 'android'
             ? ToastAndroid.show('준비중인 기능입니다!', ToastAndroid.SHORT)
@@ -19,6 +21,29 @@ const SettingScreen = () => {
     };
     return (
         <SafeAreaView style={styles.container}>
+            <View style={styles.TopBar}>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <TouchableOpacity
+                        style={styles.TopBtn}
+                        onPress={() => {
+                            navigation.goBack();
+                        }}
+                    >
+                        <Feather name="chevron-left" size={26} color="black" />
+                    </TouchableOpacity>
+                    <Text
+                        style={{
+                            fontSize: height * 20,
+                            fontFamily: 'PretendardBold',
+                            color: '#222222',
+                            marginLeft: width * 4,
+                        }}
+                    >
+                        설정
+                    </Text>
+                    <View style={styles.TopBtn} />
+                </View>
+            </View>
             <TouchableOpacity onPress={() => showToast()}>
                 <View style={styles.profileFrame}>
                     <Image
@@ -67,6 +92,23 @@ const styles = StyleSheet.create({
         alignItems: 'center', //가로정렬 : 중앙
         paddingTop: Platform.OS === 'android' ? 40 : 0,
         marginBottom: height * 20, //마진 : 10%
+    },
+
+    TopBar: {
+        height: height * 40, //높이
+        width: width * 360, //너비
+        flexDirection: 'row', //정렬방향
+        alignItems: 'center', //가로정렬
+        justifyContent: 'space-between', //세로정렬
+        paddingTop: height * 4,
+        paddingBottom: height * 4,
+        paddingRight: width * 20,
+        paddingLeft: width * 20,
+        borderColor: 'gray',
+    },
+    TopBtn: {
+        width: width * 30,
+        padding: 4,
     },
     profileFrame: {
         flexDirection: 'row',

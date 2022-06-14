@@ -17,14 +17,17 @@ const styles = StyleSheet.create({
         width: width * 360, //너비
         flexDirection: 'row', //정렬방향
         alignItems: 'center', //가로정렬
-        justifyContent: 'center', //세로정렬
+        justifyContent: 'space-between', //세로정렬
         paddingTop: height * 4,
         paddingBottom: height * 4,
         paddingRight: width * 20,
         paddingLeft: width * 20,
         borderColor: 'gray',
     },
-
+    TopBtn:{
+        justifyContent: 'center',
+        padding:4,
+    },
     weekRecipeFrame: {
         //금주의 레시피 프레임
         width: '100%', //너비

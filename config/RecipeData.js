@@ -79,7 +79,7 @@ export const RecipeData = [
         "시금치",
         "달걀",
       ],
-      amout: [
+      amount: [
         "김밥용김",
         "밥 적당량",
         "맛살 1팩",
