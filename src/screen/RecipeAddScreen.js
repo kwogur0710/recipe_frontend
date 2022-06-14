@@ -467,8 +467,6 @@ const RecipeAddScreen = () => {
                                 placeholder={'재료 양'}
                                 placeholderTextColor={'#999999'}
                             />
-                        </View>
-                        <View style={{width:'100%', justifyContent:'center', alignItems:'center'}}>
                             <TouchableOpacity
                                 onPress={() => {
                                     !materialA && !amountA
@@ -476,25 +474,14 @@ const RecipeAddScreen = () => {
                                         : (materialAdd(), console.log('재료 추가 Press'));
                                 }}
                                 style={{
-                                    width: width * 100,
+                                    width: width * 30,
                                     justifyContent: 'center',
                                     alignItems: 'center',
-                                    marginTop: height * 4,
-                                    marginBottom: height * 14,
-                                    borderRadius: 10,
                                     backgroundColor: '#8721be',
+                                    borderRadius:10,
                                 }}
                             >
-                                <Text
-                                    style={{
-                                        fontSize: height * 16,
-                                        fontFamily: 'PretendardSemiBold',
-                                        padding: height * 4,
-                                        color: '#ffffff',
-                                    }}
-                                >
-                                    재료 추가
-                                </Text>
+                                <Feather name="plus" size={20} color="white" />
                             </TouchableOpacity>
                         </View>
                     </View>
