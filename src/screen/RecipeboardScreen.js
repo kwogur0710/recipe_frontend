@@ -18,10 +18,8 @@ const RecipeBoardScreen = ({ route }) => {
     const [Recipe, setRecipe] = useState(route.params?.item);
     useEffect(() => {
         setRecipe(route.params?.item), [route.params?.item];
-        console.log(Recipe);
+        console.log('RecipeBoardScreen', Recipe.id, Recipe.title);
     });
-
-    console.log(Recipe);
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.TopBar}>

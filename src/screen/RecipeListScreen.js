@@ -225,6 +225,7 @@ const styles = StyleSheet.create({
     recipeListTextFrame: {
         paddingLeft: width * 4,
         paddingRight: width * 4,
+        paddingTop: height * 2,
         width: width * 214,
         height: height * 80,
     },

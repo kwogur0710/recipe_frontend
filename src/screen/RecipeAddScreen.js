@@ -64,7 +64,6 @@ const RecipeAddScreen = () => {
             ...inputs,
             [keyvalue]: text,
         });
-        console.log(keyvalue, text);
     };
 
     const pressSave = (value, name) => {
@@ -347,7 +346,8 @@ const RecipeAddScreen = () => {
                         {!imageUrl ? (
                             <View
                                 style={{
-                                    padding: 20,
+                                    width: width * 320,
+                                    height: width * 320,
                                     borderWidth: 1,
                                     borderRadius: 10,
                                     justifyContent: 'center',
@@ -603,9 +603,8 @@ const styles = StyleSheet.create({
         width: '100%',
         paddingLeft: width * 8,
         paddingRight: width * 8,
-        paddingTop: height * 8,
-        paddingBottom: height * 8,
-        marginBottom: height * 10,
+        paddingTop: height * 14,
+        paddingBottom: height * 14,
         fontSize: height * 14,
         color: '#333333',
         borderColor: '#999999',
@@ -661,7 +660,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
     },
     TextInputBox: {
-        width: '100%',
+        width: width*320,
         height: height * 200,
         paddingLeft: width * 8,
         paddingRight: width * 8,
@@ -671,7 +670,7 @@ const styles = StyleSheet.create({
         textAlignVertical: 'top',
         borderColor: '#999999',
         borderWidth: 1,
-        borderRadius: 10,
+        borderRadius: 5,
         fontFamily: 'PretendardRegular',
         color: '#333333',
         fontSize: height * 14,
