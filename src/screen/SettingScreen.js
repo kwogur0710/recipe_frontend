@@ -11,6 +11,8 @@ import {
 import { height, marginWidth, width } from '../../config/globalStyles';
 import { Feather, Entypo } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { RecipeList } from '../components/RecipeListComponents/RecipeList';
+import { RecipeData } from '../../config/RecipeData';
 
 const SettingScreen = () => {
     const navigation = useNavigation();
@@ -81,6 +83,8 @@ const SettingScreen = () => {
                     <Text style={styles.SettingText}> 설정 </Text>
                 </View>
             </TouchableOpacity>
+            <RecipeList item={RecipeData[1]} />
+            
         </SafeAreaView>
     );
 };
