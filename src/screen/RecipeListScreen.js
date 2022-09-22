@@ -19,6 +19,7 @@ import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { RecipeData } from '../../config/RecipeData';
 import { Feather } from '@expo/vector-icons';
+import { RecipeList } from '../components/RecipeListComponents/RecipeList';
 
 const wait = (timeout) => {
     return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -133,39 +134,7 @@ const RecipeListScreen = ({ route }) => {
                                     })
                                 }
                             >
-                                <View style={styles.recipeList}>
-                                    <View style={styles.recipeListFrame}>
-                                        <View>
-                                            <Image source={item.img} style={styles.recipeListImg} />
-                                        </View>
-
-                                        <View style={styles.recipeListTextFrame}>
-                                            <Text style={styles.recipeTitleTextFont}>
-                                                {item.title}
-                                            </Text>
-                                            <Text style={styles.materialTextFont}>
-                                                {item.material.toString().replace(/\,/gi, ' ')}
-                                            </Text>
-                                            <View style={{ flexDirection: 'row' }}>
-                                                <View style={{ flex: 1 }}>
-                                                    <Text style={styles.recipeTextFont}>
-                                                        시간 : {item.time}분
-                                                    </Text>
-                                                </View>
-                                                <View style={{ flex: 1 }}>
-                                                    <Text style={styles.recipeTextFont}>
-                                                        난이도 : {item.difficulty}
-                                                    </Text>
-                                                </View>
-                                                <View style={{ flex: 1 }}>
-                                                    <Text style={styles.recipeTextFont}>
-                                                        인분 : {item.serving}인분
-                                                    </Text>
-                                                </View>
-                                            </View>
-                                        </View>
-                                    </View>
-                                </View>
+                                <RecipeList img={item.img} title={item.title} item={item} />
                             </TouchableOpacity>
                         ) : null;
                     }}
@@ -180,8 +149,9 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         paddingTop: Platform.OS === 'android' ? height * 40 : 0,
-        marginLeft: width * 20,
-        marginRight: width * 20,
+        paddingLeft: width * 20,
+        paddingRight: width * 20,
+        backgroundColor:'#FFFFFF'
     },
 
     TopBar: {
