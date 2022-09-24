@@ -15,6 +15,7 @@ import { height, marginWidth, width } from '../../config/globalStyles';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { IngredientsData } from '../../config/RecipeData';
+import { TopBar } from '../components/MainComponents/MainComponents';
 
 const RecipeIngredientsScreen = ({ route }) => {
     const navigation = useNavigation();
@@ -70,32 +71,13 @@ const RecipeIngredientsScreen = ({ route }) => {
     };
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.searchFrame}>
-                <Feather name="search" size={26} color="black" style={{ marginRight: width * 5 }} />
-                <TextInput
-                    placeholder={'재료를 입력하세요'}
-                    placeholderTextColor={'#D5D5D5'}
-                    containerStyle={styles.searchBarContainer}
-                    onChangeText={onUpdateSearch}
-                    style={{
-                        fontSize: 15,
-                        fontFamily: 'PretendardSemiBold',
-                        width: width * 230,
-                    }}
-                    value={search}
-                />
-                <TouchableOpacity
-                    style={styles.TopBtn}
-                    onPress={() => {
-                        navigation.navigate('RecipeIngredientsScreen', {
-                            ingredient: ingredient,
-                            screen: 'searchScreen',
-                        });
-                    }}
-                >
-                    <Feather name="filter" size={26} color="black" />
-                </TouchableOpacity>
-            </View>
+            <TopBar
+                screen="RecipeIngredients"
+                title="양념으로 검색하기"
+                search={true}
+                setSearch={setSearch}
+                onUpdateSearch={onUpdateSearch}
+            />
             <SectionList
                 style={{ width: '100%' }}
                 sections={IngredientsData}
@@ -110,7 +92,7 @@ const RecipeIngredientsScreen = ({ route }) => {
                     </TouchableOpacity>
                 )}
                 renderItem={({ item, section }) => {
-                    return item.includes(search) || search == '' ? (
+                    return !search || item.includes(search) ? (
                         //글자가 같고, null이 아닐때
                         selectedTitle.some((value) => value === section.title) ? null : (
                             <TouchableOpacity

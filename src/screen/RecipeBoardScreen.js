@@ -12,9 +12,9 @@ import { height, marginWidth, width } from '../../config/globalStyles';
 import { useNavigation } from '@react-navigation/native';
 import { RecipeData } from '../../config/RecipeData';
 import { Feather } from '@expo/vector-icons';
+import { TopBar } from '../components/MainComponents/MainComponents';
 
-const RecipeBoardScreen = ({ route }) => {
-    const navigation = useNavigation();
+const RecipeBoardScreen = ({ route, navigation }) => {
     const [Recipe, setRecipe] = useState(route.params?.item);
     useEffect(() => {
         setRecipe(route.params?.item), [route.params?.item];
@@ -22,30 +22,7 @@ const RecipeBoardScreen = ({ route }) => {
     });
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.TopBar}>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <TouchableOpacity
-                        style={styles.TopBtn}
-                        onPress={() => {
-                            navigation.goBack();
-                        }}
-                    >
-                        <Feather name="chevron-left" size={26} color="black" />
-                    </TouchableOpacity>
-                    <Text
-                        style={{
-                            fontSize: height * 20,
-                            fontFamily: 'PretendardBold',
-                            color: '#222222',
-                            marginLeft: width * 4,
-                        }}
-                    >
-                        레시피 글쓰기
-                    </Text>
-                    <View style={styles.TopBtn} />
-                </View>
-                <View style={styles.TopBtn} />
-            </View>
+            <TopBar screen='RecipeBoard' title='레시피 보기' />
             <ScrollView style={{ width: '100%' }}>
                 <View>
                     <Image style={styles.img} resizeMode="cover" source={Recipe.img} />

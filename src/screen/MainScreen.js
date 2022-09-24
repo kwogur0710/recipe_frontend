@@ -18,13 +18,12 @@ import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { RecipeData } from '../../config/RecipeData';
 import { Feather } from '@expo/vector-icons';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
+import { TopBar } from '../components/MainComponents/MainComponents';
 const wait = (timeout) => {
     return new Promise((resolve) => setTimeout(resolve, timeout));
 };
 
-const MainScreen = ({ name }) => {
-    const navigation = useNavigation();
-
+const MainScreen = ({ navigation }) => {
     const isFocused = useIsFocused();
     const weekTitle = ['김치찌개', '돈코츠 라멘', '짜장면'];
     const [num, setNum] = useState(0);
@@ -190,45 +189,7 @@ const MainScreen = ({ name }) => {
     };
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.TopBar}>
-                <View style={{ width: width * 60 }}>
-                    <TouchableOpacity
-                        onPress={() => {
-                            navigation.navigate('SettingScreen');
-                        }}
-                        style={styles.TopBtn}
-                    >
-                        <Feather name="menu" size={26} color="black" />
-                    </TouchableOpacity>
-                </View>
-                <Text
-                    style={{
-                        fontSize: height * 20,
-                        fontFamily: 'PretendardBold',
-                        color: '#222222',
-                    }}
-                >
-                    재료로 찾는 레시피
-                </Text>
-                <View style={{ width: width * 60, flexDirection: 'row' }}>
-                    <TouchableOpacity
-                        onPress={() => {
-                            navigation.navigate('SearchScreen');
-                        }}
-                        style={styles.TopBtn}
-                    >
-                        <Feather name="search" size={26} color="black" />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={() => {
-                            navigation.navigate('RecipeAddScreen');
-                        }}
-                        style={styles.TopBtn}
-                    >
-                        <Feather name="plus" size={26} color="black" />
-                    </TouchableOpacity>
-                </View>
-            </View>
+            <TopBar screen="Main" title="SAU-RECIPE" />
             <ScrollView
                 style={{ width: '100%' }}
                 refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}

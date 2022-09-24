@@ -6,7 +6,6 @@ import {
     Text,
     View,
     TouchableOpacity,
-    Button,
     Colors,
     FlatList,
     SafeAreaView,
@@ -17,20 +16,25 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { RecipeData } from '../../config/RecipeData';
 import { Feather } from '@expo/vector-icons';
 import { RecipeList } from '../components/RecipeListComponents/RecipeList';
+import { TopBar } from '../components/MainComponents/MainComponents';
+import { RecipeData, search } from '../../config/RecipeData';
 
 const wait = (timeout) => {
     return new Promise((resolve) => setTimeout(resolve, timeout));
 };
 
-const RecipeListScreen = ({ route }) => {
-    const navigation = useNavigation();
-
+const RecipeListScreen = ({ route, props, navigation }) => {
     const TypeName = route.params?.type;
     const [RecipeID, setRecipeID] = useState(['']);
+
     const [ingredient, setingredient] = useState(route.params?.ingredient);
+
+    const [search, setSearch] = useState('');
+    const onUpdateSearch = (text) => {
+        setSearch(text);
+    };
 
     useEffect(() => {
         setingredient(route.params?.ingredient);
@@ -40,7 +44,7 @@ const RecipeListScreen = ({ route }) => {
     const [refreshing, setRefreshing] = React.useState(false);
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
-        wait(2000).then(() => setRefreshing(false));
+        wait(1000).then(() => setRefreshing(false));
     }, []);
 
     const RecipeFilter = (item) => {
@@ -55,64 +59,47 @@ const RecipeListScreen = ({ route }) => {
         });
         return a;
     };
+    const SearchFilter = (item) => {
+        let a = 'false';
+        if (a === 'false') {
+            if (item.title.includes(search)) {
+                a = 'true';
+            }
+        }
+        return a;
+    };
+    const IngredientFilter = (item) => {
+        if (ingredient) {
+            let a = 'false';
+            item.material.forEach((element) => {
+                if (a === 'false') {
+                    if (ingredient.includes(element)) {
+                        a = 'true';
+                    }
+                }
+            });
+            return a;
+        } else {
+            return false;
+        }
+    };
     console.log('id', RecipeID);
     console.log('RecipeListScreen', TypeName, ingredient);
 
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.TopBar}>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <TouchableOpacity
-                        style={styles.TopBtn}
-                        onPress={() => {
-                            navigation.goBack();
-                        }}
-                    >
-                        <Feather name="chevron-left" size={26} color="black" />
-                    </TouchableOpacity>
-                    <Text
-                        style={{
-                            fontSize: height * 20,
-                            fontFamily: 'PretendardBold',
-                            color: '#222222',
-                            marginLeft: width * 4,
-                        }}
-                    >
-                        {TypeName}
-                    </Text>
-                    <View style={styles.TopBtn} />
-                </View>
-                <View style={{ flexDirection: 'row' }}>
-                    <TouchableOpacity
-                        onPress={() => {
-                            navigation.navigate('RecipeAddScreen');
-                        }}
-                        style={styles.TopBtn}
-                    >
-                        <Feather name="plus" size={26} color="black" />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={() => {
-                            navigation.navigate('SearchScreen');
-                        }}
-                        style={styles.TopBtn}
-                    >
-                        <Feather name="search" size={26} color="black" />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.TopBtn}
-                        onPress={() => {
-                            navigation.navigate('RecipeIngredientsScreen', {
-                                ingredient: ingredient,
-                                type: TypeName,
-                                screen: 'recipeListScreen',
-                            });
-                        }}
-                    >
-                        <Feather name="filter" size={26} color="black" />
-                    </TouchableOpacity>
-                </View>
-            </View>
+            <TopBar
+                screen="RecipeList"
+                title={TypeName}
+                navigation={navigation}
+                ingredient={ingredient}
+                setSearch={setSearch}
+                onUpdateSearch={onUpdateSearch}
+                search={true}
+                add={true}
+                filter={true}
+
+            />
             <View style={{ marginTop: height * 4, flex: 1 }}>
                 <FlatList
                     data={
@@ -125,8 +112,10 @@ const RecipeListScreen = ({ route }) => {
                     }
                     keyExtractor={(item) => String(item.id)}
                     renderItem={({ item }) => {
-                        return !(ingredient && ingredient.length > 0) ||
-                            RecipeFilter(item) === 'true' ? (
+                        return (!(search && search.length > 0) && !ingredient) ||
+                            (!search && IngredientFilter(item) === 'true') ||
+                            (!(ingredient /*.length > 0*/) && SearchFilter(item) === 'true') ||
+                            (IngredientFilter(item) === 'true' && SearchFilter(item) === 'true') ? (
                             <TouchableOpacity
                                 onPress={() =>
                                     navigation.navigate('RecipeBoardScreen', {
@@ -151,7 +140,7 @@ const styles = StyleSheet.create({
         paddingTop: Platform.OS === 'android' ? height * 40 : 0,
         paddingLeft: width * 20,
         paddingRight: width * 20,
-        backgroundColor:'#FFFFFF'
+        backgroundColor: '#FFFFFF',
     },
 
     TopBar: {

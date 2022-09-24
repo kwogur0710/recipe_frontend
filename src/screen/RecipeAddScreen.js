@@ -23,8 +23,7 @@ const GetId = () => {
     return Math.floor(Math.random() * 10000);
 };
 
-const RecipeAddScreen = () => {
-    const navigation = useNavigation();
+const RecipeAddScreen = ({navigation}) => {
     const [visibleModal, setVisibleModal] = useState(false);
     const [visibleMaterialModal, setVisibleMaterialModal] = useState(false);
     const showToast = (text) => {

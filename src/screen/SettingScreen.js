@@ -13,6 +13,7 @@ import { Feather, Entypo } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { RecipeList } from '../components/RecipeListComponents/RecipeList';
 import { RecipeData } from '../../config/RecipeData';
+import { TopBar } from '../components/MainComponents/MainComponents';
 
 const SettingScreen = () => {
     const navigation = useNavigation();
@@ -23,29 +24,7 @@ const SettingScreen = () => {
     };
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.TopBar}>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <TouchableOpacity
-                        style={styles.TopBtn}
-                        onPress={() => {
-                            navigation.goBack();
-                        }}
-                    >
-                        <Feather name="chevron-left" size={26} color="black" />
-                    </TouchableOpacity>
-                    <Text
-                        style={{
-                            fontSize: height * 20,
-                            fontFamily: 'PretendardBold',
-                            color: '#222222',
-                            marginLeft: width * 4,
-                        }}
-                    >
-                        설정
-                    </Text>
-                    <View style={styles.TopBtn} />
-                </View>
-            </View>
+        <TopBar screen='Setting' title='설정' />
             <TouchableOpacity onPress={() => showToast()}>
                 <View style={styles.profileFrame}>
                     <Image
@@ -83,7 +62,6 @@ const SettingScreen = () => {
                     <Text style={styles.SettingText}> 설정 </Text>
                 </View>
             </TouchableOpacity>
-            <RecipeList item={RecipeData[1]} />
             
         </SafeAreaView>
     );

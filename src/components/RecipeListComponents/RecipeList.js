@@ -5,7 +5,6 @@ import { useNavigation } from '@react-navigation/native';
 import { RecipeData } from '../../../config/RecipeData';
 
 export const RecipeList = (props) => {
-    console.log(props);
     return (
         <View style={styles.container}>
             <Image style={styles.titleimg} source={props.item.img} />

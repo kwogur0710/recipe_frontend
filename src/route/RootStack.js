@@ -10,7 +10,6 @@ import RecipeIngredientsScreen from '../screen/RecipeIngredientsScreen';
 import RecipeBoardScreen from '../screen/RecipeBoardScreen';
 import RecipeAddScreen from '../screen/RecipeAddScreen';
 import SettingScreen from '../screen/SettingScreen';
-import SearchScreen from '../screen/SearchScreen';
 import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 
 const Stack = createStackNavigator();
@@ -29,7 +28,6 @@ const RootStack = () => {
                 <Stack.Screen name="RecipeBoardScreen" component={RecipeBoardScreen} />
                 <Stack.Screen name="RecipeIngredientsScreen" component={RecipeIngredientsScreen} />
                 <Stack.Screen name="RecipeAddScreen" component={RecipeAddScreen} />
-                <Stack.Screen name="SearchScreen" component={SearchScreen} />
                 <Stack.Screen name="SettingScreen" component={SettingScreen} />
             </Stack.Navigator>
         </NavigationContainer>
