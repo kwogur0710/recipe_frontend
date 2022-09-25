@@ -12,7 +12,7 @@ import { height, marginWidth, width } from '../../config/globalStyles';
 import { useNavigation } from '@react-navigation/native';
 import { RecipeData } from '../../config/RecipeData';
 import { Feather } from '@expo/vector-icons';
-import { TopBar } from '../components/MainComponents/MainComponents';
+import { TopBar } from '../components/MainComponents/TopBar';
 
 const RecipeBoardScreen = ({ route, navigation }) => {
     const [Recipe, setRecipe] = useState(route.params?.item);
@@ -22,22 +22,33 @@ const RecipeBoardScreen = ({ route, navigation }) => {
     });
     return (
         <SafeAreaView style={styles.container}>
-            <TopBar screen='RecipeBoard' title='레시피 보기' />
+            <TopBar screen="RecipeBoard" title={Recipe.title} />
             <ScrollView style={{ width: '100%' }}>
-                <View>
-                    <Image style={styles.img} resizeMode="cover" source={Recipe.img} />
-                </View>
-                <View style={styles.profileImgView}>
-                    <Image
-                        style={styles.profileImg}
-                        source={require('../../image/icon/profile.png')}
-                    />
-                </View>
+                <Image style={styles.img} resizeMode="cover" source={Recipe.img} />
                 <View style={styles.RecipeTextView}>
-                    <Text style={styles.TitleText}>{Recipe.title}</Text>
-                    <Text style={styles.SubText}>시간 : {Recipe.time} 분</Text>
-                    <Text style={styles.SubText}>난이도 : {Recipe.difficulty} 단계</Text>
-                    <Text style={styles.SubText}>인분 : {Recipe.serving} 인분</Text>
+                    <View style={styles.iconView}>
+                        <View style={styles.iconBox}>
+                            <Image
+                                source={require('../../image/icon/time.png')}
+                                style={styles.iconImage}
+                            />
+                            <Text style={styles.SubText}> {Recipe.time} 분</Text>
+                        </View>
+                        <View style={styles.iconBox}>
+                            <Image
+                                source={require('../../image/icon/difficulty.png')}
+                                style={styles.iconImage}
+                            />
+                            <Text style={styles.SubText}> {Recipe.difficulty} 단계</Text>
+                        </View>
+                        <View style={styles.iconBox}>
+                            <Image
+                                source={require('../../image/icon/serving.png')}
+                                style={styles.iconImage}
+                            />
+                            <Text style={styles.SubText}> {Recipe.serving} 인분</Text>
+                        </View>
+                    </View>
                     <View style={styles.border} />
                     <Text style={styles.SubTitleText}>재료</Text>
                     <Text style={styles.ContentText}>
@@ -105,7 +116,18 @@ const styles = StyleSheet.create({
         paddingTop: height * 6,
         marginBottom: height * 6,
         width: '100%',
-        top: height * 40,
+    },
+    iconView: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+    },
+    iconBox: {
+        flexDirection: 'row',
+    },
+    iconImage: {
+        width: height * 20,
+        height: height * 20,
     },
     border: {
         borderTopWidth: height * 2,

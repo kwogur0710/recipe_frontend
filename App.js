@@ -21,8 +21,8 @@ export default function App() {
         PretendardThin: require('./assets/fonts/Pretendard-Thin.ttf'),
         PretendardVariable: require('./assets/fonts/PretendardVariable.ttf'),
     });
-    
-    console.log(fontsLoaded);
+
+    console.log('Font Ready :', fontsLoaded);
 
     return (
       fontsLoaded ? <RootStack /> : <AppLoading />

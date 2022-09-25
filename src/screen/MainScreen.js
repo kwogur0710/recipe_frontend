@@ -18,7 +18,7 @@ import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { RecipeData } from '../../config/RecipeData';
 import { Feather } from '@expo/vector-icons';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
-import { TopBar } from '../components/MainComponents/MainComponents';
+import { TopBar } from '../components/MainComponents/TopBar';
 const wait = (timeout) => {
     return new Promise((resolve) => setTimeout(resolve, timeout));
 };

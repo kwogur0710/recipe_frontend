@@ -10,6 +10,8 @@ import RecipeIngredientsScreen from '../screen/RecipeIngredientsScreen';
 import RecipeBoardScreen from '../screen/RecipeBoardScreen';
 import RecipeAddScreen from '../screen/RecipeAddScreen';
 import SettingScreen from '../screen/SettingScreen';
+import LogInScreen from '../screen/LogInScreen';
+import SignUpScreen from '../screen/SignUpScreen';
 import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 
 const Stack = createStackNavigator();
@@ -22,7 +24,9 @@ const TabIcon = ({ name, size, color }) => {
 const RootStack = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Main" screenOptions={{ headerMode: false }}>
+            <Stack.Navigator initialRouteName="LogInScreen" screenOptions={{ headerMode: false }}>
+                <Stack.Screen name="LogInScreen" component={LogInScreen} />
+                <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
                 <Stack.Screen name="MainScreen" component={MainScreen} />
                 <Stack.Screen name="RecipeListScreen" component={RecipeListScreen} />
                 <Stack.Screen name="RecipeBoardScreen" component={RecipeBoardScreen} />

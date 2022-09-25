@@ -13,7 +13,7 @@ import { Feather, Entypo } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { RecipeList } from '../components/RecipeListComponents/RecipeList';
 import { RecipeData } from '../../config/RecipeData';
-import { TopBar } from '../components/MainComponents/MainComponents';
+import { TopBar } from '../components/MainComponents/TopBar';
 
 const SettingScreen = () => {
     const navigation = useNavigation();

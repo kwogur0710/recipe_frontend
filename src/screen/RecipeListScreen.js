@@ -14,11 +14,11 @@ import {
     ScrollView,
     RefreshControl,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 import { RecipeList } from '../components/RecipeListComponents/RecipeList';
-import { TopBar } from '../components/MainComponents/MainComponents';
+import { TopBar } from '../components/MainComponents/TopBar';
 import { RecipeData, search } from '../../config/RecipeData';
 
 const wait = (timeout) => {

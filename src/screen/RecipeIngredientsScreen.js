@@ -15,7 +15,7 @@ import { height, marginWidth, width } from '../../config/globalStyles';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { IngredientsData } from '../../config/RecipeData';
-import { TopBar } from '../components/MainComponents/MainComponents';
+import { TopBar } from '../components/MainComponents/TopBar';
 
 const RecipeIngredientsScreen = ({ route }) => {
     const navigation = useNavigation();
