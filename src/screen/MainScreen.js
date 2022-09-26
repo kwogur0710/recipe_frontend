@@ -68,6 +68,7 @@ const MainScreen = ({ navigation }) => {
                             shadowColor: '#000000',
                             shadowOffset: { height: height * 1, width: width * 0 },
                             shadowOpacity: 0.5,
+                            borderWidth: 1,
                         }}
                         imageStyle={{ borderRadius: 10 }}
                         source={item[0].img}
@@ -80,6 +81,7 @@ const MainScreen = ({ navigation }) => {
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 backgroundColor: 'rgba(255, 255, 255,0.8)',
+                                borderWidth: 1,
                             }}
                         >
                             <Text
@@ -114,6 +116,7 @@ const MainScreen = ({ navigation }) => {
                             justifyContent: 'center',
                             alignItems: 'center',
                             marginBottom: height * 4,
+                            borderWidth: 1,
                         }}
                     >
                         {TypeName === '전체' ? (
@@ -207,7 +210,7 @@ const MainScreen = ({ navigation }) => {
                             color: '#222222',
                         }}
                     >
-                        음식 종류
+                        
                     </Text>
                     <View style={styles.recipeTypeButtonwidthFrame}>
                         <RecipeType
@@ -243,11 +246,11 @@ const MainScreen = ({ navigation }) => {
                             color: '#222222',
                         }}
                     >
-                        오늘은 이거다!
+                        
                     </Text>
 
-                    <ScrollView horizontal={true}>
-                        <RecipeYoutube
+                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                       <RecipeYoutube
                             image={require('../../image/youtube1.png')}
                             title="🔥 700만이 뽑은 초간단 인생 요리 15가지 🔥 "
                             link="https://www.youtube.com/watch?v=vz6Hpuss1Lc"

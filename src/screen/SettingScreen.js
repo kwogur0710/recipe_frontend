@@ -1,134 +1,176 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
-    StyleSheet,
-    SafeAreaView,
-    Text,
-    View,
-    TouchableOpacity,
-    Image,
-    ToastAndroid,
-} from 'react-native';
-import { height, marginWidth, width } from '../../config/globalStyles';
-import { Feather, Entypo } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
-import { RecipeList } from '../components/RecipeListComponents/RecipeList';
-import { RecipeData } from '../../config/RecipeData';
-import { TopBar } from '../components/MainComponents/TopBar';
+  StyleSheet,
+  SafeAreaView,
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  ToastAndroid,
+} from "react-native";
+import { height, marginWidth, width } from "../../config/globalStyles";
+import { Feather, Entypo } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const SettingScreen = () => {
-    const navigation = useNavigation();
-    const showToast = () => {
-        Platform.OS === 'android'
-            ? ToastAndroid.show('준비중인 기능입니다!', ToastAndroid.SHORT)
-            : null;
-    };
-    return (
-        <SafeAreaView style={styles.container}>
-        <TopBar screen='Setting' title='설정' />
-            <TouchableOpacity onPress={() => showToast()}>
-                <View style={styles.profileFrame}>
-                    <Image
-                        source={require('../../image/icon/profile.png')}
-                        style={styles.profileImage}
-                    />
-                    <Text style={styles.profileText}> SAU Recipe </Text>
-                </View>
-            </TouchableOpacity>
+  const navigation = useNavigation();
+  const showToast = () => {
+    Platform.OS === "android"
+      ? ToastAndroid.show("준비중인 기능입니다!", ToastAndroid.SHORT)
+      : null;
+  };
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.TopBar}>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <TouchableOpacity
+            style={styles.TopBtn}
+            onPress={() => {
+              navigation.goBack();
+            }}
+          >
+            <Feather name="chevron-left" size={26} color="black" />
+          </TouchableOpacity>
+          <Text
+            style={{
+              fontSize: height * 20,
+              fontFamily: "PretendardBold",
+              color: "#222222",
+              marginLeft: width * 4,
+            }}
+          >
+            설정
+          </Text>
+          <View style={styles.TopBtn} />
+        </View>
+      </View>
 
-            <TouchableOpacity onPress={() => showToast()}>
-                <View style={styles.settingFrame}>
-                    <Feather name="heart" size={22} color="black" />
-                    <Text style={styles.SettingText}> 좋아요 </Text>
-                </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => showToast()}>
-                <View style={styles.settingFrame}>
-                    <Feather name="help-circle" size={22} color="black" />
-                    <Text style={styles.SettingText}> 도움말 </Text>
-                </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => showToast()}>
-                <View style={styles.settingFrame}>
-                    <Image
-                        source={require('../../image/icon/megaphone.png')}
-                        style={styles.SettingImage}
-                    />
-                    <Text style={styles.SettingText}> 공지사항 </Text>
-                </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => showToast()}>
-                <View style={styles.settingFrame}>
-                    <Feather name="settings" size={22} color="black" />
-                    <Text style={styles.SettingText}> 설정 </Text>
-                </View>
-            </TouchableOpacity>
-            
-        </SafeAreaView>
-    );
+      <TouchableOpacity onPress={() => showToast()}>
+        <View style={styles.profileFrame}>
+          <Image
+            source={require("../../image/icon/profile.png")}
+            style={styles.profileImage}
+          />
+        </View>
+      </TouchableOpacity>
+
+      <View style={styles.profileNameFrame}>
+        <Text style={styles.profileText}> SAU RECIPE </Text>
+      </View>
+
+      <View style={styles.margineFrame}></View>
+
+      <TouchableOpacity onPress={() => showToast()}>
+        <View style={styles.settingFrame}>
+          <Text style={styles.SettingText}> 좋아요 </Text>
+        </View>
+      </TouchableOpacity>
+
+      <View style={styles.margineFrame}></View>
+
+      <TouchableOpacity onPress={() => showToast()}>
+        <View style={styles.settingFrame}>
+          <Text style={styles.SettingText}> 도움말 </Text>
+        </View>
+      </TouchableOpacity>
+
+      <View style={styles.margineFrame}></View>
+
+      <TouchableOpacity onPress={() => showToast()}>
+        <View style={styles.settingFrame}>
+          <Text style={styles.SettingText}> 공지사항 </Text>
+        </View>
+      </TouchableOpacity>
+
+      <View style={styles.margineFrame}></View>
+
+      <TouchableOpacity onPress={() => showToast()}>
+        <View style={styles.settingFrame}>
+          <Text style={styles.SettingText}> 설정 </Text>
+        </View>
+      </TouchableOpacity>
+    </SafeAreaView>
+  );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        //바탕
-        flex: 1,
-        alignItems: 'center', //가로정렬 : 중앙
-        paddingTop: Platform.OS === 'android' ? 40 : 0,
-        marginBottom: height * 20, //마진 : 10%
-    },
+  container: {
+    //바탕
+    flex: 1,
+    alignItems: "center", //가로정렬 : 중앙
+    paddingTop: Platform.OS === "android" ? 40 : 0,
+    marginBottom: height * 20, //마진 : 10%
+  },
 
-    TopBar: {
-        height: height * 40, //높이
-        width: width * 360, //너비
-        flexDirection: 'row', //정렬방향
-        alignItems: 'center', //가로정렬
-        justifyContent: 'space-between', //세로정렬
-        paddingTop: height * 4,
-        paddingBottom: height * 4,
-        paddingRight: width * 20,
-        paddingLeft: width * 20,
-        borderColor: 'gray',
-    },
-    TopBtn: {
-        width: width * 30,
-        padding: 4,
-    },
-    profileFrame: {
-        flexDirection: 'row',
-        borderColor: 'gray',
-        paddingLeft: width * 14,
-        height: height * 70,
-        width: width * 360,
-        alignItems: 'center',
-    },
-    settingFrame: {
-        flexDirection: 'row',
-        borderTopWidth: 0.1,
-        borderColor: 'gray',
-        paddingLeft: width * 20,
-        height: height * 50,
-        width: width * 360,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-    },
-    SettingImage: {
-        width: width * 20,
-        height: width * 20,
-    },
-    profileImage: {
-        marginRight: width * 10,
-        width: width * 60,
-        height: width * 60,
-        borderRadius: 100,
-    },
-    profileText: {
-        fontSize: 30,
-        fontFamily: 'PretendardSemiBold',
-    },
-    SettingText: {
-        marginLeft: width * 10,
-        fontSize: height * 14,
-        fontFamily: 'PretendardRegular',
-    },
+  TopBar: {
+    height: height * 40, //높이
+    width: width * 360, //너비
+    flexDirection: "row", //정렬방향
+    alignItems: "center", //가로정렬
+    justifyContent: "space-between", //세로정렬
+    paddingTop: height * 4,
+    paddingBottom: height * 4,
+    paddingRight: width * 20,
+    paddingLeft: width * 20,
+    borderColor: "gray",
+  },
+  TopBtn: {
+    width: width * 30,
+    padding: 4,
+  },
+  profileFrame: {
+    flexDirection: "row",
+    borderColor: "gray",
+    height: height * 100,
+    width: width * 360,
+    alignItems: "center",
+    justifyContent: "center", //세로정렬
+  },
+  settingFrame: {
+    flexDirection: "row",
+    borderColor: "#0050FF",
+    height: height * 50,
+    width: width * 200,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    borderWidth: 1,
+  },
+  margineFrame: {
+    flexDirection: "row",
+    borderTopWidth: 0.1,
+    borderColor: "gray",
+    height: 18,
+    width: width * 200,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 6,
+  },
+  profileNameFrame: {
+    flexDirection: "row",
+    borderColor: "gray",
+    height: height * 70,
+    width: width * 360,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  SettingImage: {
+    width: width * 20,
+    height: width * 20,
+  },
+  profileImage: {
+    width: width * 80,
+    height: width * 80,
+    borderRadius: 100,
+  },
+  profileText: {
+    fontSize: 25,
+    fontFamily: "PretendardSemiBold",
+  },
+  SettingText: {
+    fontSize: 18,
+    fontFamily: "PretendardRegular",
+  },
 });
 
 export default SettingScreen;
