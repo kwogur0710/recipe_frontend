@@ -73,10 +73,11 @@ const RecipeIngredientsScreen = ({ route }) => {
         <SafeAreaView style={styles.container}>
             <TopBar
                 screen="RecipeIngredients"
-                title="양념으로 검색하기"
+                title="재료로 검색하기"
                 search={true}
                 setSearch={setSearch}
                 onUpdateSearch={onUpdateSearch}
+                searchTitle={'재료를 입력하세요'}
             />
             <SectionList
                 style={{ width: '100%' }}

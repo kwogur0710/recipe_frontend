@@ -58,30 +58,24 @@ const MainScreen = ({ navigation }) => {
                 <View style={styles.weekRecipe}>
                     <ImageBackground
                         style={{
-                            borderRadius: 10,
-                            width: width * 320,
+                            width: width * 310,
                             height: height * 200,
-                            marginTop: 1,
+                            marginTop: height * 2,
                             justifyContent: 'flex-end',
                             alignItems: 'center',
-                            backgroundColor: '#fff',
-                            shadowColor: '#000000',
-                            shadowOffset: { height: height * 1, width: width * 0 },
-                            shadowOpacity: 0.5,
-                            borderWidth: 1,
                         }}
-                        imageStyle={{ borderRadius: 10 }}
+                        imageStyle={{ borderRadius: 10, width: width * 310, height: height * 200 }}
                         source={item[0].img}
                     >
                         <View
                             style={{
+                                borderWidth: 1,
                                 borderRadius: 10,
-                                fontSize: height * 34,
                                 width: '100%',
+                                fontSize: height * 34,
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 backgroundColor: 'rgba(255, 255, 255,0.8)',
-                                borderWidth: 1,
                             }}
                         >
                             <Text
@@ -192,26 +186,13 @@ const MainScreen = ({ navigation }) => {
     };
     return (
         <SafeAreaView style={styles.container}>
-            <TopBar screen="Main" title="SAU-RECIPE" />
+            <TopBar screen="Main" title="재료로 찾는 레시피" />
             <ScrollView
-                style={{ width: '100%' }}
+                style={{ width: width * 320 }}
                 refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
             >
-                <View style={{ height: height * 10 }} />
                 <RecipeWeek item={RecipeData.filter((value) => value.title === weekTitle[num])} />
-                <View style={{ height: height * 10 }} />
                 <View style={styles.recipeTypeFrame}>
-                    <Text
-                        style={{
-                            fontSize: height * 20,
-                            fontFamily: 'PretendardSemiBold',
-                            marginTop: height * 4,
-                            marginBottom: height * 4,
-                            color: '#222222',
-                        }}
-                    >
-                        
-                    </Text>
                     <View style={styles.recipeTypeButtonwidthFrame}>
                         <RecipeType
                             TypeImage={require('../../image/icon/all_food.png')}
@@ -235,22 +216,9 @@ const MainScreen = ({ navigation }) => {
                         />
                     </View>
                 </View>
-                <View style={{ height: height * 10 }} />
                 <View style={styles.recipeVideoFrame}>
-                    <Text
-                        style={{
-                            fontSize: height * 20,
-                            fontFamily: 'PretendardSemiBold',
-                            marginTop: height * 4,
-                            marginBottom: height * 4,
-                            color: '#222222',
-                        }}
-                    >
-                        
-                    </Text>
-
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                       <RecipeYoutube
+                        <RecipeYoutube
                             image={require('../../image/youtube1.png')}
                             title="🔥 700만이 뽑은 초간단 인생 요리 15가지 🔥 "
                             link="https://www.youtube.com/watch?v=vz6Hpuss1Lc"

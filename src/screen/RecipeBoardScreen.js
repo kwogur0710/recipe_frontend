@@ -29,6 +29,7 @@ const RecipeBoardScreen = ({ route, navigation }) => {
                     <View style={styles.iconView}>
                         <View style={styles.iconBox}>
                             <Image
+                                resizeMode="contain"
                                 source={require('../../image/icon/time.png')}
                                 style={styles.iconImage}
                             />
@@ -36,6 +37,7 @@ const RecipeBoardScreen = ({ route, navigation }) => {
                         </View>
                         <View style={styles.iconBox}>
                             <Image
+                                resizeMode="contain"
                                 source={require('../../image/icon/difficulty.png')}
                                 style={styles.iconImage}
                             />
@@ -43,6 +45,7 @@ const RecipeBoardScreen = ({ route, navigation }) => {
                         </View>
                         <View style={styles.iconBox}>
                             <Image
+                                resizeMode="contain"
                                 source={require('../../image/icon/serving.png')}
                                 style={styles.iconImage}
                             />
@@ -72,8 +75,7 @@ const styles = StyleSheet.create({
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center',
         paddingTop: Platform.OS === 'android' ? height * 40 : 0,
-        marginLeft: width * 20,
-        marginRight: width * 20,
+        backgroundColor: '#FFFFFF',
     },
     TopBar: {
         height: height * 40, //높이
@@ -110,7 +112,6 @@ const styles = StyleSheet.create({
         borderRadius: 100,
     },
     RecipeTextView: {
-        marginTop: 6,
         paddingLeft: width * 10,
         paddingRight: width * 10,
         paddingTop: height * 6,
@@ -118,6 +119,8 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     iconView: {
+        marginTop: height * 6,
+        marginBottom: height * 6,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',

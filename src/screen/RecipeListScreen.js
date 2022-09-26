@@ -98,116 +98,45 @@ const RecipeListScreen = ({ route, props, navigation }) => {
                 search={true}
                 add={true}
                 filter={true}
-
+                searchTitle={'레시피 제목을 입력하세요'}
             />
-            <View style={{ marginTop: height * 4, flex: 1 }}>
-                <FlatList
-                    data={
-                        TypeName != '전체'
-                            ? RecipeData.filter((value) => value.type == TypeName)
-                            : RecipeData
-                    }
-                    refreshControl={
-                        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-                    }
-                    keyExtractor={(item) => String(item.id)}
-                    renderItem={({ item }) => {
-                        return (!(search && search.length > 0) && !ingredient) ||
-                            (!search && IngredientFilter(item) === 'true') ||
-                            (!(ingredient /*.length > 0*/) && SearchFilter(item) === 'true') ||
-                            (IngredientFilter(item) === 'true' && SearchFilter(item) === 'true') ? (
-                            <TouchableOpacity
-                                onPress={() =>
-                                    navigation.navigate('RecipeBoardScreen', {
-                                        item: item,
-                                    })
-                                }
-                            >
-                                <RecipeList img={item.img} title={item.title} item={item} />
-                            </TouchableOpacity>
-                        ) : null;
-                    }}
-                />
-            </View>
+            <FlatList
+                data={
+                    TypeName != '전체'
+                        ? RecipeData.filter((value) => value.type == TypeName)
+                        : RecipeData
+                }
+                refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+                keyExtractor={(item) => String(item.id)}
+                renderItem={({ item }) => {
+                    return (!(search && search.length > 0) && !ingredient) ||
+                        (!search && IngredientFilter(item) === 'true') ||
+                        (!(ingredient /*.length > 0*/) && SearchFilter(item) === 'true') ||
+                        (IngredientFilter(item) === 'true' && SearchFilter(item) === 'true') ? (
+                        <TouchableOpacity
+                            onPress={() =>
+                                navigation.navigate('RecipeBoardScreen', {
+                                    item: item,
+                                })
+                            }
+                        >
+                            <RecipeList img={item.img} title={item.title} item={item} />
+                        </TouchableOpacity>
+                    ) : null;
+                }}
+            />
         </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex:1,
         alignItems: 'center',
         paddingTop: Platform.OS === 'android' ? height * 40 : 0,
-        paddingLeft: width * 20,
-        paddingRight: width * 20,
+        paddingLeft: width *10,
+        paddingRight: width * 10,
         backgroundColor: '#FFFFFF',
-    },
-
-    TopBar: {
-        height: height * 40, //높이
-        width: width * 360, //너비
-        flexDirection: 'row', //정렬방향
-        alignItems: 'center', //가로정렬
-        justifyContent: 'space-between', //세로정렬
-        paddingTop: height * 4,
-        paddingBottom: height * 4,
-        paddingRight: width * 20,
-        paddingLeft: width * 20,
-        borderColor: 'gray',
-    },
-    TopBtn: {
-        justifyContent: 'center',
-        padding: 4,
-    },
-    recipeList: {
-        marginBottom: height * 4,
-        marginTop: height * 4,
-        borderRadius: 10,
-        borderColor: 'gray',
-        backgroundColor: '#ffffff',
-        shadowColor: '#999999',
-        shadowRadius: 2,
-        shadowOffset: { height: 4, width: 0 },
-        shadowOpacity: 0.3,
-    },
-    recipeListFrame: {
-        flexDirection: 'row',
-        width: width * 320,
-        height: height * 80,
-        borderRadius: 10,
-    },
-    recipeListImg: {
-        width: width * 100,
-        height: height * 80,
-        borderRadius: 10,
-    },
-    recipeListTextFrame: {
-        paddingLeft: width * 4,
-        paddingRight: width * 4,
-        paddingTop: height * 2,
-        width: width * 214,
-        height: height * 80,
-    },
-
-    TitleFont: {
-        fontSize: height * 20,
-        fontFamily: 'PretendardBold',
-    },
-    recipeTitleTextFont: {
-        fontSize: height * 18,
-        marginBottom: height * 2,
-        fontFamily: 'PretendardSemiBold',
-    },
-    materialTextFont: {
-        fontSize: height * 14,
-        height: height * 18,
-        marginBottom: height * 2,
-        fontFamily: 'PretendardRegular',
-    },
-    recipeTextFont: {
-        fontSize: height * 12,
-        marginBottom: height * 2,
-        fontFamily: 'PretendardRegular',
     },
 });
 

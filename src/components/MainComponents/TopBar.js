@@ -44,7 +44,7 @@ export const TopBar = (props, { onUpdateSearch, setSearch }) => {
                     ) : null}
                     {searchbool == true ? (
                         <TextInput
-                            placeholder={'레시피 제목을 입력하세요'}
+                            placeholder={props.searchTitle}
                             placeholderTextColor={'#959595'}
                             containerStyle={styles.searchBarContainer}
                             onChangeText={onUpdateSearchA}
@@ -78,7 +78,7 @@ export const TopBar = (props, { onUpdateSearch, setSearch }) => {
                         color: '#222222',
                     }}
                 >
-                    재료로 찾는 레시피
+                {props.title}
                 </Text>
             ) : (
                 <View style={{ flexDirection: 'row' }}>
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     },
     TopBtn: {
         justifyContent: 'center',
-        padding: 4,
+        padding: 2,
         width: width * 30, //너비
     },
     searchBarContainer: {
