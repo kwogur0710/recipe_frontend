@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
         width: '100%', //너비
         alignItems: 'flex-start', //가로정렬
         justifyContent: 'center', //세로정렬
+        
     },
     recipeVideoYoutubeFrame: {
         flexDirection: 'row', //정렬방향 : row(가로), column(세로)
@@ -75,13 +76,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center', //세로정렬 : 중앙
         height: height * 144, //높이 : '30%'
         width: width * 256, //너비 : '100%'
+        
     },
     recipeVideoYoutube: {
         borderRadius: 10, //테두리 둥글게 하는 수치
-        height: height * 200, //높이 : '30%'
+        height: height * 150, //높이 : '30%'
         width: width * 256, //너비 : '100%'
         alignItems: 'flex-start', //가로정렬 : 중앙
         justifyContent: 'flex-start', //세로정렬 : 중앙
+        
     },
 });
 
