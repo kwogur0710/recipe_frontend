@@ -122,8 +122,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center', //가로정렬 : 중앙
         paddingTop: Platform.OS === 'android' ? height * 40 : 0,
-        marginLeft: width * 20,
-        marginRight: width * 20,
+        backgroundColor:'#FFFFFF'
     },
     textBoxPadding: {
         paddingLeft: 15,

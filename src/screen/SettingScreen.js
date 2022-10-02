@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center', //가로정렬 : 중앙
         paddingTop: Platform.OS === 'android' ? 40 : 0,
-        marginBottom: height * 20, //마진 : 10%
+        backgroundColor:'#FFFFFF'
     },
 
     TopBar: {

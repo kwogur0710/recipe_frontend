@@ -7,16 +7,9 @@ const styles = StyleSheet.create({
         flex: 1,
         width: width * 360,
         alignItems: 'center', //가로정렬 : 중앙
-        justifyContent: 'center',
         paddingTop: Platform.OS === 'android' ? height * 40 : 0,
         paddingLeft: width * 20,
         paddingRight: width * 20,
-    },
-    weekRecipeFrame: {
-        //금주의 레시피 프레임
-        width: '100%', //너비
-        alignItems: 'center', //가로정렬 : 중앙
-        justifyContent: 'center', //세로정렬 : 중앙
     },
     weekRecipe: {
         //금주의 레시피 이미지
@@ -31,7 +24,7 @@ const styles = StyleSheet.create({
         width: '100%', //너비 : '100%'
         alignItems: 'flex-start', //가로정렬
         justifyContent: 'center', //세로정렬 : 중앙
-        marginTop: height * 10,
+        top:-height*10
     },
     recipeTypeText: {
         //음식 종류 글자
@@ -44,9 +37,9 @@ const styles = StyleSheet.create({
         width: '100%', //너비 : '100%'
         marginTop: height * 4, //위쪽 마진 : 5%
         flexDirection: 'row', //정렬방향 : row(가로), column(세로)
-        justifyContent: 'space-between',
-        paddingLeft: width * 4,
-        paddingRight: width * 4,
+        justifyContent: 'space-around',
+        paddingLeft: width * 10,
+        paddingRight: width * 10,
     },
     recipeVideoFrame: {
         //음식 영상 프레임

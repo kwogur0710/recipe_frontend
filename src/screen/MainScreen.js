@@ -12,6 +12,7 @@ import {
     Animated,
     RefreshControl,
 } from 'react-native';
+import Swiper, { SwiperSlide } from 'react-native-swiper';
 import { height, width, marginWidth } from '../../config/globalStyles';
 import styles from '../components/MainComponents/styles';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
@@ -26,16 +27,6 @@ const wait = (timeout) => {
 const MainScreen = ({ navigation }) => {
     const isFocused = useIsFocused();
     const weekTitle = ['김치찌개', '돈코츠 라멘', '짜장면'];
-    const [num, setNum] = useState(0);
-    useEffect(() => {
-        if (!isFocused) return undefined;
-        const timer = setTimeout(() => {
-            num < 2 ? setNum((previousNum) => previousNum + 1) : setNum(0);
-        }, 5000);
-        return () => {
-            clearTimeout(timer);
-        };
-    });
 
     const [refreshing, setRefreshing] = React.useState(false);
     const onRefresh = React.useCallback(() => {
@@ -54,6 +45,12 @@ const MainScreen = ({ navigation }) => {
                         item: item[0],
                     });
                 }}
+                style={{
+                    alignItems: 'center', //가로정렬 : 중앙
+                    justifyContent: 'center',
+                    flexDirection: 'row',
+                    width: width * 360,
+                }}
             >
                 <View style={styles.weekRecipe}>
                     <ImageBackground
@@ -69,7 +66,6 @@ const MainScreen = ({ navigation }) => {
                     >
                         <View
                             style={{
-                                borderWidth: 1,
                                 borderRadius: 10,
                                 width: '100%',
                                 fontSize: height * 34,
@@ -187,55 +183,65 @@ const MainScreen = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
             <TopBar screen="Main" title="재료로 찾는 레시피" />
-            <ScrollView
-                style={{ width: width * 320 }}
-                refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+            <Swiper
+                containerStyle={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    maxWidth: width * 360,
+                    maxHeight: height * 240,
+                }}
+                showsButtons={true}
+                autoplay={true}
+                autoplayTimeout={5}
             >
-                <RecipeWeek item={RecipeData.filter((value) => value.title === weekTitle[num])} />
-                <View style={styles.recipeTypeFrame}>
-                    <View style={styles.recipeTypeButtonwidthFrame}>
-                        <RecipeType
-                            TypeImage={require('../../image/icon/all_food.png')}
-                            TypeName="전체"
-                        />
-                        <RecipeType
-                            TypeImage={require('../../image/icon/korean_food.png')}
-                            TypeName="한식"
-                        />
-                        <RecipeType
-                            TypeImage={require('../../image/icon/japanese_food.png')}
-                            TypeName="일식"
-                        />
-                        <RecipeType
-                            TypeImage={require('../../image/icon/chinese_food.png')}
-                            TypeName="중식"
-                        />
-                        <RecipeType
-                            TypeImage={require('../../image/icon/western_food.png')}
-                            TypeName="양식"
-                        />
-                    </View>
+                <RecipeWeek item={RecipeData.filter((value) => value.title === '김치찌개')} />
+                <RecipeWeek item={RecipeData.filter((value) => value.title === '어묵우동')} />
+                <RecipeWeek item={RecipeData.filter((value) => value.title === '짬뽕')} />
+                <RecipeWeek item={RecipeData.filter((value) => value.title === '햄버거')} />
+            </Swiper>
+            <View style={styles.recipeTypeFrame}>
+                <View style={styles.recipeTypeButtonwidthFrame}>
+                    <RecipeType
+                        TypeImage={require('../../image/icon/all_food.png')}
+                        TypeName="전체"
+                    />
+                    <RecipeType
+                        TypeImage={require('../../image/icon/korean_food.png')}
+                        TypeName="한식"
+                    />
+                    <RecipeType
+                        TypeImage={require('../../image/icon/japanese_food.png')}
+                        TypeName="일식"
+                    />
+                    <RecipeType
+                        TypeImage={require('../../image/icon/chinese_food.png')}
+                        TypeName="중식"
+                    />
+                    <RecipeType
+                        TypeImage={require('../../image/icon/western_food.png')}
+                        TypeName="양식"
+                    />
                 </View>
-                <View style={styles.recipeVideoFrame}>
-                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                        <RecipeYoutube
-                            image={require('../../image/youtube1.png')}
-                            title="🔥 700만이 뽑은 초간단 인생 요리 15가지 🔥 "
-                            link="https://www.youtube.com/watch?v=vz6Hpuss1Lc"
-                        />
-                        <RecipeYoutube
-                            image={require('../../image/youtube2.png')}
-                            title="[깐풍두부] 가성비 끝판왕 두부요리🥇"
-                            link="https://www.youtube.com/watch?v=tqejXJK2LXQ"
-                        />
-                        <RecipeYoutube
-                            image={require('../../image/youtube3.png')}
-                            title="★ 뚝딱뚝딱 84가지 초간단 레시피 ★"
-                            link="https://www.youtube.com/watch?v=dhCYZQUHxGU"
-                        />
-                    </ScrollView>
-                </View>
-            </ScrollView>
+            </View>
+            <View style={styles.recipeVideoFrame}>
+                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                    <RecipeYoutube
+                        image={require('../../image/youtube1.png')}
+                        title="🔥 700만이 뽑은 초간단 인생 요리 15가지 🔥 "
+                        link="https://www.youtube.com/watch?v=vz6Hpuss1Lc"
+                    />
+                    <RecipeYoutube
+                        image={require('../../image/youtube2.png')}
+                        title="[깐풍두부] 가성비 끝판왕 두부요리🥇"
+                        link="https://www.youtube.com/watch?v=tqejXJK2LXQ"
+                    />
+                    <RecipeYoutube
+                        image={require('../../image/youtube3.png')}
+                        title="★ 뚝딱뚝딱 84가지 초간단 레시피 ★"
+                        link="https://www.youtube.com/watch?v=dhCYZQUHxGU"
+                    />
+                </ScrollView>
+            </View>
         </SafeAreaView>
     );
 };
