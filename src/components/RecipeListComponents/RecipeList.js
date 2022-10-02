@@ -6,58 +6,54 @@ import { RecipeData } from '../../../config/RecipeData';
 import { height, marginWidth, width } from '../../../config/globalStyles';
 
 export const RecipeList = (props) => {
+    console.log('list', props.item);
     return (
         <View style={styles.container}>
-            <Image style={styles.titleimg} source={props.item.img} />
+            <Image style={styles.titleimg} source={{uri : props.item.ATT_FILE_NO_MAIN}} />
             <View style={{ marginLeft: 10 }}>
                 <Text style={{ fontFamily: 'PretendardSemiBold', fontSize: 18, marginBottom: 4 }}>
-                    {props.item.title}
+                    {props.item.RCP_NM}
                 </Text>
-                <View
-                    style={{
-                        flexDirection: 'row',
-                        height: 18,
-                        alignItems: 'center',
-                        marginBottom: 6,
-                    }}
-                >
-                    <Image
-                        resizeMode="contain"
-                        style={styles.iconImg}
-                        source={require('../../../image/icon/difficulty.png')}
-                    />
-                    <Text style={styles.text}> {props.item.difficulty}단계 </Text>
-                    <Image
-                        resizeMode="contain"
-                        style={styles.iconImg}
-                        source={require('../../../image/icon/time.png')}
-                    />
-                    <Text style={styles.text}> {props.item.time}분 </Text>
-                    <Image
-                        resizeMode="contain"
-                        style={styles.iconImg}
-                        source={require('../../../image/icon/serving.png')}
-                    />
-                    <Text style={styles.text}> {props.item.serving}인분 </Text>
-                </View>
-                <View
-                    style={{
-                        borderRadius: 50,
-                        backgroundColor: '#E4E4E4',
-                        width: width * 34,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        marginBottom: width * 4,
-                    }}
-                >
-                    <Text
+                <View style={{flexDirection:'row'}}>
+                    <View
                         style={{
-                            fontFamily: 'PretendardMedium',
-                            fontSize: height * 12,
+                            borderRadius: 50,
+                            backgroundColor: '#E4E4E4',
+                            width: width * 34,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            marginBottom: height * 4,
+                            marginRight:width*4.
                         }}
                     >
-                        {props.item.type}
-                    </Text>
+                        <Text
+                            style={{
+                                fontFamily: 'PretendardMedium',
+                                fontSize: height * 12,
+                            }}
+                        >
+                            {props.item.RCP_WAY2}
+                        </Text>
+                    </View>
+                    <View
+                        style={{
+                            borderRadius: 50,
+                            backgroundColor: '#E4E4E4',
+                            width: width * 34,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            marginBottom: width * 4,
+                        }}
+                    >
+                        <Text
+                            style={{
+                                fontFamily: 'PretendardMedium',
+                                fontSize: height * 12,
+                            }}
+                        >
+                            {props.item.RCP_PAT2}
+                        </Text>
+                    </View>
                 </View>
             </View>
         </View>
@@ -66,7 +62,7 @@ export const RecipeList = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        width: width*330,
+        width: width * 330,
         height: height * 100,
         flexDirection: 'row',
         alignItems: 'center',

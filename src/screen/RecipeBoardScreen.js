@@ -15,53 +15,62 @@ import { Feather } from '@expo/vector-icons';
 import { TopBar } from '../components/MainComponents/TopBar';
 
 const RecipeBoardScreen = ({ route, navigation }) => {
-    const [Recipe, setRecipe] = useState(route.params?.item);
+    const [RecipeData, setRecipeData] = useState(route.params?.item);
+    console.log(RecipeData);
     useEffect(() => {
-        setRecipe(route.params?.item), [route.params?.item];
-        console.log('RecipeBoardScreen', Recipe.id, Recipe.title);
+        setRecipeData(route.params?.item), [route.params?.item];
+        console.log('RecipeBoardScreen', RecipeData.id, RecipeData.title);
     });
     return (
         <SafeAreaView style={styles.container}>
-            <TopBar screen="RecipeBoard" title={Recipe.title} />
+            <TopBar screen="RecipeBoard" title={RecipeData.RCP_NM} />
             <ScrollView style={{ width: '100%' }}>
-                <Image style={styles.img} resizeMode="cover" source={Recipe.img} />
+                <Image
+                    style={styles.img}
+                    resizeMode="cover"
+                    source={{ uri: RecipeData.ATT_FILE_NO_MAIN }}
+                />
                 <View style={styles.RecipeTextView}>
-                    <View style={styles.iconView}>
-                        <View style={styles.iconBox}>
-                            <Image
-                                resizeMode="contain"
-                                source={require('../../image/icon/time.png')}
-                                style={styles.iconImage}
-                            />
-                            <Text style={styles.SubText}> {Recipe.time} 분</Text>
-                        </View>
-                        <View style={styles.iconBox}>
-                            <Image
-                                resizeMode="contain"
-                                source={require('../../image/icon/difficulty.png')}
-                                style={styles.iconImage}
-                            />
-                            <Text style={styles.SubText}> {Recipe.difficulty} 단계</Text>
-                        </View>
-                        <View style={styles.iconBox}>
-                            <Image
-                                resizeMode="contain"
-                                source={require('../../image/icon/serving.png')}
-                                style={styles.iconImage}
-                            />
-                            <Text style={styles.SubText}> {Recipe.serving} 인분</Text>
-                        </View>
-                    </View>
                     <View style={styles.border} />
                     <Text style={styles.SubTitleText}>재료</Text>
                     <Text style={styles.ContentText}>
-                        {Recipe.amount.toString().replace(/\,/gi, '\n')}
+                        {RecipeData.RCP_PARTS_DTLS.toString().replace(/\,/gi, '\n')}
                     </Text>
                     <View style={styles.border} />
                     <View>
                         <Text style={styles.SubTitleText}>조리 순서</Text>
-                        <Text style={styles.ContentText}>{Recipe.detail}</Text>
+                        <Text style={styles.ContentText}>{RecipeData.detail}</Text>
                     </View>
+                    <Image
+                        style={styles.img}
+                        resizeMode="contain"
+                        source={{ uri: RecipeData.MANUAL_IMG01 }}
+                    />
+                    <Text style={styles.text}>{RecipeData.MANUAL01}</Text>
+                    <Image
+                        style={styles.img}
+                        resizeMode="contain"
+                        source={{ uri: RecipeData.MANUAL_IMG02 }}
+                    />
+                    <Text style={styles.text}>{RecipeData.MANUAL02}</Text>
+                    <Image
+                        style={styles.img}
+                        resizeMode="contain"
+                        source={{ uri: RecipeData.MANUAL_IMG03 }}
+                    />
+                    <Text style={styles.text}>{RecipeData.MANUAL03}</Text>
+                    <Image
+                        style={styles.img}
+                        resizeMode="contain"
+                        source={{ uri: RecipeData.MANUAL_IMG04 }}
+                    />
+                    <Text style={styles.text}>{RecipeData.MANUAL04}</Text>
+                    <Image
+                        style={styles.img}
+                        resizeMode="contain"
+                        source={{ uri: RecipeData.MANUAL_IMG05 }}
+                    />
+                    <Text style={styles.text}>{RecipeData.MANUAL05}</Text>
                 </View>
                 <View style={{ paddingBottom: 100 }} />
             </ScrollView>
@@ -165,6 +174,9 @@ const styles = StyleSheet.create({
         fontFamily: 'PretendardLight',
         color: '#666666',
     },
+    text:{
+        fontSize:height*20
+    }
 });
 
 export default RecipeBoardScreen;

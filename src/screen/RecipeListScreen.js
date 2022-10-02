@@ -20,12 +20,15 @@ import { Feather } from '@expo/vector-icons';
 import { RecipeList } from '../components/RecipeListComponents/RecipeList';
 import { TopBar } from '../components/MainComponents/TopBar';
 import { RecipeData, search } from '../../config/RecipeData';
+import { RecipeAPIList } from '../components/RecipeListComponents/RecipeAPIList';
 
 const wait = (timeout) => {
     return new Promise((resolve) => setTimeout(resolve, timeout));
 };
 
 const RecipeListScreen = ({ route, props, navigation }) => {
+    const RecipeData = route.params?.Data;
+    console.log(RecipeData);
     const TypeName = route.params?.type;
     const [RecipeID, setRecipeID] = useState(['']);
 
@@ -35,7 +38,6 @@ const RecipeListScreen = ({ route, props, navigation }) => {
     const onUpdateSearch = (text) => {
         setSearch(text);
     };
-
     useEffect(() => {
         setingredient(route.params?.ingredient);
         setRecipeID(['']);
@@ -102,9 +104,9 @@ const RecipeListScreen = ({ route, props, navigation }) => {
             />
             <FlatList
                 data={
-                    TypeName != '전체'
-                        ? RecipeData.filter((value) => value.type == TypeName)
-                        : RecipeData
+                    TypeName == '전체'
+                        ? RecipeData
+                        : RecipeData.filter((value) => value.RCP_WAY2 == TypeName)
                 }
                 refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                 keyExtractor={(item) => String(item.id)}
@@ -131,10 +133,10 @@ const RecipeListScreen = ({ route, props, navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex:1,
+        flex: 1,
         alignItems: 'center',
         paddingTop: Platform.OS === 'android' ? height * 40 : 0,
-        paddingLeft: width *10,
+        paddingLeft: width * 10,
         paddingRight: width * 10,
         backgroundColor: '#FFFFFF',
     },

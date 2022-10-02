@@ -16,28 +16,32 @@ import Swiper, { SwiperSlide } from 'react-native-swiper';
 import { height, width, marginWidth } from '../../config/globalStyles';
 import styles from '../components/MainComponents/styles';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
-import { RecipeData } from '../../config/RecipeData';
 import { Feather } from '@expo/vector-icons';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import { TopBar } from '../components/MainComponents/TopBar';
+import axios from 'axios';
+
 const wait = (timeout) => {
     return new Promise((resolve) => setTimeout(resolve, timeout));
 };
 
-const MainScreen = ({ navigation }) => {
+const MainScreen = ({ navigation, route }) => {
+    const RecipeData = route.params?.Data;
+    console.log(RecipeData);
+
     const isFocused = useIsFocused();
     const weekTitle = ['김치찌개', '돈코츠 라멘', '짜장면'];
 
     const [refreshing, setRefreshing] = React.useState(false);
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
-
         wait(2000).then(() => {
             setRefreshing(false);
         });
     }, []);
 
     const RecipeWeek = ({ item }) => {
+        console.log(item);
         return (
             <TouchableOpacity
                 onPress={() => {
@@ -62,7 +66,7 @@ const MainScreen = ({ navigation }) => {
                             alignItems: 'center',
                         }}
                         imageStyle={{ borderRadius: 10, width: width * 310, height: height * 200 }}
-                        source={item[0].img}
+                        source={{ uri: item[0].ATT_FILE_NO_MAIN }}
                     >
                         <View
                             style={{
@@ -80,7 +84,7 @@ const MainScreen = ({ navigation }) => {
                                     fontFamily: 'PretendardVariable',
                                 }}
                             >
-                                {item[0].title}
+                                {item[0].RCP_NM}
                             </Text>
                         </View>
                     </ImageBackground>
@@ -93,7 +97,7 @@ const MainScreen = ({ navigation }) => {
             <View>
                 <TouchableOpacity
                     onPress={() => {
-                        navigation.navigate('RecipeListScreen', { type: TypeName });
+                        navigation.navigate('RecipeListScreen', { type: TypeName, Data: RecipeData });
                     }}
                 >
                     <View
@@ -194,10 +198,13 @@ const MainScreen = ({ navigation }) => {
                 autoplay={true}
                 autoplayTimeout={5}
             >
-                <RecipeWeek item={RecipeData.filter((value) => value.title === '김치찌개')} />
-                <RecipeWeek item={RecipeData.filter((value) => value.title === '어묵우동')} />
-                <RecipeWeek item={RecipeData.filter((value) => value.title === '짬뽕')} />
-                <RecipeWeek item={RecipeData.filter((value) => value.title === '햄버거')} />
+                <RecipeWeek
+                    item={RecipeData.filter((value) => value.RCP_NM === '새우 두부 계란찜')}
+                />
+                <RecipeWeek
+                    item={RecipeData.filter((value) => value.RCP_NM === '우렁된장소스 배추롤')}
+                />
+                <RecipeWeek item={RecipeData.filter((value) => value.RCP_NM === '인삼떡갈비')} />
             </Swiper>
             <View style={styles.recipeTypeFrame}>
                 <View style={styles.recipeTypeButtonwidthFrame}>
@@ -207,19 +214,19 @@ const MainScreen = ({ navigation }) => {
                     />
                     <RecipeType
                         TypeImage={require('../../image/icon/korean_food.png')}
-                        TypeName="한식"
+                        TypeName="찌기"
                     />
                     <RecipeType
                         TypeImage={require('../../image/icon/japanese_food.png')}
-                        TypeName="일식"
+                        TypeName="끓이기"
                     />
                     <RecipeType
                         TypeImage={require('../../image/icon/chinese_food.png')}
-                        TypeName="중식"
+                        TypeName="굽기"
                     />
                     <RecipeType
                         TypeImage={require('../../image/icon/western_food.png')}
-                        TypeName="양식"
+                        TypeName="볶기"
                     />
                 </View>
             </View>

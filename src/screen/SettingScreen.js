@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     StyleSheet,
     SafeAreaView,
@@ -14,12 +14,12 @@ import { useNavigation } from '@react-navigation/native';
 import { TopBar } from '../components/MainComponents/TopBar';
 
 const SettingScreen = () => {
-    const navigation = useNavigation();
-    const showToast = () => {
-        Platform.OS === 'android'
-            ? ToastAndroid.show('준비중인 기능입니다!', ToastAndroid.SHORT)
-            : null;
-    };
+      const navigation = useNavigation();
+      const showToast = () => {
+          Platform.OS === 'android'
+              ? ToastAndroid.show('준비중인 기능입니다!', ToastAndroid.SHORT)
+              : null;
+      };
     return (
         <SafeAreaView style={styles.container}>
             <TopBar screen="SettingScreen" title="" />
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center', //가로정렬 : 중앙
         paddingTop: Platform.OS === 'android' ? 40 : 0,
-        backgroundColor:'#FFFFFF'
+        backgroundColor: '#FFFFFF',
     },
 
     TopBar: {

@@ -1,72 +1,114 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, TextInput } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { RecipeData } from '../../config/RecipeData';
 import { height, marginWidth, width } from '../../config/globalStyles';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import axios from 'axios';
 
 const LogInScreen = () => {
     const navigation = useNavigation();
-    return (
-        <SafeAreaView style={styles.container}>
-            <Text
-                style={{
-                    width: width * 280,
-                    fontFamily:'PretendardBold',
-                    fontSize: height * 30,
-                    marginTop: height * 40,
-                    marginBottom: height * 10,
-                }}
-            >
-                LogIn
-            </Text>
-            <TextInput
-                placeholder={'아이디'}
-                placeholderTextColor={'#959595'}
-                containerStyle={styles.textBoxPadding}
-                style={styles.textBox}
-            />
-            <TextInput
-                placeholder={'비밀번호'}
-                placeholderTextColor={'#959595'}
-                containerStyle={styles.textBoxPadding}
-                style={styles.textBox}
-            />
-            <TouchableOpacity
-                style={styles.loginBox}
-                onPress={() => {
-                    navigation.navigate('MainScreen');
-                }}
-            >
+    const [RecipeData, setRecipeData] = useState('');
+    const [Loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [RecipeName, setRecipeName] = useState('');
+
+    const loadingRecipe = async () => {
+        try {
+            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+            setError(null);
+            setRecipeData(null);
+
+            // loading 상태를 true 로 바꿉니다.
+            setLoading(true);
+
+            const response = await axios.get(
+                'https://openapi.foodsafetykorea.go.kr/api/b7b0efafdbdc41c79730/COOKRCP01/json/1/3'
+            );
+
+            // 데이터는 response.data.data 안에 들어있다.
+            setRecipeData(await response.data.COOKRCP01.row);
+            //console.log('API Data : ', RecipeData);
+            
+        } catch (e) {
+            setError(e);
+        }
+        // loading 끄기
+        setLoading(false);
+        setRecipeName(RecipeData.row[0].RCP_NM);
+    };
+
+    // 첫 렌더링 때 fetchNews() 한 번 실행
+    useEffect(() => {
+        loadingRecipe();
+        console.log('API Loading : ', Loading);
+        console.log('API Data : ', RecipeData);
+    }, []);
+
+    if (RecipeData != null) {
+        return (
+            <SafeAreaView style={styles.container}>
                 <Text
                     style={{
-                        color: '#FFFFFF',
-                        fontFamily: 'PretendardSemiBold',
-                        fontSize: height * 12,
+                        width: width * 280,
+                        fontFamily: 'PretendardBold',
+                        fontSize: height * 30,
+                        marginTop: height * 40,
+                        marginBottom: height * 10,
                     }}
                 >
-                    로그인
+                    LogIn
                 </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={styles.signUpBox}
-                onPress={() => {
-                    navigation.navigate('SignUpScreen');
-                }}
-            >
-                <Text
-                    style={{
-                        color: '#FFFFFF',
-                        fontFamily: 'PretendardSemiBold',
-                        fontSize: height * 12,
+                <TextInput
+                    placeholder={'아이디'}
+                    placeholderTextColor={'#959595'}
+                    containerStyle={styles.textBoxPadding}
+                    style={styles.textBox}
+                />
+                <TextInput
+                    placeholder={'비밀번호'}
+                    placeholderTextColor={'#959595'}
+                    containerStyle={styles.textBoxPadding}
+                    style={styles.textBox}
+                />
+                <TouchableOpacity
+                    style={styles.loginBox}
+                    onPress={() => {
+                        navigation.navigate('MainScreen', { Data: RecipeData });
                     }}
                 >
-                    회원가입
-                </Text>
-            </TouchableOpacity>
-        </SafeAreaView>
-    );
+                    <Text
+                        style={{
+                            color: '#FFFFFF',
+                            fontFamily: 'PretendardSemiBold',
+                            fontSize: height * 12,
+                        }}
+                    >
+                        로그인
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.signUpBox}
+                    onPress={() => {
+                        navigation.navigate('SignUpScreen');
+                    }}
+                >
+                    <Text
+                        style={{
+                            color: '#FFFFFF',
+                            fontFamily: 'PretendardSemiBold',
+                            fontSize: height * 12,
+                        }}
+                    >
+                        회원가입
+                    </Text>
+                </TouchableOpacity>
+            </SafeAreaView>
+        );
+    } else {
+        return <Text>Loading..</Text>;
+    }
 };
 
 const styles = StyleSheet.create({
@@ -74,7 +116,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center', //가로정렬 : 중앙
         paddingTop: Platform.OS === 'android' ? height * 40 : 0,
-        backgroundColor:'#FFFFFF'
+        backgroundColor: '#FFFFFF',
     },
     textBoxPadding: {
         paddingLeft: 15,
@@ -87,7 +129,7 @@ const styles = StyleSheet.create({
         fontFamily: 'PretendardRegular',
         width: width * 280,
         height: height * 40,
-        borderRadius:6,
+        borderRadius: 6,
         borderWidth: 2,
         marginTop: height * 10,
         paddingLeft: width * 6,
