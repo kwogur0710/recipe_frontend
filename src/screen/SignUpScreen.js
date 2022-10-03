@@ -6,8 +6,9 @@ import { RecipeData } from '../../config/RecipeData';
 import { height, marginWidth, width } from '../../config/globalStyles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const SingUpScreen = () => {
+const SingUpScreen = ({route}) => {
     const navigation = useNavigation();
+    const RecipeData = route.params?.RecipeData;
     const [checkA, setCheckA] = useState(false);
     const [checkB, setCheckB] = useState(false);
     const [checkC, setCheckC] = useState(false);
@@ -100,7 +101,7 @@ const SingUpScreen = () => {
             <TouchableOpacity
                 style={styles.loginBox}
                 onPress={() => {
-                    navigation.navigate('MainScreen');
+                    navigation.navigate('MainScreen', { RecipeData: RecipeData });
                 }}
             >
                 <Text

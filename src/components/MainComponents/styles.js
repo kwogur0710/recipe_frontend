@@ -28,15 +28,14 @@ const styles = StyleSheet.create({
     },
     recipeTypeText: {
         //음식 종류 글자
-        width: '100%', //너비 : '100%'
-        alignItems: 'flex-start', //가로정렬
-        justifyContent: 'center', //세로정렬
+        width: '100%', 
+        alignItems: 'flex-start', 
+        justifyContent: 'center', 
     },
     recipeTypeButtonwidthFrame: {
-        //음식 종류 버튼 폭 프레임
-        width: '100%', //너비 : '100%'
-        marginTop: height * 4, //위쪽 마진 : 5%
-        flexDirection: 'row', //정렬방향 : row(가로), column(세로)
+        width: '100%',
+        marginTop: height * 4,
+        flexDirection: 'row',
         justifyContent: 'space-around',
         paddingLeft: width * 10,
         paddingRight: width * 10,

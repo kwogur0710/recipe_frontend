@@ -19,8 +19,9 @@ import { TopBar } from '../components/MainComponents/TopBar';
 
 const RecipeIngredientsScreen = ({ route }) => {
     const navigation = useNavigation();
-    const backScreen = route.params?.screen;
-    const TypeName = route.params?.type;
+    const RecipeData = route.params?.RecipeData;
+    const TypeName = route.params?.TypeName;
+    const Type = route.params?.Type;
     const [selectedTitle, setSelectedTitle] = useState([]);
     const [ingredient, setingredient] = useState(route.params?.ingredient);
     const [search, setSearch] = useState('');
@@ -114,15 +115,12 @@ const RecipeIngredientsScreen = ({ route }) => {
             <TouchableOpacity
                 style={{ width: '100%', borderRadius: 10 }}
                 onPress={() => {
-                    backScreen == 'recipeListScreen'
-                        ? navigation.navigate('RecipeListScreen', {
+                        navigation.navigate('RecipeListScreen', {
                               ingredient: ingredient,
-                              type: TypeName,
+                              Type : Type,
+                              TypeName : TypeName,
+                              RecipeData : RecipeData
                           })
-                        : null;
-                    backScreen == 'searchScreen'
-                        ? navigation.navigate('SearchScreen', { ingredient: ingredient })
-                        : null;
                 }}
             >
                 <View

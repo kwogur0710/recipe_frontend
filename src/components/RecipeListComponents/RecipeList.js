@@ -9,21 +9,20 @@ export const RecipeList = (props) => {
     console.log('list', props.item);
     return (
         <View style={styles.container}>
-            <Image style={styles.titleimg} source={{uri : props.item.ATT_FILE_NO_MAIN}} />
+            <Image style={styles.titleimg} source={{ uri: props.item.ATT_FILE_NO_MAIN }} />
             <View style={{ marginLeft: 10 }}>
                 <Text style={{ fontFamily: 'PretendardSemiBold', fontSize: 18, marginBottom: 4 }}>
                     {props.item.RCP_NM}
                 </Text>
-                <View style={{flexDirection:'row'}}>
+                <View style={{ flexDirection: 'row' }}>
                     <View
                         style={{
                             borderRadius: 50,
                             backgroundColor: '#E4E4E4',
-                            width: width * 34,
                             justifyContent: 'center',
                             alignItems: 'center',
                             marginBottom: height * 4,
-                            marginRight:width*4.
+                            marginRight: width * 4,
                         }}
                     >
                         <Text
@@ -39,7 +38,8 @@ export const RecipeList = (props) => {
                         style={{
                             borderRadius: 50,
                             backgroundColor: '#E4E4E4',
-                            width: width * 34,
+                            paddingLeft:width*4,
+                            paddingRight:width*4,
                             justifyContent: 'center',
                             alignItems: 'center',
                             marginBottom: width * 4,

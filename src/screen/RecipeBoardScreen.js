@@ -21,12 +21,24 @@ const RecipeBoardScreen = ({ route, navigation }) => {
         setRecipeData(route.params?.item), [route.params?.item];
         console.log('RecipeBoardScreen', RecipeData.id, RecipeData.title);
     });
+    const TextImage = (props) => {
+        if (props.img != '')
+            return (
+                <View>
+                    <Image style={styles.img} resizeMode="contain" source={{ uri: props.img }} />
+                    <Text style={styles.text}>{props.text}</Text>
+                </View>
+            );
+        else {
+            return <View />;
+        }
+    };
     return (
         <SafeAreaView style={styles.container}>
             <TopBar screen="RecipeBoard" title={RecipeData.RCP_NM} />
             <ScrollView style={{ width: '100%' }}>
                 <Image
-                    style={styles.img}
+                    style={styles.titleImg}
                     resizeMode="cover"
                     source={{ uri: RecipeData.ATT_FILE_NO_MAIN }}
                 />
@@ -41,36 +53,27 @@ const RecipeBoardScreen = ({ route, navigation }) => {
                         <Text style={styles.SubTitleText}>조리 순서</Text>
                         <Text style={styles.ContentText}>{RecipeData.detail}</Text>
                     </View>
-                    <Image
-                        style={styles.img}
-                        resizeMode="contain"
-                        source={{ uri: RecipeData.MANUAL_IMG01 }}
-                    />
-                    <Text style={styles.text}>{RecipeData.MANUAL01}</Text>
-                    <Image
-                        style={styles.img}
-                        resizeMode="contain"
-                        source={{ uri: RecipeData.MANUAL_IMG02 }}
-                    />
-                    <Text style={styles.text}>{RecipeData.MANUAL02}</Text>
-                    <Image
-                        style={styles.img}
-                        resizeMode="contain"
-                        source={{ uri: RecipeData.MANUAL_IMG03 }}
-                    />
-                    <Text style={styles.text}>{RecipeData.MANUAL03}</Text>
-                    <Image
-                        style={styles.img}
-                        resizeMode="contain"
-                        source={{ uri: RecipeData.MANUAL_IMG04 }}
-                    />
-                    <Text style={styles.text}>{RecipeData.MANUAL04}</Text>
-                    <Image
-                        style={styles.img}
-                        resizeMode="contain"
-                        source={{ uri: RecipeData.MANUAL_IMG05 }}
-                    />
-                    <Text style={styles.text}>{RecipeData.MANUAL05}</Text>
+
+                    <TextImage img={RecipeData.MANUAL_IMG01} text={RecipeData.MANUAL01} />
+                    <TextImage img={RecipeData.MANUAL_IMG02} text={RecipeData.MANUAL02} />
+                    <TextImage img={RecipeData.MANUAL_IMG03} text={RecipeData.MANUAL03} />
+                    <TextImage img={RecipeData.MANUAL_IMG04} text={RecipeData.MANUAL04} />
+                    <TextImage img={RecipeData.MANUAL_IMG05} text={RecipeData.MANUAL05} />
+                    <TextImage img={RecipeData.MANUAL_IMG06} text={RecipeData.MANUAL06} />
+                    <TextImage img={RecipeData.MANUAL_IMG07} text={RecipeData.MANUAL07} />
+                    <TextImage img={RecipeData.MANUAL_IMG08} text={RecipeData.MANUAL08} />
+                    <TextImage img={RecipeData.MANUAL_IMG09} text={RecipeData.MANUAL09} />
+                    <TextImage img={RecipeData.MANUAL_IMG10} text={RecipeData.MANUAL10} />
+                    <TextImage img={RecipeData.MANUAL_IMG11} text={RecipeData.MANUAL11} />
+                    <TextImage img={RecipeData.MANUAL_IMG12} text={RecipeData.MANUAL12} />
+                    <TextImage img={RecipeData.MANUAL_IMG13} text={RecipeData.MANUAL13} />
+                    <TextImage img={RecipeData.MANUAL_IMG14} text={RecipeData.MANUAL14} />
+                    <TextImage img={RecipeData.MANUAL_IMG15} text={RecipeData.MANUAL15} />
+                    <TextImage img={RecipeData.MANUAL_IMG16} text={RecipeData.MANUAL16} />
+                    <TextImage img={RecipeData.MANUAL_IMG17} text={RecipeData.MANUAL17} />
+                    <TextImage img={RecipeData.MANUAL_IMG18} text={RecipeData.MANUAL18} />
+                    <TextImage img={RecipeData.MANUAL_IMG19} text={RecipeData.MANUAL19} />
+                    <TextImage img={RecipeData.MANUAL_IMG20} text={RecipeData.MANUAL20} />
                 </View>
                 <View style={{ paddingBottom: 100 }} />
             </ScrollView>
@@ -102,9 +105,14 @@ const styles = StyleSheet.create({
         width: width * 30,
         padding: 4,
     },
+    titleImg: {
+        width: '100%',
+        height: height * 330,
+    },
     img: {
         width: '100%',
-        height: height * 280,
+        height: height * 220,
+        marginBottom: height * 10,
     },
     profileImgView: {
         width: '100%',
@@ -174,9 +182,10 @@ const styles = StyleSheet.create({
         fontFamily: 'PretendardLight',
         color: '#666666',
     },
-    text:{
-        fontSize:height*20
-    }
+    text: {
+        fontSize: height * 14,
+        marginBottom: height * 10,
+    },
 });
 
 export default RecipeBoardScreen;

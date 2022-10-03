@@ -8,7 +8,7 @@ import RootStack from './src/route/RootStack';
 
 LogBox.ignoreLogs(['Remote debugger']);
 
-export default function App() {
+const App = () => {
     let [fontsLoaded] = useFonts({
         PretendardBlack: require('./assets/fonts/Pretendard-Black.ttf'),
         PretendardBold: require('./assets/fonts/Pretendard-Bold.ttf'),
@@ -29,3 +29,5 @@ export default function App() {
       
     );
 }
+
+export default App;

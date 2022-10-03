@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, TextInput } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { RecipeData } from '../../../config/RecipeData';
 import { height, marginWidth, width } from '../../../config/globalStyles';
 
 export const TopBar = (props, { onUpdateSearch, setSearch }) => {
     const navigation = useNavigation();
     const ingredient = props?.ingredient;
     const TypeName = props.title;
+    const Type = props.Type;
+    const RecipeData = props.RecipeData;
     const [searchbool, setSearchBool] = useState(false);
 
     const [searchA, setSearchA] = useState('');
@@ -112,7 +113,9 @@ export const TopBar = (props, { onUpdateSearch, setSearch }) => {
                             onPress={() => {
                                 navigation.navigate('RecipeIngredientsScreen', {
                                     ingredient: ingredient,
-                                    type: TypeName,
+                                    TypeName: TypeName,
+                                    Type: Type,
+                                    RecipeData: RecipeData,
                                     screen: 'recipeListScreen',
                                 });
                             }}

@@ -12,7 +12,6 @@ const LogInScreen = () => {
     const [RecipeData, setRecipeData] = useState('');
     const [Loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [RecipeName, setRecipeName] = useState('');
 
     const loadingRecipe = async () => {
         try {
@@ -24,19 +23,16 @@ const LogInScreen = () => {
             setLoading(true);
 
             const response = await axios.get(
-                'https://openapi.foodsafetykorea.go.kr/api/b7b0efafdbdc41c79730/COOKRCP01/json/1/3'
+                'https://openapi.foodsafetykorea.go.kr/api/b7b0efafdbdc41c79730/COOKRCP01/json/1/100'
             );
 
             // 데이터는 response.data.data 안에 들어있다.
-            setRecipeData(await response.data.COOKRCP01.row);
-            //console.log('API Data : ', RecipeData);
-            
+            setRecipeData(response.data.COOKRCP01.row);
         } catch (e) {
             setError(e);
         }
         // loading 끄기
         setLoading(false);
-        setRecipeName(RecipeData.row[0].RCP_NM);
     };
 
     // 첫 렌더링 때 fetchNews() 한 번 실행
@@ -75,7 +71,7 @@ const LogInScreen = () => {
                 <TouchableOpacity
                     style={styles.loginBox}
                     onPress={() => {
-                        navigation.navigate('MainScreen', { Data: RecipeData });
+                        navigation.navigate('MainScreen', { RecipeData: RecipeData });
                     }}
                 >
                     <Text
@@ -91,7 +87,7 @@ const LogInScreen = () => {
                 <TouchableOpacity
                     style={styles.signUpBox}
                     onPress={() => {
-                        navigation.navigate('SignUpScreen');
+                        navigation.navigate('SignUpScreen', { RecipeData: RecipeData });
                     }}
                 >
                     <Text
@@ -107,7 +103,11 @@ const LogInScreen = () => {
             </SafeAreaView>
         );
     } else {
-        return <Text>Loading..</Text>;
+        return (
+            <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <Text> API Loading.. </Text>
+            </SafeAreaView>
+        );
     }
 };
 

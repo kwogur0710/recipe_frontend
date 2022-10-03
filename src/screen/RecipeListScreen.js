@@ -27,10 +27,12 @@ const wait = (timeout) => {
 };
 
 const RecipeListScreen = ({ route, props, navigation }) => {
-    const RecipeData = route.params?.Data;
-    console.log(RecipeData);
-    const TypeName = route.params?.type;
+    const RecipeData = route.params?.RecipeData;
+    const Type = route.params?.Type;
+    const TypeName = route.params?.TypeName;
     const [RecipeID, setRecipeID] = useState(['']);
+    console.log('Type : ', Type);
+    console.log('TypeName : ', TypeName);
 
     const [ingredient, setingredient] = useState(route.params?.ingredient);
 
@@ -48,51 +50,39 @@ const RecipeListScreen = ({ route, props, navigation }) => {
         setRefreshing(true);
         wait(1000).then(() => setRefreshing(false));
     }, []);
-
-    const RecipeFilter = (item) => {
-        let a = 'false';
-        item.material.forEach((element) => {
-            if (a === 'false') {
-                if (ingredient.includes(element)) {
-                    a = 'true';
-                    RecipeID.push(item.id);
-                }
-            }
-        });
-        return a;
-    };
+    
     const SearchFilter = (item) => {
-        let a = 'false';
-        if (a === 'false') {
-            if (item.title.includes(search)) {
-                a = 'true';
+        console.log('RecipeList.SearchFilter');
+        let a = false;
+        if (a === false) {
+            if (item.RCP_NM.includes(search)) {
+                a = true;
             }
         }
         return a;
     };
     const IngredientFilter = (item) => {
-        if (ingredient) {
-            let a = 'false';
-            item.material.forEach((element) => {
-                if (a === 'false') {
-                    if (ingredient.includes(element)) {
-                        a = 'true';
-                    }
+        let a = false;
+        console.log('item : ', item);
+        ingredient.some((element) => {
+            console.log('element : ', element);
+            if (a == false) {
+                console.log('a : ', a);
+                if (item.includes(element)) {
+                    a = true;
+                    console.log('includes : ', a);
                 }
-            });
-            return a;
-        } else {
-            return false;
-        }
+            }
+        });
+        return a;
     };
-    console.log('id', RecipeID);
-    console.log('RecipeListScreen', TypeName, ingredient);
-
+    console.log('RecipeListScreen', ingredient);
     return (
         <SafeAreaView style={styles.container}>
             <TopBar
                 screen="RecipeList"
                 title={TypeName}
+                Type={Type}
                 navigation={navigation}
                 ingredient={ingredient}
                 setSearch={setSearch}
@@ -101,20 +91,26 @@ const RecipeListScreen = ({ route, props, navigation }) => {
                 add={true}
                 filter={true}
                 searchTitle={'레시피 제목을 입력하세요'}
+                RecipeData={RecipeData}
             />
             <FlatList
                 data={
                     TypeName == '전체'
                         ? RecipeData
-                        : RecipeData.filter((value) => value.RCP_WAY2 == TypeName)
+                        : Type == 'RCP_WAY2'
+                        ? RecipeData.filter((value) => value.RCP_WAY2 == TypeName)
+                        : Type == 'RCP_PAT2'
+                        ? RecipeData.filter((value) => value.RCP_PAT2 == TypeName)
+                        : null
                 }
                 refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-                keyExtractor={(item) => String(item.id)}
+                keyExtractor={(item) => String(item.RCP_SEQ)}
                 renderItem={({ item }) => {
-                    return (!(search && search.length > 0) && !ingredient) ||
-                        (!search && IngredientFilter(item) === 'true') ||
-                        (!(ingredient /*.length > 0*/) && SearchFilter(item) === 'true') ||
-                        (IngredientFilter(item) === 'true' && SearchFilter(item) === 'true') ? (
+                    return (!(search && search.length > 0) &&
+                        !(ingredient && ingredient.length > 0)) || //search랑 ingredient가 없을때
+                        (!search && IngredientFilter(item.RCP_PARTS_DTLS) === true) || //search가 없고 ingredient가 true일때
+                        (!ingredient && SearchFilter(item) === true) || //ingredient가 없고 search가 true일때
+                        (IngredientFilter(item.RCP_PARTS_DTLS) === true && SearchFilter(item) === true) ? ( //ingredient랑 search가 true일때
                         <TouchableOpacity
                             onPress={() =>
                                 navigation.navigate('RecipeBoardScreen', {
@@ -124,7 +120,9 @@ const RecipeListScreen = ({ route, props, navigation }) => {
                         >
                             <RecipeList img={item.img} title={item.title} item={item} />
                         </TouchableOpacity>
-                    ) : null;
+                    ) : (
+                        console.log('FlatList error')
+                    );
                 }}
             />
         </SafeAreaView>
