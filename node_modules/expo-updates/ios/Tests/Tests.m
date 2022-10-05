@@ -13,18 +13,6 @@
 
 @implementation Tests
 
-- (void)setUp
-{
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-}
-
-- (void)tearDown
-{
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
-
 - (void)testGetRuntimeVersionWithConfig
 {
   EXUpdatesConfig *sdkOnlyConfig = [[EXUpdatesConfig alloc] init];
@@ -62,6 +50,25 @@
   NSString *filenameFromDatabase = @"filename.png";
   assetSetFilename.filename = filenameFromDatabase;
   XCTAssertEqualObjects(filenameFromDatabase, assetSetFilename.filename, @"Should be able to override the default asset filename if the database has something different");
+}
+
+- (void)testAssetFilenameWithFileExtension
+{
+  EXUpdatesAsset *assetWithDotPrefix = [[EXUpdatesAsset alloc] initWithKey:@"cat" type:@".jpeg"];
+  XCTAssertEqualObjects(assetWithDotPrefix.filename, @"cat.jpeg");
+  
+  EXUpdatesAsset *assetWithoutDotPrefix = [[EXUpdatesAsset alloc] initWithKey:@"cat" type:@"jpeg"];
+  XCTAssertEqualObjects(assetWithoutDotPrefix.filename, @"cat.jpeg");
+  
+  EXUpdatesAsset *assetWithoutKey = [[EXUpdatesAsset alloc] initWithKey:nil type:@"jpeg"];
+  XCTAssertEqualObjects([assetWithoutKey.filename substringFromIndex:[assetWithoutKey.filename length] - 5], @".jpeg");
+}
+
+- (void)testAssetFilenameWithoutFileExtension
+{
+  EXUpdatesAsset *assetWithDotPrefix = [[EXUpdatesAsset alloc] initWithKey:@"cat" type:nil];
+  XCTAssertEqualObjects(assetWithDotPrefix.filename, @"cat");
+
 }
 
 @end

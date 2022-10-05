@@ -1,6 +1,6 @@
 #database
-#/database.json
+/database.json
 
 # macOS
-#.DS_Store
+.DS_Store
 node_modules
