@@ -20,17 +20,15 @@ const styles = StyleSheet.create({
     },
     recipeTypeFrame: {
         //음식 종류 프레임
-        height: height * 100, //높이
+        height: height * 150, //높이
         width: '100%', //너비 : '100%'
         alignItems: 'flex-start', //가로정렬
         justifyContent: 'center', //세로정렬 : 중앙
-        top:-height*10
-    },
-    recipeTypeText: {
-        //음식 종류 글자
-        width: '100%', 
-        alignItems: 'flex-start', 
-        justifyContent: 'center', 
+        borderRadius:10,
+        borderWidth:1,
+        marginTop:height*10,
+        marginBottom:height*10,
+        
     },
     recipeTypeButtonwidthFrame: {
         width: '100%',
