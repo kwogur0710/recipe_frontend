@@ -27,6 +27,7 @@ const wait = (timeout) => {
 
 const MainScreen = ({ navigation, route }) => {
     const RecipeData = route.params?.RecipeData;
+    console.log('메인 스크린',RecipeData);
     const [ingredient, setingredient] = useState(route.params?.ingredient);
 
     const isFocused = useIsFocused();
@@ -51,40 +52,32 @@ const MainScreen = ({ navigation, route }) => {
                     alignItems: 'center', //가로정렬 : 중앙
                     justifyContent: 'center',
                     flexDirection: 'row',
-                    width: width * 360,
+                    width: '100%',
                 }}
             >
                 <View style={styles.weekRecipe}>
                     <ImageBackground
                         style={{
-                            width: width * 310,
-                            height: height * 200,
+                            width: width * 358,
+                            height: height * 180,
                             marginTop: height * 2,
                             justifyContent: 'flex-end',
-                            alignItems: 'center',
+                            alignItems: 'flex-end',
                         }}
-                        imageStyle={{ borderRadius: 10, width: width * 310, height: height * 200 }}
+                        imageStyle={{ width: width * 360, height: height * 180 }}
                         source={{ uri: item[0].ATT_FILE_NO_MAIN }}
                     >
-                        <View
+                        <Text
                             style={{
-                                borderRadius: 10,
-                                width: '100%',
-                                fontSize: height * 34,
-                                alignItems: 'center',
-                                justifyContent: 'center',
+                                fontSize: height * 18,
+                                paddingLeft: width * 4,
+                                paddingRight: width * 4,
+                                fontFamily: 'PretendardVariable',
                                 backgroundColor: 'rgba(255, 255, 255,0.8)',
                             }}
                         >
-                            <Text
-                                style={{
-                                    fontSize: height * 24,
-                                    fontFamily: 'PretendardVariable',
-                                }}
-                            >
-                                {item[0].RCP_NM}
-                            </Text>
-                        </View>
+                            {item[0].RCP_NM}
+                        </Text>
                     </ImageBackground>
                 </View>
             </TouchableOpacity>
@@ -104,11 +97,10 @@ const MainScreen = ({ navigation, route }) => {
                 >
                     <View
                         style={{
-                            width: width * 54,
-                            height: width * 54,
-                            borderRadius: 100,
+                            width: width * 150,
+                            height: height * 40,
+                            borderRadius: 10,
                             borderColor: '#333333',
-                            borderWidth: 1,
                             justifyContent: 'center',
                             alignItems: 'center',
                             marginBottom: height * 4,
@@ -132,118 +124,130 @@ const MainScreen = ({ navigation, route }) => {
     return (
         <SafeAreaView style={styles.container}>
             <TopBar screen="Main" title="재료로 찾는 레시피" />
-            <Swiper
-                containerStyle={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    maxWidth: width * 360,
-                    maxHeight: height * 240,
-                }}
-                showsButtons={true}
-                autoplay={true}
-                autoplayTimeout={5}
-            >
-                <RecipeWeek item={RecipeData.filter((value) => value.RCP_NM === '코다리맑은찜')} />
-                <RecipeWeek
-                    item={RecipeData.filter((value) => value.RCP_NM === '우렁된장소스 배추롤')}
-                />
-                <RecipeWeek item={RecipeData.filter((value) => value.RCP_NM === '인삼떡갈비')} />
-            </Swiper>
-            <TouchableOpacity
-                style={{
-                    width: width * 320,
-                    height: height * 40,
-                    borderWidth: 1,
-                    borderRadius: 10,
-                    alignItems:'center',
-                    justifyContent:'center'
-                }}
-                onPress={() => {
-                    navigation.navigate('RecipeIngredientsScreen', {
-                        ingredient: ingredient,
-                        TypeName: '전체',
-                        Type: 'RCP_PAT2',
-                        RecipeData: RecipeData,
-                        screen: 'recipeListScreen',
-                    });
-                }}
-            >
-                <Text style={{fontSize:height*14}}>
-                    재료로 레시피 검색하기
-                </Text>
-            </TouchableOpacity>
-            <View style={styles.recipeTypeFrame}>
-                <View style={styles.recipeTypeButtonwidthFrame}>
-                    <RecipeType
-                        TypeImage={require('../../image/icon/all_food.png')}
-                        Type="RCP_PAT2"
-                        TypeName="전체"
+            <ScrollView style={{ width: width * 360 }}>
+                <Swiper
+                    containerStyle={{
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        maxWidth: width * 360,
+                        maxHeight: height * 200,
+                    }}
+                    style={{ alignItems: 'center', justifyContent: 'center' }}
+                    autoplay={true}
+                    autoplayTimeout={5}
+                >
+                    <RecipeWeek
+                        item={RecipeData.filter((value) => value.RCP_NM === '초계탕과 사색곤약')}
                     />
-                    <RecipeType
-                        TypeImage={require('../../image/icon/all_food.png')}
-                        Type="RCP_PAT2"
-                        TypeName="밥"
+                    <RecipeWeek
+                        item={RecipeData.filter((value) => value.RCP_NM === '우렁된장소스 배추롤')}
                     />
-                    <RecipeType
-                        TypeImage={require('../../image/icon/all_food.png')}
-                        Type="RCP_PAT2"
-                        TypeName="일품"
+                    <RecipeWeek
+                        item={RecipeData.filter((value) => value.RCP_NM === '인삼떡갈비')}
                     />
+                </Swiper>
+                <TouchableOpacity
+                    style={{
+                        width: width * 360,
+                        height: height * 40,
+                        borderWidth: 1,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}
+                    onPress={() => {
+                        navigation.navigate('RecipeIngredientsScreen', {
+                            ingredient: ingredient,
+                            TypeName: '전체',
+                            Type: 'RCP_PAT2',
+                            RecipeData: RecipeData,
+                            screen: 'recipeListScreen',
+                        });
+                    }}
+                >
+                    <Text
+                        style={{
+                            fontSize: height * 14,
+                            fontFamily: 'PretendardSemiBold',
+                        }}
+                    >
+                        재료로 레시피 검색하기
+                    </Text>
+                </TouchableOpacity>
+                <View style={styles.recipeTypeFrame}>
+                    <View style={styles.recipeTypeButtonwidthFrame}>
+                        <RecipeType
+                            TypeImage={require('../../image/icon/all_food.png')}
+                            Type="RCP_PAT2"
+                            TypeName="전체"
+                        />
+                        <RecipeType
+                            TypeImage={require('../../image/icon/all_food.png')}
+                            Type="RCP_PAT2"
+                            TypeName="밥"
+                        />
+                    </View>
+                    <View style={styles.recipeTypeButtonwidthFrame}>
+                        <RecipeType
+                            TypeImage={require('../../image/icon/all_food.png')}
+                            Type="RCP_PAT2"
+                            TypeName="일품"
+                        />
+                        <RecipeType
+                            TypeImage={require('../../image/icon/all_food.png')}
+                            Type="RCP_PAT2"
+                            TypeName="국&찌개"
+                        />
+                    </View>
+                    <View style={styles.recipeTypeButtonwidthFrame}>
+                        <RecipeType
+                            TypeImage={require('../../image/icon/all_food.png')}
+                            Type="RCP_PAT2"
+                            TypeName="반찬"
+                        />
+                        <RecipeType
+                            TypeImage={require('../../image/icon/all_food.png')}
+                            Type="RCP_PAT2"
+                            TypeName="후식"
+                        />
+                    </View>
+                    <View style={styles.recipeTypeButtonwidthFrame}>
+                        <RecipeType
+                            TypeImage={require('../../image/icon/all_food.png')}
+                            Type="RCP_WAY2"
+                            TypeName="찌기"
+                        />
+                        <RecipeType
+                            TypeImage={require('../../image/icon/all_food.png')}
+                            Type="RCP_WAY2"
+                            TypeName="끓이기"
+                        />
+                    </View>
+                    <View style={styles.recipeTypeButtonwidthFrame}>
+                        <RecipeType
+                            TypeImage={require('../../image/icon/all_food.png')}
+                            Type="RCP_WAY2"
+                            TypeName="굽기"
+                        />
+                        <RecipeType
+                            TypeImage={require('../../image/icon/all_food.png')}
+                            Type="RCP_WAY2"
+                            TypeName="볶기"
+                        />
+                    </View>
+                    <View style={styles.recipeTypeButtonwidthFrame}>
+                        <RecipeType
+                            TypeImage={require('../../image/icon/all_food.png')}
+                            Type="RCP_WAY2"
+                            TypeName="튀기기"
+                        />
+                        <RecipeType
+                            TypeImage={require('../../image/icon/all_food.png')}
+                            Type="RCP_WAY2"
+                            TypeName="기타"
+                        />
+                    </View>
                 </View>
-                <View style={styles.recipeTypeButtonwidthFrame}>
-                    <RecipeType
-                        TypeImage={require('../../image/icon/all_food.png')}
-                        Type="RCP_PAT2"
-                        TypeName="국&찌개"
-                    />
-                    <RecipeType
-                        TypeImage={require('../../image/icon/all_food.png')}
-                        Type="RCP_PAT2"
-                        TypeName="반찬"
-                    />
-                    <RecipeType
-                        TypeImage={require('../../image/icon/all_food.png')}
-                        Type="RCP_PAT2"
-                        TypeName="후식"
-                    />
-                </View>
-            </View>
-            <View style={styles.recipeTypeFrame}>
-                <View style={styles.recipeTypeButtonwidthFrame}>
-                    <RecipeType
-                        TypeImage={require('../../image/icon/all_food.png')}
-                        Type="RCP_WAY2"
-                        TypeName="찌기"
-                    />
-                    <RecipeType
-                        TypeImage={require('../../image/icon/all_food.png')}
-                        Type="RCP_WAY2"
-                        TypeName="끓이기"
-                    />
-                    <RecipeType
-                        TypeImage={require('../../image/icon/all_food.png')}
-                        Type="RCP_WAY2"
-                        TypeName="굽기"
-                    />
-                </View>
-                <View style={styles.recipeTypeButtonwidthFrame}>
-                    <RecipeType
-                        TypeImage={require('../../image/icon/all_food.png')}
-                        Type="RCP_WAY2"
-                        TypeName="볶기"
-                    />
-                    <RecipeType
-                        TypeImage={require('../../image/icon/all_food.png')}
-                        Type="RCP_WAY2"
-                        TypeName="튀기기"
-                    />
-                    <RecipeType
-                        TypeImage={require('../../image/icon/all_food.png')}
-                        Type="RCP_WAY2"
-                        TypeName="기타"
-                    />
-                </View>
-            </View>
+            </ScrollView>
         </SafeAreaView>
     );
 };

@@ -79,7 +79,7 @@ export const TopBar = (props, { onUpdateSearch, setSearch }) => {
                         color: '#222222',
                     }}
                 >
-                {props.title}
+                    {props.title}
                 </Text>
             ) : (
                 <View style={{ flexDirection: 'row' }}>
@@ -100,7 +100,9 @@ export const TopBar = (props, { onUpdateSearch, setSearch }) => {
                     {props.add == true ? (
                         <TouchableOpacity
                             onPress={() => {
-                                navigation.navigate('RecipeAddScreen');
+                                navigation.navigate('RecipeAddScreen', {
+                                    RecipeData: RecipeData,
+                                });
                             }}
                             style={styles.TopBtn}
                         >

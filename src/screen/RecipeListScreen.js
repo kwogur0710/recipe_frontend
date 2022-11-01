@@ -76,7 +76,6 @@ const RecipeListScreen = ({ route, props, navigation }) => {
         });
         return a;
     };
-    console.log('RecipeListScreen', ingredient);
     return (
         <SafeAreaView style={styles.container}>
             <TopBar
@@ -108,9 +107,9 @@ const RecipeListScreen = ({ route, props, navigation }) => {
                 renderItem={({ item }) => {
                     return (!(search && search.length > 0) &&
                         !(ingredient && ingredient.length > 0)) || //search랑 ingredient가 없을때
-                        (!search && IngredientFilter(item.RCP_PARTS_DTLS) === true) || //search가 없고 ingredient가 true일때
-                        (!ingredient && SearchFilter(item) === true) || //ingredient가 없고 search가 true일때
-                        (IngredientFilter(item.RCP_PARTS_DTLS) === true && SearchFilter(item) === true) ? ( //ingredient랑 search가 true일때
+                        (!search && IngredientFilter(item.RCP_PARTS_DTLS) === true) || //search가 없고 IngredientFilter가 true일때
+                        (!ingredient && SearchFilter(item) === true) || //ingredient가 없고 SearchFilter가 true일때
+                        (IngredientFilter(item.RCP_PARTS_DTLS) === true && SearchFilter(item) === true) ? ( //IngredientFilter랑 SearchFilter가 true일때
                         <TouchableOpacity
                             onPress={() =>
                                 navigation.navigate('RecipeBoardScreen', {

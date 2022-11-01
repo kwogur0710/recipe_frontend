@@ -18,119 +18,241 @@ import { height, marginWidth, width } from '../../config/globalStyles';
 import { RecipeData } from '../../config/RecipeData';
 import * as ImagePicker from 'expo-image-picker';
 import { Feather } from '@expo/vector-icons';
+import { TopBar } from '../components/MainComponents/TopBar';
 
 const GetId = () => {
     return Math.floor(Math.random() * 10000);
 };
 
-const RecipeAddScreen = ({navigation}) => {
+const RecipeAddScreen = ({ route, navigation }) => {
+    const RecipeData = route.params?.RecipeData;
     const [visibleModal, setVisibleModal] = useState(false);
-    const [visibleMaterialModal, setVisibleMaterialModal] = useState(false);
     const showToast = (text) => {
         Platform.OS === 'android' ? ToastAndroid.show(text, ToastAndroid.SHORT) : null;
-        console.log('showToast', text)
+        console.log('showToast', text);
     };
-
     const [modalName, setModalName] = useState('');
     const [modalValue, setModalValue] = useState('');
     const [modalList, setModalList] = useState('');
-    const [modalE, setModalUnit] = useState('');
+    const [partsA, setPartsA] = useState('');
+    const [partsB, setPartsB] = useState('');
+    const [addList, setAddList] = useState([]);
+    const [stage, setStage] = useState([{ index: 1, text: 'MANUAL01', image: 'MANUAL_IMG01' }]);
+    const [textValue, setTextValue] = useState([]);
+    const [stageNum, setStageNum] = useState(2);
+    let name = '';
+    let img = '';
     const [inputs, setInputs] = useState({
-        id: GetId(),
-        title: '',
-        type: '',
-        img: '',
-        difficulty: '',
-        serving: '',
-        time: '',
-        material: '',
-        detail: '',
-        amount: '',
+        ATT_FILE_NO_MAIN: '',
+        ATT_FILE_NO_MK: '',
+        HASH_TAG: '',
+        INFO_CAR: '',
+        INFO_ENG: '',
+        INFO_FAT: '',
+        INFO_NA: '',
+        INFO_PRO: '',
+        INFO_WGT: '',
+        MANUAL01: '',
+        MANUAL02: '',
+        MANUAL03: '',
+        MANUAL04: '',
+        MANUAL05: '',
+        MANUAL06: '',
+        MANUAL07: '',
+        MANUAL08: '',
+        MANUAL09: '',
+        MANUAL10: '',
+        MANUAL11: '',
+        MANUAL12: '',
+        MANUAL13: '',
+        MANUAL14: '',
+        MANUAL15: '',
+        MANUAL16: '',
+        MANUAL17: '',
+        MANUAL18: '',
+        MANUAL19: '',
+        MANUAL20: '',
+        MANUAL_IMG01: '',
+        MANUAL_IMG02: '',
+        MANUAL_IMG03: '',
+        MANUAL_IMG04: '',
+        MANUAL_IMG05: '',
+        MANUAL_IMG06: '',
+        MANUAL_IMG07: '',
+        MANUAL_IMG08: '',
+        MANUAL_IMG09: '',
+        MANUAL_IMG10: '',
+        MANUAL_IMG11: '',
+        MANUAL_IMG12: '',
+        MANUAL_IMG13: '',
+        MANUAL_IMG14: '',
+        MANUAL_IMG15: '',
+        MANUAL_IMG16: '',
+        MANUAL_IMG17: '',
+        MANUAL_IMG18: '',
+        MANUAL_IMG19: '',
+        MANUAL_IMG20: '',
+        RCP_NM: '',
+        RCP_PARTS_DTLS: '',
+        RCP_PAT2: '',
+        RCP_SEQ: '',
+        RCP_WAY2: '',
     });
-    const { id, type, title, img, difficulty, serving, time, material, detail, amount } = inputs;
-
-    const timeset = () => {
-        let a = [];
-        for (let i = 5; i <= 100; i += 5) {
-            a.push(i);
-        }
-        return a;
-    };
-
+    const {
+        ATT_FILE_NO_MAIN,
+        ATT_FILE_NO_MK,
+        HASH_TAG,
+        INFO_CAR,
+        INFO_ENG,
+        INFO_FAT,
+        INFO_NA,
+        INFO_PRO,
+        INFO_WGT,
+        MANUAL01,
+        MANUAL02,
+        MANUAL03,
+        MANUAL04,
+        MANUAL05,
+        MANUAL06,
+        MANUAL07,
+        MANUAL08,
+        MANUAL09,
+        MANUAL10,
+        MANUAL11,
+        MANUAL12,
+        MANUAL13,
+        MANUAL14,
+        MANUAL15,
+        MANUAL16,
+        MANUAL17,
+        MANUAL18,
+        MANUAL19,
+        MANUAL20,
+        MANUAL_IMG01,
+        MANUAL_IMG02,
+        MANUAL_IMG03,
+        MANUAL_IMG04,
+        MANUAL_IMG05,
+        MANUAL_IMG06,
+        MANUAL_IMG07,
+        MANUAL_IMG08,
+        MANUAL_IMG09,
+        MANUAL_IMG10,
+        MANUAL_IMG11,
+        MANUAL_IMG12,
+        MANUAL_IMG13,
+        MANUAL_IMG14,
+        MANUAL_IMG15,
+        MANUAL_IMG16,
+        MANUAL_IMG17,
+        MANUAL_IMG18,
+        MANUAL_IMG19,
+        MANUAL_IMG20,
+        RCP_NM,
+        RCP_PARTS_DTLS,
+        RCP_PAT2,
+        RCP_SEQ,
+        RCP_WAY2,
+    } = inputs;
+    //textInput onChangeText 함수
     const onChange = (keyvalue, e) => {
-        const { text } = e.nativeEvent;
+        console.log(keyvalue, e);
+        const text = e;
         setInputs({
             ...inputs,
             [keyvalue]: text,
         });
     };
-
-    const pressSave = (value, name) => {
+    const TypeSet = (value, name) => {
         const text = name;
         setInputs({
             ...inputs,
             [value]: text,
         });
-        console.log(inputs);
     };
-    const InputSave = () => {
-        let m = [];
-        let a = [];
-        addList.map((item) => {
-            console.log('item', item);
-            m.push(item.materialB);
-            a.push(item.materialB + item.amountB);
+    const SaveTextValue = () => {
+        textValue.map((item) => {
+            setInputs({ ...inputs, [String(item.image)]: textValue[item.index] });
         });
-        if (materialA) m.push(materialA);
-        if (amountA) a.push(materialA + ' ' + amountA);
-        setInputs({
-            ...inputs,
-            material: m,
-            amount: a,
-        });
-        console.log('inputs', inputs.material, inputs.amount);
     };
     const Save = (value) => {
-        InputSave();
-        RecipeData.push(inputs);
-        inputsReset();
-    };
-    const inputsReset = () => {
-        setImageUrl('');
+        let a;
+        addList.map((item) => {
+            let b = a;
+            a = b + ', ' + item;
+        });
         setInputs({
-            id: GetId(),
-            title: '',
-            type: '',
-            img: '',
-            difficulty: '',
-            serving: '',
-            time: '',
-            material: '',
-            detail: '',
-            amount: '',
+            ...inputs,
+            RCP_PARTS_DTLS: a,
+        });
+        RecipeData.push(inputs);
+        setInputs({
+            RCP_SEQ: GetId(),
+            ATT_FILE_NO_MAIN: '',
+            RCP_NM: '',
+            RCP_PARTS_DTLS: '',
+            RCP_PAT2: '',
+            RCP_WAY2: '',
+            MANUAL01: '',
+            MANUAL_IMG01: '',
+            MANUAL02: '',
+            MANUAL_IMG02: '',
+            MANUAL03: '',
+            MANUAL_IMG03: '',
+            MANUAL04: '',
+            MANUAL_IMG04: '',
+            MANUAL05: '',
+            MANUAL_IMG05: '',
+            MANUAL06: '',
+            MANUAL_IMG06: '',
+            MANUAL07: '',
+            MANUAL_IMG07: '',
+            MANUAL08: '',
+            MANUAL_IMG08: '',
+            MANUAL09: '',
+            MANUAL_IMG09: '',
+            MANUAL10: '',
+            MANUAL_IMG10: '',
+            MANUAL11: '',
+            MANUAL_IMG11: '',
+            MANUAL12: '',
+            MANUAL_IMG12: '',
+            MANUAL13: '',
+            MANUAL_IMG13: '',
+            MANUAL14: '',
+            MANUAL_IMG14: '',
+            MANUAL15: '',
+            MANUAL_IMG15: '',
+            MANUAL16: '',
+            MANUAL_IMG16: '',
+            MANUAL17: '',
+            MANUAL_IMG17: '',
+            MANUAL18: '',
+            MANUAL_IMG18: '',
+            MANUAL19: '',
+            MANUAL_IMG19: '',
+            MANUAL20: '',
+            MANUAL_IMG20: '',
         });
         setAddList([]);
     };
     const addListRemove = (item) => {
         const a = addList;
-        let b = [];
+        const b = [];
         console.log(a);
 
-        a.filter((e)=>{
-            e.amountB === item.amountB && e.materialB === item.materialB 
-            ? console.log('같은거 발견!', e, item)
-            : b.push(e);
-        })
+        a.forEach((e) => {
+            if (e.parts === item.parts) console.log('같은거 발견!', e, item);
+            else b.push(e);
+        });
         setAddList(b);
-
     };
 
-    // 현재 이미지 주소
-    const [imageUrl, setImageUrl] = useState('');
     // 권한 요청을 위한 hooks
     const [status, requestPermission] = ImagePicker.useMediaLibraryPermissions();
 
-    const uploadImage = async () => {
+    const uploadImage = async (value) => {
+        console.log('value : ', value);
         // 권한 확인 코드: 권한 없으면 물어보고, 승인하지 않으면 함수 종료
         if (!status?.granted) {
             const permission = await requestPermission();
@@ -142,7 +264,7 @@ const RecipeAddScreen = ({navigation}) => {
         // 이미지 업로드 기능
         const result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: false,
+            allowsEditing: true,
             quality: 1,
             aspect: [1, 1],
         });
@@ -151,71 +273,55 @@ const RecipeAddScreen = ({navigation}) => {
         }
         setInputs({
             ...inputs,
-            img: { uri: result.uri },
+            [value]: result.uri,
         });
-        // 이미지 업로드 결과 및 이미지 경로 업데이트
-        setImageUrl(result.uri);
-        console.log('inputs', inputs.img);
-        console.log(result);
-        console.log('imageUrl', imageUrl);
+        console.log(inputs);
     };
-    const [addList, setAddList] = useState([]);
-    const materialAdd = () => {
-        const materialB = inputsA.materialA;
-        const amountB = inputsA.amountA;
-        const recipe = { materialB, amountB };
-        setInputsA({ materialA: '', amountA: '' });
-        setAddList([...addList, recipe]);
+    const partsAdd = () => {
+        const parts = partsA + '(' + partsB + ')';
+        setAddList([...addList, { parts: parts, partsA: partsA, partsB: partsB }]);
         console.log('addList', addList);
-        console.log(materialA, amountA);
-        console.log(material, amount);
-        InputSave();
+        setPartsA('');
+        setPartsB('');
     };
-    const [inputsA, setInputsA] = useState({ materialA: '', amountA: '' });
-    const { materialA, amountA } = inputsA;
-    const onUpdateMaterial = (text) => {
-        setInputsA({
-            ...inputsA,
-            materialA: text,
-        });
-        console.log(inputsA);
+    const onChangeParts = (keyvalues, e) => {
+        const text = e;
+        if (keyvalues == 'partsA') setPartsA(text);
+        else if (keyvalues == 'partsB') setPartsB(text);
+        console.log(keyvalues, e);
     };
-    const onUpdateAmount = (value) => {
-        const text = value;
-        setInputsA({
-            ...inputsA,
-            amountA: text,
-        });
-    };
-    const BtnList = ({ value, name, e }) => {
-        return (
-            <TouchableOpacity
-                onPress={() => {
-                    setVisibleModal(false),
-                        pressSave(value, name),
-                        console.log('pressSave', value, name);
-                }}
-            >
-                <View
-                    style={{
-                        padding: width * 10,
-                        paddingLeft: width * 30,
-                        borderColor: '#999999',
+    const ModalList = ({ name, value, list }) => {
+        console.log('value :', value);
+        console.log('name :', name);
+        const BtnList = ({ value, name }) => {
+            console.log(value, name);
+            return (
+                <TouchableOpacity
+                    onPress={() => {
+                        setVisibleModal(false),
+                            TypeSet(value, name),
+                            console.log('pressSave', value, name);
                     }}
                 >
-                    <Text
+                    <View
                         style={{
-                            fontSize: height * 16,
-                            fontFamily: 'PretendardRegular',
+                            padding: width * 10,
+                            paddingLeft: width * 30,
+                            borderColor: '#999999',
                         }}
                     >
-                        {name} {e}
-                    </Text>
-                </View>
-            </TouchableOpacity>
-        );
-    };
-    const ModalList = ({ name, value, list, e }) => {
+                        <Text
+                            style={{
+                                fontSize: height * 16,
+                                fontFamily: 'PretendardRegular',
+                            }}
+                        >
+                            {name}
+                        </Text>
+                    </View>
+                </TouchableOpacity>
+            );
+        };
         return (
             <SafeAreaView>
                 <Modal animationType="slide" transparent={true} visible={visibleModal}>
@@ -258,7 +364,7 @@ const RecipeAddScreen = ({navigation}) => {
                                     style={{ height: height * 200 }}
                                     keyExtractor={(item) => String(item)}
                                     renderItem={({ item }) => {
-                                        return <BtnList value={value} name={item} e={e} />;
+                                        return <BtnList value={value} name={item} />;
                                     }}
                                 />
                             </View>
@@ -300,34 +406,79 @@ const RecipeAddScreen = ({navigation}) => {
             </SafeAreaView>
         );
     };
+
+    const TextImage = (item) => {
+        console.log('테스트 ', String(item.item.image), inputs[String(item.item.image)]);
+        const [text, setText] = useState('');
+        const TextSave = () => {
+            setInputs({
+                ...inputs,
+                [String(item.item.text)]: text,
+            });
+        };
+        return (
+            <View>
+                <TouchableOpacity
+                    style={{
+                        marginTop: height * 4,
+                        marginBottom: height * 4,
+                    }}
+                    onPress={() => {
+                        uploadImage(String(item.item.image));
+                    }}
+                >
+                    {inputs[String(item.item.image)] == '' ? (
+                        <View
+                            style={{
+                                width: width * 320,
+                                height: width * 320,
+                                borderWidth: 1,
+                                borderRadius: 10,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                borderColor: '#999999',
+                            }}
+                        >
+                            <Feather name="camera" size={40} color="black" />
+                            <Text
+                                style={{
+                                    fontSize: height * 12,
+                                    fontFamily: 'PretendardRegular',
+                                }}
+                            >
+                                사진 선택
+                            </Text>
+                        </View>
+                    ) : (
+                        <Image
+                            source={{ uri: inputs[String(item.item.image)] }}
+                            resizeMode="cover"
+                            style={{
+                                width: width * 320,
+                                height: width * 320,
+                                borderRadius: 10,
+                            }}
+                        />
+                    )}
+                </TouchableOpacity>
+                <TextInput
+                    multiline
+                    onChangeText={(e) => {
+                        setInputs({ ...inputs, [String(item.item.text)]: e });
+                    }}
+                    value={inputs[String(item.item.text)]}
+                    style={styles.TextInputBox}
+                    placeholder={'레시피 내용'}
+                    placeholderTextColor={'#999999'}
+                />
+            </View>
+        );
+    };
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.TopBar}>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <TouchableOpacity
-                        style={styles.TopBtn}
-                        onPress={() => {
-                            navigation.goBack();
-                        }}
-                    >
-                        <Feather name="chevron-left" size={26} color="black" />
-                    </TouchableOpacity>
-                    <Text
-                        style={{
-                            fontSize: height * 20,
-                            fontFamily: 'PretendardBold',
-                            color: '#222222',
-                            marginLeft: width * 4,
-                        }}
-                    >
-                        레시피 글쓰기
-                    </Text>
-                    <View style={styles.TopBtn} />
-                </View>
-                <View style={styles.TopBtn} />
-            </View>
+            <TopBar title="레시피 글쓰기" />
             <ScrollView style={{ width: '100%' }}>
-                <ModalList name={modalName} value={modalValue} list={modalList} e={modalE} />
+                <ModalList name={modalName} value={modalValue} list={modalList} />
                 <View
                     style={{
                         alignItems: 'center',
@@ -340,9 +491,11 @@ const RecipeAddScreen = ({navigation}) => {
                             marginTop: height * 4,
                             marginBottom: height * 4,
                         }}
-                        onPress={uploadImage}
+                        onPress={() => {
+                            uploadImage('ATT_FILE_NO_MAIN');
+                        }}
                     >
-                        {!imageUrl ? (
+                        {!inputs.ATT_FILE_NO_MAIN ? (
                             <View
                                 style={{
                                     width: width * 320,
@@ -366,7 +519,8 @@ const RecipeAddScreen = ({navigation}) => {
                             </View>
                         ) : (
                             <Image
-                                source={{ uri: imageUrl }}
+                                source={{ uri: inputs.ATT_FILE_NO_MAIN }}
+                                ß
                                 style={{
                                     width: width * 320,
                                     height: width * 320,
@@ -376,8 +530,8 @@ const RecipeAddScreen = ({navigation}) => {
                         )}
                     </TouchableOpacity>
                     <TextInput
-                        onChange={(e) => onChange('title', e)}
-                        value={title}
+                        onChangeText={(e) => onChange('RCP_NM', e)}
+                        value={RCP_NM}
                         style={styles.TitleInput}
                         placeholder={'레시피 제목'}
                         placeholderTextColor={'#999999'}
@@ -387,63 +541,30 @@ const RecipeAddScreen = ({navigation}) => {
                         onPress={() => {
                             setVisibleModal(true);
                             setModalName('음식 종류');
-                            setModalValue('type');
-                            setModalList(['한식', '일식', '중식', '양식']);
-                            setModalUnit('');
+                            setModalValue('RCP_PAT2');
+                            setModalList(['밥', '일품', '국&찌개', '반찬', '후식']);
                         }}
                     >
-                        {inputs.type ? (
-                            <Text style={styles.TextRecipe}> {inputs.type} </Text>
+                        {inputs.RCP_PAT2 ? (
+                            <Text style={styles.TextRecipe}> {inputs.RCP_PAT2} </Text>
                         ) : (
                             <Text style={styles.TextRecipe}>음식 종류</Text>
                         )}
                     </TouchableOpacity>
+
                     <TouchableOpacity
                         style={styles.TypeInput}
                         onPress={() => {
                             setVisibleModal(true);
-                            setModalName('난이도');
-                            setModalValue('difficulty');
-                            setModalList(['1', '2', '3', '4', '5']);
-                            setModalUnit('단계');
+                            setModalName('음식 종류');
+                            setModalValue('RCP_WAY2');
+                            setModalList(['찌기', '끓이기', '굽기', '볶기', '튀기기', '기타']);
                         }}
                     >
-                        {inputs.difficulty ? (
-                            <Text style={styles.TextRecipe}> {inputs.difficulty} 단계</Text>
+                        {inputs.RCP_WAY2 ? (
+                            <Text style={styles.TextRecipe}> {inputs.RCP_WAY2} </Text>
                         ) : (
-                            <Text style={styles.TextRecipe}>난이도</Text>
-                        )}
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.TypeInput}
-                        onPress={() => {
-                            setVisibleModal(true);
-                            setModalName('인분');
-                            setModalValue('serving');
-                            setModalList(['1', '2', '3', '4', '5', '6']);
-                            setModalUnit('인분');
-                        }}
-                    >
-                        {inputs.serving ? (
-                            <Text style={styles.TextRecipe}> {inputs.serving} 인분 </Text>
-                        ) : (
-                            <Text style={styles.TextRecipe}>인분</Text>
-                        )}
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.TypeInput}
-                        onPress={() => {
-                            setVisibleModal(true);
-                            setModalName('소요시간');
-                            setModalValue('time');
-                            setModalUnit('분');
-                            setModalList(timeset());
-                        }}
-                    >
-                        {inputs.time ? (
-                            <Text style={styles.TextRecipe}> {inputs.time} 분 </Text>
-                        ) : (
-                            <Text style={styles.TextRecipe}>소요시간</Text>
+                            <Text style={styles.TextRecipe}>음식 종류</Text>
                         )}
                     </TouchableOpacity>
 
@@ -451,21 +572,19 @@ const RecipeAddScreen = ({navigation}) => {
                         {addList.map((item) => {
                             return (
                                 <View
-                                    key={String(item.materialB + item.amountB)}
+                                    key={String(item.parts)}
                                     style={{
                                         flexDirection: 'row',
                                         width: '100%',
                                         alignItems: 'center',
-                                        justifyContent: 'space-between',
+                                        justifyContent: 'space-around',
                                     }}
                                 >
                                     <View style={styles.materialList}>
-                                        <Text style={styles.materialListText}>
-                                            {item.materialB}
-                                        </Text>
+                                        <Text style={styles.materialListText}>{item.partsA}</Text>
                                     </View>
                                     <View style={styles.materialList}>
-                                        <Text style={styles.materialListText}>{item.amountB}</Text>
+                                        <Text style={styles.materialListText}>{item.partsB}</Text>
                                     </View>
                                     <TouchableOpacity
                                         onPress={() => {
@@ -486,67 +605,75 @@ const RecipeAddScreen = ({navigation}) => {
                                 flexDirection: 'row',
                                 width: '100%',
                                 alignItems: 'center',
-                                justifyContent: 'space-between',
+                                justifyContent: 'space-around',
                             }}
                         >
                             <TextInput
-                                onChangeText={(text) => onUpdateMaterial(text)}
-                                value={materialA}
+                                onChangeText={(e) => onChangeParts('partsA', e)}
+                                value={partsA}
                                 style={styles.materialInputText}
                                 placeholder={'재료'}
                                 placeholderTextColor={'#999999'}
                             />
                             <TextInput
-                                onChangeText={(text) => onUpdateAmount(text)}
-                                value={amountA}
+                                onChangeText={(e) => onChangeParts('partsB', e)}
+                                value={partsB}
                                 style={styles.materialInputText}
                                 placeholder={'재료 양'}
                                 placeholderTextColor={'#999999'}
                             />
-                            <TouchableOpacity
-                                onPress={() => {
-                                    !materialA && !amountA
-                                        ? null
-                                        : (materialAdd(), console.log('재료 추가 Press'));
-                                }}
-                                style={{
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                }}
-                            >
-                                <Feather name="plus" size={20} color="black" />
-                            </TouchableOpacity>
+                            {partsA && partsB ? (
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        partsAdd(), console.log('재료 추가 Press');
+                                    }}
+                                    style={{
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                    }}
+                                >
+                                    <Feather name="plus" size={20} color="black" />
+                                </TouchableOpacity>
+                            ) : (
+                                <Feather name="plus" size={20} color="white" />
+                            )}
                         </View>
                     </View>
-                    <TextInput
-                        multiline
-                        numberOfLines={10}
-                        onChange={(e) => onChange('detail', e)}
-                        value={detail}
-                        style={styles.TextInputBox}
-                        placeholder={'레시피 내용'}
-                        placeholderTextColor={'#999999'}
-                    />
+                    {stage.map((item) => {
+                        return <TextImage item={item} />;
+                    })}
+                    <TouchableOpacity
+                        onPress={() => {
+                            setStage([
+                                ...stage,
+                                {
+                                    index: stageNum,
+                                    text: 'MANUAL' + String(stageNum).padStart(2, '0'),
+                                    image: 'MANUAL_IMG' + String(stageNum).padStart(2, '0'),
+                                },
+                            ]);
+                            //SaveTextValue();
+                            setStageNum(stageNum + 1);
+                        }}
+                    >
+                        <Feather name="plus" size={20} color="black" />
+                    </TouchableOpacity>
                 </View>
                 <TouchableOpacity
                     onPress={() => {
-                        materialA.length > 0 || amountA.length > 0
+                        partsA.length > 0 || partsB.length > 0
                             ? showToast('재료추가 버튼을 눌러주세요!')
-                            : (inputs.id != '' &&
-                            inputs.title !== '' &&
-                            inputs.type != '' &&
-                            inputs.difficulty != '' &&
-                            inputs.material != '' &&
-                            inputs.time != '' &&
-                            inputs.material != '' &&
-                            inputs.detail != '' &&
-                            inputs.amount != '' &&
-                            imageUrl != ''
-                                ? (navigation.navigate('MainScreen'),
-                                  Save(inputs),
-                                  console.log(inputs, '저장성공'))
-                                : (console.log('저장 실패'),
-                                  showToast('모든 항목을 입력해주세요!')));
+                            : inputs.RCP_NM &&
+                              inputs.ATT_FILE_NO_MAIN &&
+                              inputs.RCP_PAT2 &&
+                              inputs.RCP_WAY2 &&
+                              addList &&
+                              inputs.MANUAL_IMG01 &&
+                              inputs.MANUAL01
+                            ? (Save(inputs),
+                              console.log(RecipeData, '저장성공'),
+                              navigation.navigate('MainScreen', { RecipeData: RecipeData }))
+                            : (console.log('저장 실패'), showToast('모든 항목을 입력해주세요!'));
                     }}
                     style={{
                         alignItems: 'center',
@@ -579,8 +706,9 @@ const styles = StyleSheet.create({
         alignItems: 'center', //가로정렬 : 중앙
         justifyContent: 'center',
         paddingTop: Platform.OS === 'android' ? height * 40 : 0,
-        marginLeft: width * 20,
-        marginRight: width * 20,
+        paddingLeft: width * 20,
+        paddingRight: width * 20,
+        backgroundColor: '#FFFFFF',
     },
     TopBar: {
         height: height * 40, //높이
@@ -659,8 +787,8 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
     },
     TextInputBox: {
-        width: width*320,
-        height: height * 200,
+        width: width * 320,
+        height: height * 100,
         paddingLeft: width * 8,
         paddingRight: width * 8,
         paddingTop: height * 8,

@@ -49,10 +49,7 @@ const RecipeBoardScreen = ({ route, navigation }) => {
                         {RecipeData.RCP_PARTS_DTLS.toString().replace(/\,/gi, '\n')}
                     </Text>
                     <View style={styles.border} />
-                    <View>
-                        <Text style={styles.SubTitleText}>조리 순서</Text>
-                        <Text style={styles.ContentText}>{RecipeData.detail}</Text>
-                    </View>
+                    <Text style={styles.SubTitleText}>조리 순서</Text>
 
                     <TextImage img={RecipeData.MANUAL_IMG01} text={RecipeData.MANUAL01} />
                     <TextImage img={RecipeData.MANUAL_IMG02} text={RecipeData.MANUAL02} />

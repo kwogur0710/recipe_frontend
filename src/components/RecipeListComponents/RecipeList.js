@@ -6,7 +6,6 @@ import { RecipeData } from '../../../config/RecipeData';
 import { height, marginWidth, width } from '../../../config/globalStyles';
 
 export const RecipeList = (props) => {
-    console.log('list', props.item);
     return (
         <View style={styles.container}>
             <Image style={styles.titleimg} source={{ uri: props.item.ATT_FILE_NO_MAIN }} />
@@ -19,10 +18,12 @@ export const RecipeList = (props) => {
                         style={{
                             borderRadius: 50,
                             backgroundColor: '#E4E4E4',
+                            marginRight: width * 6,
+                            paddingLeft: width * 6,
+                            paddingRight: width * 6,
+                            marginBottom: width * 4,
                             justifyContent: 'center',
                             alignItems: 'center',
-                            marginBottom: height * 4,
-                            marginRight: width * 4,
                         }}
                     >
                         <Text
@@ -38,11 +39,12 @@ export const RecipeList = (props) => {
                         style={{
                             borderRadius: 50,
                             backgroundColor: '#E4E4E4',
-                            paddingLeft:width*4,
-                            paddingRight:width*4,
+                            marginRight: width * 6,
+                            paddingLeft: width * 6,
+                            paddingRight: width * 6,
+                            marginBottom: width * 4,
                             justifyContent: 'center',
                             alignItems: 'center',
-                            marginBottom: width * 4,
                         }}
                     >
                         <Text
