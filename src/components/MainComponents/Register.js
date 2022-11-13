@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export const Register = async(id, password, email, name, nickname) => {
+export const Register = async(id, password, email, name, nickname, gender, birth, number) => {
     const serverURL = 'http://localhost:4000';
     return axios
     .post(
@@ -10,7 +10,10 @@ export const Register = async(id, password, email, name, nickname) => {
             password : password,
             email : email,
             name : name,
-            nickname : nickname
+            nickname : nickname,
+            number : number,
+            birth : birth,
+            gender : gender
         }
     )
     .then((response) => {

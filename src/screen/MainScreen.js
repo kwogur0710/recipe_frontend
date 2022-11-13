@@ -27,7 +27,7 @@ const wait = (timeout) => {
 
 const MainScreen = ({ navigation, route }) => {
     const RecipeData = route.params?.RecipeData;
-    console.log('메인 스크린',RecipeData);
+    const user = route.params?.user;
     const [ingredient, setingredient] = useState(route.params?.ingredient);
 
     const isFocused = useIsFocused();
@@ -123,7 +123,7 @@ const MainScreen = ({ navigation, route }) => {
     };
     return (
         <SafeAreaView style={styles.container}>
-            <TopBar screen="Main" title="재료로 찾는 레시피" />
+            <TopBar screen="Main" title="재료로 찾는 레시피" user = {user} />
             <ScrollView style={{ width: width * 360 }}>
                 <Swiper
                     containerStyle={{

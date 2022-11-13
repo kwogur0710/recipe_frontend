@@ -7,6 +7,7 @@ import { height, marginWidth, width } from '../../../config/globalStyles';
 export const TopBar = (props, { onUpdateSearch, setSearch }) => {
     const navigation = useNavigation();
     const ingredient = props?.ingredient;
+    const user = props?.user;
     const TypeName = props.title;
     const Type = props.Type;
     const RecipeData = props.RecipeData;
@@ -25,7 +26,7 @@ export const TopBar = (props, { onUpdateSearch, setSearch }) => {
             {props.screen == 'Main' ? (
                 <TouchableOpacity
                     onPress={() => {
-                        navigation.navigate('SettingScreen');
+                        navigation.navigate('SettingScreen', {user : user,})
                     }}
                     style={styles.TopBtn}
                 >

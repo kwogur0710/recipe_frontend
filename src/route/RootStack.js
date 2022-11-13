@@ -16,10 +16,10 @@ import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-
+/*
 const TabIcon = ({ name, size, color }) => {
     return <Feather name={name} size={size} color={color} />;
-};
+};*/
 
 const RootStack = (props) => {
     return (

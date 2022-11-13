@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
     StyleSheet,
     SafeAreaView,
@@ -9,65 +9,57 @@ import {
     ToastAndroid,
 } from 'react-native';
 import { height, marginWidth, width } from '../../config/globalStyles';
-import { Feather, Entypo } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { TopBar } from '../components/MainComponents/TopBar';
 
-const SettingScreen = () => {
-      const navigation = useNavigation();
-      const showToast = () => {
-          Platform.OS === 'android'
-              ? ToastAndroid.show('준비중인 기능입니다!', ToastAndroid.SHORT)
-              : null;
-      };
+const SettingScreen = ({ route }) => {
+    const navigation = useNavigation();
+    const user = route.params?.user;
+    const showToast = () => {
+        Platform.OS === 'android'
+            ? ToastAndroid.show('준비중인 기능입니다!', ToastAndroid.SHORT)
+            : null;
+    };
+    const AccountText = ({ text, data }) => {
+        return (
+            <View style={styles.accountList}>
+                <Text style={styles.accountText}>{text}</Text>
+                <Text style={styles.accountText}>{data}</Text>
+            </View>
+        );
+    };
     return (
         <SafeAreaView style={styles.container}>
             <TopBar screen="SettingScreen" title="" />
-
-            <TouchableOpacity onPress={() => showToast()}>
-                <View style={styles.profileFrame}>
-                    <Image
-                        source={require('../../image/icon/profile.png')}
-                        style={styles.profileImage}
-                    />
+            <View style={styles.profileFrame}>
+                <Image
+                    source={require('../../image/icon/profile.png')}
+                    style={styles.profileImage}
+                />
+                <View>
+                    <Text style={styles.nickNameText}>{user[0].name} 님</Text>
+                    <Text style={styles.emailText}>{user[0].email}</Text>
                 </View>
-            </TouchableOpacity>
-
-            <View style={styles.profileNameFrame}>
-                <Text style={styles.profileText}> SAU RECIPE </Text>
             </View>
-
-            <View style={styles.margineFrame}></View>
-
-            <TouchableOpacity onPress={() => showToast()}>
-                <View style={styles.settingFrame}>
-                    <Text style={styles.SettingText}> 좋아요 </Text>
-                </View>
-            </TouchableOpacity>
-
-            <View style={styles.margineFrame}></View>
-
-            <TouchableOpacity onPress={() => showToast()}>
-                <View style={styles.settingFrame}>
-                    <Text style={styles.SettingText}> 도움말 </Text>
-                </View>
-            </TouchableOpacity>
-
-            <View style={styles.margineFrame}></View>
-
-            <TouchableOpacity onPress={() => showToast()}>
-                <View style={styles.settingFrame}>
-                    <Text style={styles.SettingText}> 공지사항 </Text>
-                </View>
-            </TouchableOpacity>
-
-            <View style={styles.margineFrame}></View>
-
-            <TouchableOpacity onPress={() => showToast()}>
-                <View style={styles.settingFrame}>
-                    <Text style={styles.SettingText}> 설정 </Text>
-                </View>
-            </TouchableOpacity>
+            <View style={styles.accountBox}>
+                <Text
+                    style={{
+                        fontSize: 16,
+                        fontFamily: 'PretendardVariable',
+                        paddingBottom: height * 10,
+                    }}
+                >
+                    내정보
+                </Text>
+                <AccountText text="이름" data={user[0].name} />
+                <AccountText text="닉네임" data={user[0].nickname} />
+                <AccountText text="아이디" data={user[0].id} />
+                <AccountText text="이메일" data={user[0].email} />
+                <AccountText text="성별" data={user[0].gender} />
+                <AccountText text="전화번호" data={user[0].number} />
+                <AccountText text="생년월일" data={user[0].birth} />
+            </View>
         </SafeAreaView>
     );
 };
@@ -80,7 +72,6 @@ const styles = StyleSheet.create({
         paddingTop: Platform.OS === 'android' ? 40 : 0,
         backgroundColor: '#FFFFFF',
     },
-
     TopBar: {
         height: height * 40, //높이
         width: width * 360, //너비
@@ -102,53 +93,42 @@ const styles = StyleSheet.create({
         borderColor: 'gray',
         height: height * 100,
         width: width * 360,
+        borderTopWidth: 1,
+        borderBottomWidth: 1,
         alignItems: 'center',
-        justifyContent: 'center', //세로정렬
-    },
-    settingFrame: {
-        flexDirection: 'row',
-        borderColor: '#0050FF',
-        height: height * 50,
-        width: width * 200,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 10,
-        borderWidth: 1,
-    },
-    margineFrame: {
-        flexDirection: 'row',
-        borderTopWidth: 0.1,
-        borderColor: 'gray',
-        height: 18,
-        width: width * 200,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 6,
-    },
-    profileNameFrame: {
-        flexDirection: 'row',
-        borderColor: 'gray',
-        height: height * 70,
-        width: width * 360,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    SettingImage: {
-        width: width * 20,
-        height: width * 20,
     },
     profileImage: {
-        width: width * 80,
-        height: width * 80,
-        borderRadius: 100,
+        width: width * 60,
+        height: width * 60,
+        borderRadius: 14,
+        margin: width * 14,
+        marginLeft: width * 20,
     },
-    profileText: {
-        fontSize: 25,
-        fontFamily: 'PretendardSemiBold',
+    nickNameText: {
+        fontSize: 20,
+        fontFamily: 'PretendardBold',
     },
-    SettingText: {
-        fontSize: 18,
-        fontFamily: 'PretendardRegular',
+    emailText: {
+        fontSize: 16,
+        fontFamily: 'PretendardVariable',
+    },
+    accountBox: { 
+        width: width * 360, 
+        paddingLeft: width * 20, 
+        paddingRight: width * 20, 
+        paddingTop: height * 10 
+    },
+    accountList: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingLeft: width * 10,
+        paddingRight:width * 10,
+        paddingTop: height * 14,
+        paddingBottom: height * 14,
+    },
+    accountText: {
+        fontSize: 20,
+        fontFamily: 'PretendardVariable',
     },
 });
 
