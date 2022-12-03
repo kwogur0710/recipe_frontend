@@ -14,48 +14,17 @@ export const RecipeList = (props) => {
                     {props.item.RCP_NM}
                 </Text>
                 <View style={{ flexDirection: 'row' }}>
-                    <View
-                        style={{
-                            borderRadius: 50,
-                            backgroundColor: '#E4E4E4',
-                            marginRight: width * 6,
-                            paddingLeft: width * 6,
-                            paddingRight: width * 6,
-                            marginBottom: width * 4,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}
-                    >
-                        <Text
-                            style={{
-                                fontFamily: 'PretendardMedium',
-                                fontSize: height * 12,
-                            }}
-                        >
-                            {props.item.RCP_WAY2}
-                        </Text>
+                    <View style={styles.tagBox}>
+                        <Text style={styles.tagText}>{props.item.RCP_WAY2}</Text>
                     </View>
-                    <View
-                        style={{
-                            borderRadius: 50,
-                            backgroundColor: '#E4E4E4',
-                            marginRight: width * 6,
-                            paddingLeft: width * 6,
-                            paddingRight: width * 6,
-                            marginBottom: width * 4,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}
-                    >
-                        <Text
-                            style={{
-                                fontFamily: 'PretendardMedium',
-                                fontSize: height * 12,
-                            }}
-                        >
-                            {props.item.RCP_PAT2}
-                        </Text>
+                    <View style={styles.tagBox}>
+                        <Text style={styles.tagText}>{props.item.RCP_PAT2}</Text>
                     </View>
+                    {props.item.HASH_TAG ? (
+                        <View style={styles.tagBox}>
+                            <Text style={styles.tagText}>{props.item.HASH_TAG}</Text>
+                        </View>
+                    ) : null}
                 </View>
             </View>
         </View>
@@ -85,5 +54,19 @@ const styles = StyleSheet.create({
         fontFamily: 'PretendardMedium',
         fontSize: height * 12,
         marginRight: 4,
+    },
+    tagBox: {
+        borderRadius: 50,
+        backgroundColor: '#E4E4E4',
+        marginRight: width * 6,
+        paddingLeft: width * 6,
+        paddingRight: width * 6,
+        marginBottom: width * 4,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    tagText: {
+        fontFamily: 'PretendardMedium',
+        fontSize: height * 12,
     },
 });

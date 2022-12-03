@@ -3,8 +3,9 @@ import { StyleSheet, Text, View, TouchableOpacity, Image, TextInput } from 'reac
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { height, marginWidth, width } from '../../../config/globalStyles';
+import {CommentGet} from '../../screen/CommentScreen.js';
 
-export const TopBar = (props, { onUpdateSearch, setSearch }) => {
+export const TopBar = (props, { onUpdateSearch, setSearch, setRefresh }) => {
     const navigation = useNavigation();
     const ingredient = props?.ingredient;
     const user = props?.user;
@@ -15,6 +16,10 @@ export const TopBar = (props, { onUpdateSearch, setSearch }) => {
 
     const [searchA, setSearchA] = useState('');
 
+    const refresh = () => {
+        setRefresh(true);
+        console.log('refresh');
+    }
     const onUpdateSearchA = (text) => {
         setSearchA(text);
         props.onUpdateSearch(text);
@@ -84,6 +89,16 @@ export const TopBar = (props, { onUpdateSearch, setSearch }) => {
                 </Text>
             ) : (
                 <View style={{ flexDirection: 'row' }}>
+                    {props.refresh == true ? (
+                        <TouchableOpacity
+                            onPress={() => {
+                                props.CommentRefresh();
+                            }}
+                            style={styles.TopBtn}
+                        >
+                            <Feather name="refresh-ccw" size={26} color="black" />
+                        </TouchableOpacity>
+                    ) : null}
                     {props.search == true ? (
                         <TouchableOpacity
                             onPress={() => {
@@ -96,18 +111,6 @@ export const TopBar = (props, { onUpdateSearch, setSearch }) => {
                             ) : (
                                 <Feather name="search" size={26} color="black" />
                             )}
-                        </TouchableOpacity>
-                    ) : null}
-                    {props.add == true ? (
-                        <TouchableOpacity
-                            onPress={() => {
-                                navigation.navigate('RecipeAddScreen', {
-                                    RecipeData: RecipeData,
-                                });
-                            }}
-                            style={styles.TopBtn}
-                        >
-                            <Feather name="plus" size={26} color="black" />
                         </TouchableOpacity>
                     ) : null}
                     {props.filter == true ? (

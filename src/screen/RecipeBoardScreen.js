@@ -13,14 +13,36 @@ import { useNavigation } from '@react-navigation/native';
 import { RecipeData } from '../../config/RecipeData';
 import { Feather } from '@expo/vector-icons';
 import { TopBar } from '../components/MainComponents/TopBar';
+import axios from 'axios';
+import { FlatList, TextInput } from 'react-native-gesture-handler';
 
 const RecipeBoardScreen = ({ route, navigation }) => {
+    console.log('RecipeData',route.params?.item);
     const [RecipeData, setRecipeData] = useState(route.params?.item);
-    console.log(RecipeData);
+    const user = route.params?.user[0];
+    const [comments, setComments] = useState();
+    const [loading, setLoading] = useState();
+    const [inputComments, setInputComments] = useState();
+
+    // 첫 렌더링 때 fetchNews() 한 번 실행
     useEffect(() => {
-        setRecipeData(route.params?.item), [route.params?.item];
-        console.log('RecipeBoardScreen', RecipeData.id, RecipeData.title);
-    });
+        getComments();
+    }, []);
+
+    const getComments = async () => {
+        try {
+            const response = await axios.get(
+                `https://recipe.loca.lt/post/get/postnum=${RecipeData.RCP_SEQ}`
+            );
+            setComments(response.data);
+        } catch (e) {
+            console.log('ERROR!', e);
+        }
+        setLoading(true);
+    };
+
+
+
     const TextImage = (props) => {
         if (props.img != '')
             return (
@@ -43,7 +65,21 @@ const RecipeBoardScreen = ({ route, navigation }) => {
                     source={{ uri: RecipeData.ATT_FILE_NO_MAIN }}
                 />
                 <View style={styles.RecipeTextView}>
+                    <TouchableOpacity
+                    onPress={()=>{
+                        navigation.navigate('CommentScreen',
+                        {postNum:RecipeData.RCP_SEQ, user:user })
+                    }}>
+                        <Text>댓글보기</Text>
+                    </TouchableOpacity>
                     <View style={styles.border} />
+                    <Text> 열량 : {RecipeData.INFO_ENG}</Text>
+                    <Text> 탄수화물 : {RecipeData.INFO_CAR}</Text>
+                    <Text> 단백질 : {RecipeData.INFO_PRO}</Text>
+                    <Text> 지방 : {RecipeData.INFO_FAT}</Text>
+                    <Text> 나트륨 : {RecipeData.INFO_NA}</Text>
+                    <View style={styles.border} />
+
                     <Text style={styles.SubTitleText}>재료</Text>
                     <Text style={styles.ContentText}>
                         {RecipeData.RCP_PARTS_DTLS.toString().replace(/\,/gi, '\n')}

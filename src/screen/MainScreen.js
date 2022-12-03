@@ -44,9 +44,12 @@ const MainScreen = ({ navigation, route }) => {
         return (
             <TouchableOpacity
                 onPress={() => {
-                    navigation.navigate('RecipeBoardScreen', {
-                        item: item[0],
-                    });
+                    navigation.navigate(
+                        'RecipeBoardScreen',
+                        {
+                            item: item[0], user : user
+                        }
+                    );
                 }}
                 style={{
                     alignItems: 'center', //가로정렬 : 중앙
@@ -123,7 +126,7 @@ const MainScreen = ({ navigation, route }) => {
     };
     return (
         <SafeAreaView style={styles.container}>
-            <TopBar screen="Main" title="재료로 찾는 레시피" user = {user} />
+            <TopBar screen="Main" title="재료로 찾는 레시피" user={user} />
             <ScrollView style={{ width: width * 360 }}>
                 <Swiper
                     containerStyle={{

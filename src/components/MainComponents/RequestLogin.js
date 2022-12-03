@@ -1,7 +1,8 @@
 import axios from "axios"
 
 export const RequestLogin = async(id, password) => {
-    const serverURL = 'http://localhost:4000';
+    const serverURL = 'https://recipe.loca.lt/';
+    const localserverURL = 'http://localhost:4000/';
     return axios
     .post(
         `${serverURL}/auth/login`,

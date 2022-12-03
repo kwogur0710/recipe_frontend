@@ -85,9 +85,10 @@ const LogInScreen = () => {
                             if (response.status == 200) {
                                 console.log(response.data.message);
                                 navigation.navigate('MainScreen', { RecipeData: RecipeData, user : response.data.user });
-                            } else if (response.status == 400) Alert.alert(response.data.message);
+                            }else if (response.status == 400) Alert.alert(response.data.message);
+                            else if(response.status == 404 || response.status == 504) Alert.alert('네트워크 통신오류입니다.');
                         } catch {
-                            console.log('err : ', response);
+                            //console.log('err : ', response);
                         }
                     }}
                 >

@@ -87,7 +87,6 @@ const RecipeListScreen = ({ route, props, navigation }) => {
                 setSearch={setSearch}
                 onUpdateSearch={onUpdateSearch}
                 search={true}
-                add={true}
                 filter={true}
                 searchTitle={'레시피 제목을 입력하세요'}
                 RecipeData={RecipeData}
@@ -102,6 +101,7 @@ const RecipeListScreen = ({ route, props, navigation }) => {
                         ? RecipeData.filter((value) => value.RCP_PAT2 == TypeName)
                         : null
                 }
+                windowSize={10}
                 refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                 keyExtractor={(item) => String(item.RCP_SEQ)}
                 renderItem={({ item }) => {
