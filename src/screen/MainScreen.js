@@ -95,6 +95,7 @@ const MainScreen = ({ navigation, route }) => {
                             TypeName: TypeName,
                             RecipeData: RecipeData,
                             Type: Type,
+                            user : user
                         });
                     }}
                 >
@@ -163,7 +164,7 @@ const MainScreen = ({ navigation, route }) => {
                             TypeName: '전체',
                             Type: 'RCP_PAT2',
                             RecipeData: RecipeData,
-                            screen: 'recipeListScreen',
+                            user : user
                         });
                     }}
                 >

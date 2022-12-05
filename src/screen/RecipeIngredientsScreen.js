@@ -14,7 +14,7 @@ import {
 import { height, marginWidth, width } from '../../config/globalStyles';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { IngredientsData } from '../../config/RecipeData';
+import { IngredientsData } from '../components/MainComponents/RecipeData';
 import { TopBar } from '../components/MainComponents/TopBar';
 
 const RecipeIngredientsScreen = ({ route }) => {
@@ -22,6 +22,7 @@ const RecipeIngredientsScreen = ({ route }) => {
     const RecipeData = route.params?.RecipeData;
     const TypeName = route.params?.TypeName;
     const Type = route.params?.Type;
+    const user = route.params?.user;
     const [selectedTitle, setSelectedTitle] = useState([]);
     const [ingredient, setingredient] = useState(route.params?.ingredient);
     const [search, setSearch] = useState('');
@@ -119,7 +120,8 @@ const RecipeIngredientsScreen = ({ route }) => {
                               ingredient: ingredient,
                               Type : Type,
                               TypeName : TypeName,
-                              RecipeData : RecipeData
+                              RecipeData : RecipeData,
+                              user: user
                           })
                 }}
             >

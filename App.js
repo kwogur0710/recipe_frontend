@@ -24,8 +24,6 @@ const App = () => {
         PretendardThin: require('./assets/fonts/Pretendard-Thin.ttf'),
         PretendardVariable: require('./assets/fonts/PretendardVariable.ttf'),
     });
-    console.log('Font Ready :', fontsLoading);
-    //console.log('RecipeData : ', RecipeData);
 
     return fontsLoading ? <RootStack /> : null;
 };

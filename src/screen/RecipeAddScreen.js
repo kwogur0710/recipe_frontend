@@ -15,7 +15,6 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { height, marginWidth, width } from '../../config/globalStyles';
-import { RecipeData } from '../../config/RecipeData';
 import * as ImagePicker from 'expo-image-picker';
 import { Feather } from '@expo/vector-icons';
 import { TopBar } from '../components/MainComponents/TopBar';
@@ -29,7 +28,6 @@ const RecipeAddScreen = ({ route, navigation }) => {
     const [visibleModal, setVisibleModal] = useState(false);
     const showToast = (text) => {
         Platform.OS === 'android' ? ToastAndroid.show(text, ToastAndroid.SHORT) : null;
-        console.log('showToast', text);
     };
     const [modalName, setModalName] = useState('');
     const [modalValue, setModalValue] = useState('');
@@ -156,7 +154,6 @@ const RecipeAddScreen = ({ route, navigation }) => {
     } = inputs;
     //textInput onChangeText 함수
     const onChange = (keyvalue, e) => {
-        console.log(keyvalue, e);
         const text = e;
         setInputs({
             ...inputs,
@@ -239,11 +236,9 @@ const RecipeAddScreen = ({ route, navigation }) => {
     const addListRemove = (item) => {
         const a = addList;
         const b = [];
-        console.log(a);
 
         a.forEach((e) => {
-            if (e.parts === item.parts) console.log('같은거 발견!', e, item);
-            else b.push(e);
+            if (e.parts != item.parts) b.push(e);
         });
         setAddList(b);
     };
@@ -252,7 +247,6 @@ const RecipeAddScreen = ({ route, navigation }) => {
     const [status, requestPermission] = ImagePicker.useMediaLibraryPermissions();
 
     const uploadImage = async (value) => {
-        console.log('value : ', value);
         // 권한 확인 코드: 권한 없으면 물어보고, 승인하지 않으면 함수 종료
         if (!status?.granted) {
             const permission = await requestPermission();
@@ -275,12 +269,10 @@ const RecipeAddScreen = ({ route, navigation }) => {
             ...inputs,
             [value]: result.uri,
         });
-        console.log(inputs);
     };
     const partsAdd = () => {
         const parts = partsA + '(' + partsB + ')';
         setAddList([...addList, { parts: parts, partsA: partsA, partsB: partsB }]);
-        console.log('addList', addList);
         setPartsA('');
         setPartsB('');
     };
@@ -288,19 +280,14 @@ const RecipeAddScreen = ({ route, navigation }) => {
         const text = e;
         if (keyvalues == 'partsA') setPartsA(text);
         else if (keyvalues == 'partsB') setPartsB(text);
-        console.log(keyvalues, e);
     };
     const ModalList = ({ name, value, list }) => {
-        console.log('value :', value);
-        console.log('name :', name);
         const BtnList = ({ value, name }) => {
-            console.log(value, name);
             return (
                 <TouchableOpacity
                     onPress={() => {
                         setVisibleModal(false),
-                            TypeSet(value, name),
-                            console.log('pressSave', value, name);
+                            TypeSet(value, name)
                     }}
                 >
                     <View
@@ -408,7 +395,6 @@ const RecipeAddScreen = ({ route, navigation }) => {
     };
 
     const TextImage = (item) => {
-        console.log('테스트 ', String(item.item.image), inputs[String(item.item.image)]);
         const [text, setText] = useState('');
         const TextSave = () => {
             setInputs({
@@ -625,7 +611,7 @@ const RecipeAddScreen = ({ route, navigation }) => {
                             {partsA && partsB ? (
                                 <TouchableOpacity
                                     onPress={() => {
-                                        partsAdd(), console.log('재료 추가 Press');
+                                        partsAdd();
                                     }}
                                     style={{
                                         justifyContent: 'center',
@@ -671,9 +657,8 @@ const RecipeAddScreen = ({ route, navigation }) => {
                               inputs.MANUAL_IMG01 &&
                               inputs.MANUAL01
                             ? (Save(inputs),
-                              console.log(RecipeData, '저장성공'),
                               navigation.navigate('MainScreen', { RecipeData: RecipeData }))
-                            : (console.log('저장 실패'), showToast('모든 항목을 입력해주세요!'));
+                            : showToast('모든 항목을 입력해주세요!');
                     }}
                     style={{
                         alignItems: 'center',

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { Feather, Entypo } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { RecipeData } from '../../../config/RecipeData';
 import { height, marginWidth, width } from '../../../config/globalStyles';
 
 export const RecipeAPIList = (props) => {

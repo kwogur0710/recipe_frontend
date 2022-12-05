@@ -10,38 +10,15 @@ import {
 } from 'react-native';
 import { height, marginWidth, width } from '../../config/globalStyles';
 import { useNavigation } from '@react-navigation/native';
-import { RecipeData } from '../../config/RecipeData';
 import { Feather } from '@expo/vector-icons';
 import { TopBar } from '../components/MainComponents/TopBar';
 import axios from 'axios';
 import { FlatList, TextInput } from 'react-native-gesture-handler';
 
 const RecipeBoardScreen = ({ route, navigation }) => {
-    console.log('RecipeData',route.params?.item);
+    console.log('route : ', route.params);
     const [RecipeData, setRecipeData] = useState(route.params?.item);
     const user = route.params?.user[0];
-    const [comments, setComments] = useState();
-    const [loading, setLoading] = useState();
-    const [inputComments, setInputComments] = useState();
-
-    // 첫 렌더링 때 fetchNews() 한 번 실행
-    useEffect(() => {
-        getComments();
-    }, []);
-
-    const getComments = async () => {
-        try {
-            const response = await axios.get(
-                `https://recipe.loca.lt/post/get/postnum=${RecipeData.RCP_SEQ}`
-            );
-            setComments(response.data);
-        } catch (e) {
-            console.log('ERROR!', e);
-        }
-        setLoading(true);
-    };
-
-
 
     const TextImage = (props) => {
         if (props.img != '')

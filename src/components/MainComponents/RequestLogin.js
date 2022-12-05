@@ -12,7 +12,6 @@ export const RequestLogin = async(id, password) => {
         }
     )
     .then((response) => {
-        console.log(response);
         return response;
     })
     .catch((err) => {

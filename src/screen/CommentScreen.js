@@ -45,7 +45,6 @@ export const CommentScreen = ({ route }) => {
                 commentNum: commentNumber,
             })
             .then((response) => {
-                console.log('댓글 삭제 성공');
                 setComments(response.data);
                 CommentGet();
             })
@@ -69,7 +68,6 @@ export const CommentScreen = ({ route }) => {
                 contents: contents,
             })
             .then((response) => {
-                console.log('댓글 저장 성공');
                 return response;
             })
             .catch((err) => {

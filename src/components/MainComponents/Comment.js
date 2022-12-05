@@ -12,7 +12,6 @@ const CommentSave = async (postNum, id, nickname, contents) => {
             contents: contents,
         })
         .then((response) => {
-            console.log(response);
             return response;
         })
         .catch((err) => {
@@ -31,7 +30,6 @@ const CommentGet = async (postNum) => {
             contents: contents,
         })
         .then((response) => {
-            console.log(response);
             return response;
         })
         .catch((err) => {

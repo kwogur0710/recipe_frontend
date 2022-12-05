@@ -17,7 +17,6 @@ export const Register = async(id, password, email, name, nickname, gender, birth
         }
     )
     .then((response) => {
-        console.log(response);
         return response;
     })
     .catch((err) => {

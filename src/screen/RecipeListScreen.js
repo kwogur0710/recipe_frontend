@@ -19,7 +19,6 @@ import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 import { RecipeList } from '../components/RecipeListComponents/RecipeList';
 import { TopBar } from '../components/MainComponents/TopBar';
-import { RecipeData, search } from '../../config/RecipeData';
 import { RecipeAPIList } from '../components/RecipeListComponents/RecipeAPIList';
 
 const wait = (timeout) => {
@@ -30,9 +29,8 @@ const RecipeListScreen = ({ route, props, navigation }) => {
     const RecipeData = route.params?.RecipeData;
     const Type = route.params?.Type;
     const TypeName = route.params?.TypeName;
+    const user = route.params?.user;
     const [RecipeID, setRecipeID] = useState(['']);
-    console.log('Type : ', Type);
-    console.log('TypeName : ', TypeName);
 
     const [ingredient, setingredient] = useState(route.params?.ingredient);
 
@@ -52,7 +50,6 @@ const RecipeListScreen = ({ route, props, navigation }) => {
     }, []);
     
     const SearchFilter = (item) => {
-        console.log('RecipeList.SearchFilter');
         let a = false;
         if (a === false) {
             if (item.RCP_NM.includes(search)) {
@@ -63,14 +60,10 @@ const RecipeListScreen = ({ route, props, navigation }) => {
     };
     const IngredientFilter = (item) => {
         let a = false;
-        console.log('item : ', item);
         ingredient.some((element) => {
-            console.log('element : ', element);
             if (a == false) {
-                console.log('a : ', a);
                 if (item.includes(element)) {
                     a = true;
-                    console.log('includes : ', a);
                 }
             }
         });
@@ -113,15 +106,13 @@ const RecipeListScreen = ({ route, props, navigation }) => {
                         <TouchableOpacity
                             onPress={() =>
                                 navigation.navigate('RecipeBoardScreen', {
-                                    item: item,
+                                    item: item, user : user
                                 })
                             }
                         >
                             <RecipeList img={item.img} title={item.title} item={item} />
                         </TouchableOpacity>
-                    ) : (
-                        console.log('FlatList error')
-                    );
+                    ) : null ;
                 }}
             />
         </SafeAreaView>

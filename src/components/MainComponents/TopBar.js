@@ -18,12 +18,10 @@ export const TopBar = (props, { onUpdateSearch, setSearch, setRefresh }) => {
 
     const refresh = () => {
         setRefresh(true);
-        console.log('refresh');
     }
     const onUpdateSearchA = (text) => {
         setSearchA(text);
         props.onUpdateSearch(text);
-        console.log('search', searchA);
     };
 
     return (

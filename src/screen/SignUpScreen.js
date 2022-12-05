@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { RecipeData } from '../../config/RecipeData';
 import { height, marginWidth, width } from '../../config/globalStyles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Register } from '../components/MainComponents/Register';
@@ -56,12 +55,10 @@ const SingUpScreen = ({ route }) => {
         else d = inputBirthD;
         
         setInputBirth(inputBirthY +'.'+ m +'.'+ d);
-        console.log(inputBirth);
     }, [inputBirthY, inputBirthM, inputBirthD]);
 
     useEffect(() => {
         setInputNumber(inputNumberA +'-'+ inputNumberB +'-'+ inputNumberC);
-        console.log(inputNumber);
     }, [inputNumberA, inputNumberB, inputNumberC]);
     
 
@@ -367,11 +364,10 @@ const SingUpScreen = ({ route }) => {
                                     inputNumber
                                 );
                                 if (response.status == 200) {
-                                    console.log(response.data.message);
+                                    Alert.alert('회원가입 성공', response.data.message);
                                     navigation.navigate('LogInScreen');
                                 } else if (response.status == 400) {
                                     Alert.alert('회원가입 실패', response.data.message);
-                                    console.log(response.data.message);
                                 }
                             } catch {
                                 console.log('err!');

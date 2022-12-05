@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, TextInput,Alert } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { RecipeData } from '../../config/RecipeData';
 import { height, marginWidth, width } from '../../config/globalStyles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from 'axios';
@@ -41,7 +40,6 @@ const LogInScreen = () => {
     // 첫 렌더링 때 fetchNews() 한 번 실행
     useEffect(() => {
         loadingRecipe();
-        console.log('API Loading : ', Loading);
     }, []);
 
     if (RecipeData != null) {
@@ -83,12 +81,11 @@ const LogInScreen = () => {
                         try {
                             response = await RequestLogin(inputID, inputPW);
                             if (response.status == 200) {
-                                console.log(response.data.message);
                                 navigation.navigate('MainScreen', { RecipeData: RecipeData, user : response.data.user });
                             }else if (response.status == 400) Alert.alert(response.data.message);
                             else if(response.status == 404 || response.status == 504) Alert.alert('네트워크 통신오류입니다.');
                         } catch {
-                            //console.log('err : ', response);
+                            console.log('err : ', response);
                         }
                     }}
                 >
